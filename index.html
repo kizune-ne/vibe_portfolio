@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kizun — VibeCoder & AI Engineer | ИИ-Агенты, Автоматизация & Софт</title>
+  <meta name="description"
+    content="Портфолио kizun: ИИ-агенты, приватные Telegram-парсеры топиков, Docker, кастомная прошивка клавиатуры, калькулятор типографии и AI/дизайн проекты.">
+
+  <!-- Fonts: Inter & JetBrains Mono (Vercel Style Standard) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <!-- Ambient Grid & Paper Overlay -->
+  <div class="bg-grid-pattern"></div>
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="spotlight-overlay" id="spotlightOverlay"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <span class="brand-glyph">▲</span>
+        <span class="logo-text">kizun</span>
+        <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#hero" class="nav-item active">Обо мне</a>
+        <a href="#ai-assistant" class="nav-item">ИИ-Ассистент</a>
+        <a href="#telegram" class="nav-item">TG Боты & Docker</a>
+        <a href="#firmware" class="nav-item">Код & Калькулятор</a>
+        <a href="#creative-lab" class="nav-item">AI Lab & Дизайн</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="https://t.me/kizune_ne" target="_blank" class="btn btn-primary btn-sm">
+          <i data-lucide="send"></i>
+          @kizune_ne
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Bento Grid -->
+  <main class="container bento-main">
+
+    <!-- 1. HERO SECTION -->
+    <section class="bento-row row-hero" id="hero">
+
+      <article class="bento-card card-hero" id="cardHero">
+        <div class="spotlight-border"></div>
+        <div class="card-content">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>⚡ Создано с помощью Вайбкодинга + ИИ</span>
+          </div>
+
+          <h1 class="hero-title">
+            kizun <span class="title-sub">// VibeCoder</span><br>
+            <span>Инженер ИИ-Автоматизаций</span>
+          </h1>
+
+          <p class="hero-description">
+            Создаю автономных ИИ-агентов, приватные Telegram-парсеры топиков, микросервисы в Docker, кастомные
+            C-прошивки и специализированные калькуляторы. Превращаю сложные рутинные задачи в легкий и элегантный код.
+          </p>
+
+          <!-- Metrics Row -->
+          <div class="hero-metrics-row">
+            <div class="metric-item">
+              <span class="metric-val">10+</span>
+              <span class="metric-lbl">Автоматизаций</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">99.9%</span>
+              <span class="metric-lbl">Docker Uptime</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">100k+</span>
+              <span class="metric-lbl">TikTok Views</span>
+            </div>
+          </div>
+
+          <!-- Interactive Skill Spotlight Matrix -->
+          <div class="skills-spotlight-matrix" id="skills">
+            <div class="matrix-label">
+              <span>▲ Фильтр навыков (Нажмите для фокуса):</span>
+            </div>
+            <div class="badges-wrapper">
+              <button class="skill-badge active" data-skill="ai-agent">
+                <i data-lucide="bot"></i> Внедрение ИИ-Агента
+              </button>
+              <button class="skill-badge" data-skill="tg-bots">
+                <i data-lucide="message-square"></i> TG Боты & Парсеры
+              </button>
+              <button class="skill-badge" data-skill="docker">
+                <i data-lucide="container"></i> Docker Контейнеры
+              </button>
+              <button class="skill-badge" data-skill="firmware">
+                <i data-lucide="cpu"></i> C-Прошивка Клавиатуры
+              </button>
+              <button class="skill-badge" data-skill="calculator">
+                <i data-lucide="calculator"></i> Калькулятор Типографии
+              </button>
+              <button class="skill-badge" data-skill="ai-gen">
+                <i data-lucide="image"></i> AI Influencer & LoRA
+              </button>
+              <button class="skill-badge" data-skill="tiktok">
+                <i data-lucide="video"></i> TikTok Каналы
+              </button>
+              <button class="skill-badge" data-skill="design">
+                <i data-lucide="palette"></i> Полиграфический Дизайн
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-cta-group">
+            <a href="https://t.me/kizune_ne" target="_blank" class="btn btn-primary">
+              <i data-lucide="send"></i>
+              Написать @kizune_ne в Telegram
+            </a>
+            <a href="#telegram" class="btn btn-secondary">
+              <i data-lucide="zap"></i>
+              Смотреть боты & Docker
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. NARROW-CONTEXT AI ASSISTANT -->
+      <article class="bento-card card-ai-assistant" id="cardAiAssistant">
+        <div class="spotlight-border"></div>
+        <div class="card-header-flex">
+          <div class="ai-title-wrap">
+            <div class="ai-avatar-icon"><i data-lucide="bot"></i></div>
+            <div>
+              <span class="section-tag">00 // AI ASSISTANT</span>
+              <h3 class="card-title">ИИ-Ассистент kizun</h3>
+              <span class="card-subtitle">Демо-бот для показа возможностей ИИ-интеграций</span>
+            </div>
+          </div>
+          <span class="live-pill"><span class="status-dot"></span> Online</span>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+          <div class="chat-message msg-agent">
+            <div class="avatar"><i data-lucide="bot"></i></div>
+            <div class="bubble">
+              Привет! Я легкий демо-бот на модели Gemma 4, встроенный для демонстрации интеграции ИИ в веб-сервисы. Я помогу сориентироваться по работам и идеям kizun — спроси меня о чем-нибудь!
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-quick-prompts">
+          <button class="prompt-chip" data-prompt="Что kizun может разработать с помощью вайбкодинга?"><i
+              data-lucide="sparkles"></i> Что кодишь?</button>
+          <button class="prompt-chip" data-prompt="Покажи примеры готовых проектов kizun"><i data-lucide="layers"></i>
+            Примеры работ</button>
+          <button class="prompt-chip" data-prompt="Как связаться с kizun в Telegram для обсуждения проекта?"><i data-lucide="send"></i>
+            Написать @kizune_ne</button>
+        </div>
+
+        <form class="chat-input-wrap" id="chatForm">
+          <input type="text" id="chatInput" placeholder="Спросите ассистента о проектах..." autocomplete="off">
+          <button type="submit" class="btn-send">
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </form>
+      </article>
+
+    </section>
+
+    <!-- 3. PRIVATE TELEGRAM BOTS & DOCKER INFRASTRUCTURE -->
+    <!-- 3. PRIVATE TELEGRAM BOTS & AUTOMATIONS (Clean Architecture Showcase) -->
+    <section class="bento-row" id="telegram">
+      <article class="bento-card card-tg-simulator card-tg-showcase" id="cardTgSimulator">
+        <div class="spotlight-border"></div>
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">01 // AUTOMATIONS & TG BOTS</span>
+            <h2 class="card-title">Telegram-Автоматизации, Парсеры & ИИ-Боты</h2>
+            <p class="card-subtitle">Архитектура автономных Telegram-систем: от потоковых парсеров каналов с фильтрацией по топикам до диалоговых ИИ-ассистентов и скраперов 24/7.</p>
+          </div>
+        </div>
+
+        <!-- Clean 3-Column Architecture Grid -->
+        <div class="tg-architecture-grid">
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="layers"></i></div>
+              <span class="arch-tag">STREAM PARSING</span>
+            </div>
+            <h4>Потоковый парсинг &amp; Топики</h4>
+            <p>Реалтайм скан Telegram-каналов. Умная фильтрация рекламы, чистка дубликатов и мгновенная раскладка по топикам в закрытые группы.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Telethon / Pyrogram</span>
+              <span class="tech-pill">Topic Routing</span>
+              <span class="tech-pill">Deduplication</span>
+            </div>
+          </div>
+
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="bot"></i></div>
+              <span class="arch-tag">NEURAL AGENTS</span>
+            </div>
+            <h4>Умные ИИ-Боты (LLM Integration)</h4>
+            <p>Внедрение локальных моделей (Ollama / Qwen) и облачных API (Gemma / OpenAI) в диалоги Telegram для авто-ответов, консультаций и суммаризации.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Ollama / Qwen</span>
+              <span class="tech-pill">Gemma API</span>
+              <span class="tech-pill">Context RAG</span>
+            </div>
+          </div>
+
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="database"></i></div>
+              <span class="arch-tag">ASYNC SCRAPING</span>
+            </div>
+            <h4>Скрапинг Данных &amp; График 24/7</h4>
+            <p>Асинхронный сбор информации с внешних ресурсов и бирж с ротацией прокси, обходом антифрода, планировщиком задач и выгрузкой отчетов.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Proxy Rotation</span>
+              <span class="tech-pill">APScheduler</span>
+              <span class="tech-pill">PostgreSQL / JSON</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telegram Security & Architecture Footbar -->
+        <div class="tg-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="shield-check"></i> Docker-Изоляция</span>
+          <span class="arch-footer-chip"><i data-lucide="lock"></i> Шифрование Ключей</span>
+          <span class="arch-footer-chip"><i data-lucide="activity"></i> 99.9% Аптайм</span>
+          <span class="arch-footer-chip"><i data-lucide="cpu"></i> Асинхронная Очередь</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- Row 2: Docker Infrastructure & Container Topology Stand (100% Full Width) -->
+    <section class="bento-row" id="infrastructure">
+      <article class="bento-card card-docker" id="cardDocker">
+        <div class="spotlight-border"></div>
+
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">02 // INFRASTRUCTURE & CONTAINER ORCHESTRATION</span>
+            <h3 class="card-title">Docker Контейнеры & Схема Микросервисов</h3>
+            <p class="card-subtitle">Архитектура изолированной Linux-среды, проброс GPU CUDA, безопасные Bind Mounts и
+              автоматизация Docker Compose.</p>
+          </div>
+        </div>
+
+        <!-- 1. Visual Topology Graph Diagram -->
+        <div class="docker-topology-container">
+          <div class="topology-header">
+            <i data-lucide="network"></i>
+            <span>DOCKER COMPOSE INFRASTRUCTURE TOPOLOGY GRAPH</span>
+          </div>
+
+          <div class="topology-diagram">
+
+            <!-- Host Hardware Block -->
+            <div class="topo-node topo-host">
+              <div class="topo-node-icon"><i data-lucide="cpu"></i></div>
+              <div class="topo-node-info">
+                <strong>Host Machine (Windows 11 Pro)</strong>
+                <span>AMD Ryzen 7 9700X | NVIDIA GeForce RTX 4070 Ti SUPER (16GB VRAM)</span>
+              </div>
+            </div>
+
+            <div class="topo-arrow-down">
+              <div class="line-pulse"></div>
+              <span><i data-lucide="arrow-down"></i> NVIDIA Container Toolkit & Bind Mounts (_keys/)</span>
+            </div>
+
+            <!-- Docker Compose Internal Network Grid -->
+            <div class="topo-network-grid">
+
+              <!-- Container 1: Ollama GPU -->
+              <div class="topo-card topo-container" data-container="ollama">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">ollama:latest</span>
+                  <span class="badge-port">11434:11434</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">GPU CUDA LLM Engine</span>
+                  <div class="topo-specs">
+                    <span>NVIDIA Driver: Passthrough</span>
+                    <span>OLLAMA_KEEP_ALIVE: 10m</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Container 2: AI Server DevContainer -->
+              <div class="topo-card topo-container active" data-container="devcontainer">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">ai_server (DevContainer)</span>
+                  <span class="badge-port">Port 22 / SSH</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">VS Code Remote Linux Workspace</span>
+                  <div class="topo-specs">
+                    <span>Volume: ai-server-venv</span>
+                    <span>Mount: _keys/ + docker.sock</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Container 3: Open-WebUI -->
+              <div class="topo-card topo-container" data-container="webui">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">open-webui:main</span>
+                  <span class="badge-port">3000:8080</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">Inter-Container Web UI</span>
+                  <div class="topo-specs">
+                    <span>Route: http://ollama:11434</span>
+                    <span>Volume: ./_keys/open-webui</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. Interactive DevOps CLI Console -->
+        <div class="devops-cli-stand">
+
+          <div class="cli-top-bar">
+            <div class="cli-tabs" id="cliCommandTabs">
+              <button class="cli-tab-btn active" data-cmd="docker-ps">
+                <i data-lucide="terminal"></i> docker ps -a
+              </button>
+              <button class="cli-tab-btn" data-cmd="nvidia-smi">
+                <i data-lucide="zap"></i> nvidia-smi (Container GPU)
+              </button>
+              <button class="cli-tab-btn" data-cmd="docker-volume">
+                <i data-lucide="hard-drive"></i> docker volume & mounts
+              </button>
+            </div>
+            <div class="cli-badge-live">
+              <span class="status-dot"></span> DevOps Live Console
+            </div>
+          </div>
+
+          <div class="cli-terminal-window">
+            <pre><code id="cliOutputText"></code></pre>
+          </div>
+
+        </div>
+
+        <!-- 3. Engineering Proof Cards Grid -->
+        <div class="devops-benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="shield-check"></i></div>
+            <div class="benefit-content">
+              <strong>100% Изоляция & Zero Host Conflict</strong>
+              <p>Разделение зависимостей Python через вынесенный том <code>ai-server-venv</code>. Хост-система остаётся
+                чистой от конфликтующих библиотек.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="key-round"></i></div>
+            <div class="benefit-content">
+              <strong>Безопасность Секретов (_keys/)</strong>
+              <p>Монтирование локальных директорий с API-ключами и ключами SSH через <code>Bind Mounts</code> с
+                исключением попадания секретов в Git.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="cpu"></i></div>
+            <div class="benefit-content">
+              <strong>Прямой Проброс GPU (NVIDIA CUDA)</strong>
+              <p>Конфигурация <code>NVIDIA Container Toolkit</code> для работы локальных нейросетей (Ollama, Qwen 2.5
+                Coder 14B) с задействованием 16GB VRAM.</p>
+            </div>
+          </div>
+        </div>
+
+      </article>
+    </section>
+
+    <!-- 4. FIRMWARE & SPECIALIZED PRINT CALCULATOR -->
+    <section class="bento-row" id="firmware">
+
+      <!-- Firmware Code Showcase (MonsGeek M1 V5 QMK/Vial Full Width IDE Layout) -->
+      <article class="bento-card card-code-viewer" id="cardCodeViewer">
+        <div class="spotlight-border"></div>
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">03 // HARDWARE INTEGRATION & VIAL PORTING</span>
+            <h2 class="card-title">Разработка Кастомной Прошивки MonsGeek M1 V5 (QMK / Vial)</h2>
+            <p class="card-subtitle">Портирование динамической конфигурации Vial GUI, оптимизация системного протокола
+              2.4GHz / Bluetooth 5.0, патчинг дубликатов символов линковщика LDFLAGS и сборка мультислойных кеймапов.
+            </p>
+          </div>
+          <a href="https://github.com/kizune-ne/monsgeek_m1_v5_qmk-vial" target="_blank" class="btn-github-repo"
+            title="Открыть исходный код прошивки на GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            <span>GitHub Repository ↗</span>
+          </a>
+        </div>
+
+        <div class="firmware-split-container">
+
+          <!-- Column 1: Interactive File Tree Explorer Sidebar -->
+          <div class="file-tree-sidebar">
+            <div class="file-tree-header">
+              <i data-lucide="folder-tree"></i>
+              <span>FIRMWARE EXPLORER</span>
+            </div>
+            <div class="tree-nodes-list" id="fileTreeContainer">
+              <!-- Dynamically rendered 1:1 real folder tree from keyboards/ by firmware-editor.js -->
+            </div>
+          </div>
+
+          <!-- Column 2: Code Editor Window (Full Remaining Width) -->
+          <div class="code-editor-wrap">
+            <div class="editor-tabs">
+              <div class="active-file-breadcrumb" id="activeFileBreadcrumb">
+                <i data-lucide="file-code"></i>
+                <span id="breadcrumbText">keyboards/monsgeek/m1_v5/m1_v5_us/keymaps/vial/keymap.c</span>
+              </div>
+              <div class="editor-actions">
+                <button class="btn-editor-action" id="btnReplayCode" title="Перезапустить печать">
+                  <i data-lucide="rotate-cw"></i> <span>Перепечатать</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="editor-window">
+              <pre><code id="codeOutput"></code><span class="cursor-blink">|</span></pre>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    </section>
+
+
+    <!-- Row 4: PRINT CALCULATOR & PRINT DESIGN (Side-by-Side 2 Columns Layout) -->
+    <section class="bento-row row-two-cols" id="print-section">
+
+      <!-- Print Calculator Card -->
+      <article class="bento-card card-calc-preview" id="cardCalculator" style="cursor: pointer;">
+        <div class="spotlight-border"></div>
+
+        <div class="card-header-flex">
+          <div class="lab-icon" style="margin-bottom: 0;">
+            <i data-lucide="calculator"></i>
+          </div>
+          <a href="https://github.com/kizune-ne/printing_calculator" target="_blank" class="btn-github-repo"
+            id="btnCalcGitRepo" title="Открыть исходный код калькулятора на GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            <span>GitHub Repository ↗</span>
+          </a>
+        </div>
+
+        <span class="section-tag" style="margin-top: 12px;">04 // SPECIALIZED PRINT CALCULATOR</span>
+        <h3 class="card-title">Промышленный Калькулятор Печати & Услуг</h3>
+        <p class="card-subtitle">Сервис автоматической калькуляции заказов: мгновенный расчёт стоимости продукции и
+          производственных услуг по прайсу типографии.</p>
+
+        <div class="lab-footer" style="display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 20px 0;">
+          <span class="chip-accent"><i data-lucide="credit-card"></i> Визитки</span>
+          <span class="chip-accent"><i data-lucide="file-text"></i> Листовки</span>
+          <span class="chip-accent"><i data-lucide="ruler"></i> Чертежи</span>
+          <span class="chip-accent"><i data-lucide="tag"></i> Стикеры</span>
+          <span class="chip-accent"><i data-lucide="scissors"></i> SRA3 Раскрой</span>
+        </div>
+
+        <!-- Launch Full Screen Calculator CTA Button -->
+        <button class="btn-launch-calc-hero" id="btnOpenCalcModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="2" width="16" height="20" rx="2" />
+            <line x1="8" y1="6" x2="16" y2="6" />
+            <line x1="16" y1="14" x2="16" y2="18" />
+            <path d="M16 10h.01" />
+            <path d="M12 10h.01" />
+            <path d="M8 10h.01" />
+            <path d="M12 14h.01" />
+            <path d="M8 14h.01" />
+            <path d="M12 18h.01" />
+            <path d="M8 18h.01" />
+          </svg>
+          <span>Запустить Полный Калькулятор ↗</span>
+        </button>
+      </article>
+
+      <!-- Print Design & Identity Card -->
+      <article class="bento-card card-lab-item" id="cardPrintDesign">
+        <div class="spotlight-border"></div>
+        <div class="lab-icon">
+          <i data-lucide="palette"></i>
+        </div>
+        <span class="section-tag">05 // PRINT DESIGN & PREPRESS</span>
+        <h3 class="card-title">Полиграфический Дизайн & Prepress</h3>
+        <p class="card-subtitle">Подготовка макетов к печати, вылеты под обрез, цветоделение CMYK / Pantone, векторный
+          дизайн, айдентика и верстка по сетке.</p>
+
+        <div class="lab-footer" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;">
+          <span class="chip-accent"><i data-lucide="palette"></i> CMYK / Pantone</span>
+          <span class="chip-accent"><i data-lucide="scissors"></i> Prepress & Вылеты</span>
+          <span class="chip-accent"><i data-lucide="ruler"></i> Векторный Дизайн</span>
+          <span class="chip-accent"><i data-lucide="type"></i> Шрифтовые Пары</span>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Row 5: AI CREATIVE LAB & TIKTOK CONTENT (Side-by-Side 2 Columns Layout) -->
+    <section class="bento-row row-two-cols" id="creative-lab">
+
+      <!-- AI Influencer & LoRA -->
+      <article class="bento-card card-lab-item" id="cardAiGen">
+        <div class="spotlight-border"></div>
+        <div class="lab-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <span class="section-tag">06 // AI & GENERATIVE MEDIA</span>
+        <h3 class="card-title">AI Influencers & Тренировка LoRA</h3>
+        <p class="card-subtitle">Обучение кастомных LoRA моделей (SD / Flux), подготовка датасетов, сгенерированные
+          аватары и персонажи.</p>
+        <div class="lab-footer" style="margin-top: 14px;">
+          <span class="chip-accent">LoRA / Flux Training</span>
+        </div>
+      </article>
+
+      <!-- TikTok Content -->
+      <article class="bento-card card-lab-item" id="cardTikTok">
+        <div class="spotlight-border"></div>
+        <div class="lab-icon">
+          <i data-lucide="video"></i>
+        </div>
+        <span class="section-tag">07 // CONTENT & VIRALITY</span>
+        <h3 class="card-title">Ведение TikTok Каналов</h3>
+        <p class="card-subtitle">Навыки продвижения каналов, сценарии вирусных роликов, аналитика удержания и аудитория
+          100k+ просмотров.</p>
+        <div class="lab-footer" style="margin-top: 14px;">
+          <span class="chip-accent">Content & Virality</span>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- Modal Window for Full Typography Calculator -->
+  <div class="calc-modal-overlay" id="calcModalOverlay">
+    <div class="calc-modal-content">
+      <div class="calc-modal-header">
+        <div class="modal-title-flex">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="2" width="16" height="20" rx="2" />
+            <line x1="8" y1="6" x2="16" y2="6" />
+            <line x1="16" y1="14" x2="16" y2="18" />
+            <path d="M16 10h.01" />
+            <path d="M12 10h.01" />
+            <path d="M8 10h.01" />
+            <path d="M12 14h.01" />
+            <path d="M8 14h.01" />
+            <path d="M12 18h.01" />
+            <path d="M8 18h.01" />
+          </svg>
+          <span>Промышленный Калькулятор Расчета Печати Типографии</span>
+        </div>
+        <button class="btn-close-modal" id="btnCloseCalcModal" title="Закрыть (Esc)">✕</button>
+      </div>
+      <div class="calc-modal-body">
+        <iframe src="calc/calc.html" class="calc-iframe" id="calcIframe" title="Калькулятор типографии"></iframe>
+      </div>
+    </div>
+  </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© 2026 kizun // VIBECODER & AI ENGINEER</p>
+      <p class="footer-tagline">▲ Создано с помощью Вайбкодинга + ИИ. Связь: <a href="https://t.me/kizune_ne"
+          target="_blank" class="footer-link">@kizune_ne</a></p>
+    </div>
+  </footer>
+
+  <script type="module" src="app.js?v=gemma4"></script>
+</body>
+
+</html>

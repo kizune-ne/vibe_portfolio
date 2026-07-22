@@ -1,0 +1,366 @@
+/* ==========================================
+   MOBILE & TABLET RESPONSIVE SYSTEM
+   ========================================== */
+
+/* Prevent horizontal scroll on small devices */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+
+/* Base Container Mobile Padding */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+}
+
+/* ------------------------------------------
+   1. TABLETS & SMALL LAPTOPS (<= 1024px)
+   ------------------------------------------ */
+@media (max-width: 1024px) {
+  .row-hero .card-hero,
+  .row-hero .card-ai-assistant,
+  .row-two-cols > .bento-card,
+  .row-two-cols > article,
+  .row-three-cols > .bento-card,
+  .row-three-cols > article {
+    grid-column: span 12 !important;
+  }
+  
+  .firmware-split-container {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  .tg-window-wrapper {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .tg-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--color-hairline);
+    padding: 10px;
+  }
+
+  .tg-chat-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+  }
+
+  .tg-chat-item {
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+  .tg-chat-item .preview {
+    display: none;
+  }
+}
+
+/* ------------------------------------------
+   2. MOBILE PHONES (<= 768px)
+   ------------------------------------------ */
+@media (max-width: 768px) {
+  
+  /* Disable synthetic smooth scroll conflict & heavy blurs on touch devices */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  html, body {
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: auto !important;
+    overscroll-behavior: auto !important;
+  }
+
+  .ambient-orb,
+  .spotlight-overlay,
+  .spotlight-border {
+    display: none !important;
+  }
+
+  *, *::before, *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Disable hover transform states on touch screens to eliminate touch lag */
+  @media (hover: none) {
+    .bento-card:hover,
+    .prompt-chip:hover,
+    .btn:hover {
+      transform: none !important;
+    }
+  }
+
+  /* Solid dark background for header without blur lag */
+  .navbar {
+    background: #09090d !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 10px 0;
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .brand-logo {
+    font-size: 1rem;
+  }
+
+  .logo-badge {
+    display: none !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    width: 100%;
+    order: 3;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    gap: 12px;
+    border-top: 1px solid var(--color-hairline);
+    padding-top: 8px;
+    margin-top: 4px;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+    font-size: 0.785rem;
+    padding: 4px 8px;
+  }
+
+  .nav-actions {
+    margin-left: auto;
+  }
+
+  .nav-actions .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.775rem;
+  }
+
+  /* Bento Cards Universal Mobile Padding */
+  .bento-card {
+    padding: 18px !important;
+    border-radius: 16px !important;
+  }
+
+  /* Hero Section */
+  .hero-title {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px;
+  }
+
+  .hero-description {
+    font-size: 0.875rem !important;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .hero-metrics-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    padding: 12px !important;
+    margin-bottom: 16px;
+  }
+
+  .metric-val {
+    font-size: 1.25rem !important;
+  }
+
+  .metric-lbl {
+    font-size: 0.675rem !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .hero-cta-group .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* AI Assistant Mobile Tuning */
+  .card-ai-assistant {
+    padding: 16px !important;
+    gap: 10px !important;
+  }
+
+  .card-ai-assistant .card-header-flex {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+  }
+
+  .ai-title-wrap {
+    gap: 8px !important;
+  }
+
+  .ai-avatar-icon {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .card-ai-assistant .card-title {
+    font-size: 1rem !important;
+  }
+
+  .card-ai-assistant .card-subtitle {
+    font-size: 0.725rem !important;
+  }
+
+  .chat-container {
+    height: 220px !important;
+    padding: 12px !important;
+    gap: 8px !important;
+  }
+
+  .chat-message .bubble {
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .chat-quick-prompts {
+    gap: 6px !important;
+    padding-bottom: 2px !important;
+  }
+
+  .prompt-chip {
+    font-size: 0.7rem !important;
+    padding: 6px 10px !important;
+  }
+
+  .chat-input-wrap input {
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .btn-send {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* TG Simulator & DevOps */
+  .tg-main-chat {
+    padding: 12px !important;
+  }
+
+  .tg-architecture-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .terminal-window {
+    padding: 12px !important;
+    font-size: 0.75rem !important;
+    max-height: 240px !important;
+  }
+
+  .devops-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Firmware Editor */
+  .firmware-file-tree {
+    max-height: 140px;
+    overflow-y: auto;
+  }
+
+  .firmware-code-editor {
+    height: 220px !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Printing Calculator Mobile */
+  .calc-options-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .calc-preset-btns {
+    flex-wrap: wrap !important;
+  }
+
+  .calc-preset-btn {
+    flex: 1 1 calc(50% - 6px);
+    text-align: center;
+    font-size: 0.75rem !important;
+  }
+
+  .calc-summary-card {
+    padding: 16px !important;
+  }
+
+  .calc-total-price {
+    font-size: 1.75rem !important;
+  }
+
+  /* Skill Matrix Badges */
+  .badges-wrapper {
+    gap: 6px !important;
+  }
+
+  .skill-badge {
+    padding: 4px 8px !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Prevent iOS Safari auto-zoom on input focus by enforcing 16px font-size on mobile inputs */
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Prevent text overflow or layout breakages on narrow screens */
+  .hero-title, .card-title, h1, h2, h3, h4 {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .bento-card, article {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column !important;
+    gap: 12px !important;
+    text-align: center !important;
+  }
+}
+
+/* ------------------------------------------
+   3. EXTRA SMALL PHONES (<= 400px)
+   ------------------------------------------ */
+@media (max-width: 400px) {
+  .hero-metrics-row {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+
+  .prompt-chip {
+    font-size: 0.675rem !important;
+    padding: 5px 8px !important;
+  }
+}

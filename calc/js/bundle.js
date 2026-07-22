@@ -1,0 +1,1695 @@
+
+// --- FILE: calc/js/data.js ---
+
+const DEFAULT_APP_PRICES = {
+            "Печать SRA3": { "Цвет": [2.88, 2.64, 2.40, 2.16, 1.80], "ЧБ": [1.92, 1.80, 1.68, 1.56, 1.44], "Цвет_A4": [1.44, 1.32, 1.20, 1.08, 0.90], "Цвет_A3": [2.88, 2.64, 2.40, 2.16, 1.80], "Офисная_A4": [0.54, 0.42, 0.36, 0.30, 0.24], "Офисная_A3": [1.08, 0.84, 0.72, 0.60, 0.48] },
+            "Чертежи Печать": { "A4": [0.72, 0.66, 0.60, 0.54], "A3": [1.20, 1.08, 0.96, 0.84], "A2": [1.80, 1.74, 1.68, 1.56], "A1": [3.00, 2.76, 2.52, 2.40], "A0": [6.00, 5.76, 5.52, 5.40] },
+            "Чертежи Скан": { "A4_Цвет": 0.54, "A4_ЧБ": 0.48, "A3_Цвет": 1.08, "A3_ЧБ": 0.78, "A2_Цвет": 1.80, "A2_ЧБ": 1.80, "A1_Цвет": 2.10, "A1_ЧБ": 2.10, "A0_Цвет": 4.80, "A0_ЧБ": 4.80 },
+            "Доп. работы": { "Резка_База": 0.36, "Резка_Мелкая": 0.48, "Скругление": 1.20, "Сшивка": 1.08, "Биговка": 0.30, "Люверс": 0.84, "Дырокол": 0.30, "Фальцовка": 0.18, "Склейка": 0.48, "Плоттер_1": [4.80, 3.60, 3.00], "Плоттер_Много": [6.00, 5.40, 4.80], "ФольгаМалая_База": 3.60, "ФольгаМалая_Скидка": 3.00, "ФольгаБольшая_База": 5.40, "ФольгаБольшая_Скидка": 4.80 },
+            "Ламинация": { "Рулон_Мат_1ст": [2.10, 1.50, 1.20], "Рулон_Мат_2ст": [3.60, 2.10, 1.80], "Рулон_Глянец_1ст": [2.10, 1.50, 1.20], "Рулон_Глянец_2ст": [3.60, 2.10, 1.80], "Рулон_SoftTouch_1ст": [2.70, 2.10, 1.80], "Рулон_SoftTouch_2ст": [4.20, 2.70, 2.10], "Пакет_А4_Глянец": [2.10, 1.80], "Пакет_А4_Мат": [3.60, 3.00], "Пакет_А3_Глянец": [3.00, 2.40], "Пакет_А3_Мат": [4.80, 4.20] },
+            "Бумага (Плотность)": { "Мелованная": { "130": 0.24, "150": 0.30, "170": 0.36, "200": 0.48, "250": 0.60, "300": 0.72, "350": 0.96 }, "Калландр": { "90": 0.30, "100": 0.36, "120": 0.48, "160": 0.60, "200": 0.84, "250": 1.08, "300": 1.32, "350": 1.56 }, "Диз_Натур": { "250": 1.80, "300": 2.10 }, "Диз_Фактур": { "120": 1.08, "250": 2.40, "300": 2.70 }, "Диз_Металлик": { "120": 1.20, "250": 2.70, "300": 3.60 }, "Самоклейка_Бум": { "Стандарт": 2.40 }, "Самоклейка_Крафт": { "Стандарт": 3.60 }, "Пленка_Прозр": { "Стандарт": 4.80 }, "Пленка_Белая": { "Стандарт": 5.40 }, "Калька": { "90": 1.20, "133": 2.40, "210": 4.80 }, "SoftTouch": { "120": 1.50, "300": 4.80 } }
+        };
+
+        let APP_PRICES = JSON.parse(localStorage.getItem('nv_app_prices'));
+        let PRICE_VERSION = localStorage.getItem('nv_price_v4');
+        if (!APP_PRICES || !PRICE_VERSION) {
+            APP_PRICES = JSON.parse(JSON.stringify(DEFAULT_APP_PRICES));
+            localStorage.setItem('nv_app_prices', JSON.stringify(APP_PRICES));
+            localStorage.setItem('nv_price_v4', 'true');
+        }
+
+        if (APP_PRICES && APP_PRICES["Стикеры"]) {
+            delete APP_PRICES["Стикеры"];
+            localStorage.setItem('nv_app_prices', JSON.stringify(APP_PRICES));
+        }
+
+        function getP(cat, key, index = null) { let p = APP_PRICES[cat][key]; if (index !== null && Array.isArray(p)) return p[Math.min(index, p.length - 1)]; return p; }
+        function setByPath(obj, path, value) { path = path.replace(/\[(\w+)\]/g, '.$1').replace(/^\./, ''); let a = path.split('.'); for (let i = 0, n = a.length; i < n - 1; ++i) { let k = a[i]; if (!(k in obj)) obj[k] = {}; obj = obj[k]; } obj[a[a.length - 1]] = value; }
+        function openPricesModal() { let c = document.getElementById('prices-editor-container'); c.innerHTML = ''; renderPricesEditor(APP_PRICES, c); document.getElementById('nv-prices-modal').style.display = 'flex'; }
+        function closePricesModal() { document.getElementById('nv-prices-modal').style.display = 'none'; }
+
+        function renderPricesEditor(obj, parentEl, path = '') {
+            for (let key in obj) {
+                let val = obj[key];
+                if (typeof val === 'object' && !Array.isArray(val)) {
+                    let div = document.createElement('div'); div.style.marginBottom = "10px"; div.style.marginLeft = path ? "15px" : "0px"; div.style.borderLeft = path ? "2px solid #ccc" : "none"; div.style.paddingLeft = path ? "10px" : "0px";
+                    div.innerHTML = `<div style="font-weight: 800; font-size: 12px; text-transform: uppercase; margin-bottom: 5px; color: #1a73e8; margin-top: 10px;">${key}</div>`;
+                    parentEl.appendChild(div); renderPricesEditor(val, div, path ? path + '.' + key : key);
+                } else {
+                    let valDiv = document.createElement('div'); valDiv.style.display = "flex"; valDiv.style.alignItems = "center"; valDiv.style.gap = "8px"; valDiv.style.marginBottom = "4px";
+                    let label = document.createElement('span'); label.textContent = key + ": "; label.style.width = "160px"; label.style.fontSize = "12px"; label.style.fontWeight = "600"; valDiv.appendChild(label);
+                    if (Array.isArray(val)) {
+                        val.forEach((v, i) => { let inp = document.createElement('input'); inp.type = "number"; inp.step = "0.01"; inp.value = v; inp.className = "nv-price-input"; inp.dataset.path = (path ? path + '.' : '') + key + '[' + i + ']'; valDiv.appendChild(inp); });
+                    } else { let inp = document.createElement('input'); inp.type = "number"; inp.step = "0.01"; inp.value = val; inp.className = "nv-price-input"; inp.dataset.path = (path ? path + '.' : '') + key; valDiv.appendChild(inp); }
+                    parentEl.appendChild(valDiv);
+                }
+            }
+        }
+        function savePrices() { document.querySelectorAll('.nv-price-input').forEach(inp => { let val = parseFloat(inp.value); if (!isNaN(val)) setByPath(APP_PRICES, inp.dataset.path, val); }); localStorage.setItem('nv_app_prices', JSON.stringify(APP_PRICES)); syncPapers(); updateDensities('tab-dense'); updateDensities('tab-bizcards'); recalculateActiveTab(); closePricesModal(); alert('Цены успешно сохранены!'); }
+        function resetPrices() { if (confirm("Вернуть цены по умолчанию?")) { localStorage.removeItem('nv_app_prices'); APP_PRICES = JSON.parse(JSON.stringify(DEFAULT_APP_PRICES)); syncPapers(); updateDensities('tab-dense'); updateDensities('tab-bizcards'); recalculateActiveTab(); closePricesModal(); alert('Цены сброшены!'); } }
+
+        const densePaperData = { office: { name: "Офисная", dens: [{ g: 80, p: 0 }] }, mel: { name: "Мелованная", dens: [{ g: 130, p: 0 }, { g: 150, p: 0 }, { g: 170, p: 0 }, { g: 200, p: 0 }, { g: 250, p: 0 }, { g: 300, p: 0 }, { g: 350, p: 0 }] }, cal: { name: "Калландрированная", dens: [{ g: 90, p: 0 }, { g: 100, p: 0 }, { g: 120, p: 0 }, { g: 160, p: 0 }, { g: 200, p: 0 }, { g: 250, p: 0 }, { g: 300, p: 0 }, { g: 350, p: 0 }] }, des_nat: { name: "Дизайнерская (натуральная)", dens: [{ g: 250, p: 0 }, { g: 300, p: 0 }] }, des_tex: { name: "Дизайнерская (фактурная)", dens: [{ g: 120, p: 0 }, { g: 250, p: 0 }, { g: 300, p: 0 }] }, des_met: { name: "Дизайнерская (металлик)", dens: [{ g: 120, p: 0 }, { g: 250, p: 0 }, { g: 300, p: 0 }] }, sa_pap: { name: "Самоклейка (бумага)", dens: [{ g: 'Стандарт', p: 0 }] }, sa_kr: { name: "Самоклейка (крафт)", dens: [{ g: 'Стандарт', p: 0 }] }, film_tr: { name: "Пленка (прозрачная)", dens: [{ g: 'Стандарт', p: 0 }] }, film_wh: { name: "Пленка (белая)", dens: [{ g: 'Стандарт', p: 0 }] }, trace: { name: "Калька", dens: [{ g: 90, p: 0 }, { g: 133, p: 0 }, { g: 210, p: 0 }] }, soft_touch: { name: "Софт-тач", dens: [{ g: 120, p: 0 }, { g: 300, p: 0 }] } };
+        const bizPaperData = { mel: { name: "Мелованная", dens: [{ g: 250, p: 0 }, { g: 300, p: 0 }, { g: 350, p: 0 }] }, cal: { name: "Калландрированная", dens: [{ g: 250, p: 0 }, { g: 300, p: 0 }, { g: 350, p: 0 }] }, des_nat: { name: "Дизайнерская (натуральная)", dens: [{ g: 250, p: 0 }, { g: 300, p: 0 }] }, des_tex: { name: "Дизайнерская (фактурная)", dens: [{ g: 250, p: 0 }, { g: 300, p: 0 }] }, des_met: { name: "Дизайнерская (металлик)", dens: [{ g: 250, p: 0 }, { g: 300, p: 0 }] }, soft_touch: { name: "Софт-тач", dens: [{ g: 300, p: 0 }] } };
+        const paperMap = { 'mel': 'Мелованная', 'cal': 'Калландр', 'des_nat': 'Диз_Натур', 'des_tex': 'Диз_Фактур', 'des_met': 'Диз_Металлик', 'sa_pap': 'Самоклейка_Бум', 'sa_kr': 'Самоклейка_Крафт', 'film_tr': 'Пленка_Прозр', 'film_wh': 'Пленка_Белая', 'trace': 'Калька', 'soft_touch': 'SoftTouch' };
+
+        function syncPapers() {
+            for (let k in densePaperData) { if (APP_PRICES["Бумага (Плотность)"][paperMap[k]]) { densePaperData[k].dens.forEach(d => { let newP = APP_PRICES["Бумага (Плотность)"][paperMap[k]][d.g.toString()]; if (newP !== undefined) d.p = newP; }); } }
+            for (let k in bizPaperData) { if (APP_PRICES["Бумага (Плотность)"][paperMap[k]]) { bizPaperData[k].dens.forEach(d => { let newP = APP_PRICES["Бумага (Плотность)"][paperMap[k]][d.g.toString()]; if (newP !== undefined) d.p = newP; }); } }
+        }
+        syncPapers();
+
+        const LAM_NAMES = { 'none': 'Без ламинации', '1_mat': 'Рулон: Матовая 1+0', '2_mat': 'Рулон: Матовая 1+1', '1_gly': 'Рулон: Глянцевая 1+0', '2_gly': 'Рулон: Глянцевая 1+1', '1_st': 'Рулон: Soft-touch 1+0', '2_st': 'Рулон: Soft-touch 1+1', 'pouch_a4_gly': 'Пакет: А4 Глянец', 'pouch_a4_mat': 'Пакет: А4 Матовая', 'pouch_a3_gly': 'Пакет: А3 Глянец', 'pouch_a3_mat': 'Пакет: А3 Матовая' };
+
+        window.currentCalcData = null;
+        window.lastSelectedDensities = { dense: {}, biz: {} };
+
+
+
+// --- FILE: calc/js/layout-math.js ---
+
+
+
+function roundTo30K(price) { if (isNaN(price) || price <= 0) return 0; let k = Math.round(price * 100); if (k > 0) { let rem = k % 30; k += (rem >= 15) ? (30 - rem) : -rem; } return k / 100; }
+
+function getSheetProps(sheetStr) { if (!sheetStr) sheetStr = "450x320"; const parts = sheetStr.split('x'); const w = parseInt(parts[0]), h = parseInt(parts[1]); const isHalf = (w * h) <= 75000; return { w, h, isHalf, mult: isHalf ? 0.5 : 1 }; }
+
+function calcLayout(sheetW, sheetH, margin, itemW, itemH, allowMixed = false) {
+            const pW = sheetW - (margin * 2); const pH = sheetH - (margin * 2); const iW = margin === 0 ? itemW : itemW + 4; const iH = margin === 0 ? itemH : itemH + 4;
+            let best = { total: 0, x: 0, y: 0, w: pW, h: pH, labelW: pW + " мм", labelH: pH + " мм", mix: false };
+            const checkStandard = (w, h) => { let x = Math.floor(pW / w), y = Math.floor(pH / h); if (x * y >= best.total) { best = { total: x * y, x, y, w: pW, h: pH, labelW: pW + " мм", labelH: pH + " мм", mix: false, w1: w, h1: h }; } };
+            checkStandard(iW, iH); checkStandard(iH, iW);
+            if (allowMixed) {
+                let bestMixed = null;
+                const checkMixed = (w1, h1, w2, h2) => {
+                    let nx = Math.floor(pW / w1), ny = Math.floor(pH / h1); let m1 = nx * ny; if (m1 === 0) return;
+                    let rx = Math.floor((pW - nx * w1) / w2), ry = Math.floor(pH / h2); let rTot = m1 + (rx * ry);
+                    let bx = Math.floor(pW / w2), by = Math.floor((pH - ny * h1) / h2); let bTot = m1 + (bx * by);
+                    if (rTot > best.total && rTot >= bTot) { best.total = rTot; bestMixed = { mix: true, nx, ny, w1, h1, rx, ry, w2, h2, remType: 'right', total: rTot, w: pW, h: pH, labelW: pW + " мм", labelH: pH + " мм" }; }
+                    if (bTot > best.total && bTot > rTot) { best.total = bTot; bestMixed = { mix: true, nx, ny, w1, h1, bx, by, w2, h2, remType: 'bottom', total: bTot, w: pW, h: pH, labelW: pW + " мм", labelH: pH + " мм" }; }
+                };
+                checkMixed(iW, iH, iH, iW); checkMixed(iH, iW, iW, iH);
+                if (bestMixed) best = bestMixed;
+            }
+            return best;
+        }
+
+
+
+
+// --- FILE: calc/js/export.js ---
+
+
+
+function submitToSheet() {
+            let data = window.currentCalcData;
+            if (!data) return;
+
+            let category = document.getElementById('modalType').value;
+            let customer = document.getElementById('modalUrCustomer').value;
+            let jobType = document.getElementById('modalUrJobType').value;
+            let note = document.getElementById('modalUrNote') ? document.getElementById('modalUrNote').value : "";
+
+            let pasteRows = [];
+            
+            let dGlobal = data.costDetails || {};
+            let cModText = "";
+            if (dGlobal.customMods && dGlobal.customMods.length > 0) {
+                cModText = dGlobal.customMods.map(m => m.name + ": " + m.cost.toFixed(2).replace('.', ',')).join(" | ");
+            }
+
+            let totalPriceStr = parseFloat(data.price).toFixed(2).replace('.', ',');
+
+            let globalNoteArr = [];
+            if (note) globalNoteArr.push(note);
+            if (cModText) globalNoteArr.push(cModText);
+
+            globalNoteArr.push("Итого: " + totalPriceStr);
+            let finalNote = globalNoteArr.join(" | ");
+
+            if (category === "Юр лица") {
+                if (data.perLayout && data.perLayout.length > 0) {
+                    data.perLayout.forEach((l, idx) => {
+                        let customPaper = document.getElementById('modalUrPaper_' + idx) ? document.getElementById('modalUrPaper_' + idx).value : '';
+                        let d = l.costs || {}; let eq = l.extrasQty || {};
+                        let lamStr = ""; if ((d.lam && d.lam > 0) || (l.lamType && l.lamType !== "Нет")) lamStr = l.lamType;
+                        let plotterSheets = (d.plotter && d.plotter > 0) ? (l.sheets || "") : "";
+                        let cuts = (idx === 0 && (data.globalCuts > 0 || data.globalCutCost > 0)) ? data.globalCuts : (l.cuts || "");
+                        if (cuts === 0) cuts = "";
+                        let roundingQty = (d.rounding && d.rounding > 0) ? eq.rounding : "";
+                        let stapleQty = (d.staple && d.staple > 0) ? eq.staple : "";
+
+                        let layoutNoteArr = [];
+                        if (eq.foil && eq.foil > 0) layoutNoteArr.push("Фольга: " + eq.foil + " л.");
+                        if (eq.glue && eq.glue > 0) layoutNoteArr.push("Склейка: " + eq.glue + " шт.");
+                        if (l.customMods && l.customMods.length > 0) l.customMods.forEach(mod => { let modName = mod.name || mod.desc.split(' (')[0]; layoutNoteArr.push(modName + " " + mod.cost.toFixed(2)); });
+                        if (idx === 0 && finalNote) layoutNoteArr.push(finalNote);
+                        let rowNote = layoutNoteArr.join(" | ");
+
+                        let finalColor = (l.color === "ЧБ" || l.color === "Ч/Б") ? "1+0" : l.color === "Цвет" ? "4+0" : l.color;
+                        if (finalColor && typeof finalColor === 'string') {
+                            finalColor = finalColor.replace(/\s+/g, '');
+                            if (finalColor.includes('4+0')) finalColor = '4+0';
+                            else if (finalColor.includes('4+4')) finalColor = '4+4';
+                            else if (finalColor.includes('1+0')) finalColor = '1+0';
+                            else if (finalColor.includes('1+1')) finalColor = '1+1';
+                            else if (finalColor.includes('4+1')) finalColor = '4+1';
+                        }
+
+                        let urRow = new Array(29).fill("");
+                        if (idx === 0) { urRow[0] = customer; urRow[1] = jobType; }
+                        urRow[4] = l.size || data.size; urRow[5] = l.qty || ""; urRow[6] = finalColor || ""; 
+                        urRow[7] = customPaper || l.mat || ""; // Бумага в ячейку K
+                        urRow[8] = l.sheetFormat || ""; urRow[9] = l.sheets || ""; urRow[10] = l.impressions || "";
+                        urRow[11] = cuts; urRow[12] = lamStr; urRow[13] = plotterSheets; urRow[14] = eq.crease || "";
+                        urRow[15] = eq.fold || ""; urRow[17] = eq.eyelet || ""; urRow[19] = eq.punch || "";
+                        urRow[20] = roundingQty; urRow[22] = stapleQty; urRow[25] = rowNote; // Примечание в ячейку AC
+
+                        pasteRows.push(urRow);
+                    });
+                } else {
+                    let customPaper = document.getElementById('modalUrPaper_0') ? document.getElementById('modalUrPaper_0').value : '';
+                    let lamStr = data.lamType !== "Нет" ? data.lamType : "";
+                    let urRow = new Array(29).fill("");
+                    urRow[0] = customer;
+                    urRow[1] = jobType;
+                    urRow[4] = data.size;
+                    urRow[5] = data.qty;
+                    urRow[6] = data.color;
+                    urRow[7] = customPaper || data.mat || ''; // Бумага в ячейку K
+                    urRow[8] = data.sheetFormat;
+                    urRow[9] = data.sheets;
+                    urRow[10] = data.impressions || "";
+                    urRow[11] = data.cuts || "";
+                    urRow[12] = lamStr;
+                    urRow[25] = finalNote; // Примечание в ячейку AC
+                    pasteRows.push(urRow);
+                }
+            } else {
+                function addPasteRow(service, format, material, color, qty, sum) {
+                    if (parseFloat(sum) > 0 || parseFloat(qty) > 0) pasteRows.push([service, format || "", material || "", color || "", qty || "", parseFloat(sum).toFixed(2).replace('.', ','), ""]);
+                }
+                if (data.perLayout && data.perLayout.length > 0) {
+                    data.perLayout.forEach((l, idx) => {
+                        let d = l.costs || {}; let eq = l.extrasQty || {};
+                        let printSum = typeof d.printAndMat !== 'undefined' ? d.printAndMat : ((d.print || 0) + (d.paper || 0) + (d.scan || 0));
+                        let serviceName = typeof d.scan !== 'undefined' ? "сканирование" : "печать";
+                        
+                        let customPaper = document.getElementById('modalUrPaper_' + idx) ? document.getElementById('modalUrPaper_' + idx).value : '';
+                        let finalMat = customPaper || (l.mat === "-" ? "" : l.mat);
+                        let finalColor = (l.color === "ЧБ" || l.color === "Ч/Б") ? "1+0" : l.color === "Цвет" ? "4+0" : l.color;
+                        if (finalColor && typeof finalColor === 'string') {
+                            finalColor = finalColor.replace(/\s+/g, '');
+                            if (finalColor.includes('4+0')) finalColor = '4+0';
+                            else if (finalColor.includes('4+4')) finalColor = '4+4';
+                            else if (finalColor.includes('1+0')) finalColor = '1+0';
+                            else if (finalColor.includes('1+1')) finalColor = '1+1';
+                            else if (finalColor.includes('4+1')) finalColor = '4+1';
+                        }
+                        let exportFmt;
+                        let exportQty;
+                        if (data.tab === 'tab-drawings') {
+                            exportFmt = l.size || l.sheetFormat;
+                            exportQty = l.qty;
+                        } else if (data.tab === 'tab-bizcards' || data.tab === 'tab-stickers') {
+                            exportFmt = l.size;
+                            exportQty = l.sheets || l.qty;
+                        } else {
+                            exportFmt = l.sheetFormat;
+                            exportQty = l.sheets || l.qty;
+                        }
+
+                        if (printSum > 0) addPasteRow(serviceName, exportFmt, finalMat, finalColor, exportQty, printSum);
+
+                        if (d.lam && d.lam > 0) addPasteRow("ламинация", "", l.lamType || "", "", l.sheets, d.lam);
+                        if (d.cut && d.cut > 0) addPasteRow("резка, рез", "", "", "", l.cuts || 0, d.cut);
+                        if (d.rounding && d.rounding > 0) addPasteRow("скругление", "", "", "", eq.rounding || l.qty, d.rounding);
+                        if (d.crease && d.crease > 0) addPasteRow("биговка", "", "", "", eq.crease || l.qty, d.crease);
+                        if (d.eyelet && d.eyelet > 0) addPasteRow("установка люверсов", "", "", "", eq.eyelet || l.qty, d.eyelet);
+                        if (d.staple && d.staple > 0) addPasteRow("сшивка", "", "", "", eq.staple || l.qty, d.staple);
+                        if (d.punch && d.punch > 0) addPasteRow("дыроколение", "", "", "", eq.punch || l.qty, d.punch);
+                        if (d.glue && d.glue > 0) addPasteRow("склейка", "", "", "", eq.glue || l.qty, d.glue);
+                        if (d.foil && d.foil > 0) addPasteRow("фольгирование", "", "", "", eq.foil || l.sheets, d.foil);
+                        if (d.plotter && d.plotter > 0) addPasteRow("плоттерная резка", "", "", "", l.sheets, d.plotter);
+                        if (d.fold && d.fold > 0) addPasteRow("фальцовка", "", "", "", eq.fold || l.qty, d.fold);
+                        if (l.customMods && l.customMods.length > 0) l.customMods.forEach(mod => { let modName = mod.name || mod.desc.split(' (')[0]; addPasteRow(modName, "", "", "", mod.qty || "", mod.cost); });
+                    });
+                    if (data.globalCuts > 0 || data.globalCutCost > 0) addPasteRow("резка, рез", "", "", "", data.globalCuts, data.globalCutCost || 0);
+                    let dGlobal = data.costDetails || {};
+                    if (dGlobal.customMods && dGlobal.customMods.length > 0) dGlobal.customMods.forEach(mod => { let modName = mod.name || mod.desc.split(' (')[0]; addPasteRow(modName, "", "", "", mod.qty || "", mod.cost); });
+                }
+                if (pasteRows.length > 0) { pasteRows[0][6] = parseFloat(data.price).toFixed(2).replace('.', ','); }
+            }
+
+            let tsvString = pasteRows.map(r => r.map(cell => String(cell).replace(/[\\r\\n\\t]+/g, ' ').trim()).join('\t')).join('\n');
+            copyToClipboard(tsvString, document.getElementById('modalSubmitBtn'));
+            setTimeout(() => { closeSheetModal(); }, 1200);
+        }
+
+function copyToClipboard(text, btn) {
+            let textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                if (btn) {
+                    let oldText = btn.textContent;
+                    btn.textContent = "СКОПИРОВАНО!";
+                    btn.style.background = "#1a73e8";
+                    btn.style.color = "#fff";
+                    setTimeout(() => {
+                        btn.textContent = oldText;
+                        btn.style.background = "#000";
+                        btn.style.color = "var(--nv-yellow)";
+                    }, 2000);
+                }
+            } catch (err) {
+                alert('Не удалось скопировать. Скопируйте вручную:\n\n' + text);
+            }
+            textArea.remove();
+        }
+
+function closeSheetModal() { document.getElementById('nv-sheet-modal').style.display = 'none'; }
+
+
+
+
+// --- FILE: calc/js/calculators/dense.js ---
+
+
+
+
+
+function calculateDensePrice() {
+            const layouts = getDenseLayouts(); const sheetWrapper = document.getElementById('denseSheetWrapper'); const errorMsgEl = document.getElementById('dense-size-error-msg');
+            if (errorMsgEl) errorMsgEl.style.display = 'none';
+            if (layouts.length === 0 || layouts.some(l => l.w < 40 || l.h < 40)) { if (layouts.length > 0 && errorMsgEl) errorMsgEl.style.display = 'block'; sheetWrapper.innerHTML = ''; document.getElementById('denseTotalPrice').textContent = "0.00"; document.getElementById('denseOldPrice').style.display = 'none'; document.getElementById('densePricePerPiece').style.display = 'none'; return; }
+
+            let uniqueSizes = new Set(layouts.map(l => `${l.w}x${l.h}`)); let allSameSize = uniqueSizes.size === 1 && layouts.length > 0;
+            let multiToggle = document.getElementById('denseMultiToggle');
+            let seqRadio = document.querySelector('input[name="denseLayoutMode"][value="sequential"]');
+            let sepRadio = document.querySelector('input[name="denseLayoutMode"][value="separate"]');
+            let mode = multiToggle.checked ? (document.querySelector('input[name="denseLayoutMode"]:checked')?.value || 'separate') : 'separate';
+            
+            if (mode === 'sequential' && !allSameSize) mode = 'separate';
+            if (seqRadio && sepRadio) {
+                if (!allSameSize) {
+                    if (seqRadio.checked) { seqRadio.checked = false; sepRadio.checked = true; updateSegment(sepRadio); }
+                    seqRadio.parentElement.style.opacity = '0.5'; seqRadio.disabled = true;
+                } else {
+                    seqRadio.parentElement.style.opacity = '1'; seqRadio.disabled = false;
+                }
+            }
+
+            // arrGroups is now exactly 1-to-1 with layouts. We do NOT merge them!
+            let arrGroups = layouts.map(l => ({ w: l.w, h: l.h, q: l.q, id: l.id, sheetStr: l.sheetStr }));
+            let isMultiLayout = document.getElementById('denseMultiToggle').checked && arrGroups.length > 1;
+
+            if (!window.activeLayoutKey['dense'] || !arrGroups.find(g => g.id === window.activeLayoutKey['dense'])) window.activeLayoutKey['dense'] = arrGroups.length > 0 ? arrGroups[0].id : null;
+            if (window.activeLayoutKey['dense']) saveUIStateToLayout('dense');
+
+            let globalMat = document.getElementById('denseMaterialSelect').getAttribute('data-value'); let globalDens = document.getElementById('denseDensitySelect').getAttribute('data-value'); let globalPrint = document.getElementById('densePrintTypeSelect').getAttribute('data-value'); let globalSheet = document.getElementById('denseSheetSelect').getAttribute('data-value') || "450x320";
+            arrGroups.forEach(g => { 
+                if (!window.layoutExtras['dense'][g.id]) window.layoutExtras['dense'][g.id] = { mat: globalMat, dens: globalDens, printType: globalPrint, sheetStr: globalSheet, noCut: false, rounding: false, lam: 'none', crease: false, creaseCount: 1, eyelet: false, eyeletCount: 1, staple: false, punch: false, punchCount: 1, foil: false, plotter: false, glue: false, glueCount: 1 }; 
+                
+                // Применяем индивидуальные настройки
+                let override = window.layoutOverrides[g.id];
+                if (override) {
+                    if (override.material) window.layoutExtras['dense'][g.id].mat = override.material;
+                    if (override.density) window.layoutExtras['dense'][g.id].dens = override.density;
+                    if (override.color) window.layoutExtras['dense'][g.id].printType = override.color;
+                    if (override.lam) window.layoutExtras['dense'][g.id].lam = override.lam;
+                }
+            });
+
+            window.currentCalcData = null;
+            const margin = parseInt(document.getElementById('denseMargin').value) || 0;
+            document.getElementById('denseCutTogetherWrap').style.display = (layouts.length > 1 && allSameSize && document.getElementById('denseMultiToggle').checked) ? 'block' : 'none';
+            let cutTogether = (document.getElementById('denseCutTogether')?.checked && allSameSize) || (mode === 'sequential');
+
+            let manualCutsVal = document.getElementById('manualCutsInput')?.value; let useManualCuts = manualCutsVal !== "" && !isNaN(parseInt(manualCutsVal));
+            let totalCuts = 0, totalSheets = 0; let sheetsInfoHTML = ""; let cutCost = 0, lamCost = 0, baseLamCost = 0, extraCost = 0, extraCostBase = 0;
+            let costDetails = { cut: 0, lam: 0, rounding: 0, crease: 0, eyelet: 0, staple: 0, punch: 0, foil: 0, plotter: 0, glue: 0 };
+            let layoutsDataArr = []; let impColor = 0, impBW = 0, impOfficeBW = 0; let foilSmallSheets = 0, foilLargeSheets = 0;
+            let extrasQty = { crease: 0, eyelet: 0, punch: 0, glue: 0, rounding: 0, staple: 0, foil: 0 };
+            
+            let sharedSheets = 0; let seqTotalQ = 0; let seqBest = null; let seqGroupCuts = 0;
+            if (mode === 'sequential' && arrGroups.length > 0) {
+                seqTotalQ = arrGroups.reduce((sum, g) => sum + g.q, 0);
+                const sProps = getSheetProps(globalSheet);
+                seqBest = calcLayout(sProps.w, sProps.h, margin, arrGroups[0].w, arrGroups[0].h, false);
+                if (seqBest && seqBest.total > 0) {
+                    sharedSheets = Math.ceil(seqTotalQ / seqBest.total);
+                    let baseCuts = (seqBest.x === 1 || seqBest.y === 1) ? ((seqBest.x || 0) + (seqBest.y || 0) + 2) : ((seqBest.x || 0) + (seqBest.y || 0) + 3); 
+                    if (seqBest.x > 1 && seqBest.y > 1 && sharedSheets === 1 && sProps.w !== 420 && sProps.w !== 297) baseCuts -= 1;
+                    let densG = globalMat === 'office' ? 80 : (densePaperData[globalMat]?.dens.find(d => Number(d.p) === Number(globalDens))?.g || 300); if (isNaN(densG)) densG = 170;
+                    seqGroupCuts = Math.ceil(baseCuts * Math.max(1, (seqTotalQ * (densG / 1000)) / 30));
+                }
+            }
+
+            arrGroups.forEach(g => {
+                let st = window.layoutExtras['dense'][g.id] || {};
+                if (st.crease) extrasQty.crease += g.q * st.creaseCount;
+                if (st.eyelet) extrasQty.eyelet += g.q * st.eyeletCount;
+                if (st.glue) extrasQty.glue += g.q * st.glueCount;
+
+                const sProps = getSheetProps(st.sheetStr || globalSheet);
+                let totalOnSheet = calcLayout(sProps.w, sProps.h, margin, g.w, g.h, st.plotter === true).total || 0;
+                if (totalOnSheet > 0) {
+                    let sheets = Math.ceil(g.q / totalOnSheet); let ptype = st.printType || '40';
+                    let imp = 0; if (ptype === '44' || ptype === '11' || ptype === '41') imp = 2; else if (ptype === '40' || ptype === '10') imp = 1;
+                    let extraImp = (st.foil && st.lam !== 'none') ? sheets : 0;
+                    if (st.mat === 'office' && (ptype === '10' || ptype === '11')) impOfficeBW += (sheets * imp);
+                    else { if (ptype.includes('4')) impColor += (sheets * imp) + extraImp; else impBW += (sheets * imp) + extraImp; }
+
+                    if (st.foil) {
+                        if (sProps.isHalf) foilSmallSheets += sheets; else foilLargeSheets += sheets;
+                        extrasQty.foil += sheets;
+                    }
+                    if (st.rounding) extrasQty.rounding += Math.ceil(g.q / 10);
+                    if (st.staple) extrasQty.staple += g.q;
+
+                    let dObj = densePaperData[st.mat]?.dens.find(d => String(d.g) === String(st.dens)); let densG = st.mat === 'office' ? 80 : (dObj ? parseInt(dObj.g) : 300); if (isNaN(densG)) densG = 170;
+                    if (st.punch) extrasQty.punch += Math.ceil(g.q * (densG / 1000) / 1.5) * st.punchCount;
+                }
+            });
+
+            let forcedTier = getGlobalDiscountTier();
+            let idxColor = forcedTier || (impColor <= 10 ? 0 : impColor <= 50 ? 1 : impColor <= 100 ? 2 : impColor <= 300 ? 3 : 4);
+            let idxBW = forcedTier || (impBW <= 10 ? 0 : impBW <= 50 ? 1 : impBW <= 100 ? 2 : impBW <= 300 ? 3 : 4);
+            let idxOfficeBW = forcedTier || (impOfficeBW <= 10 ? 0 : impOfficeBW <= 50 ? 1 : impOfficeBW <= 100 ? 2 : impOfficeBW <= 300 ? 3 : 4);
+
+            let tabsHTML = '<div class="nv-layout-tabs">'; let contentsHTML = ''; let totalQ = layouts.reduce((sum, l) => sum + l.q, 0); let totalPaperCostAccum = 0; let totalPrintCostAccum = 0; let perLayout = [];
+
+            arrGroups.forEach((g, i) => {
+                let st = window.layoutExtras['dense'][g.id] || {}; const sProps = getSheetProps(st.sheetStr || globalSheet);
+                let best = calcLayout(sProps.w, sProps.h, margin, g.w, g.h, st.plotter === true);
+                g.best = best; g.sProps = sProps; g.st = st; g.sheets = 0; g.groupCuts = 0; g.printCost = 0; g.basePrintCost = 0; g.cutCost = 0; g.lamCost = 0; g.baseLamCost = 0; g.extraCost = 0;
+                if (!best || !best.total || best.total === 0) return;
+
+                let sheets = Math.ceil(g.q / best.total); g.sheets = sheets; totalSheets += sheets;
+                let ptype = st.printType || '40'; let paperPrice = 0, printClickPrice = 0, baseClickPrice = 0; let extraImpCost = 0, extraImpCostBase = 0;
+                let imp = 0; if (ptype === '44' || ptype === '11' || ptype === '41') imp = 2; else if (ptype === '40' || ptype === '10') imp = 1;
+
+                if (ptype === '00') {
+                    paperPrice = (densePaperData[st.mat]?.dens.find(d => String(d.g) === String(st.dens))?.p || 0) * sProps.mult;
+                    if (st.foil && st.lam !== 'none') { let bArr = getP("Печать SRA3", "ЧБ"); extraImpCost = sheets * bArr[idxBW] * sProps.mult; extraImpCostBase = sheets * bArr[0] * sProps.mult; }
+                } else if (st.mat === 'office' && !ptype.includes('4')) {
+                    let pArr = sProps.isHalf ? getP("Печать SRA3", "Офисная_A4") : getP("Печать SRA3", "Офисная_A3"); printClickPrice = pArr[idxOfficeBW]; baseClickPrice = pArr[0]; if (ptype === '11') { printClickPrice *= 2; baseClickPrice *= 2; }
+                } else {
+                    paperPrice = (densePaperData[st.mat]?.dens.find(d => String(d.g) === String(st.dens))?.p || 0) * sProps.mult; let idxToUse = ptype.includes('4') ? idxColor : idxBW;
+                    let cArr = getP("Печать SRA3", "Цвет"); let bArr = getP("Печать SRA3", "ЧБ");
+                    if (ptype === '40') { printClickPrice = cArr[idxToUse]; baseClickPrice = cArr[0]; } else if (ptype === '44') { printClickPrice = cArr[idxToUse] * 2; baseClickPrice = cArr[0] * 2; } else if (ptype === '10') { printClickPrice = bArr[idxToUse]; baseClickPrice = bArr[0]; } else if (ptype === '11') { printClickPrice = bArr[idxToUse] * 2; baseClickPrice = bArr[0] * 2; } else if (ptype === '41') { printClickPrice = cArr[idxToUse] + bArr[idxToUse]; baseClickPrice = cArr[0] + bArr[0]; }
+                    printClickPrice *= sProps.mult; baseClickPrice *= sProps.mult;
+                    if (st.foil && st.lam !== 'none') { extraImpCost = sheets * bArr[idxToUse] * sProps.mult; extraImpCostBase = sheets * bArr[0] * sProps.mult; }
+                }
+
+                g.printCostRaw = sheets * printClickPrice + extraImpCost;
+                g.paperCostRaw = sheets * paperPrice;
+                g.printCost = sheets * (printClickPrice + paperPrice) + extraImpCost; g.basePrintCost = sheets * (baseClickPrice + paperPrice) + extraImpCostBase;
+                totalPaperCostAccum += sheets * paperPrice; totalPrintCostAccum += sheets * printClickPrice + extraImpCost;
+
+                let EX = APP_PRICES["Доп. работы"]; let dObj = densePaperData[st.mat]?.dens.find(d => String(d.g) === String(st.dens)); let densG = st.mat === 'office' ? 80 : (dObj ? parseInt(dObj.g) : 300); if (isNaN(densG)) densG = 170;
+
+                if (useManualCuts) { g.groupCuts = 0; g.cutCost = 0; } else if (!cutTogether) {
+                    let baseCuts = (best.x === 1 || best.y === 1) ? ((best.x || 0) + (best.y || 0) + 2) : ((best.x || 0) + (best.y || 0) + 3); if (best.x > 1 && best.y > 1 && Math.ceil(sheets) === 1 && sProps.w !== 420 && sProps.w !== 297) baseCuts -= 1;
+                    g.groupCuts = Math.ceil(baseCuts * Math.max(1, (g.q * (densG / 1000)) / 30));
+                    if (!st.noCut) { totalCuts += g.groupCuts; g.cutCost = g.groupCuts * ((best.total >= 16) ? EX["Резка_Мелкая"] : EX["Резка_База"]); cutCost += g.cutCost; }
+                } else if (mode === 'sequential') {
+                    // For sequential, cutTogether is true, but we assign fractional cuts to layout for details breakdown
+                    g.groupCuts = seqGroupCuts * (g.q / seqTotalQ);
+                    g.cutCost = g.groupCuts * ((best.total >= 16) ? EX["Резка_Мелкая"] : EX["Резка_База"]);
+                    // We don't add to cutCost / totalCuts globally here, because it is calculated entirely after the loop.
+                }
+
+                let LM = APP_PRICES["Ламинация"];
+                if (st.lam && st.lam !== 'none') {
+                    let globalDiscountActive = getGlobalDiscountTier() !== 0; let effLamSheets = sheets; let pLamBase = 0, pLam = 0;
+                    if (st.lam.startsWith('pouch_')) { let kMap = { 'pouch_a4_gly': 'Пакет_А4_Глянец', 'pouch_a4_mat': 'Пакет_А4_Мат', 'pouch_a3_gly': 'Пакет_А3_Глянец', 'pouch_a3_mat': 'Пакет_А3_Мат' }; let arr = LM[kMap[st.lam]]; pLamBase = arr[0]; pLam = (globalDiscountActive || effLamSheets >= 11) ? arr[1] : arr[0]; }
+                    else { let effLamSheetsForRoll = (globalDiscountActive && sheets <= 10) ? 11 : sheets; let kMap = { '1_mat': 'Рулон_Мат_1ст', '2_mat': 'Рулон_Мат_2ст', '1_gly': 'Рулон_Глянец_1ст', '2_gly': 'Рулон_Глянец_2ст', '1_st': 'Рулон_SoftTouch_1ст', '2_st': 'Рулон_SoftTouch_2ст' }; let arr = LM[kMap[st.lam]]; pLamBase = arr[0]; if (effLamSheetsForRoll >= 51) pLam = arr[2]; else if (effLamSheetsForRoll >= 11) pLam = arr[1]; else pLam = arr[0]; }
+                    
+                    if (sProps.isHalf && !st.lam.startsWith('pouch_')) { pLam /= 2; pLamBase /= 2; }
+                    
+                    g.lamCost = sheets * pLam; g.baseLamCost = sheets * pLamBase; lamCost += g.lamCost; baseLamCost += g.baseLamCost;
+                }
+
+                let c_rounding = st.rounding ? Math.ceil(g.q / 10) * EX["Скругление"] : 0; let c_staple = st.staple ? g.q * EX["Сшивка"] : 0; let c_crease = st.crease ? g.q * EX["Биговка"] * st.creaseCount : 0; let c_eyelet = st.eyelet ? g.q * EX["Люверс"] * st.eyeletCount : 0;
+                let punchQty = Math.ceil(g.q * (densG / 1000) / 1.5) * st.punchCount; let c_punch = st.punch ? punchQty * EX["Дырокол"] : 0;
+                let c_glue = st.glue ? g.q * EX["Склейка"] * st.glueCount : 0;
+                let c_foil = 0, c_foil_base = 0;
+                if (st.foil) { let fPrice = sProps.isHalf ? (foilSmallSheets >= 11 ? EX["ФольгаМалая_Скидка"] : EX["ФольгаМалая_База"]) : (foilLargeSheets >= 11 ? EX["ФольгаБольшая_Скидка"] : EX["ФольгаБольшая_База"]); let fPriceBase = sProps.isHalf ? EX["ФольгаМалая_База"] : EX["ФольгаБольшая_База"]; c_foil = sheets * fPrice; c_foil_base = sheets * fPriceBase; }
+
+                let c_plotter = 0, c_plotter_base = 0;
+                if (st.plotter) {
+                    let pArr = (best.total === 1) ? EX["Плоттер_1"] : EX["Плоттер_Много"]; let pTier = sheets <= 10 ? 0 : (sheets <= 50 ? 1 : 2);
+                    c_plotter = sheets * (pArr[pTier] || pArr[pArr.length - 1]); c_plotter_base = sheets * pArr[0];
+                }
+
+                let c_mods = getLayoutCustomModulesCost('dense', g.id, g.q, g.sheets);
+                extraCost += c_mods.total; extraCostBase += c_mods.total;
+
+                g.extraCost = c_rounding + c_staple + c_crease + c_eyelet + c_punch + c_glue + c_foil + c_plotter + c_mods.total; 
+                g.extraCostBase = c_rounding + c_staple + c_crease + c_eyelet + c_punch + c_glue + c_foil_base + c_plotter_base + c_mods.total; 
+                
+                costDetails.rounding += c_rounding; costDetails.staple += c_staple; costDetails.crease += c_crease; costDetails.eyelet += c_eyelet; costDetails.punch += c_punch; costDetails.glue += c_glue; costDetails.foil += c_foil; costDetails.plotter += c_plotter;
+
+                let matName = densePaperData[st.mat]?.name || st.mat; let colorName = ptype.replace('40', '4+0').replace('44', '4+4').replace('41', '4+1').replace('10', '1+0').replace('11', '1+1');
+                let l_lamType = st.lam !== "none" && st.lam ? LAM_NAMES[st.lam] : "Нет";
+                let sheetFormatStr = document.getElementById('denseSheetSelect').querySelector('.nv-select-trigger').textContent.split(' ')[0]; let densName = st.mat === 'office' ? "80" : (dObj ? dObj.g : "300");
+
+                let pQty = { crease: st.crease ? g.q * st.creaseCount : 0, eyelet: st.eyelet ? g.q * st.eyeletCount : 0, punch: st.punch ? punchQty : 0, glue: st.glue ? g.q * st.glueCount : 0, rounding: st.rounding ? Math.ceil(g.q / 10) : 0, staple: st.staple ? g.q : 0, foil: st.foil ? sheets : 0 };
+
+                perLayout.push({
+                    id: g.id, size: `${g.w}x${g.h}`, sheetFormat: sheetFormatStr, mat: `${matName} ${densName} ${isNaN(parseInt(densName)) ? '' : 'г/м²'}`, color: colorName, qty: g.q, sheets: g.sheets,
+                    impressions: Math.ceil(g.sheets * imp + ((st.foil && st.lam !== 'none') ? g.sheets : 0)), lamType: l_lamType, cuts: (useManualCuts || (cutTogether && mode !== 'sequential')) ? 0 : g.groupCuts,
+                    costs: { printAndMat: g.printCost, print: g.printCostRaw, paper: g.paperCostRaw, cut: (useManualCuts || (cutTogether && mode !== 'sequential')) ? 0 : g.cutCost, lam: g.lamCost, rounding: c_rounding, staple: c_staple, crease: c_crease, eyelet: c_eyelet, punch: c_punch, glue: c_glue, foil: c_foil, plotter: c_plotter },
+                    extrasQty: pQty
+                });
+
+                let extrasArr = [];
+                if (st.lam !== "none") extrasArr.push(`${LAM_NAMES[st.lam]}`);
+                if (st.noCut) extrasArr.push("Без резки");
+                if (st.eyelet) extrasArr.push(`Люверсы (${pQty.eyelet} шт.)`);
+                if (st.crease) extrasArr.push(`Биговка (${pQty.crease} шт.)`);
+                if (st.rounding) extrasArr.push(`Скругление (${pQty.rounding} шт.)`);
+                if (st.staple) extrasArr.push(`Сшивка (${pQty.staple} шт.)`);
+                if (st.punch) extrasArr.push(`Дыроколение (${pQty.punch} шт.)`);
+                if (st.glue) extrasArr.push(`Склейка (${pQty.glue} шт.)`);
+                if (st.foil) extrasArr.push(`Фольгирование (${pQty.foil} л.)`);
+                if (st.plotter) extrasArr.push(`Плотт. резка (${sheets} л.)`);
+                
+                // Save this so we can append custom modules to it in the second pass
+                g.extrasArr = extrasArr;
+                g.sheetsInfoSheets = sheets;
+                g.matName = matName;
+                g.densName = densName;
+                g.colorName = colorName;
+            });
+
+            if (useManualCuts) {
+                totalCuts = parseInt(manualCutsVal); cutCost = totalCuts * APP_PRICES["Доп. работы"]["Резка_База"];
+            } else if (cutTogether && arrGroups.length > 0) {
+                let activeExt = window.layoutExtras['dense'][window.activeLayoutKey['dense']] || {}; const sProps = getSheetProps(activeExt.sheetStr || globalSheet); let best = calcLayout(sProps.w, sProps.h, margin, arrGroups[0].w, arrGroups[0].h, false);
+                if (best && best.total > 0) {
+                    let totalGroupSheets = (mode === 'sequential') ? sharedSheets : Math.ceil(totalQ / best.total); 
+                    let baseCuts = (best.x === 1 || best.y === 1) ? ((best.x || 0) + (best.y || 0) + 2) : ((best.x || 0) + (best.y || 0) + 3); 
+                    if (best.x > 1 && best.y > 1 && totalGroupSheets === 1 && sProps.w !== 420 && sProps.w !== 297) baseCuts -= 1;
+                    let densG = activeExt.mat === 'office' ? 80 : (densePaperData[activeExt.mat]?.dens.find(d => Number(d.p) === Number(activeExt.dens))?.g || 300); if (isNaN(densG)) densG = 170;
+                    totalCuts = (mode === 'sequential') ? seqGroupCuts : Math.ceil(baseCuts * Math.max(1, (totalQ * (densG / 1000)) / 30));
+                    if (!activeExt.noCut) { cutCost = totalCuts * (best.total >= 16 ? APP_PRICES["Доп. работы"]["Резка_Мелкая"] : APP_PRICES["Доп. работы"]["Резка_База"]); }
+                }
+            }
+
+            window.updateCustomModuleDropdowns(); // Update UI
+            let cMods = getCustomModulesInfo(totalQ, totalSheets, arrGroups, perLayout); extraCost += cMods.total; extraCostBase += cMods.total; if (cMods.details.length > 0) costDetails.customMods = cMods.details;
+
+            let finalTotalRaw = 0; let finalTotalBaseRaw = 0;
+            // Add global custom modules that don't belong to a specific layout
+            if (cMods && cMods.details) {
+                cMods.details.forEach(cm => {
+                    if (!cm.desc.includes('Только Макет')) {
+                        finalTotalRaw += cm.cost;
+                        finalTotalBaseRaw += cm.cost;
+                    }
+                });
+            }
+
+            // SECOND PASS: generate UI arrays and HTML strings
+            arrGroups.forEach((g, i) => { 
+                if (!g.best || !g.best.total || g.best.total === 0) return; 
+                
+                // Process Custom Modules for this specific layout
+                let pl = perLayout.find(x => x.id === g.id);
+                if (pl && pl.customMods) {
+                    let modCost = pl.customMods.reduce((s, cm) => s + cm.cost, 0);
+                    g.extraCost += modCost;
+                    g.extraCostBase += modCost;
+                    pl.customMods.forEach(cm => g.extrasArr.push(`${cm.name} (${cm.qty} ${cm.label})`));
+                }
+
+                let effectiveCutCost = (useManualCuts || cutTogether) ? 0 : g.cutCost; 
+                finalTotalRaw += g.printCost + effectiveCutCost + g.lamCost + g.extraCost; 
+                finalTotalBaseRaw += g.basePrintCost + effectiveCutCost + g.baseLamCost + g.extraCostBase; 
+
+                let extraStr = g.extrasArr.length > 0 ? '| ' + g.extrasArr.join(', ') : '';
+                sheetsInfoHTML += `<div style="margin-top:2px;"><b>Макет ${i + 1} (${g.w}x${g.h})</b>: ${g.sheetsInfoSheets} л. | Рез: ${g.groupCuts} ${extraStr}</div>`;
+
+                let layoutTotalCost = g.printCost + ((useManualCuts || cutTogether) ? 0 : g.cutCost) + g.lamCost + g.extraCost;
+                layoutsDataArr.push({ size: `${g.w}x${g.h} (${g.q} шт) [${g.sProps.w}x${g.sProps.h}]`, mat: `${g.matName} ${g.densName} ${isNaN(parseInt(g.densName)) ? '' : 'г/м²'}`, color: g.colorName, extras: g.extrasArr.length > 0 ? g.extrasArr.join(', ') : 'нет', price: layoutTotalCost.toFixed(2) });
+
+                let scale = Math.min(240 / (g.best.w || 1), 240 / (g.best.h || 1)); let activeClass = (g.id === window.activeLayoutKey['dense']) ? 'active' : '';
+                let gearSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>`;
+                tabsHTML += `<div style="display:inline-block; position:relative; margin-right: 5px; margin-bottom: 5px;"><button class="nv-layout-tab dense-layout-tab ${activeClass}" onclick="switchLayoutTabExt(this, 'dense', '${g.id}', ${i})" style="padding-right: 25px; margin: 0;">Раскладка ${g.w}x${g.h}</button><div onclick="openLayoutDetailsModal('tab-dense', '${g.id}')" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); cursor:pointer; display:flex;">${gearSvg}</div></div>`;
+
+                let gridHtml = '';
+                if (g.best.mix) {
+                    const b = g.best; let pctX = (val) => (val / b.w) * 100; let pctY = (val) => (val / b.h) * 100; let gridContent = '';
+                    const addCells = (cx, cy, w, h, ox, oy) => { for (let yi = 0; yi < cy; yi++) { for (let xi = 0; xi < cx; xi++) { gridContent += `<div class="card-cell" style="position:absolute; left:${pctX(ox + xi * w)}%; top:${pctY(oy + yi * h)}%; width:${pctX(w)}%; height:${pctY(h)}%; border-radius: 4px; box-shadow: inset 0 0 0 1px #444;"></div>`; } } };
+                    addCells(b.nx, b.ny, b.w1, b.h1, 0, 0); if (b.remType === 'right') addCells(b.rx, b.ry, b.w2, b.h2, b.nx * b.w1, 0); if (b.remType === 'bottom') addCells(b.bx, b.by, b.w2, b.h2, 0, b.ny * b.h1);
+                    gridHtml = `<div class="nv-layout-grid" style="width: 100%; height: 100%; position: relative; background: var(--nv-yellow); padding: 0;">${gridContent}</div>`;
+                } else {
+                    let displayX = g.best.x || 1; let displayY = g.best.y || 1; let gridWidth = ((displayX * (g.best.w1) / (g.best.w || 1)) * 100); let gridHeight = ((displayY * (g.best.h1) / (g.best.h || 1)) * 100);
+                    gridHtml = `<div class="nv-layout-grid" style="width: ${gridWidth}%; height: ${gridHeight}%; grid-template-columns: repeat(${displayX}, 1fr);">${Array(Math.min(g.best.total || 0, 150)).fill('<div class="card-cell"></div>').join('')}</div>`;
+                }
+                let tabPriceStr = isMultiLayout ? ` <span style="color:#000;">(${layoutTotalCost.toFixed(2)} BYN)</span>` : '';
+                contentsHTML += `<div id="dense-layout-${i}" class="nv-layout-content dense-layout-content ${activeClass}"><div style="font-size: 11px; font-weight: bold; margin-bottom: 5px; text-align: center; color: #666; width: 100%;">Раскладка: ${g.w}x${g.h}${tabPriceStr}</div><div class="nv-sheet-area" style="width: ${(g.best.w || 1) * scale}px; height: ${(g.best.h || 1) * scale}px; display:block;">${gridHtml}<div class="nv-card-grid-txt label-x">${g.best.labelW || ''}</div><div class="nv-card-grid-txt label-y">${g.best.labelH || ''}</div></div></div>`;
+            });
+            tabsHTML += '</div>';
+
+            if (useManualCuts || cutTogether) { finalTotalRaw += cutCost; finalTotalBaseRaw += cutCost; }
+
+            let finalTotal = 0; let totalNoDiscount = Math.max(finalTotalBaseRaw, 0);
+            let isAccRound = document.getElementById('accountantRounding')?.checked;
+            if (isAccRound && totalQ > 0) {
+                let ppp = Math.round((finalTotalRaw / 1.2) / totalQ * 100) / 100;
+                let totalWithoutVat = ppp * totalQ;
+                let vat = Math.round(totalWithoutVat * 0.2 * 100) / 100;
+                finalTotal = totalWithoutVat + vat;
+            } else {
+                finalTotal = Math.max(finalTotalRaw, 0);
+            }
+
+            if (useManualCuts) { sheetsInfoHTML += `<div style="color:#1a73e8; font-weight:bold; margin-top: 5px;">Ручные резы: ${totalCuts}</div>`; }
+            else if (cutTogether && arrGroups.length > 0) { let activeExt = window.layoutExtras['dense'][window.activeLayoutKey['dense']] || {}; sheetsInfoHTML += `<div style="color:#1a73e8; font-weight:bold; margin-top: 5px;">Общая резка: ${activeExt.noCut ? 0 : totalCuts} резов.</div>`; }
+
+            if (arrGroups.length <= 1) tabsHTML = ''; sheetWrapper.innerHTML = tabsHTML + contentsHTML;
+            costDetails.cut = cutCost; costDetails.lam = lamCost; costDetails.paper = totalPaperCostAccum; costDetails.print = totalPrintCostAccum;
+
+            document.getElementById('denseTotalPrice').textContent = finalTotal.toFixed(2);
+            if (finalTotal < totalNoDiscount - 0.01) { document.getElementById('denseOldPrice').textContent = totalNoDiscount.toFixed(2) + " BYN"; document.getElementById('denseOldPrice').style.display = 'block'; } else document.getElementById('denseOldPrice').style.display = 'none';
+
+            let pppEl = document.getElementById('densePricePerPiece');
+            if (totalQ > 0 && finalTotal > 0) { pppEl.innerHTML = `Цена за 1 шт: <span>${(finalTotal / totalQ).toFixed(3)}</span> BYN`; pppEl.style.display = 'block'; } else pppEl.style.display = 'none';
+
+            let allImpInfo = [impColor > 0 ? `Цвет (плотная): ${impColor}` : "", impBW > 0 ? `Ч/Б (плотная): ${impBW}` : "", impOfficeBW > 0 ? `Ч/Б (офисная): ${impOfficeBW}` : ""].filter(Boolean).join(" | ");
+            document.getElementById('denseSheetsRequired').innerHTML = `<div style="margin-bottom:8px; padding-bottom: 8px; border-bottom: 1px solid #eee;">Всего листов: <b>${totalSheets} шт.</b> | Оттисков для скидок -> ${allImpInfo}</div><div style="text-align: left; font-size: 11.5px; line-height: 1.4;">${sheetsInfoHTML}</div>`;
+
+            if (finalTotal > 0) {
+                let title = document.getElementById('denseMultiToggle').checked ? `Сборка (${arrGroups.length} мак.)` : `${document.getElementById('denseWidth').value || 0}x${document.getElementById('denseHeight').value || 0} (${document.getElementById('denseQuantity').value || 0} шт)`;
+                let sheetFormatStr = document.getElementById('denseSheetSelect').querySelector('.nv-select-trigger').textContent.split(' ')[0];
+                let actualCuts = (useManualCuts || cutTogether) ? totalCuts : arrGroups.reduce((s, g) => s + g.groupCuts, 0);
+                window.currentCalcData = { tab: 'tab-dense', title: title, price: finalTotal.toFixed(2), size: title, qty: totalQ, sheetFormat: sheetFormatStr, sheets: totalSheets, impressions: Math.max(impColor, impBW, impOfficeBW), globalCuts: (useManualCuts || cutTogether) ? totalCuts : 0, globalCutCost: (useManualCuts || cutTogether) ? cutCost : 0, cuts: actualCuts, extrasQty: extrasQty, tabName: "Плотные", layoutsArr: layoutsDataArr, perLayout: perLayout, printPrice: (finalTotal - cutCost - lamCost - extraCost).toFixed(2), costDetails: costDetails, customModsDetails: cMods.details };
+            }
+        }
+
+function getDenseLayouts() { let layouts = []; const isMulti = document.getElementById('denseMultiToggle').checked; let globalSheetStr = document.getElementById('denseSheetSelect').getAttribute('data-value') || "450x320"; if (!isMulti) { let w = parseInt(document.querySelector('.dm-w-single').value) || 0; let h = parseInt(document.querySelector('.dm-h-single').value) || 0; let q = parseInt(document.querySelector('.dm-q-single').value) || 0; if (w >= 40 && h >= 40 && q > 0) layouts.push({ w, h, q, id: 'item_0', sheetStr: globalSheetStr }); } else { document.querySelectorAll('.dense-multi-row').forEach((row, i) => { let w = parseInt(row.querySelector('.dm-w').value) || 0; let h = parseInt(row.querySelector('.dm-h').value) || 0; let q = parseInt(row.querySelector('.dm-q').value) || 0; let sheetStr = window.layoutExtras['dense'][`item_${i}`]?.sheetStr || globalSheetStr; if (w >= 40 && h >= 40 && q > 0) layouts.push({ w, h, q, id: `item_${i}`, sheetStr }); }); } return layouts; }
+
+function addDenseRow() { const div = document.createElement('div'); div.className = 'nv-multi-row dense-multi-row'; div.style.position = 'relative'; div.innerHTML = `<div class="nv-custom-select" style="width: auto; flex-shrink: 0; display:flex; align-items:center;"><div style="font-size:9.5px; color:#888; cursor:pointer; font-weight:800; text-transform:uppercase; padding: 2px 6px; border-radius: 5px; background: #eee; margin-right: 5px;" onclick="toggleSelect(this)">Шабл. ▾</div><div class="nv-options user-size-options" style="width: 180px; left: 0; z-index: 999999;"></div></div><input type="text" inputmode="numeric" class="nv-multi-input dm-w" placeholder="Ш" oninput="this.value = this.value.replace(/\\D/g, ''); calculateDensePrice()"><input type="text" inputmode="numeric" class="nv-multi-input dm-h" placeholder="В" oninput="this.value = this.value.replace(/\\D/g, ''); calculateDensePrice()"><input type="text" inputmode="numeric" class="nv-multi-input dm-q" placeholder="Кол-во" oninput="this.value = this.value.replace(/\\D/g, ''); calculateDensePrice()" onblur="snapDenseQuantity(this)"><button class="nv-multi-del" onclick="this.parentElement.remove(); calculateDensePrice()">×</button><div onclick="window.openLayoutDetailsModalFromRow(this, 'dense')" style="cursor:pointer; display:flex; align-items:center; margin-left:5px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>`; document.getElementById('denseMultiList').appendChild(div); div.querySelector('.dm-q').addEventListener('wheel', handleDenseWheel, { passive: false }); renderAllSizePresets(); }
+
+function toggleDenseMulti() { const isMulti = document.getElementById('denseMultiToggle').checked; document.getElementById('denseSingleBlock').style.display = isMulti ? 'none' : 'block'; document.getElementById('denseMultiBlock').style.display = isMulti ? 'block' : 'none'; calculateDensePrice(); }
+
+function snapDenseQuantity(inputEl) { let qty = parseInt(inputEl.value) || 0; if (qty > 0) inputEl.value = qty; calculateDensePrice(); }
+
+function handleDenseWheel(e) { e.preventDefault(); let step = 1; let qty = parseInt(this.value) || 0; qty += (e.deltaY < 0 ? step : -step); if (qty < 1) qty = 1; this.value = qty; calculateDensePrice(); }
+
+
+
+
+// --- FILE: calc/js/calculators/drawings.js ---
+
+
+
+
+function calculateDrawPrice() {
+            window.currentCalcData = null; let rows = document.querySelectorAll('.draw-multi-row'), totalCostRaw = 0, detailsHtml = "", layoutsDataArr = [], totalQty = 0, totalFoldsCount = 0, simpleImp = 0; let costDetails = { print: 0, fold: 0 };
+            function getStandardFolds(fmt, mult) { let m = Math.ceil(mult); if (fmt === 'A4') return Math.max(0, m - 1); if (fmt === 'A3') return m === 1 ? 1 : m + 1; if (fmt === 'A2') return m === 1 ? 2 : 2 * m; if (fmt === 'A1') return m === 1 ? 3 : 2 * m + 2; if (fmt === 'A0') return m === 1 ? 5 : 2 * m + 4; return 0; }
+
+            let engGroups = {}, simpleItems = [], scanItems = [];
+            rows.forEach((r, i) => {
+                let jobType = r.querySelector('.dr-job-type').value; let fmt = r.querySelector('.dr-format').value; let mult = parseFloat(r.querySelector('.dr-mult') ? r.querySelector('.dr-mult').value : 1) || 1; let q = parseInt(r.querySelector('.dr-q').value) || 0; let fold = r.querySelector('.dr-fold').checked; let color = r.querySelector('.dr-color') ? r.querySelector('.dr-color').checked : false; let w = parseInt(r.querySelector('.dr-w').value) || 0; let h = parseInt(r.querySelector('.dr-h').value) || 0;
+                let rowFolds = 0; if (fold && q > 0 && jobType === 'print') { if (fmt === 'Custom') { if (w > 0 && h > 0) rowFolds = (Math.max(0, Math.ceil(w / 210) - 1) + Math.max(0, Math.ceil(h / 297) - 1)); } else { rowFolds = getStandardFolds(fmt, mult); } }
+                if (q <= 0) return;
+                if (fmt !== 'Custom' && ['A4', 'A3', 'A2'].includes(fmt) && mult === 2) return;
+                if (jobType === 'scan') { if (fmt === 'Custom' && (w <= 0 || h <= 0)) return; scanItems.push({ fmt, mult, q, color, w, h, isCustom: fmt === 'Custom', rowFolds: 0 }); }
+                else { if (fmt !== 'Custom' && mult === 1 && (fmt === 'A4' || fmt === 'A3')) { simpleImp += (fmt === 'A4' ? 0.5 : 1) * q; simpleItems.push({ fmt, mult, q, fold, color, rowFolds }); } else { if (fmt === 'Custom' && (w <= 0 || h <= 0)) return; let key = fmt === 'Custom' ? `Custom_${w}x${h}_${i}` : `${fmt}x${mult}_${i}`; engGroups[key] = { fmt, mult, w, h, isCustom: fmt === 'Custom', q, fold, color, rowFolds }; } }
+            });
+
+            let sIdx = getGlobalDiscountTier() || (simpleImp <= 10 ? 0 : simpleImp <= 50 ? 1 : simpleImp <= 100 ? 2 : simpleImp <= 300 ? 3 : 4);
+            let perLayout = [];
+
+            simpleItems.forEach(item => {
+                let pArr = item.fmt === 'A4' ? (item.color ? getP("Печать SRA3", "Цвет_A4") : getP("Печать SRA3", "Офисная_A4")) : (item.color ? getP("Печать SRA3", "Цвет_A3") : getP("Печать SRA3", "Офисная_A3")); let cost = pArr[sIdx] * item.mult * item.q; let fCost = item.rowFolds > 0 ? (item.rowFolds * APP_PRICES["Доп. работы"]["Фальцовка"] * item.q) : 0;
+                perLayout.push({ size: item.fmt + (item.mult !== 1 ? 'x' + item.mult : ''), sheetFormat: item.fmt + (item.mult !== 1 ? 'x' + item.mult : ''), mat: "Инженерная 80 г/м²", color: item.color ? "Цвет" : "1+0", qty: item.q, sheets: item.q * item.mult, impressions: item.q * item.mult, costs: { printAndMat: cost, fold: fCost }, extrasQty: { fold: item.rowFolds * item.q } });
+                costDetails.fold += fCost; costDetails.print += cost; cost += fCost; totalFoldsCount += (item.rowFolds * item.q); totalCostRaw += cost; totalQty += item.q;
+                let desc = "Печать " + item.fmt + (item.mult !== 1 ? 'x' + item.mult : '') + " " + (item.color ? 'Цвет' : 'Ч/Б') + (item.rowFolds > 0 ? " (" + item.rowFolds * item.q + " фальц.)" : ''); detailsHtml += "• <b>" + desc + "</b>: " + item.q + " шт. - " + cost.toFixed(2) + " BYN<br>"; layoutsDataArr.push({ size: desc, qty: item.q });
+            });
+
+            Object.values(engGroups).forEach(g => {
+                let idx = g.q <= 10 ? 0 : g.q <= 20 ? 1 : g.q <= 50 ? 2 : 3, cost = 0, desc = "";
+                if (g.isCustom) { let S = Math.min(g.w, g.h), L = Math.max(g.w, g.h); let closest = [{ w: 210, base: 'A4', div: 297 }, { w: 297, base: 'A4', div: 210 }, { w: 420, base: 'A3', div: 297 }, { w: 594, base: 'A2', div: 420 }, { w: 841, base: 'A1', div: 594 }].reduce((prev, curr) => Math.abs(curr.w - S) < Math.abs(prev.w - S) ? curr : prev); cost = getP("Чертежи Печать", closest.base, idx) * (L / closest.div) * g.q; desc = `Печать (Свой размер) ${g.w}x${g.h} мм`; }
+                else { cost = getP("Чертежи Печать", g.fmt, idx) * g.mult * g.q; desc = `Печать ${g.fmt}${g.mult !== 1 ? 'x' + g.mult : ''} ${g.color ? 'Цвет' : 'Ч/Б'}`; }
+                let fCost = g.rowFolds > 0 ? (g.rowFolds * APP_PRICES["Доп. работы"]["Фальцовка"] * g.q) : 0;
+                perLayout.push({ size: g.isCustom ? (g.w + "x" + g.h) : g.fmt + (g.mult !== 1 ? 'x' + g.mult : ''), sheetFormat: g.isCustom ? "Разный" : g.fmt + (g.mult !== 1 ? 'x' + g.mult : ''), mat: "Инженерная 80 г/м²", color: g.color ? "Цвет" : "Ч/Б", qty: g.q, sheets: g.q * g.mult, impressions: g.q * g.mult, costs: { printAndMat: cost, fold: fCost }, extrasQty: { fold: g.rowFolds * g.q } });
+                costDetails.fold += fCost; costDetails.print += cost; cost += fCost; if (g.rowFolds > 0) { totalFoldsCount += (g.rowFolds * g.q); desc += ` (${g.rowFolds * g.q} фальц.)`; }
+                totalCostRaw += cost; totalQty += g.q; detailsHtml += `• <b>${desc}</b>: ${g.q} шт. - ${cost.toFixed(2)} BYN<br>`; layoutsDataArr.push({ size: desc, qty: g.q });
+            });
+
+            scanItems.forEach(g => {
+                let cost = 0, desc = "";
+                if (g.isCustom) { let S = Math.min(g.w, g.h), L = Math.max(g.w, g.h); let closest = [{ w: 210, base: 'A4', div: 297 }, { w: 297, base: 'A4', div: 210 }, { w: 420, base: 'A3', div: 297 }, { w: 594, base: 'A2', div: 420 }, { w: 841, base: 'A1', div: 594 }].reduce((prev, curr) => Math.abs(curr.w - S) < Math.abs(prev.w - S) ? curr : prev); let pColor = getP("Чертежи Скан", closest.base + (g.color ? "_Цвет" : "_ЧБ")) || 0; cost = pColor * (L / closest.div) * g.q; desc = `Скан (Свой размер) ${g.w}x${g.h} мм ${g.color ? 'Цвет' : 'Ч/Б'}`; }
+                else { let pColor = getP("Чертежи Скан", g.fmt + (g.color ? "_Цвет" : "_ЧБ")) || 0; cost = pColor * g.mult * g.q; desc = `Скан ${g.fmt}${g.mult !== 1 ? 'x' + g.mult : ''} ${g.color ? 'Цвет' : 'Ч/Б'}`; }
+                perLayout.push({ size: g.isCustom ? (g.w + "x" + g.h) : g.fmt + (g.mult !== 1 ? 'x' + g.mult : ''), sheetFormat: g.isCustom ? "Разный" : g.fmt + (g.mult !== 1 ? 'x' + g.mult : ''), mat: "-", color: g.color ? "Цвет" : "1+0", qty: g.q, sheets: g.q * g.mult, impressions: g.q * g.mult, costs: { scan: cost }, extrasQty: {} });
+                costDetails.print += cost || 0; totalCostRaw += cost || 0; totalQty += g.q || 0; detailsHtml += `• <b>${desc}</b>: ${g.q} шт. - ${(cost || 0).toFixed(2)} BYN<br>`; layoutsDataArr.push({ size: desc, qty: g.q });
+            });
+
+            let cMods = getCustomModulesInfo(totalQty, totalQty); totalCostRaw += cMods.total; if (cMods.details.length > 0) costDetails.customMods = cMods.details;
+
+            let totalCost = 0;
+            let isAccRound = document.getElementById('accountantRounding')?.checked;
+            if (isAccRound && totalQty > 0) {
+                let withoutVat = totalCostRaw / 1.2;
+                let ppp = Math.round((withoutVat / totalQty) * 100) / 100;
+                totalCost = ppp * totalQty * 1.2;
+            } else {
+                totalCost = Math.max(totalCostRaw, 0);
+            }
+
+            document.getElementById('drawTotalPrice').textContent = totalCost.toFixed(2);
+            let pppEl = document.getElementById('drawPricePerPiece'); if (totalQty > 0 && totalCost > 0) { pppEl.innerHTML = `Средняя цена за 1 шт: <span>${(totalCost / totalQty).toFixed(3)}</span> BYN`; pppEl.style.display = 'block'; } else { pppEl.style.display = 'none'; }
+            document.getElementById('drawSummaryDetails').innerHTML = detailsHtml || "Добавьте чертежи для расчета";
+
+            if (totalCost > 0) { window.currentCalcData = { tab: 'tab-drawings', title: `Чертежи и Скан (${totalQty} шт)`, price: totalCost.toFixed(2), qty: totalQty, tabName: "Чертежи", layoutsArr: layoutsDataArr, perLayout: perLayout, printPrice: totalCost.toFixed(2), color: "Смешанный", mat: "Инженерная 80 г/м²", sheets: totalQty, impressions: totalQty, folds: totalFoldsCount, sheetFormat: "Разный", extrasQty: { fold: totalFoldsCount }, costDetails: costDetails, customModsDetails: cMods.details }; }
+        }
+
+function addDrawRow(type = 'standard') {
+            const div = document.createElement('div'); div.className = 'nv-multi-row draw-multi-row'; div.style.flexWrap = 'wrap';
+            let selectJobType = `<select class="nv-multi-input dr-job-type" style="width:90px; padding:12px 5px;" onchange="updateDrawRow(this); calculateDrawPrice()"><option value="print">Печать</option><option value="scan">Скан</option></select>`;
+            let content = type === 'standard' ? `${selectJobType}<select class="nv-multi-input dr-format" style="width:70px; padding:12px 5px;" onchange="updateDrawRow(this)"><option value="A4">A4</option><option value="A3">A3</option><option value="A2">A2</option><option value="A1">A1</option><option value="A0">A0</option></select><span class="dr-mult-cross" style="font-weight:bold; color:#aaa; margin:0 2px;">x</span><input type="number" class="nv-multi-input dr-mult" value="1" min="0.1" step="0.1" style="width:60px; padding:12px 5px;" oninput="updateDrawRow(this)"><input type="hidden" class="dr-w" value="210"><input type="hidden" class="dr-h" value="297">` : `${selectJobType}<div style="font-size:11px; font-weight:bold; margin-right:5px; color:#555;">СВОЙ:</div><input type="hidden" class="dr-format" value="Custom"><input type="hidden" class="dr-mult" value="1"><input type="text" class="nv-multi-input dr-w" placeholder="Ш" value="" style="width:60px;" oninput="this.value = this.value.replace(/\\D/g, ''); updateDrawRow(this)"><span class="dr-mult-cross" style="font-weight:bold; color:#aaa; margin:0 2px;">x</span><input type="text" class="nv-multi-input dr-h" placeholder="В" value="" style="width:60px;" oninput="this.value = this.value.replace(/\\D/g, ''); updateDrawRow(this)">`;
+            div.innerHTML = `<div style="display:flex; align-items:center; gap:5px; flex:1; width:100%;">${content}<input type="text" class="nv-multi-input dr-q" placeholder="Шт" style="width:50px;" value="1" oninput="this.value = this.value.replace(/\\D/g, ''); calculateDrawPrice()"><label class="nv-crease-label dr-color-label" style="flex-direction:row; margin-left:5px; display:none;"><input type="checkbox" class="dr-color" onchange="calculateDrawPrice()"><span class="nv-crease-checkbox"></span> Цвет</label><label class="nv-crease-label dr-fold-label" style="flex-direction:row; margin-left:5px;"><input type="checkbox" class="dr-fold" onchange="calculateDrawPrice()"><span class="nv-crease-checkbox"></span> Фальц</label><button class="nv-multi-del" onclick="this.parentElement.parentElement.remove(); calculateDrawPrice()">×</button></div>`;
+            document.getElementById('drawMultiList').appendChild(div);
+            let multInput = div.querySelector('.dr-mult'); if (multInput) { multInput.addEventListener('wheel', function (e) { e.preventDefault(); let val = parseFloat(this.value) || 1; val += e.deltaY < 0 ? 1 : -1; if (val < 0.1) val = 0.1; this.value = (Math.round(val * 10) / 10).toString().replace('.0', ''); updateDrawRow(this); }); }
+            let qInput = div.querySelector('.dr-q'); if (qInput) { qInput.addEventListener('wheel', function (e) { e.preventDefault(); let val = parseInt(this.value) || 1; val += e.deltaY < 0 ? 1 : -1; if (val < 1) val = 1; this.value = val; calculateDrawPrice(); }); }
+            updateDrawRow(div.querySelector(type === 'standard' ? '.dr-format' : '.dr-w'));
+        }
+
+function updateDrawRow(el) {
+            const row = el.closest('.draw-multi-row'); const fmt = row.querySelector('.dr-format').value; const jobType = row.querySelector('.dr-job-type').value; const isCustom = fmt === 'Custom';
+
+            let multInput = row.querySelector('.dr-mult');
+            let mult = multInput ? (parseFloat(multInput.value) || 1) : 1;
+
+            let existingErr = row.querySelector('.dr-mult-error');
+            if (existingErr) existingErr.remove();
+
+            if (fmt !== 'Custom' && ['A4', 'A3', 'A2'].includes(fmt) && mult === 2) {
+                let errMsg = document.createElement('div');
+                errMsg.className = 'dr-mult-error';
+                errMsg.style.cssText = 'color: #ff3333; font-size: 11px; font-weight: bold; width: 100%; text-align: center; margin-top: 5px;';
+                errMsg.innerText = `Ошибка: ${fmt}x2 недоступен. Выберите ${fmt}x1, ${fmt}x3 или другой формат.`;
+                row.appendChild(errMsg);
+            }
+
+            if (isCustom) { row.querySelector('.dr-w').style.display = 'inline-block'; row.querySelector('.dr-h').style.display = 'inline-block'; if (row.querySelector('.dr-mult-cross')) row.querySelector('.dr-mult-cross').style.display = 'none'; if (row.querySelector('.dr-mult')) row.querySelector('.dr-mult').style.display = 'none'; } else { row.querySelector('.dr-w').style.display = 'none'; row.querySelector('.dr-h').style.display = 'none'; if (row.querySelector('.dr-mult-cross')) row.querySelector('.dr-mult-cross').style.display = 'inline-block'; if (row.querySelector('.dr-mult')) row.querySelector('.dr-mult').style.display = 'inline-block'; }
+
+            let allowColor = false;
+            if (jobType === 'scan') {
+                allowColor = true;
+            } else {
+                if (!isCustom && (fmt === 'A4' || fmt === 'A3') && mult === 1) {
+                    allowColor = true;
+                }
+            }
+
+            if (allowColor) {
+                row.querySelector('.dr-color-label').style.display = 'flex';
+            } else {
+                row.querySelector('.dr-color-label').style.display = 'none';
+                row.querySelector('.dr-color').checked = false;
+            }
+
+            if (jobType === 'scan') { row.querySelector('.dr-fold-label').style.display = 'none'; row.querySelector('.dr-fold').checked = false; } else { row.querySelector('.dr-fold-label').style.display = 'flex'; }
+            calculateDrawPrice();
+        }
+
+
+
+
+// --- FILE: calc/js/calculators/stickers.js ---
+
+
+
+
+
+function calculateStickerPrice() {
+            window.currentCalcData = null; const valW = document.getElementById('stickWidth').value, valH = document.getElementById('stickHeight').value, valQty = document.getElementById('stickQuantity').value; if (!valW || !valH || !valQty) { document.getElementById('stickPricePerPiece').style.display = 'none'; return; }
+            const w = parseInt(valW), h = parseInt(valH), qty = parseInt(valQty); const sProps = getSheetProps(document.getElementById('stickSheetSelect').getAttribute('data-value')); 
+            const bleedInput = document.getElementById('stickBleed'); const bleed = bleedInput ? parseFloat(bleedInput.value) || 0 : 1;
+            const techW = w + (bleed * 2), techH = h + (bleed * 2);
+            let shortSide = Math.min(sProps.w, sProps.h); let longSide = Math.max(sProps.w, sProps.h);
+            let pW_P = shortSide - 14, pH_P = longSide - 34;
+            let pW_L = longSide - 34, pH_L = shortSide - 14;
+            let resP = { count: Math.max(0, Math.floor(pW_P / techW) * Math.floor(pH_P / techH)), x: Math.floor(pW_P / techW), y: Math.floor(pH_P / techH), w: pW_P, h: pH_P, name: "Книжный лист", id: 'portrait' };
+            let resL = { count: Math.max(0, Math.floor(pW_L / techW) * Math.floor(pH_L / techH)), x: Math.floor(pW_L / techW), y: Math.floor(pH_L / techH), w: pW_L, h: pH_L, name: "Альбомный лист", id: 'landscape' };
+            window.stickActiveOrientation = window.stickActiveOrientation || (resP.count >= resL.count ? 'portrait' : 'landscape');
+            let best = window.stickActiveOrientation === 'portrait' ? resP : resL;
+            if (!best || !best.count) { document.getElementById('stickPricePerPiece').style.display = 'none'; return; }
+            let sheets = Math.ceil(qty / (best.count || 1)); let colorVal = document.getElementById('stickColorSelect').getAttribute('data-value'); let mat = document.getElementById('stickMaterialSelect').getAttribute('data-value');
+
+            let stickMatToGlobalMat = { 'paper': 'sa_pap', 'kraft': 'sa_kr', 'transparent': 'film_tr', 'white': 'film_wh' };
+            let globalMatId = stickMatToGlobalMat[mat] || mat;
+            let paperPrice = parseFloat(APP_PRICES["Бумага (Плотность)"][paperMap[globalMatId]]?.["Стандарт"] || 2.40);
+            let printPrice = 0;
+            let plotterPrice = 6.00;
+
+            if (colorVal === '00') {
+                plotterPrice = 0;
+            } else if (colorVal === '40') {
+                let cArr = getP("Печать SRA3", "Цвет");
+                let forcedTier = getGlobalDiscountTier();
+                let idx = forcedTier || (sheets <= 10 ? 0 : (sheets <= 50 ? 1 : (sheets <= 100 ? 2 : (sheets <= 300 ? 3 : 4))));
+                printPrice = cArr[idx];
+            } else if (colorVal === '10') {
+                let bArr = getP("Печать SRA3", "ЧБ");
+                let forcedTier = getGlobalDiscountTier();
+                let idx = forcedTier || (sheets <= 10 ? 0 : (sheets <= 50 ? 1 : (sheets <= 100 ? 2 : (sheets <= 300 ? 3 : 4))));
+                printPrice = bArr[idx];
+            }
+
+            let totalPaperCost = sheets * paperPrice * sProps.mult;
+            let totalPrintCost = sheets * printPrice * sProps.mult;
+            let totalPlotterCost = sheets * plotterPrice * sProps.mult;
+
+            if (best.count > 100 && colorVal !== '00') {
+                totalPaperCost *= 1.3;
+                totalPrintCost *= 1.3;
+                totalPlotterCost *= 1.3;
+            }
+
+            let totalCostRaw = totalPaperCost + totalPrintCost + totalPlotterCost;
+            let isCut = document.getElementById('stickCut').checked; let cutCost = 0; let totalCuts = 0;
+            let manualCutsVal = document.getElementById('manualCutsInput')?.value; let useManualCuts = manualCutsVal !== "" && !isNaN(parseInt(manualCutsVal));
+
+            if (useManualCuts) { totalCuts = parseInt(manualCutsVal); cutCost = totalCuts * APP_PRICES["Доп. работы"]["Резка_База"]; }
+            else if (isCut) { let baseCuts = (best.x === 1 || best.y === 1) ? ((best.x || 0) + (best.y || 0) + 2) : ((best.x || 0) + (best.y || 0) + 3); if (best.x > 1 && best.y > 1 && sheets === 1 && sProps.w !== 420 && sProps.w !== 297) baseCuts -= 1; totalCuts = Math.ceil(baseCuts * Math.max(1, (qty * (170 / 1000)) / 30)); cutCost = totalCuts * (best.count >= 16 ? APP_PRICES["Доп. работы"]["Резка_Мелкая"] : APP_PRICES["Доп. работы"]["Резка_База"]); }
+
+            let cMods = getCustomModulesInfo(qty, sheets);
+            let lMods = getLayoutCustomModulesCost('stickers', 'main', qty, sheets);
+            let totalCostRawAll = totalCostRaw + cutCost + cMods.total + lMods.total;
+
+            let finalTotalCost = 0;
+            let isAccRound = document.getElementById('accountantRounding')?.checked;
+            if (isAccRound && qty > 0) {
+                let withoutVat = totalCostRawAll / 1.2;
+                let ppp = Math.round((withoutVat / qty) * 100) / 100;
+                finalTotalCost = ppp * qty * 1.2;
+            } else {
+                finalTotalCost = Math.max(totalCostRawAll, 0);
+            }
+
+            const sheetWrapper = document.getElementById('stickSheetWrapper'); let scaleP = Math.min(240 / (resP.w || 1), 240 / (resP.h || 1)); let scaleL = Math.min(240 / (resL.w || 1), 240 / (resL.h || 1));
+            let gridHTML_P = Array(resP.count).fill('<div class="card-cell" style="border-radius:1px; background: #000;"></div>').join('');
+            let gridHTML_L = Array(resL.count).fill('<div class="card-cell" style="border-radius:1px; background: #000;"></div>').join('');
+            sheetWrapper.innerHTML = `<div class="nv-layout-tabs"><button class="nv-layout-tab stick-layout-tab ${window.stickActiveOrientation === 'portrait' ? 'active' : ''}" onclick="window.stickActiveOrientation='portrait'; calculateStickerPrice()">Книжный лист</button><button class="nv-layout-tab stick-layout-tab ${window.stickActiveOrientation === 'landscape' ? 'active' : ''}" onclick="window.stickActiveOrientation='landscape'; calculateStickerPrice()">Альбомный лист</button></div><div id="stick-layout-0" class="nv-layout-content stick-layout-content ${window.stickActiveOrientation === 'portrait' ? 'active' : ''}"><div class="nv-sheet-area" style="width: ${(resP.w || 1) * scaleP}px; height: ${(resP.h || 1) * scaleP}px; display:block; padding: 2px; box-sizing: border-box; background: var(--nv-yellow); border: none;"><div class="nv-layout-grid" style="width: 100%; height: 100%; grid-template-columns: repeat(${resP.x || 1}, 1fr); gap:2px; position: relative; top: 0; left: 0; transform: none;">${gridHTML_P}</div><div class="nv-card-grid-txt label-x">${resP.w || ''} мм</div><div class="nv-card-grid-txt label-y">${resP.h || ''} мм</div></div></div><div id="stick-layout-1" class="nv-layout-content stick-layout-content ${window.stickActiveOrientation === 'landscape' ? 'active' : ''}"><div class="nv-sheet-area" style="width: ${(resL.w || 1) * scaleL}px; height: ${(resL.h || 1) * scaleL}px; display:block; padding: 2px; box-sizing: border-box; background: var(--nv-yellow); border: none;"><div class="nv-layout-grid" style="width: 100%; height: 100%; grid-template-columns: repeat(${resL.x || 1}, 1fr); gap:2px; position: relative; top: 0; left: 0; transform: none;">${gridHTML_L}</div><div class="nv-card-grid-txt label-x">${resL.w || ''} мм</div><div class="nv-card-grid-txt label-y">${resL.h || ''} мм</div></div></div>`;
+
+            document.getElementById('stickLayoutDetails').innerHTML = `Листов (${sProps.w}×${sProps.h}): <strong>${sheets} шт.</strong> | На листе: <strong>${best.count} шт.</strong><br><span style="color:#888; font-size:11px">Макет с дозаливками: ${techW}x${techH} мм | Рядов: ${best.x || 0}x${best.y || 0} | Резов: ${useManualCuts || isCut ? totalCuts : 0}</span>`;
+            document.getElementById('stickOrientationLabel').textContent = "Раскладка: " + best.name; document.getElementById('stickTotalPrice').textContent = finalTotalCost.toFixed(2);
+            let pppEl = document.getElementById('stickPricePerPiece'); if (qty > 0 && finalTotalCost > 0) { pppEl.innerHTML = `Цена за 1 шт: <span>${(finalTotalCost / qty).toFixed(3)}</span> BYN`; pppEl.style.display = 'block'; } else pppEl.style.display = 'none';
+
+            if (finalTotalCost > 0) {
+                let costDetails = { print: totalPrintCost, paper: totalPaperCost, plotter: totalPlotterCost, cut: cutCost, lam: 0, rounding: 0, crease: 0, punch: 0, foil: 0 };
+                if (cMods.details.length > 0) costDetails.customMods = cMods.details;
+                let sheetFormatStr = document.getElementById('stickSheetSelect').querySelector('.nv-select-trigger').textContent.split(' ')[0];
+                let perLayout = [{ id: 'main', size: `${w}x${h}`, sheetFormat: sheetFormatStr, mat: document.getElementById('stickMaterialSelect').querySelector('.nv-select-trigger').textContent, color: colorVal === '40' ? '4+0' : '1+0', qty: qty, sheets: sheets, impressions: sheets, lamType: "Нет", cuts: useManualCuts || isCut ? totalCuts : 0, costs: { printAndMat: totalPrintCost + totalPaperCost, print: totalPrintCost, paper: totalPaperCost, plotter: totalPlotterCost, cut: cutCost }, extrasQty: {}, customMods: lMods.details }];
+                window.currentCalcData = { tab: 'tab-stickers', title: `${w}x${h} (${qty} шт)`, price: finalTotalCost.toFixed(2), mat: document.getElementById('stickMaterialSelect').querySelector('.nv-select-trigger').textContent, color: colorVal === '40' ? '4+0' : '1+0', size: `${w}x${h}`, qty: qty, sheetFormat: sheetFormatStr, sheets: sheets, impressions: sheets, lamType: "Нет", cuts: useManualCuts || isCut ? totalCuts : 0, perLayout: perLayout, extrasQty: {}, tabName: "Стикеры", techW: techW, techH: techH, totalOnSheet: best.count, printPrice: totalCostRaw.toFixed(2), costDetails: costDetails, customModsDetails: cMods.details };
+            }
+        }
+
+
+
+
+// --- FILE: calc/js/calculators/bizcards.js ---
+
+
+
+
+
+function calculateBizPrice() {
+            window.currentCalcData = null;
+            const sizeStr = document.getElementById('bizSizeSelect').getAttribute('data-value'); let qty = parseInt(document.getElementById('bizQuantity').value);
+            if (!sizeStr || !qty) { document.getElementById('bizSheetArea').style.display = 'none'; document.getElementById('bizTotalPrice').textContent = "0.00"; document.getElementById('bizOldPrice').style.display = 'none'; document.getElementById('bizWarningText').style.display = 'none'; document.getElementById('bizPricePerSet').style.display = 'none'; document.getElementById('bizPricePerPiece').style.display = 'none'; return; }
+            const valW = parseInt(sizeStr.split('x')[0]), valH = parseInt(sizeStr.split('x')[1]);
+            const bizWarning = document.getElementById('bizWarningText');
+            if ((valW === 90 && valH === 50) || (valW === 50 && valH === 90)) { bizWarning.textContent = "Этот размер идет кратно количеству: 24 шт."; bizWarning.style.display = 'block'; qty = Math.max(1, Math.ceil(qty / 24)) * 24; }
+            else if ((valW === 85 && valH === 55) || (valW === 55 && valH === 85)) { bizWarning.textContent = "Этот размер идет кратно количеству: 21 шт."; bizWarning.style.display = 'block'; qty = Math.max(1, Math.ceil(qty / 21)) * 21; } else bizWarning.style.display = 'none';
+
+            if (!window.layoutExtras['biz']['main']) window.layoutExtras['biz']['main'] = { noCut: false, rounding: false, lam: 'none', punch: false, punchCount: 1, foil: false, plotter: false };
+            window.activeLayoutKey['biz'] = 'main'; saveUIStateToLayout('biz'); let ext = window.layoutExtras['biz']['main'];
+
+            const sProps = getSheetProps(document.getElementById('bizSheetSelect').getAttribute('data-value')); const margin = parseInt(document.getElementById('bizMargin').value) || 0;
+            let allowMixed = ext.plotter === true; let best = calcLayout(sProps.w, sProps.h, margin, valW, valH, allowMixed);
+
+            if (!best || best.total === 0) { document.getElementById('bizSheetArea').style.display = 'none'; document.getElementById('bizTotalPrice').textContent = "0.00"; document.getElementById('bizOldPrice').style.display = 'none'; document.getElementById('bizPricePerSet').style.display = 'none'; document.getElementById('bizPricePerPiece').style.display = 'none'; return; }
+
+            let sheets = Math.ceil(qty / best.total);
+            const bizMat = document.getElementById('bizMaterialSelect').getAttribute('data-value');
+            const bizDens = document.getElementById('bizDensitySelect').getAttribute('data-value');
+            const paperPrice = (bizPaperData[bizMat]?.dens.find(d => String(d.g) === String(bizDens))?.p || 0) * sProps.mult;
+            const printType = document.getElementById('bizPrintTypeSelect').getAttribute('data-value');
+            const isDouble = (printType === '44' || printType === '11' || printType === '41');
+            const printImp = (printType === '00') ? 0 : (isDouble ? 2 : 1);
+            const totalImpressions = (sheets * printImp) + ((ext.foil && ext.lam !== 'none') ? sheets : 0);
+
+            let idx = getGlobalDiscountTier() || (totalImpressions <= 10 ? 0 : totalImpressions <= 50 ? 1 : totalImpressions <= 100 ? 2 : totalImpressions <= 300 ? 3 : 4);
+            let printCost = 0, basePrintCost = 0; let cArr = getP("Печать SRA3", "Цвет"); let bArr = getP("Печать SRA3", "ЧБ");
+
+            if (printType === '00') { printCost = 0; basePrintCost = 0; } else if (printType === '40') { printCost = cArr[idx]; basePrintCost = cArr[0]; } else if (printType === '44') { printCost = cArr[idx] * 2; basePrintCost = cArr[0] * 2; } else if (printType === '10') { printCost = bArr[idx]; basePrintCost = bArr[0]; } else if (printType === '11') { printCost = bArr[idx] * 2; basePrintCost = bArr[0] * 2; } else if (printType === '41') { printCost = cArr[idx] + bArr[idx]; basePrintCost = cArr[0] + bArr[0]; }
+            printCost *= sProps.mult; basePrintCost *= sProps.mult;
+            let extraImpCost = (ext.foil && ext.lam !== 'none') ? (sheets * bArr[idx] * sProps.mult) : 0;
+            let extraImpCostBase = (ext.foil && ext.lam !== 'none') ? (sheets * bArr[0] * sProps.mult) : 0;
+            const totalSheetsCost = sheets * (printCost + paperPrice) + extraImpCost;
+            const totalSheetsCostBase = sheets * (basePrintCost + paperPrice) + extraImpCostBase;
+
+            let EX = APP_PRICES["Доп. работы"]; let LM = APP_PRICES["Ламинация"];
+            let manualCutsVal = document.getElementById('manualCutsInput')?.value;
+            let useManualCuts = manualCutsVal !== "" && !isNaN(parseInt(manualCutsVal));
+
+            let totalCuts = 0, cutCost = 0;
+            if (useManualCuts) {
+                totalCuts = parseInt(manualCutsVal); cutCost = totalCuts * EX["Резка_База"];
+            } else if (!ext.noCut) {
+                let baseCuts = (best.x === 1 || best.y === 1) ? ((best.x || 0) + (best.y || 0) + 2) : ((best.x || 0) + (best.y || 0) + 3);
+                if (best.x > 1 && best.y > 1 && sheets === 1 && sProps.w !== 420 && sProps.w !== 297) baseCuts -= 1;
+                totalCuts = Math.ceil(baseCuts * Math.max(1, (qty * ((parseInt(document.getElementById('bizDensitySelect').querySelector('.nv-select-trigger').textContent) || 300) / 1000)) / 30));
+                cutCost = totalCuts * ((best.total >= 16) ? EX["Резка_Мелкая"] : EX["Резка_База"]);
+            }
+
+            let lamCost = 0, baseLamCost = 0;
+            if (ext.lam && ext.lam !== 'none') {
+                let globalDiscountActive = getGlobalDiscountTier() !== 0; let effLamSheets = sheets; let pLamBase = 0, pLam = 0;
+                if (ext.lam.startsWith('pouch_')) {
+                    let kMap = { 'pouch_a4_gly': 'Пакет_А4_Глянец', 'pouch_a4_mat': 'Пакет_А4_Мат', 'pouch_a3_gly': 'Пакет_А3_Глянец', 'pouch_a3_mat': 'Пакет_А3_Мат' };
+                    let arr = LM[kMap[ext.lam]]; pLamBase = arr[0]; pLam = (globalDiscountActive || effLamSheets >= 11) ? arr[1] : arr[0];
+                } else {
+                    let effLamSheetsForRoll = (globalDiscountActive && sheets <= 10) ? 11 : sheets;
+                    let kMap = { '1_mat': 'Рулон_Мат_1ст', '2_mat': 'Рулон_Мат_2ст', '1_gly': 'Рулон_Глянец_1ст', '2_gly': 'Рулон_Глянец_2ст', '1_st': 'Рулон_SoftTouch_1ст', '2_st': 'Рулон_SoftTouch_2ст' };
+                    let arr = LM[kMap[ext.lam]]; pLamBase = arr[0];
+                    if (effLamSheetsForRoll >= 51) pLam = arr[2];
+                    else if (effLamSheetsForRoll >= 11) pLam = arr[1];
+                    else pLam = arr[0];
+                }
+                if (sProps.isHalf && !ext.lam.startsWith('pouch_')) { pLam /= 2; pLamBase /= 2; }
+                lamCost = sheets * pLam; baseLamCost = sheets * pLamBase;
+            }
+
+            const roundingCost = ext.rounding ? Math.ceil(qty / 10) * EX["Скругление"] : 0;
+            let punchCost = ext.punch ? Math.ceil(qty * ((parseInt(document.getElementById('bizDensitySelect').querySelector('.nv-select-trigger').textContent) || 300) / 1000) / 1.5) * ext.punchCount * EX["Дырокол"] : 0;
+            let fPrice = sProps.isHalf ? (sheets >= 11 ? EX["ФольгаМалая_Скидка"] : EX["ФольгаМалая_База"]) : (sheets >= 11 ? EX["ФольгаБольшая_Скидка"] : EX["ФольгаБольшая_База"]);
+            let fPriceBase = sProps.isHalf ? EX["ФольгаМалая_База"] : EX["ФольгаБольшая_База"];
+            let foilCost = ext.foil ? sheets * fPrice : 0; let foilCostBase = ext.foil ? sheets * fPriceBase : 0;
+
+            let plotterCost = 0, plotterCostBase = 0;
+            if (ext.plotter) {
+                let pArr = (best.total === 1) ? EX["Плоттер_1"] : EX["Плоттер_Много"]; let pTier = sheets <= 10 ? 0 : (sheets <= 50 ? 1 : 2);
+                plotterCost = sheets * (pArr[pTier] || pArr[pArr.length - 1]); plotterCostBase = sheets * pArr[0];
+            }
+
+            let cMods = getCustomModulesInfo(qty, sheets); let customModsCost = cMods.total;
+            let lMods = getLayoutCustomModulesCost('bizcards', 'main', qty, sheets); customModsCost += lMods.total;
+            let paperCostAccum = sheets * paperPrice; let printCostAccum = sheets * printCost + extraImpCost;
+
+            let costDetails = { printAndMat: printCostAccum + paperCostAccum, print: printCostAccum, paper: paperCostAccum, cut: cutCost, lam: lamCost, rounding: roundingCost, punch: punchCost, foil: foilCost, plotter: plotterCost };
+            if (cMods.details.length > 0) costDetails.customMods = cMods.details;
+
+            let exactSets = qty / getBizSetSize(), roundedPPS = 0, finalTotalRaw = 0, totalNoDiscountRaw = 0;
+            if (exactSets > 0) {
+                roundedPPS = roundTo30K((totalSheetsCost + cutCost + lamCost + roundingCost + punchCost + foilCost + plotterCost + customModsCost) / exactSets);
+                finalTotalRaw = roundedPPS * exactSets;
+                totalNoDiscountRaw = roundTo30K((totalSheetsCostBase + cutCost + baseLamCost + roundingCost + punchCost + foilCostBase + plotterCostBase + customModsCost) / exactSets) * exactSets;
+            }
+
+            let finalTotal = 0; let totalNoDiscount = roundTo30K(totalNoDiscountRaw);
+            let isAccRound = document.getElementById('accountantRounding')?.checked;
+            if (isAccRound && qty > 0) {
+                let withoutVat = finalTotalRaw / 1.2;
+                let ppp = Math.round((withoutVat / qty) * 100) / 100;
+                finalTotal = ppp * qty * 1.2;
+            } else {
+                finalTotal = roundTo30K(finalTotalRaw);
+            }
+
+            document.getElementById('bizTotalPrice').textContent = finalTotal.toFixed(2);
+            if (finalTotal < totalNoDiscount - 0.01) { document.getElementById('bizOldPrice').textContent = totalNoDiscount.toFixed(2) + " BYN"; document.getElementById('bizOldPrice').style.display = 'block'; } else document.getElementById('bizOldPrice').style.display = 'none';
+            if (exactSets > 0 && finalTotal > 0) { document.getElementById('bizPricePerSet').innerHTML = `Цена за 1 комплект: <span>${(finalTotal / exactSets).toFixed(2)}</span> BYN`; document.getElementById('bizPricePerSet').style.display = 'block'; } else document.getElementById('bizPricePerSet').style.display = 'none';
+
+            let pppEl = document.getElementById('bizPricePerPiece');
+            if (qty > 0 && finalTotal > 0) { pppEl.innerHTML = `Цена за 1 шт: <span>${(finalTotal / qty).toFixed(3)}</span> BYN`; pppEl.style.display = 'block'; } else { pppEl.style.display = 'none'; }
+
+            document.getElementById('bizSheetsRequired').innerHTML = `Листов (${sProps.w}×${sProps.h}): ${sheets} шт. | Оттисков: ${totalImpressions}<br>На листе: ${best.total} шт. | Резов: ${ext.noCut && !useManualCuts ? 0 : totalCuts}`;
+
+            let gridContentContainer = document.getElementById('bizGrid');
+            document.getElementById('bizSheetArea').style.display = 'block';
+
+            let scale = Math.min(240 / (best.w || 1), 240 / (best.h || 1));
+            document.getElementById('bizSheetArea').style.width = ((best.w || 1) * scale) + "px";
+            document.getElementById('bizSheetArea').style.height = ((best.h || 1) * scale) + "px";
+            document.getElementById('bizLabelW').textContent = best.labelW || '';
+            document.getElementById('bizLabelH').textContent = best.labelH || '';
+
+            if (best.mix) {
+                const b = best; let pctX = (val) => (val / b.w) * 100; let pctY = (val) => (val / b.h) * 100; let gridContent = '';
+                const addCells = (cx, cy, w, h, ox, oy) => { for (let yi = 0; yi < cy; yi++) { for (let xi = 0; xi < cx; xi++) { gridContent += `<div class="card-cell" style="position:absolute; left:${pctX(ox + xi * w)}%; top:${pctY(oy + yi * h)}%; width:${pctX(w)}%; height:${pctY(h)}%; border-radius: 4px; box-shadow: inset 0 0 0 1px #444;"></div>`; } } };
+                addCells(b.nx, b.ny, b.w1, b.h1, 0, 0); if (b.remType === 'right') addCells(b.rx, b.ry, b.w2, b.h2, b.nx * b.w1, 0); if (b.remType === 'bottom') addCells(b.bx, b.by, b.w2, b.h2, 0, b.ny * b.h1);
+                gridContentContainer.style.width = "100%"; gridContentContainer.style.height = "100%"; gridContentContainer.style.display = "block"; gridContentContainer.style.position = "relative"; gridContentContainer.style.background = "var(--nv-yellow)"; gridContentContainer.innerHTML = gridContent;
+            } else {
+                let displayX = best.x || 1; let displayY = best.y || 1;
+                gridContentContainer.style.display = "grid"; gridContentContainer.style.background = "var(--nv-yellow)";
+                gridContentContainer.style.width = ((displayX * (best.w1) / (best.w || 1)) * 100) + "%";
+                gridContentContainer.style.height = ((displayY * (best.h1) / (best.h || 1)) * 100) + "%";
+                gridContentContainer.style.gridTemplateColumns = `repeat(${displayX}, 1fr)`;
+                gridContentContainer.innerHTML = Array(Math.min(best.total || 0, 80)).fill('<div class="card-cell"></div>').join('');
+            }
+
+            if (finalTotal > 0) {
+                let sheetFormatStr = document.getElementById('bizSheetSelect').querySelector('.nv-select-trigger').textContent.split(' ')[0];
+                let lamTypeStr = ext.lam !== "none" && ext.lam ? LAM_NAMES[ext.lam] : "Нет";
+
+                let extrasQty = {
+                    crease: ext.crease ? qty * ext.creaseCount : 0,
+                    eyelet: ext.eyelet ? qty * ext.eyeletCount : 0,
+                    punch: ext.punch ? Math.ceil(qty * ((parseInt(document.getElementById('bizDensitySelect').querySelector('.nv-select-trigger').textContent) || 300) / 1000) / 1.5) * ext.punchCount : 0,
+                    glue: ext.glue ? qty * ext.glueCount : 0,
+                    rounding: ext.rounding ? Math.ceil(qty / 10) : 0,
+                    staple: ext.staple ? qty : 0,
+                    foil: ext.foil ? sheets : 0
+                };
+
+                let perLayout = [{
+                    id: 'main',
+                    size: `${valW}x${valH}`,
+                    sheetFormat: sheetFormatStr,
+                    mat: `${document.getElementById('bizMaterialSelect').querySelector('.nv-select-trigger').textContent} ${document.getElementById('bizDensitySelect').querySelector('.nv-select-trigger').textContent}`,
+                    color: document.getElementById('bizPrintTypeSelect').querySelector('.nv-select-trigger').textContent,
+                    qty: qty,
+                    sheets: sheets,
+                    impressions: totalImpressions,
+                    lamType: lamTypeStr,
+                    cuts: ext.noCut && !useManualCuts ? 0 : totalCuts,
+                    costs: costDetails,
+                    extrasQty: extrasQty,
+                    customMods: lMods.details
+                }];
+
+                window.currentCalcData = {
+                    tab: 'tab-bizcards',
+                    title: `${valW}x${valH}`,
+                    price: finalTotal.toFixed(2),
+                    mat: document.getElementById('bizMaterialSelect').querySelector('.nv-select-trigger').textContent,
+                    dens: document.getElementById('bizDensitySelect').querySelector('.nv-select-trigger').textContent,
+                    color: document.getElementById('bizPrintTypeSelect').querySelector('.nv-select-trigger').textContent,
+                    size: `${valW}x${valH}`,
+                    qty: qty,
+                    sheetFormat: sheetFormatStr,
+                    sheets: sheets,
+                    impressions: totalImpressions,
+                    lamType: lamTypeStr,
+                    cuts: ext.noCut && !useManualCuts ? 0 : totalCuts,
+                    extrasQty: extrasQty,
+                    tabName: "Визитки",
+                    totalOnSheet: best.total,
+                    perLayout: perLayout,
+                    printPrice: totalSheetsCost.toFixed(2),
+                    costDetails: costDetails,
+                    customModsDetails: cMods.details
+                };
+            }
+        }
+
+function getBizSetSize() { const s = document.getElementById('bizSizeSelect').getAttribute('data-value'); if (!s) return 100; return (s === '90x50' || s === '50x90') ? 96 : ((s === '85x55' || s === '55x85') ? 105 : 100); }
+
+function updateBizFromSets() { let sets = parseFloat(document.getElementById('bizSets').value.replace(',', '.')) || 0; document.getElementById('bizQuantity').value = sets > 0 ? Math.round(sets * getBizSetSize()) : ''; calculateBizPrice(); }
+
+function updateBizFromQty() { calculateBizPrice(); }
+
+function snapBizQuantity() { const s = document.getElementById('bizSizeSelect').getAttribute('data-value'); if (!s) return; let step = (s === '90x50' || s === '50x90') ? 24 : ((s === '85x55' || s === '55x85') ? 21 : 1); let qty = parseInt(document.getElementById('bizQuantity').value) || 0; if (step > 1) document.getElementById('bizQuantity').value = Math.max(1, Math.ceil(qty / step)) * step; document.getElementById('bizSets').value = Math.round((parseInt(document.getElementById('bizQuantity').value) / getBizSetSize()) * 100) / 100; calculateBizPrice(); }
+
+
+
+
+// --- FILE: calc/js/ui.js ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.layoutOverrides = {};
+        window.layoutExtras = { dense: {}, biz: {} };
+        window.activeLayoutKey = { dense: null, biz: null };
+        window.currentLamPrefix = null;
+        window.lastSelectedDensities = window.lastSelectedDensities || { dense: {}, biz: {} };
+
+        function renderCustomModules() {
+            let mods = JSON.parse(localStorage.getItem('nvCustomMods') || '[]');
+            let html = '';
+            mods.forEach((m, i) => {
+                html += `<div class="custom-mod-item" data-idx="${i}" style="display:flex; justify-content:space-between; align-items:center; background:#fafafa; padding:8px 10px; border-radius:5px; border:1px solid #eee; font-size:11px; margin-bottom: 5px;">`;
+                if (m.type === 'once' || m.type === 'qty' || m.type === 'sheets' || m.type === 1 || m.type === 2) {
+                    let typeLabel = m.type === 'once' || m.type === 1 ? 'разово' : (m.type === 'qty' ? 'за шт' : 'за лист');
+                    html += `<label style="display:flex; gap:5px; align-items:center; cursor:pointer; flex:1;"><input type="checkbox" class="cmod-cb" onchange="recalculateActiveTab()"> <b>${m.name}</b> <span style="color:#888;">(${m.price.toFixed(2)} ${typeLabel})</span></label>`;
+                } else if (m.type === 'input_qty' || m.type === 'input_time') {
+                    let ph = m.type === 'input_time' ? 'мин' : 'шт';
+                    let pr = m.type === 'input_time' ? '/ч' : '/шт';
+                    html += `<label style="display:flex; gap:5px; align-items:center; cursor:pointer; flex:1;"><input type="checkbox" class="cmod-cb" onchange="recalculateActiveTab()"> <b>${m.name}</b> <span style="color:#888;">(${m.price.toFixed(2)}${pr})</span></label> <input type="number" class="cmod-val" min="0" placeholder="${ph}" style="width:45px; padding:2px; font-size:11px; border:1px solid #ccc; border-radius:3px;" oninput="this.parentElement.querySelector('.cmod-cb').checked = this.value > 0; recalculateActiveTab()">`;
+                }
+                html += `<button onclick="removeCustomModule(${i})" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold; font-size:14px; padding: 0 5px;">×</button></div>`;
+            });
+            if (mods.length === 0) html = '<div style="font-size:10px; color:#aaa; text-align:center;">Нет добавленных модулей</div>';
+            document.getElementById('customModulesContainer').innerHTML = html;
+        }
+
+        window.updateCustomModuleDropdowns = function() {
+            let targets = document.querySelectorAll('.cmod-target');
+            if (targets.length === 0) return;
+            
+            // Only show dropdown if dense tab is active and has multiple layouts
+            let isDenseActive = document.getElementById('tab-dense').classList.contains('active');
+            let isMulti = isDenseActive && document.getElementById('denseMultiToggle')?.checked && window.layouts && window.layouts.length > 1;
+            
+            targets.forEach(sel => {
+                if (!isMulti) {
+                    sel.style.display = 'none';
+                    sel.value = 'all';
+                } else {
+                    let currentVal = sel.value;
+                    sel.style.display = 'block';
+                    let opts = `<option value="all">Ко всем макетам</option>`;
+                    window.layouts.forEach((l, idx) => {
+                        opts += `<option value="${l.id}">К Макету ${idx+1} (${l.w}x${l.h})</option>`;
+                    });
+                    sel.innerHTML = opts;
+                    if (currentVal && sel.querySelector(`option[value="${currentVal}"]`)) {
+                        sel.value = currentVal;
+                    }
+                }
+            });
+        }
+
+        let currentCustomModTabId = null;
+        let currentCustomModLayoutId = null;
+
+        function openCustomModModal(tabId = null, layoutId = null) {
+            currentCustomModTabId = tabId;
+            currentCustomModLayoutId = layoutId;
+            document.getElementById('cmodName').value = '';
+            document.getElementById('cmodPrice').value = '';
+            document.getElementById('cmodType').value = 'once';
+            updateCmodPriceLabel();
+            document.getElementById('nv-custom-mod-modal').style.display = 'flex';
+        }
+
+        function closeCustomModModal() {
+            document.getElementById('nv-custom-mod-modal').style.display = 'none';
+        }
+
+        function updateCmodPriceLabel() {
+            let type = document.getElementById('cmodType').value;
+            document.getElementById('cmodPriceLabel').textContent = type === 'input_time' ? 'Цена за ЧАС (BYN)' : 'Цена (BYN)';
+        }
+
+        function saveCustomModule() {
+            let name = document.getElementById('cmodName').value;
+            let price = parseFloat(document.getElementById('cmodPrice').value.replace(',', '.'));
+            let type = document.getElementById('cmodType').value;
+            if (!name || isNaN(price)) { alert('Заполните название и корректную цену!'); return; }
+
+            if (currentCustomModTabId && currentCustomModLayoutId) {
+                let tab = currentCustomModTabId;
+                if (!window.layoutExtras[tab]) window.layoutExtras[tab] = {};
+                if (!window.layoutExtras[tab][currentCustomModLayoutId]) window.layoutExtras[tab][currentCustomModLayoutId] = {};
+                if (!window.layoutExtras[tab][currentCustomModLayoutId].customModules) window.layoutExtras[tab][currentCustomModLayoutId].customModules = [];
+                
+                window.layoutExtras[tab][currentCustomModLayoutId].customModules.push({ name, price, type });
+                closeCustomModModal();
+                
+                if (tab === 'dense') calculateDensePrice();
+                else if (tab === 'stickers') calculateStickerPrice();
+                else if (tab === 'bizcards') calculateBizPrice();
+                
+                if (window.openLayoutDetailsModal) {
+                    window.openLayoutDetailsModal(tab, currentCustomModLayoutId);
+                }
+            } else {
+                let mods = JSON.parse(localStorage.getItem('nvCustomMods') || '[]');
+                mods.push({ name, price, type });
+                localStorage.setItem('nvCustomMods', JSON.stringify(mods));
+                renderCustomModules();
+                closeCustomModModal();
+            }
+        }
+
+        function removeCustomModule(i) {
+            let mods = JSON.parse(localStorage.getItem('nvCustomMods') || '[]');
+            mods.splice(i, 1);
+            localStorage.setItem('nvCustomMods', JSON.stringify(mods));
+            renderCustomModules();
+            recalculateActiveTab();
+        }
+
+        function getCustomModulesInfo(totalQty, totalSheets) {
+            let mods = JSON.parse(localStorage.getItem('nvCustomMods') || '[]');
+            let total = 0; let details = [];
+            document.querySelectorAll('.custom-mod-item').forEach(el => {
+                let m = mods[parseInt(el.dataset.idx)];
+                if (!m) return;
+                let cb = el.querySelector('.cmod-cb');
+                if (cb && cb.checked) {
+                    let cost = 0; let desc = m.name; let qtyForMod = 0;
+                    if (m.type === 'once' || m.type === 1) { cost = m.price; qtyForMod = 1; }
+                    else if (m.type === 'qty') { cost = m.price * totalQty; qtyForMod = totalQty; }
+                    else if (m.type === 'sheets' || m.type === 2) { cost = m.price * totalSheets; qtyForMod = totalSheets; }
+                    else if (m.type === 'input_qty') { let val = parseInt(el.querySelector('.cmod-val').value) || 0; cost = m.price * val; qtyForMod = val; }
+                    else if (m.type === 'input_time') { let val = parseInt(el.querySelector('.cmod-val').value) || 0; cost = (m.price / 60) * val; qtyForMod = val; }
+                    if (cost > 0) { total += cost; details.push({ name: m.name, cost: cost, desc: desc, qty: qtyForMod }); }
+                }
+            });
+            return { total: total, details: details };
+        }
+
+        function getLayoutCustomModulesCost(tab, layoutId, qty, sheets) {
+            let mods = (window.layoutExtras[tab] && window.layoutExtras[tab][layoutId] && window.layoutExtras[tab][layoutId].customModules) ? window.layoutExtras[tab][layoutId].customModules : [];
+            let total = 0; let details = [];
+            mods.forEach(m => {
+                let cost = 0; let desc = m.name; let qtyForMod = 0;
+                if (m.type === 'once' || m.type === 1) { cost = m.price; qtyForMod = 1; }
+                else if (m.type === 'qty') { cost = m.price * qty; qtyForMod = qty; }
+                else if (m.type === 'sheets' || m.type === 2) { cost = m.price * sheets; qtyForMod = sheets; }
+                else if (m.type === 'input_qty' || m.type === 'input_time') { cost = m.price; qtyForMod = 1; } 
+                if (cost > 0) { total += cost; details.push({ name: m.name, cost: cost, desc: desc, qty: qtyForMod, price: m.price }); }
+            });
+            return { total: total, details: details };
+        }
+
+        function initApp() {
+    if (window.appInitialized) return;
+    window.appInitialized = true;
+            window.activeLayoutKey['biz'] = 'main';
+            window.layoutExtras['biz']['main'] = { noCut: false, rounding: false, lam: 'none', punch: false, punchCount: 1, foil: false, plotter: false };
+            for (let k in densePaperData) window.lastSelectedDensities.dense[k] = densePaperData[k].dens[0].g;
+            for (let k in bizPaperData) window.lastSelectedDensities.biz[k] = bizPaperData[k].dens[0].g;
+            let buildMats = (dict) => Object.keys(dict).map(key => `<div class="nv-option" data-value="${key}" onclick="selectCommonOption(this)">${dict[key].name}</div>`).join('');
+            document.getElementById('denseMatOptions').innerHTML = buildMats(densePaperData);
+            document.getElementById('bizMatOptions').innerHTML = buildMats(bizPaperData);
+
+            loadSheetTemplates(); renderAllSizePresets(); updateDensities('tab-dense'); updateDensities('tab-bizcards'); renderCustomModules();
+            addDenseRow(); addDrawRow('standard');
+
+            document.getElementById('denseQuantity')?.addEventListener('wheel', handleDenseWheel, { passive: false });
+            document.getElementById('bizSets')?.addEventListener('wheel', function (e) { e.preventDefault(); let sets = parseFloat(this.value.replace(',', '.')) || 0; const step = (document.getElementById('bizSizeSelect').getAttribute('data-value') === '90x50') ? 0.25 : (document.getElementById('bizSizeSelect').getAttribute('data-value') === '85x55' ? 0.2 : 1); sets += (e.deltaY < 0 ? step : -step); if (sets < step) sets = step; this.value = Math.round(sets * 100) / 100; updateBizFromSets(); }, { passive: false });
+            document.getElementById('bizQuantity')?.addEventListener('wheel', function (e) { e.preventDefault(); const step = (document.getElementById('bizSizeSelect').getAttribute('data-value') === '90x50') ? 24 : 21; let qty = parseInt(this.value) || 0; qty += (e.deltaY < 0 ? step : -step); if (qty < step) qty = step; this.value = Math.ceil(qty / step) * step; document.getElementById('bizSets').value = Math.round((this.value / getBizSetSize()) * 100) / 100; calculateBizPrice(); }, { passive: false });
+            document.getElementById('stickQuantity')?.addEventListener('wheel', function (e) { e.preventDefault(); let qty = parseInt(this.value) || 0; qty += (e.deltaY < 0 ? 1 : -1); if (qty < 1) qty = 1; this.value = qty; calculateStickerPrice(); }, { passive: false });
+            renderHistory();
+        }
+        if (document.readyState === 'complete' || document.readyState === 'interactive') { setTimeout(initApp, 1); } else { document.addEventListener('DOMContentLoaded', initApp); window.addEventListener('load', initApp); }
+
+        function switchTab(tabId, btnElement) { document.querySelectorAll('.nv-tab-content').forEach(tab => tab.classList.remove('active')); document.querySelectorAll('.nv-tab-btn').forEach(btn => btn.classList.remove('active')); document.getElementById(tabId).classList.add('active'); btnElement.classList.add('active'); recalculateActiveTab(); }
+        function getGlobalDiscountTier() { let val = document.getElementById('globalDiscountSelect').getAttribute('data-value'); if (val === '2.64') return 1; if (val === '2.40') return 2; if (val === '2.16') return 3; if (val === '1.80') return 4; return 0; }
+        
+        
+
+        
+
+        function recalculateActiveTab() {
+            const activeTab = document.querySelector('.nv-tab-content.active').id;
+            if (activeTab === 'tab-dense') calculateDensePrice();
+            else if (activeTab === 'tab-drawings') calculateDrawPrice();
+            else if (activeTab === 'tab-stickers') calculateStickerPrice();
+            else if (activeTab === 'tab-bizcards') calculateBizPrice();
+        }
+
+        function renderAllSizePresets() { let sizes = JSON.parse(localStorage.getItem('nvCustomSizes') || '[]'); let html = ''; if (sizes.length > 0) { sizes.forEach((s, idx) => { html += `<div class="nv-option" style="display:flex; justify-content:space-between; align-items:center;" onclick="applySizePreset(this, ${s.w}, ${s.h})"><span>${s.label}</span><span style="color:#ff3333; font-weight:bold; font-size: 16px; padding:0 5px;" onclick="deleteSizePreset(${idx}, event)" title="Удалить">×</span></div>`; }); } else { html += `<div class="nv-option" style="color:#aaa; font-size:10px; text-align: center;">Нет добавленных</div>`; } html += `<div class="nv-option" style="background: #eee; font-weight: bold; border-top: 1px solid #ddd; text-align:center;" onclick="addNewSizePreset()">+ Добавить размер...</div>`; document.querySelectorAll('.user-size-options').forEach(el => el.innerHTML = html); }
+        function addNewSizePreset() { let w = prompt("Введите ширину (мм):"); if (!w || isNaN(w)) return; let h = prompt("Введите высоту (мм):"); if (!h) return; let label = prompt("Введите название (например, А5):", `${w}×${h}`); let sizes = JSON.parse(localStorage.getItem('nvCustomSizes') || '[]'); sizes.push({ w: parseInt(w), h: parseInt(h), label: label || `${w}×${h}` }); localStorage.setItem('nvCustomSizes', JSON.stringify(sizes)); renderAllSizePresets(); }
+        function deleteSizePreset(idx, e) { e.stopPropagation(); let sizes = JSON.parse(localStorage.getItem('nvCustomSizes') || '[]'); sizes.splice(idx, 1); localStorage.setItem('nvCustomSizes', JSON.stringify(sizes)); renderAllSizePresets(); }
+        function applySizePreset(el, w, h) { const parentDrop = el.closest('.nv-custom-select'); if (parentDrop) parentDrop.classList.remove('open'); const group = el.closest('.nv-card-input-group') || el.closest('.nv-multi-row'); if (!group) return; const wInput = group.querySelector('input[placeholder="Ш"]'); const hInput = group.querySelector('input[placeholder="В"]'); if (wInput && hInput) { wInput.value = w; hInput.value = h; if (group.closest('#tab-dense')) { const qInput = group.closest('.nv-card-row')?.querySelector('input[placeholder="Кол-во"]') || group.querySelector('input[placeholder="Кол-во"]'); if (qInput && typeof snapDenseQuantity === 'function') snapDenseQuantity(qInput); calculateDensePrice(); } else if (group.closest('#tab-stickers')) calculateStickerPrice(); } }
+
+        function openLamModal(prefix) { window.currentLamPrefix = prefix; document.getElementById('nv-lam-modal').style.display = 'flex'; }
+        function closeLamModal() { document.getElementById('nv-lam-modal').style.display = 'none'; }
+        function selectLamOption(val) { if (!window.currentLamPrefix) return; let prefix = window.currentLamPrefix; let el = document.getElementById(prefix + 'LamSelect'); if (el) { el.setAttribute('data-value', val); el.querySelector('.nv-select-trigger').textContent = LAM_NAMES[val] || 'Без ламинации'; } closeLamModal(); triggerExtraChange(prefix); }
+
+        function saveUIStateToLayout(prefix) { if (prefix === 'biz') window.activeLayoutKey['biz'] = 'main'; let key = window.activeLayoutKey[prefix]; if (!key) return; if (!window.layoutExtras[prefix][key]) window.layoutExtras[prefix][key] = {}; let st = window.layoutExtras[prefix][key]; st.noCut = document.getElementById(prefix + 'NoCut')?.checked || false; st.rounding = document.getElementById(prefix + 'Rounding')?.checked || false; st.lam = document.getElementById(prefix + 'LamSelect')?.getAttribute('data-value') || 'none'; st.staple = document.getElementById(prefix + 'Staple')?.checked || false; st.foil = document.getElementById(prefix + 'Foiling')?.checked || false; st.plotter = document.getElementById(prefix + 'Plotter')?.checked || false; if (document.getElementById(prefix + 'Crease')) { st.crease = document.getElementById(prefix + 'Crease').checked; st.creaseCount = parseInt(document.getElementById(prefix + 'CreaseCount').value) || 1; } else st.crease = false; if (document.getElementById(prefix + 'Eyelet')) { st.eyelet = document.getElementById(prefix + 'Eyelet').checked; st.eyeletCount = parseInt(document.getElementById(prefix + 'EyeletCount').value) || 1; } else st.eyelet = false; if (document.getElementById(prefix + 'Punch')) { st.punch = document.getElementById(prefix + 'Punch').checked; st.punchCount = parseInt(document.getElementById(prefix + 'PunchCount').value) || 1; } else st.punch = false; if (document.getElementById(prefix + 'Glue')) { st.glue = document.getElementById(prefix + 'Glue').checked; st.glueCount = parseInt(document.getElementById(prefix + 'GlueCount').value) || 1; } else st.glue = false; if (document.getElementById(prefix + 'MaterialSelect')) st.mat = document.getElementById(prefix + 'MaterialSelect').getAttribute('data-value'); if (document.getElementById(prefix + 'DensitySelect')) st.dens = document.getElementById(prefix + 'DensitySelect').getAttribute('data-value'); if (document.getElementById(prefix + 'PrintTypeSelect')) st.printType = document.getElementById(prefix + 'PrintTypeSelect').getAttribute('data-value'); if (document.getElementById(prefix + 'SheetSelect')) st.sheetStr = document.getElementById(prefix + 'SheetSelect').getAttribute('data-value'); }
+        function loadLayoutStateToUI(prefix, key) { if (prefix === 'biz') key = 'main'; let st = window.layoutExtras[prefix][key]; if (!st) return; let chk = (id, prop) => { let el = document.getElementById(prefix + id); if (el) el.checked = st[prop]; }; chk('NoCut', 'noCut'); chk('Rounding', 'rounding'); chk('Staple', 'staple'); chk('Foiling', 'foil'); chk('Plotter', 'plotter'); let elLam = document.getElementById(prefix + 'LamSelect'); if (elLam) { elLam.setAttribute('data-value', st.lam); elLam.querySelector('.nv-select-trigger').textContent = LAM_NAMES[st.lam] || 'Без ламинации'; } let setExtra = (id, checkProp, countProp) => { let el = document.getElementById(prefix + id); if (el) { el.checked = st[checkProp]; document.getElementById(prefix + id + 'Count').value = st[countProp] || 1; document.getElementById(prefix + id + 'Count').style.display = st[checkProp] ? 'block' : 'none'; } }; setExtra('Crease', 'crease', 'creaseCount'); setExtra('Eyelet', 'eyelet', 'eyeletCount'); setExtra('Punch', 'punch', 'punchCount'); setExtra('Glue', 'glue', 'glueCount'); let dict = prefix === 'dense' ? densePaperData : bizPaperData; let elMat = document.getElementById(prefix + 'MaterialSelect'); if (elMat && st.mat) { elMat.setAttribute('data-value', st.mat); if (dict[st.mat]) elMat.querySelector('.nv-select-trigger').textContent = dict[st.mat].name; updateDensities('tab-' + (prefix === 'biz' ? 'bizcards' : 'dense')); } let elDens = document.getElementById(prefix + 'DensitySelect'); if (elDens && st.dens && dict[st.mat]) { elDens.setAttribute('data-value', st.dens); let dObj = dict[st.mat].dens.find(d => String(d.g) === String(st.dens)); if (dObj) elDens.querySelector('.nv-select-trigger').textContent = dObj.g + (typeof dObj.g === 'number' ? " г/м²" : ""); } let elPrint = document.getElementById(prefix + 'PrintTypeSelect'); if (elPrint && st.printType) { elPrint.setAttribute('data-value', st.printType); let opt = elPrint.querySelector(`.nv-option[data-value="${st.printType}"]`); if (opt) elPrint.querySelector('.nv-select-trigger').textContent = opt.textContent; } let elSheet = document.getElementById(prefix + 'SheetSelect'); if (elSheet && st.sheetStr) { elSheet.setAttribute('data-value', st.sheetStr); let opt = elSheet.querySelector(`.nv-option[data-value="${st.sheetStr}"]`); if (opt) elSheet.querySelector('.nv-select-trigger').textContent = opt.textContent; } }
+        function triggerExtraChange(prefix) { saveUIStateToLayout(prefix); if (prefix === 'dense') calculateDensePrice(); else if (prefix === 'biz') calculateBizPrice(); }
+        function switchLayoutTabExt(btn, prefix, key, index) { switchLayoutTab(index, prefix); if (prefix !== 'biz') { window.activeLayoutKey[prefix] = key; loadLayoutStateToUI(prefix, key); } }
+        function selectDiscountOption(el) { const parent = el.closest('.nv-custom-select'); parent.setAttribute('data-value', el.getAttribute('data-value')); parent.querySelector('.nv-select-trigger').textContent = el.textContent; parent.classList.remove('open'); recalculateActiveTab(); }
+
+        function selectCommonOption(el) {
+            const parent = el.closest('.nv-custom-select'); const val = el.getAttribute('data-value'); parent.setAttribute('data-value', val); parent.querySelector('.nv-select-trigger').textContent = el.textContent; parent.classList.remove('open'); const parentId = parent.id;
+            if (parentId.includes('DensitySelect')) { let prefix = parentId.replace('DensitySelect', ''); let currentMat = document.getElementById(prefix + 'MaterialSelect').getAttribute('data-value'); window.lastSelectedDensities[prefix][currentMat] = val; }
+            if (parentId.includes('MaterialSelect') || parentId.includes('SheetSelect') || parentId.includes('PrintTypeSelect') || parentId.includes('ColorSelect')) { let prefix = parentId.replace('MaterialSelect', '').replace('SheetSelect', '').replace('PrintTypeSelect', '').replace('ColorSelect', ''); if (prefix === 'dense') updateDensities('tab-dense'); if (prefix === 'biz') updateDensities('tab-bizcards'); }
+            if (parentId.includes('dense')) calculateDensePrice(); else if (parentId.includes('draw')) calculateDrawPrice(); else if (parentId.includes('biz')) { if (parentId === 'bizSizeSelect') snapBizQuantity(); else calculateBizPrice(); } else if (parentId.includes('stick')) calculateStickerPrice();
+        }
+
+        function updateDensities(tabId) {
+            let matSelectId = '', densSelectId = '', lastSelObj = '', dict = null;
+            if (tabId === 'tab-dense') { matSelectId = 'denseMaterialSelect'; densSelectId = 'denseDensitySelect'; lastSelObj = 'dense'; dict = densePaperData; }
+            else if (tabId === 'tab-bizcards') { matSelectId = 'bizMaterialSelect'; densSelectId = 'bizDensitySelect'; lastSelObj = 'biz'; dict = bizPaperData; } else return;
+            const mat = document.getElementById(matSelectId).getAttribute('data-value'); if (!dict[mat]) return;
+            const densContainer = document.querySelector(`#${densSelectId} .nv-options`);
+            let filteredDens = dict[mat].dens;
+            if (tabId === 'tab-bizcards') { filteredDens = filteredDens.filter(d => [250, 300, 350].includes(d.g)); if (filteredDens.length === 0) filteredDens = dict[mat].dens; }
+            densContainer.innerHTML = filteredDens.map(d => `<div class="nv-option" data-value="${d.g}" onclick="selectCommonOption(this)">${d.g} ${typeof d.g === 'number' ? 'г/м²' : ''}</div>`).join('');
+            let savedVal = window.lastSelectedDensities[lastSelObj][mat]; let found = filteredDens.find(d => String(d.g) === String(savedVal)) || filteredDens[0];
+            document.getElementById(densSelectId).setAttribute('data-value', found.g); document.getElementById(densSelectId).querySelector('.nv-select-trigger').textContent = found.g + (typeof found.g === 'number' ? " г/м²" : "");
+        }
+
+        function toggleModalType() {
+            let type = document.getElementById('modalType').value;
+            if (type === 'Физ лица') document.getElementById('modalUrFields').style.display = 'none';
+            else document.getElementById('modalUrFields').style.display = 'block';
+        }
+
+        function openSheetModal() {
+            if (!window.currentCalcData) { alert("Сначала сделайте расчет!"); return; }
+            document.getElementById('urCustomerList').innerHTML = JSON.parse(localStorage.getItem('nvUrCustomers') || '[]').map(c => `<option value="${c}">`).join('');
+            document.getElementById('urJobList').innerHTML = JSON.parse(localStorage.getItem('nvUrJobs') || '[]').map(c => `<option value="${c}">`).join('');
+            let defaultJob = window.currentCalcData.tabName;
+            if (window.currentCalcData.tabName !== "Стикеры") defaultJob += " " + window.currentCalcData.title;
+            document.getElementById('modalUrJobType').value = defaultJob;
+            
+            let d = window.currentCalcData;
+            let paperContainer = document.getElementById('modalUrPaperContainer');
+            if (paperContainer) {
+                let phtml = '';
+                let layouts = d?.perLayout || [];
+                if (layouts.length === 0) layouts = [{id:'1', size:'Основной'}];
+                
+                layouts.forEach((l, idx) => {
+                    let label = layouts.length > 1 ? `Бумага (Макет ${idx+1}: ${l.size})` : `Бумага (из базы)`;
+                    phtml += `
+                        <div style="text-align: left; margin-bottom: 10px; position: relative;">
+                            <label style="font-size: 10px; font-weight: bold; color: #888; text-transform: uppercase;">${label}</label>
+                            <input type="text" id="modalUrPaper_${idx}" class="nv-modal-input" placeholder="Введите от 3-х букв..." oninput="filterPaperDb(this.value, 'modalUrPaper_${idx}')">
+                            <div id="paperAutocompleteList_modalUrPaper_${idx}" class="paperAutocompleteList" style="display:none; position:absolute; z-index:9999; background:#fff; border:1px solid #ccc; border-radius:4px; max-height:150px; overflow-y:auto; width:100%; top:50px; font-size:12px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"></div>
+                        </div>
+                    `;
+                });
+                paperContainer.innerHTML = phtml;
+            }
+            
+            toggleModalType(); document.getElementById('nv-sheet-modal').style.display = 'flex';
+        }
+
+        
+
+        function showDetailsModal() {
+            if (!window.currentCalcData || !window.currentCalcData.costDetails) { alert("Сначала сделайте расчет!"); return; }
+            let d = window.currentCalcData.costDetails; let cd = window.currentCalcData; let html = '';
+            const addRow = (name, val, qtyText = "") => { if (val && val > 0) { let qStr = qtyText ? ` (${qtyText})` : ""; html += `<div><span>${name}${qStr}</span> <b>${val.toFixed(2)} BYN</b></div>`; } };
+
+            let sheetsTotal = cd.sheets || 0; if (cd.tab === 'tab-drawings') sheetsTotal = cd.qty || 0;
+            let cutsTotal = cd.cuts !== undefined ? cd.cuts : (cd.globalCuts || 0);
+
+            if (d.printAndMat) addRow("Печать и материал", d.printAndMat, sheetsTotal ? `${sheetsTotal} л.` : "");
+            else { addRow("Печать", d.print, sheetsTotal ? `${sheetsTotal} л.` : ""); addRow("Материал", d.paper, sheetsTotal ? `${sheetsTotal} л.` : ""); }
+
+            addRow("Резка", d.cut, cutsTotal ? `${cutsTotal} рез.` : "");
+            addRow("Ламинация", d.lam, cd.lamType && cd.lamType !== "Нет" ? `${cd.lamType}, ${sheetsTotal} л.` : "");
+
+            let c_cr = 0, c_rd = 0, c_ey = 0, c_st = 0, c_pu = 0, c_gl = 0, c_fo = 0, c_fd = 0;
+            if (cd.perLayout && cd.perLayout.length > 0) {
+                cd.perLayout.forEach(l => { if (l.extrasQty) { c_cr += l.extrasQty.crease || 0; c_rd += l.extrasQty.rounding || 0; c_ey += l.extrasQty.eyelet || 0; c_st += l.extrasQty.staple || 0; c_pu += l.extrasQty.punch || 0; c_gl += l.extrasQty.glue || 0; c_fo += l.extrasQty.foil || 0; c_fd += l.extrasQty.fold || 0; } });
+            } else if (cd.extrasQty) { c_cr = cd.extrasQty.crease || 0; c_rd = cd.extrasQty.rounding || 0; c_ey = cd.extrasQty.eyelet || 0; c_st = cd.extrasQty.staple || 0; c_pu = cd.extrasQty.punch || 0; c_gl = cd.extrasQty.glue || 0; c_fo = cd.extrasQty.foil || 0; c_fd = cd.extrasQty.fold || 0; }
+
+            addRow("Биговка", d.crease, c_cr ? `${c_cr} шт.` : ""); addRow("Скругление", d.rounding, c_rd ? `${c_rd} шт.` : "");
+            addRow("Люверсы", d.eyelet, c_ey ? `${c_ey} шт.` : ""); addRow("Сшивка", d.staple, c_st ? `${c_st} шт.` : "");
+            addRow("Дыроколение", d.punch, c_pu ? `${c_pu} шт.` : ""); addRow("Склейка", d.glue, c_gl ? `${c_gl} шт.` : "");
+            addRow("Фольгирование", d.foil, c_fo ? `${c_fo} л.` : ""); addRow("Плоттерная резка", d.plotter, sheetsTotal ? `${sheetsTotal} л.` : "");
+            addRow("Фальцовка", d.fold, c_fd ? `${c_fd} шт.` : "");
+
+            if (d.customMods && d.customMods.length > 0) { d.customMods.forEach(mod => { addRow(mod.desc, mod.cost); }); }
+
+            if (html === '') { html = '<div style="text-align:center; color:#888;">Нет данных</div>'; }
+            document.getElementById('nv-details-list-container').innerHTML = html;
+            document.getElementById('nv-details-total').textContent = cd.price + " BYN";
+            document.getElementById('nv-details-modal').style.display = 'flex';
+        }
+        function closeDetailsModal() { document.getElementById('nv-details-modal').style.display = 'none'; }
+
+        
+
+        function createNewSheetTemplate() { let name = prompt("Введите название шаблона:"); if (!name) return; let w = prompt("Ширина в мм:"); if (!w) return; let h = prompt("Высота в мм:"); if (!h) return; let templates = JSON.parse(localStorage.getItem('nvSheetTemplates') || '[]'); templates.push({ name: name, val: `${Math.max(w, h)}x${Math.min(w, h)}`, label: `${name} (${Math.max(w, h)}×${Math.min(w, h)})` }); localStorage.setItem('nvSheetTemplates', JSON.stringify(templates)); loadSheetTemplates(); }
+        function loadSheetTemplates() { let templates = JSON.parse(localStorage.getItem('nvSheetTemplates') || '[]');['dense', 'stick', 'biz'].forEach(tab => { const opt = document.getElementById(tab + 'SheetOptions'); if (opt) { let html = `<div class="nv-option" data-value="450x320" onclick="selectSheetOption('${tab}', this)">SRA3 (450×320)</div><div class="nv-option" data-value="420x297" onclick="selectSheetOption('${tab}', this)">A3 (420×297)</div><div class="nv-option" data-value="320x225" onclick="selectSheetOption('${tab}', this)">SRA4 (320×225)</div><div class="nv-option" data-value="297x210" onclick="selectSheetOption('${tab}', this)">A4 (297×210)</div>`; templates.forEach(t => html += `<div class="nv-option" data-value="${t.val}" onclick="selectSheetOption('${tab}', this)">${t.label} <span style="color:#ff3333; float:right; font-weight:bold; font-size: 16px; margin-left: 10px; line-height: 1;" onclick="deleteSheetTemplate('${t.name}', event)">×</span></div>`); html += `<div class="nv-option" style="background: #eee; font-weight: bold; border-top: 1px solid #ddd;" onclick="createNewSheetTemplate()">+ Создать шаблон...</div>`; opt.innerHTML = html; } }); }
+        function deleteSheetTemplate(name, e) { e.stopPropagation(); localStorage.setItem('nvSheetTemplates', JSON.stringify(JSON.parse(localStorage.getItem('nvSheetTemplates') || '[]').filter(t => t.name !== name))); loadSheetTemplates(); }
+        function selectSheetOption(tabPrefix, el) { const parent = el.closest('.nv-custom-select'); parent.setAttribute('data-value', el.getAttribute('data-value')); let clone = el.cloneNode(true); let span = clone.querySelector('span'); if (span) span.remove(); parent.querySelector('.nv-select-trigger').textContent = clone.textContent.trim(); parent.classList.remove('open'); recalculateActiveTab(); }
+        function toggleSelect(trigger) { const parent = trigger.parentElement; const isOpen = parent.classList.contains('open'); document.querySelectorAll('.nv-custom-select').forEach(s => { s.classList.remove('open'); const group = s.closest('.nv-card-input-group') || s.closest('.nv-lam-wide'); if (group) group.style.zIndex = '990'; }); if (!isOpen) { parent.classList.add('open'); const group = parent.closest('.nv-card-input-group') || parent.closest('.nv-lam-wide'); if (group) group.style.zIndex = '9999'; } }
+        function toggleExtraInput(checkId, inputId) { document.getElementById(inputId).style.display = document.getElementById(checkId).checked ? 'block' : 'none'; }
+        window.onclick = function (e) { if (!e.target.closest('.nv-custom-select') && !e.target.closest('.hi-del') && !e.target.closest('.nv-lam-trigger')) { document.querySelectorAll('.nv-custom-select').forEach(s => { s.classList.remove('open'); const group = s.closest('.nv-card-input-group') || s.closest('.nv-lam-wide'); if (group) group.style.zIndex = '990'; }); } };
+        function updateSegment(el) { const container = el.closest('.nv-segment-control'); container.querySelectorAll('.nv-segment-label').forEach(lbl => lbl.classList.remove('active')); el.closest('.nv-segment-label').classList.add('active'); }
+        function switchLayoutTab(index, prefix) { document.querySelectorAll(`.${prefix}-layout-tab`).forEach((btn, i) => btn.classList.toggle('active', i === index)); document.querySelectorAll(`.${prefix}-layout-content`).forEach((content, i) => content.classList.toggle('active', i === index)); }
+
+        function collectTabState(tabId) { let state = {}; let tab = document.getElementById(tabId); if (!tab) return state; tab.querySelectorAll('input').forEach(el => { if (el.id && el.type !== 'hidden') state[el.id] = (el.type === 'checkbox' || el.type === 'radio') ? el.checked : el.value; }); tab.querySelectorAll('.nv-custom-select').forEach(el => { if (el.id) state[el.id] = el.getAttribute('data-value'); });['accountantRounding'].forEach(id => { let el = document.getElementById(id); if (el) state[id] = el.type === 'checkbox' ? el.checked : el.value; }); if (tabId === 'tab-dense') { let rows = []; tab.querySelectorAll(`.dense-multi-row`).forEach(r => { rows.push({ w: r.querySelector(`.dm-w`).value, h: r.querySelector(`.dm-h`).value, q: r.querySelector(`.dm-q`).value }); }); state.multiRows = rows; for (let r of document.getElementsByName(`denseLayoutMode`)) if (r.checked) state.layoutMode = r.value; } else if (tabId === 'tab-drawings') { let dRows = []; tab.querySelectorAll('.draw-multi-row').forEach(r => { dRows.push({ jobType: r.querySelector('.dr-job-type').value, fmt: r.querySelector('.dr-format').value, mult: r.querySelector('.dr-mult').value, fold: r.querySelector('.dr-fold').checked, w: r.querySelector('.dr-w').value, h: r.querySelector('.dr-h').value, q: r.querySelector('.dr-q').value, color: r.querySelector('.dr-color') ? r.querySelector('.dr-color').checked : false }); }); state.drawRows = dRows; } return state; }
+        function saveToHistory(tabId, title, price) { let history = JSON.parse(localStorage.getItem('nvHistory') || '[]').filter(item => (Date.now() - item.timestamp) < 7 * 24 * 60 * 60 * 1000); let state = collectTabState(tabId); state.window.layoutExtras = JSON.stringify(window.layoutExtras); history.unshift({ id: Date.now().toString(), timestamp: Date.now(), tab: tabId, title: title, price: price, state: state }); if (history.length > 30) history.pop(); localStorage.setItem('nvHistory', JSON.stringify(history)); renderHistory(); }
+        function deleteHistoryItem(id, e) { e.stopPropagation(); localStorage.setItem('nvHistory', JSON.stringify(JSON.parse(localStorage.getItem('nvHistory') || '[]').filter(item => item.id !== id.toString()))); renderHistory(); }
+        function renderHistory() { const list = document.getElementById('nv-history-list'); if (!list) return; let history = JSON.parse(localStorage.getItem('nvHistory') || '[]').filter(item => (Date.now() - item.timestamp) < 7 * 24 * 60 * 60 * 1000); localStorage.setItem('nvHistory', JSON.stringify(history)); if (history.length === 0) { list.innerHTML = '<div style="color:#aaa; font-size:12px; text-align:center;">История пуста</div>'; return; } let html = ''; history.forEach(item => { let date = new Date(item.timestamp).toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); let tabName = { 'tab-dense': 'Плотные', 'tab-drawings': 'Чертежи', 'tab-stickers': 'Стикеры', 'tab-bizcards': 'Визитки' }[item.tab] || ''; html += `<div class="nv-history-item" onclick="loadHistory('${item.id}')"><button class="hi-del" onclick="deleteHistoryItem('${item.id}', event)">×</button><div class="hi-title">${tabName}: ${item.title}</div><div class="hi-price">${item.price} BYN</div><div class="hi-date">${date}</div></div>`; }); list.innerHTML = html; }
+
+        function loadHistory(id) {
+            let item = JSON.parse(localStorage.getItem('nvHistory') || '[]').find(i => i.id === id.toString());
+            if (!item) return;
+            let tabBtn = document.querySelector(`.nv-tab-btn[onclick*="${item.tab}"]`);
+            if (tabBtn) tabBtn.click();
+
+            let state = item.state;
+            if (state.window.layoutExtras) window.layoutExtras = JSON.parse(state.window.layoutExtras);
+
+            let matSelectId = { 'tab-dense': 'denseMaterialSelect', 'tab-stickers': 'stickMaterialSelect', 'tab-bizcards': 'bizMaterialSelect' }[item.tab];
+            if (matSelectId && state[matSelectId]) {
+                let matSel = document.getElementById(matSelectId);
+                let opt = matSel.querySelector(`.nv-option[data-value="${state[matSelectId]}"]`);
+                if (opt) {
+                    matSel.setAttribute('data-value', state[matSelectId]);
+                    matSel.querySelector('.nv-select-trigger').textContent = opt.textContent;
+                    let shortPrefix = item.tab.replace('tab-', '').replace('bizcards', 'biz');
+                    if (shortPrefix !== 'stickers' && shortPrefix !== 'drawings') {
+                        window.lastSelectedDensities[shortPrefix][state[matSelectId]] = state[`${shortPrefix}DensitySelect`];
+                        updateDensities(item.tab);
+                    }
+                }
+            }
+
+            for (let key in state) {
+                if (['multiRows', 'drawRows', 'layoutMode', matSelectId, 'window.layoutExtras'].includes(key)) continue;
+                let el = document.getElementById(key);
+                if (el) {
+                    if (el.type === 'checkbox' || el.type === 'radio') el.checked = state[key];
+                    else if (el.classList && el.classList.contains('nv-custom-select')) {
+                        let opt = el.querySelector(`.nv-option[data-value="${state[key]}"]`);
+                        if (opt) { el.setAttribute('data-value', state[key]); el.querySelector('.nv-select-trigger').textContent = opt.textContent; }
+                    } else el.value = state[key];
+                }
+            }
+
+            if (item.tab === 'tab-dense') {
+                toggleExtraInput('denseCrease', 'denseCreaseCount'); toggleExtraInput('denseEyelet', 'denseEyeletCount'); toggleExtraInput('densePunch', 'densePunchCount'); toggleExtraInput('denseGlue', 'denseGlueCount');
+                let list = document.getElementById(`denseMultiList`); list.innerHTML = '';
+                if (state.multiRows && state.multiRows.length > 0) {
+                    state.multiRows.forEach(r => {
+                        let div = document.createElement('div'); div.className = `nv-multi-row dense-multi-row`; div.style.position = 'relative';
+                        div.innerHTML = `<div class="nv-custom-select" style="width: auto; flex-shrink: 0; display:flex; align-items:center;"><div style="font-size:9.5px; color:#888; cursor:pointer; font-weight:800; text-transform:uppercase; padding: 2px 6px; border-radius: 5px; background: #eee; margin-right: 5px;" onclick="toggleSelect(this)">Шабл. ▾</div><div class="nv-options user-size-options" style="width: 180px; left: 0; z-index: 999999;"></div></div><input type="text" inputmode="numeric" class="nv-multi-input dm-w" placeholder="Ш" value="${r.w}" oninput="this.value = this.value.replace(/\\D/g, ''); calculateDensePrice()"><input type="text" inputmode="numeric" class="nv-multi-input dm-h" placeholder="В" value="${r.h}" oninput="this.value = this.value.replace(/\\D/g, ''); calculateDensePrice()"><input type="text" inputmode="numeric" class="nv-multi-input dm-q" placeholder="Кол-во" value="${r.q}" oninput="this.value = this.value.replace(/\\D/g, ''); calculateDensePrice()"><button class="nv-multi-del" onclick="this.parentElement.remove(); calculateDensePrice()">×</button>`;
+                        list.appendChild(div); div.querySelector('.dm-q').addEventListener('wheel', handleDenseWheel, { passive: false });
+                    }); renderAllSizePresets();
+                } else addDenseRow();
+                document.getElementsByName(`denseLayoutMode`).forEach(r => { if (r.value === state.layoutMode) { r.checked = true; updateSegment(r); } });
+                let isMulti = document.getElementById(`denseMultiToggle`).checked; document.getElementById(`denseSingleBlock`).style.display = isMulti ? 'none' : 'block'; document.getElementById(`denseMultiBlock`).style.display = isMulti ? 'block' : 'none';
+            }
+
+            if (item.tab === 'tab-bizcards') toggleExtraInput('bizPunch', 'bizPunchCount');
+            if (item.tab === 'tab-drawings') {
+                let list = document.getElementById('drawMultiList'); list.innerHTML = '';
+                if (state.drawRows && state.drawRows.length > 0) {
+                    state.drawRows.forEach((r, idx) => {
+                        addDrawRow(r.fmt === 'Custom' ? 'custom' : 'standard');
+                        let rows = document.querySelectorAll('.draw-multi-row'); let lastRow = rows[rows.length - 1];
+                        lastRow.querySelector('.dr-job-type').value = r.jobType || 'print';
+                        if (r.fmt === 'Custom') { lastRow.querySelector('.dr-w').value = r.w; lastRow.querySelector('.dr-h').value = r.h; } else { lastRow.querySelector('.dr-format').value = r.fmt; if (lastRow.querySelector('.dr-mult')) lastRow.querySelector('.dr-mult').value = r.mult; }
+                        lastRow.querySelector('.dr-q').value = r.q; if (lastRow.querySelector('.dr-fold')) lastRow.querySelector('.dr-fold').checked = r.fold; if (lastRow.querySelector('.dr-color')) lastRow.querySelector('.dr-color').checked = r.color;
+                        updateDrawRow(lastRow.querySelector(r.fmt === 'Custom' ? '.dr-w' : '.dr-format'));
+                    });
+                } else addDrawRow('standard');
+            }
+            recalculateActiveTab();
+        }
+
+        function saveCurrentCalculation() { if (window.currentCalcData) { let customName = prompt("Введите название просчета (для истории):", window.currentCalcData.title); if (customName !== null) { saveToHistory(window.currentCalcData.tab, customName, window.currentCalcData.price); alert('Просчет сохранен!'); } } else alert("Сначала сделайте расчет!"); }
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        // ==========================================
+        // ЛОГИКА СТИКЕРОВ
+        // ==========================================
+        
+
+        // ==========================================
+        // ЛОГИКА ВИЗИТОК
+        // ==========================================
+        
+        
+        
+        
+
+        
+
+        function sendOrder(type) {
+            let data = window.currentCalcData;
+            if (!data) return;
+
+            let cModsStr = "";
+            if (data.customModsDetails && data.customModsDetails.length > 0) {
+                cModsStr = "\n\nДоп. услуги:\n" + data.customModsDetails.map(m => `- ${m.desc}: ${m.cost.toFixed(2)} BYN`).join("\n");
+            }
+
+            let msg = "";
+            if (type === 'dense') {
+                const isMulti = document.getElementById('denseMultiToggle').checked;
+                let modeText = isMulti ? (document.querySelector('input[name="denseLayoutMode"]:checked')?.value === 'separate' ? " (Отдельные листы)" : " (По порядку)") : "";
+                let lines = (data.layoutsArr || []).map((l, idx) => {
+                    let info = `Макет ${idx + 1}: ${l.size}
+Материал: ${l.mat}
+Цветность: ${l.color}
+Доп. работы: ${l.extras}`;
+                    if (isMulti) info += `
+Цена: ${l.price} BYN`;
+                    return info;
+                }).join('\n\n');
+                msg = `Заказ: Плотные материалы${modeText}
+
+${lines}${cModsStr}
+---
+Итого: ${document.getElementById('denseTotalPrice').textContent} BYN`;
+            } else if (type === 'drawings') {
+                let lines = (data.layoutsArr || []).map(l => `- ${l.size}: ${l.qty} шт.`).join('\n');
+                msg = `Заказ: Чертежи и Скан
+Материал: Инженерная 80 г/м²
+
+Список макетов:
+${lines}${cModsStr}
+---
+Итого: ${document.getElementById('drawTotalPrice').textContent} BYN`;
+            } else if (type === 'stickers') {
+                let isCut = document.getElementById('stickCut').checked;
+                let extras = "Плоттерная резка" + (isCut ? ", Резка прямоугольниками" : "");
+                msg = `Заказ: Стикеры
+
+Макет: ${data.size} мм
+Материал: ${data.mat}
+Цветность: ${data.color}
+Доп. работы: ${extras}
+Тираж: ${data.qty} шт. (${data.totalOnSheet} шт на лист)
+Макет с дозаливками: ${data.techW}x${data.techH} мм${cModsStr}
+---
+Итого: ${document.getElementById('stickTotalPrice').textContent} BYN`;
+            } else if (type === 'bizcards') {
+                let ext = window.layoutExtras['biz'][window.activeLayoutKey['biz']];
+                let extras = [];
+                if (ext && data) {
+                    if (ext.lam !== "none") extras.push(`${LAM_NAMES[ext.lam]}`);
+                    if (ext.noCut) extras.push("Без резки");
+                    if (ext.rounding) extras.push("Скругление");
+                    if (ext.punch) extras.push("Дыроколение");
+                    if (ext.foil) extras.push("Фольгирование");
+                    if (ext.plotter) extras.push("Плотт. резка");
+                }
+                let dens = data.dens;
+                msg = `Заказ: Визитки
+
+Макет: ${data.size} (${data.qty} шт) | На листе: ${data.totalOnSheet}
+Материал: ${data.mat} ${dens} ${isNaN(parseInt(dens)) ? '' : 'г/м²'}
+Цветность: ${data.color}
+Доп. работы: ${extras.length ? extras.join(", ") : "нет"}${cModsStr}
+---
+Итого: ${document.getElementById('bizTotalPrice').textContent} BYN`;
+            }
+            copyToClipboard(msg, document.querySelector(`#tab-${type === 'drawings' ? 'drawings' : (type === 'bizcards' ? 'bizcards' : (type === 'stickers' ? 'stickers' : 'dense'))} .nv-card-action-btn`));
+        }
+
+        
+
+
+window.currentModalTab = '';
+window.currentModalLayoutId = '';
+
+window.openLayoutDetailsModalFromRow = function(btn, tabId) {
+    // Find the index of this row
+    let rows = document.querySelectorAll('.' + tabId + '-multi-row');
+    let row = btn.closest('.' + tabId + '-multi-row');
+    let idx = Array.from(rows).indexOf(row);
+    if (idx !== -1) {
+        window.openLayoutDetailsModal(tabId, 'item_' + idx);
+    }
+}
+
+window.openLayoutDetailsModal = function(tabId, layoutId) {
+    if(!window.currentCalcData || !window.currentCalcData.perLayout) {
+        alert("Сначала сделайте расчет, чтобы увидеть детали.");
+        return;
+    }
+    
+    // Find the layout in perLayout
+    let layoutObj = window.currentCalcData.perLayout.find(x => x.id === layoutId);
+    if (!layoutObj) {
+        // Might be a single layout or just recalculate
+        layoutObj = window.currentCalcData.perLayout[0];
+        if(!layoutObj) return;
+    }
+    
+    window.currentModalTab = tabId;
+    window.currentModalLayoutId = layoutId;
+    
+    // Populate Header
+    let headerHtml = `<div>Бумага: ${layoutObj.mat}</div>
+                      <div>Цветность: ${layoutObj.color}</div>
+                      <div>Ламинация: ${layoutObj.lamType}</div>
+                      <div style="margin-top:5px; border-top:1px solid #ddd; padding-top:5px;">Макет: ${layoutObj.size} (${layoutObj.qty} шт)</div>`;
+                      
+    document.getElementById('layout-details-header').innerHTML = headerHtml;
+    
+    // Populate Breakdown
+    let bHtml = '';
+    let c = layoutObj.costs;
+    let eq = layoutObj.extrasQty;
+    
+    let sheetCnt = layoutObj.sheets || layoutObj.qty || 1;
+    
+    const fmtRow = (name, unitCost, qtyNum, qtyText, totalCost) => {
+        return `<div style="display:flex; justify-content:space-between; padding:3px 0; border-bottom:1px solid #eee; color:#555;"><span><b>${name}:</b></span> <span>${(unitCost).toFixed(2)} &times; ${qtyNum} ${qtyText} = <b>${totalCost.toFixed(2)}</b></span></div>`;
+    };
+
+    if (c.print > 0 || c.printAndMat > 0) {
+        if (c.print > 0) bHtml += fmtRow('Печать', c.print / sheetCnt, sheetCnt, 'лист.', c.print);
+        if (c.paper > 0) bHtml += fmtRow('Бумага', c.paper / sheetCnt, sheetCnt, 'лист.', c.paper);
+        if (!c.print && !c.paper && c.printAndMat > 0) bHtml += fmtRow('Печать+Бумага', c.printAndMat / sheetCnt, sheetCnt, 'лист.', c.printAndMat);
+    }
+    
+    if (c.cut > 0) bHtml += fmtRow('Резка', c.cut / (layoutObj.cuts || 1), layoutObj.cuts || 1, 'рез.', c.cut);
+    if (c.lam > 0) bHtml += fmtRow('Ламинация', c.lam / sheetCnt, sheetCnt, 'лист.', c.lam);
+    
+    if (c.crease > 0) bHtml += fmtRow('Биговка', c.crease / eq.crease, eq.crease, 'шт.', c.crease);
+    if (c.eyelet > 0) bHtml += fmtRow('Люверсы', c.eyelet / eq.eyelet, eq.eyelet, 'шт.', c.eyelet);
+    if (c.rounding > 0) bHtml += fmtRow('Скругление', c.rounding / eq.rounding, eq.rounding, 'угл.', c.rounding);
+    if (c.staple > 0) bHtml += fmtRow('Сшивка', c.staple / eq.staple, eq.staple, 'шт.', c.staple);
+    if (c.punch > 0) bHtml += fmtRow('Дыроколение', c.punch / eq.punch, eq.punch, 'отв.', c.punch);
+    if (c.glue > 0) bHtml += fmtRow('Склейка', c.glue / eq.glue, eq.glue, 'шт.', c.glue);
+    if (c.foil > 0) bHtml += fmtRow('Фольгирование', c.foil / eq.foil, eq.foil, 'лист.', c.foil);
+    if (c.plotter > 0) bHtml += fmtRow('Плотт. резка', c.plotter / sheetCnt, sheetCnt, 'лист.', c.plotter);
+    
+    document.getElementById('layout-details-breakdown').innerHTML = bHtml;
+    
+    let customHtml = '';
+    let totalCMods = 0;
+    if (layoutObj.customMods && layoutObj.customMods.length > 0) {
+        layoutObj.customMods.forEach((cm, index) => {
+            let p = cm.price || 0;
+            let cost = cm.cost || 0;
+            totalCMods += cost;
+            customHtml += `<div style="display:flex; justify-content:space-between; padding:3px 0; border-bottom:1px solid #eee; color:#555; align-items:center;">
+                <span><b>${cm.name || 'Модуль'}:</b></span> 
+                <span>${p.toFixed(2)} &times; ${cm.qty} = <b>${cost.toFixed(2)}</b>
+                <button onclick="removeCustomModuleFromLayout('${tabId}', '${layoutId}', ${index})" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold; margin-left:5px;">&times;</button>
+                </span>
+            </div>`;
+        });
+    } else {
+        customHtml = '<div style="color:#aaa; text-align:center; padding-bottom: 10px;">Нет добавленных кастомных модулей</div>';
+    }
+    
+    let totalMaket = (c.printAndMat || (c.print || 0) + (c.paper || 0)) + (c.cut||0) + (c.lam||0) + (c.crease||0) + (c.eyelet||0) + (c.rounding||0) + (c.staple||0) + (c.punch||0) + (c.glue||0) + (c.foil||0) + (c.plotter||0) + totalCMods;
+    customHtml += `<div style="text-align:right; margin-top:10px; padding-top:10px; font-size:15px; color:#333;">Итого по макету: <b>${totalMaket.toFixed(2)} BYN</b></div>`;
+    
+    document.getElementById('layout-details-custom-list').innerHTML = customHtml;
+    
+    document.getElementById('nv-layout-details-modal').style.display = 'flex';
+}
+
+window.closeLayoutDetailsModal = function() {
+    document.getElementById('nv-layout-details-modal').style.display = 'none';
+}
+
+window.removeCustomModuleFromLayout = function(tab, layoutId, index) {
+    if (window.layoutExtras[tab] && window.layoutExtras[tab][layoutId] && window.layoutExtras[tab][layoutId].customModules) {
+        window.layoutExtras[tab][layoutId].customModules.splice(index, 1);
+        // Force recalculation
+        if(tab === 'dense') calculateDensePrice();
+        if(tab === 'stickers') calculateStickerPrice();
+        if(tab === 'bizcards') calculateBizPrice();
+        // Refresh modal
+        window.openLayoutDetailsModal(tab, layoutId);
+    }
+}
+
+
+window.PAPER_DB_CACHE = ["Бумага Majestic RED SATIN, 250г/м2, Италия", "Бумага Color Copy, 350г/м2, белая SRA3, Россия", "Бумага дизайнерская Fancy Colorful White 320г/м2, Италия", "Крафт бумага Kraft Light 350г/м2, Китай", "Бумага дизайнерская Velvet Кремовый, 300г/м2, Турция", "Бумага дизайнерская Velvet Кремовый, 350г/м2, Турция", "Бумага дизайнерская TWILL BRIGHT WHITE, 300г/м2, Италия", "Бумага дизайнерская Elegant Cotton paper Light Grey (серый), 320г/м2, Китай", "Бумага дизайнерская GRANIT GRAY светло-серый, 270г/м2, Италия", "Бумага дизайнерская Kabuk GREEN Зеленый, 270г/м2, Турция", "Бумага мелованная CHORUS LUX 250г /м2 , Польша", "Бумага дизайнерская CRUSH Kiwi Киви, 250г/м2, Италия", "Бумага дизайнерская FlaxPaper natural (натурально-белый), 300г/м2, Китай", "Бумага дизайнерская Dawnt Moon Natural (натуральный белый), 180г /м2 , Китай", "Бумага дизайнерская Biancoflash Ivory Айвори, 300г/м2, Италия", "Бумага UPM Finesse Silk 2-х стороняя мелованная матовая 350г/м2, Польша", "Бумага в рулонах пл.80г/м2, 297*76*175м, Беларусь", "Конверт формата А6, Бумага дизайнерская ColorFlow Blue синий, 300г/м2, вырубка и склейка", "Конверты дизайнерскик Galaxy KUV Smooth black (110/220мм), 110г, Китай-Россия", "Фольга RM 34-210 золото (10см*122м), США", "Бумага Color Copy, 300г/м2 A4, Австрия", "Пленка для ламинирования кармашковая матовая ПЭТ WF 303мм*426мм, 75 мкм, А3, Китай", "Пленка самокл. Polylaser M W HS PERM DIGI FILM Kraft SP Stabilized 120 Solid Unprinted 450*320мм, Польша", "Бумага PROJECTA Ultra, марка А, 80г/м2 А4, Россия", "Бумага самоклеящаяся SEMIGLOSS AP904 WK85 SPL33, Италия", "Конверт формата А6, Бумага дизайнерская ColorFlow Gold Золото, 300г/м2, вырубка и склейка", "Бумага самоклеящаяся STIKER GLOSS 80G без просечек, Польша", "Бумага мелованная NEVIA MATT Digital 2-х ст.мелов.матовая беля 128г/м2, Россия", "Бумага Lomond матовая 230г/м2, формат А4, Россия", "Бумага дизайнерская ColorFlow Fresh Mint Свежая мята, 300г/м2, Китай", "Бумага дизайнерская CRUSH Grape Виноград, 250г/м2, Италия", "Бумага дизайнерская Kabuk WHITE Белый, 300г/м2, Турция", "Бумага дизайнерская Popular Soft Touch 1/S White (белый), 120г/м2, Китай", "Бумага Color Copy, 160г/м2, Австрия", "Бумага Color Copy, 100г/м2 SRA3, Австрия", "Бумага цветная А4, 80г/м2 \"Promega jet\" , желтый интен.-30%, Россия", "Крафт бумага Kraft brown 300г/м2, Китай", "Бумага дизайнерская TactiTouch Blue Parisian (Синий парижский), 300г/м2, Китай", "Конверты дизайнерскик DL Quill Ice Whate Белый, 120гм2, Китай", "Бумага дизайнерская TactiTouch burgundy (Бордо), 300г/м2, Китай", "Бумага в рулонах пл.80г/м2, 594*76*175, Беларусь", "Бумага Lomond глянцевая 230г/м2, 10*15см, Россия", "Бумага дизайнерская REMAKE ЭКО гладкая, medium, небесно-бирюзовый, 120г/м2", "Бумага Color Copy, 300г/м2, белая SRA3, Россия", "Бумага дизайнерская Kabuk GREY СЕРЫЙ, 270г/м2, Турция", "Фотобумага А4, 230г/м2, матовая \"Lomond\", Россия", "Бумага дизайнерская CRUSH Oliva Олива, 250г/м2, Италия", "Бумага мелованная Nevia MATT Digital 2-х ст. мелованная матовая белая 150г/м2, Россия", "Бумага дизайнерская TactiTouch Coffe (кофе), 300г/м2, Китай", "Бумага дизайнерская Majestic classic Candelight Cream Волшебная свеча, 290г/м2, Италия", "Бумага самокл. SZ 80 187г/м2 без насечек, Китай", "Бумага дизайнерская Galaxy Metallic, 300г/м2, 2S soft white/натуральный белый, Китай", "Пленка для ламинирования Dogital мат 320мм*200м*30мкм, Индия", "Бумага дизайнерская ColorFlow Damask blue Небо Дамаска, 300г/м2, Китай", "Фольга RM 34-100 серебро (10см*122м), США", "Бумага мелованная Nevia Digital матовая , 128г/м2, Россия", "Бумага дизайнерская Dawnt Moon creme (кремовый), 180г /м2 , Китай", "Бумага Fedrigoni Tintoretto Crema, 300г/м2, Италия", "Бумага Majestic Candelight Cream, 290г/м2, Италия", "Пленка д/ламинирования рул.Soft Touch БОПП \" 320мм*200м*30мкм, Китай", "Бумага дизайнерская Card Classical Color cream, кремовый, 260г/м2, Китай", "Бумага для цифровой печати Master Copy L 350г SRA3", "Бумага Ксерокс Колотек Плюс, 90г/м2, Австрия", "Конверт формата А6, Бумага дизайнерская ColorFlow Chrismas Рождественский зеленый, 300г/м2, вырубка и склейка", "Бумага Lomond матовая 230г/м2, 10*15см, Россия", "Бумага дизайнерская CRUSH Citrus Цитрус, 250г/м2, Италия", "Бумага Color Copy, 250г/м2 SRA3, Австрия", "Бумага Color Copy, 200г/м2, белая SRA3, Россия", "Бумага в рулонах пл.80г/м2, 297*76*175, Беларусь", "Обложка (перф.) пласт. прозр. 0,2мм, Китай", "Бумага дизайнерская Card Classical Color natural, натуральный, 120г/м2, Китай", "Бумага дизайнерская ASTRAL DREAM Saphire Волшебная свеча, 300г/м2, Турция", "Бумага дизайнерская Kabuk IVORY АЙВОРИ, 120г/м2, Турция", "Бумага Color Copy 200г/м2, белая, Словакия", "Пленочная самоклейка матовая белая K-Tak, 330*483мм", "Бумага Lomond сатин 270г/м2, 10*15см, Россия", "Бумага CURIOUS SKIN IVORY B1, 270 г/м2, Италия", "Пленка для ламинирования формама А5, глянцевая gloss, Китай", "Бумага дизайнерская Fancy Colorful vinous (винный),320г/м2, Китай", "Бумага PROJECTA Ultra, марка А, 80г/м2 А3, Россия", "315 ХКС Эпоксидная смола+отвердитель Elastia Crystal (3+1)", "Бумага Сolor Copy 100г/м2, 450х320мм, Австрия", "Бумага Color Copy, 160г/м2 SRA3, Австрия", "Бумага Lomond экономичная глянцевая, 230г/м2, 10*15см, Россия", "Бумага Color Copy, 160г/м2 , А4, Австрия", "Клише MOVA 95*24мм", "Бумага дизайнерская Kabuk Natural Натуральный, 300г/м2, Турция", "Бумага Majestic Milk, 290г/м2, Италия", "Пружины для перфопер. 10мм черные, Китай", "Бумага дизайнерская Kabuk GREEN, Зеленый, 270г/м2, Турция", "Бумага мелованная Nevia MATT Digital 2-х ст. мелован. матовая белая, 128г/м2, Китай", "Бумага /калька)дизайнерская Crystal Tracing Paper, 90г/м2, Турция", "Калька Wite Whispe Tracing paper white, белая, 210г/м2, Китай", "Бумага Ксерокс Колотек Плюс, 250г/м2 SRA3, Австрия", "Бумага в рулонах пл.80г/м2, 840*76*175м, Беларусь", "Бумага дизайнерская Knight color 300г brisk blue/морская волна, Китай", "Рул. пленка д/ламинирования Polynex 12/28 MATT 320мм*200м*40мкм, Корея", "Бумага дизайнерская Fancy Colorful white, 120г/м2, Италия", "Бумага дизайнерская TactiTouch Cold Blue (холодно-голубой), 300г/м2, Китай", "Бумага дизайнерская Knight color 300г /м2 , navy blue/темно-синий, Китай", "Бумага дизайнерская LUNAR Mini Лиловый, 240г/м2, Италия", "Пленка д/ламинирования 320мм*200м, 30мкм (втулка 25), БОПП матовая \"Диджитал\", Китай", "Бумага дизайнерская SENSE P5004-300гл.ст. софт-тач синий кобальт, 300г/м2, лист 787*1092мм, Китай", "Бумага Color Copy, 300г/м2 SRA3, Австрия", "Бумага NEVIA 80г/м2 , А4,Китай", "Люверсы d 4,8mm золото, Тайвань", "Бумага дизайнерская Card Classical Color whate, белый, 120г/м2, Китай", "Пленка д/ламинирования 32 РЕ FULL (PET) МАТОВАЯ 320мм*200м*30мкм, Индия", "Рул. пленка д/ламинирования МАТОВАЯ БОПП 320мм*200м*30мкм, Китай", "Бумага дизайнерская ZENIT Needle Point Green,  Зеленый, 270г/м2, Турция", "Пленка ламинационная SCUFF-FREE VELVET 320мм*200м*32мкм, Индия", "Бумага дизайнерская ColorFlow Gold Золото, 300г/м2, Китай", "Бумага дизайнерская Knight color 300г /м2 ,red/бордо, Китай", "Бумага самоклеющаяся RITRAMA Gloss с просечкой, Польша", "Калька Transpalux Tracing paper, 133г/м2, Китай", "Бумага дизайнерская TactiTouch Green (зеленый), 300г/м2, Китай", "Бумага дизайнерская Elegant Cotton paper orange (оранжевый), 320г/м2, Китай", "Бумага дизайнерская ColorFlow Blue Синий, 300г/м2, Китай", "Бумага дизайнерская Dawnt Moon Natural (натуральный белый), 300г /м2 , Китай", "Бумага Majestic Marble Wate, 290г/м2, Италия", "УПАКОВКА", "Бумага UPM Digi Finesse Silk 350г/м2 , Польша", "Бумага мелованная Nevia MATT Digital 2-х ст. мелованная матовая белая 250г/м2, Россия", "Бумага Color Copy, 200г/м2 SRA3, Австрия", "Пленка д/ламинирования кармашковая матовая WFПЭТ 303мм*216мм*75мкм, Китай", "Пленка д/ламинирования ПЭТ 303мм*216мм*75мкм, Китай", "Бумага дизайнерская Dawnt Moon creme (кремовый), 300г /м2 , Китай", "Пакет 35*455ПП (25мкм) скотч, Россия", "Пленка для ламинирования формама А7, глянцевая gloss, Китай", "Бумага дизайнерская SIRIUS WHITE Белый, 300г/м2, Турция", "Фотобумага Lomond глянцевая А4, 230г/м2, Россия", "Бумага офсетная улучш. Кач-ва 80г/м2, белый, 420*175*76мм, Россия", "Бумага дизайнерская Mohawk Loop Antique Vellum 298г Джут, Россия", "Бумага мелованная Maxima Silk 200г/м2, Польша", "Бумага дизайнерская Breeze 101 vinous (бордовый), 320г/м2, Китай", "Бумага Color Copy, 300г/м2, белая SRA3, Австрия", "Бумага UPM Dogi Finesse Premium 300г/м2 , Польша", "Бумага Color Copy, 160г/м2 белая, Австрия", "Бумага дизайнерская SL GRAPHICA Laid Diamond White 300г береза, Китай", "Бумага Ксерокс Колотек Плюс, 120г/м2 А3, Австрия", "Пленка д/ламинирования глянцевая БОПП \" 320мм*200м*30мкм, Россия", "Бумага дизайнерская Natural colour kraft Крафт, 150г/м2, Китай", "Бумага дизайнерская Galaxy Metallic, 300г/м2, 2S vanilla cream/кремовый, Россия", "Бумага дизайнерская Knight color 300г /м2 , grey/серый, Китай", "БУМАГА НА 01/06/2026", "Бумага дизайнерская Kabuk Cream Кремовый, 120г/м2, Турция", "Бумага дизайнерская ColorFlow Petal Розовый лепесток, 300г/м2, Китай", "Бумага Color Copy, пл.250 г/м2, белая, Австрия", "Бумага мелованная Maxima Silk 250г/м2, Польша", "Бумага Color Copy, 350г/м2 SRA3, Австрия", "Бумага дизайнерская ICEBLINK 2-ст тисн. лен белый, 300г/м2, Италия", "Бумага Majestic Pariour Pink, 290г/м2, Италия", "Бумага дизайнерская Fancy Colorful Green spruce (Зеленая ель), 320г/м2, Китай", "Бумага PRO-DIGITAL SILK 2-х ст.мелован.матовая белая 300г/м2 , Корея", "Бумага Сolor Copy, 300г/м2, А4, Австрия", "Бумага Biancoflash Ivory Айвори, 300г/м2, Италия", "Бумага дизайнерская TactiTouch Red (красный), 300г/м2, Китай", "Бумага дизайнерская Metal paper black черный, 250г/м2, Китай", "Бумага мелованная Nevia MATT Digital матовая 250г/м2, Россия", "Бумага в рулонах пл.80г/м2, 840*76*175, Беларусь", "Бумага самоклеющаяся RITRAMA SemiGloss без просечек, Польша", "Конверт формата А6, умага дизайнерская ColorFlow petal Розовый лепесток, 300г/м2, вырубка и склейка", "Бумага дизайнерская ColorFlow Cream Волшебная свеча, 300г/м2, Китай", "Бумага дизайнерская Quill Pearl White Айвори 300г /м2 , Китай", "Бумага UPM Digi FinessePremium Silk 300г/м2 , Польша", "Бумага Color Copy,160г/м2, белая SRA3, Россия", "Конверт формата А6, Бумага дизайнерская ColorFlow Cream Волшебная свеча, 300г/м2, вырубка и склейка", "Бумага дизайнерская Quill Ice White Белый 300г /м2 , Китай", "Бумага Burano SC ENGLISH GREEN, 250г/м2, Италия", "Бумага дизайнерская Rubber like black/черный 300г, Китай", "Конверт формата А6, Бумага дизайнерская ColorFlow Royal Blue Королевский синий, 300г/м2, вырубка и склейка", "Самоклеющаяся полиэстеровая пленка для листовой цифровой печати Raflatac PolyLaser HS75г матовая белая SRA3 без просечек 450*320мм, Россия", "файл", "Бумага Ксерокс Колотек Плюс, 300г/м2 А3, Австрия", "Пленка д/ламинирования А4/75 глянцевая, Китай", "Бумага 300/70х100/100/L RELEX LOTION КРЕМОВЫЙ 2СТ (картон)", "Бумага дизайнерская ColorFlow Christmas green Рождественский зеленый, 258г/м2, Китай", "Бумага Lomond шелковисто-матовая 260г/м2, 10*15см, Россия", "Пленка д/ламинирования МАТОВАЯ ROYAl A4 80мкм, Китай", "Бумага дизайнерская Imagin Lighte Craft, 300г/м2, Китай", "Бумага UPM Finesse Silk 2-х ст.мел.матов., 350г/м2, белая SRA3, Россия", "Бумага дизайнерская Gold pendant angel cream, кремовый, 120г/м2, Китай", "Пружины для перфопер. 25мм белые, Китай", "Обложка (перф.) А4 картон под кожу белая, Китай", "Буклет А4, красочность 4+4, бумага мелованная 130г/м2, 1 фальц, 1 комплект-1000шт.", "Бумага дизайнерская Blanket 2/S Bright White (натуральный белый), 280г/м2, Китай", "Бумага Color Copy, 300г/м2 белая SRA3, Россия", "Бумага MODI LASER DIGITAL CANDIDO 120г/м2", "Калька LumiVell Tracing paper (белая) 93г/м2, Китай", "Бумага дизайнерская FlaxPaper CREAM (кремовый), 300г/м2, Китай", "Бумага дизайнерская Card Classical Color natural, натуральный, 260г/м2, Китай", "Бумага STARDREAM CITRINE, золотой мрамор, 285г/м2, Турция", "Бумага самоклеющаяся RITRAMA SemiGloss АР904 WK 85 насеч.33мм, 180г/м2, Польша", "Бумага дизайнерская Сolor Crystal chameleon Розовый хамелеон, 250г/м2, Китай", "Бумага в рулонах пл.80г/м2, 420*76*175, Беларусь", "Бумага дизайнерская CRUSH Com Кукуруза, 250г/м2, Италия", "Бумага дизайнерская Card Classical Color cream, кремовый, 120г/м2, Китай", "Бумага дизайнерская Knight color 300г natural whate/натуральный белый, Китай", "Бумага дизайнерская Rubber like white/белый 300г, Китай", "Бумага Color Copy 350г/м2, Россия", "Бумага PROJECTA Ultra, марка А 80г/м2, А3, Росси", "Бумага Burano SC Nero Notte, 250г/м2, Италия", "Бумага Majestic Candelight Cream Волшебная свеча, 120г/м2, Италия", "Бумага дизайнерская Fancy Colorful cream, 120г/м2, Италия", "Бумага FEDRIGONI ARENA ROUGN NATURAL 300г/м2, Италия", "Пакет тип I СПП30 (80*120+40кл.)+с.л.", "Фотобумага Lomond матовая А6, 230г/м2, Россия"];
+
+window.filterPaperDb = function(query, inputId) {
+    let listDiv = document.getElementById('paperAutocompleteList_' + inputId);
+    if (!listDiv) return;
+    
+    if (!query || query.length < 3) {
+        listDiv.style.display = 'none';
+        return;
+    }
+    
+    let q = query.toLowerCase();
+    let matches = window.PAPER_DB_CACHE.filter(p => p.toLowerCase().includes(q));
+    
+    if (matches.length > 0) {
+        let html = '';
+        matches.slice(0, 50).forEach(m => {
+            html += `<div style="padding:5px 10px; cursor:pointer; border-bottom:1px solid #eee;" 
+                          onmouseover="this.style.background='#f0f0f0'" 
+                          onmouseout="this.style.background=''" 
+                          onclick="document.getElementById('${inputId}').value='${m.replace(/'/g, "\\\'")}'; document.getElementById('paperAutocompleteList_${inputId}').style.display='none';">${m}</div>`;
+        });
+        listDiv.innerHTML = html;
+        listDiv.style.display = 'block';
+    } else {
+        listDiv.style.display = 'none';
+    }
+}
+
+// Close autocomplete when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nv-modal-input')) {
+        document.querySelectorAll('.paperAutocompleteList').forEach(l => l.style.display = 'none');
+    }
+});
+
+
+
+window.currentModalTab = '';
+window.currentModalLayoutId = '';
+
+window.openLayoutDetailsModalFromRow = function(btn, tabId) {
+    // Find the index of this row
+    let rows = document.querySelectorAll('.' + tabId + '-multi-row');
+    let row = btn.closest('.' + tabId + '-multi-row');
+    let idx = Array.from(rows).indexOf(row);
+    if (idx !== -1) {
+        window.openLayoutDetailsModal(tabId, 'item_' + idx);
+    }
+}
+
+
+
+
+
+
