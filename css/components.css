@@ -1308,3 +1308,82 @@
   flex-wrap: wrap;
   margin-top: 12px;
 }
+
+/* AI Assistant Chat Tech Metrics & Suggested Chips */
+.bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 85%;
+}
+
+.chat-message.msg-user .bubble-wrap {
+  align-items: flex-end;
+}
+
+.msg-tech-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  padding-left: 2px;
+}
+
+.tech-footer-chip {
+  font-family: var(--font-code);
+  font-size: 0.65rem;
+  color: #8b949e;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.02em;
+}
+
+.tech-footer-chip svg {
+  width: 11px;
+  height: 11px;
+  color: #3fb950;
+}
+
+.msg-suggested-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.chip-suggested-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #30363d;
+  border-radius: var(--radius-pill);
+  color: #58a6ff;
+  font-family: var(--font-code);
+  font-size: 0.675rem;
+  padding: 4px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all var(--transition-fast);
+}
+
+.chip-suggested-item svg {
+  width: 12px;
+  height: 12px;
+}
+
+.chip-suggested-item:hover {
+  background: #21262d;
+  border-color: #58a6ff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.chat-link {
+  color: #58a6ff;
+  text-decoration: underline;
+}
+
+.chat-link:hover {
+  color: #79c0ff;
+}
