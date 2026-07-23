@@ -15,6 +15,11 @@
   gap: 24px;
 }
 
+.bento-row > .bento-card,
+.bento-row > article {
+  grid-column: span 12;
+}
+
 /* HERO SECTION */
 .row-hero .card-hero { grid-column: span 7; }
 .row-hero .card-ai-assistant { grid-column: span 5; }
