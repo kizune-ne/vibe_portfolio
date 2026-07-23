@@ -851,42 +851,60 @@
    CASE INSPECTOR MODAL & BUTTONS (STAR METHODOLOGY FOR EMPLOYERS)
    ========================================================================== */
 
-/* Button on cards: Solid Dark Obsidian Pill for Maximum Contrast everywhere */
+/* Original Light Style Case Inspect Button - High Contrast & Crisp */
 .btn-case-inspect {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 13px;
-  background: #0f172a !important;
-  border: 1px solid #0f172a !important;
+  padding: 5px 12px;
+  background: #ffffff !important;
+  border: 1px solid #d0d7de !important;
   border-radius: var(--radius-pill);
-  color: #ffffff !important;
+  color: #0f172a !important;
   font-family: var(--font-code);
   font-size: 0.725rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
   transition: all var(--transition-fast);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .btn-case-inspect i, .btn-case-inspect svg {
   width: 13px;
   height: 13px;
-  color: #38bdf8 !important;
+  color: #0969da !important;
   transition: transform var(--transition-fast);
 }
 
 .btn-case-inspect:hover {
-  background: #1e293b !important;
-  border-color: #1e293b !important;
+  background: #0f172a !important;
+  border-color: #0f172a !important;
   color: #ffffff !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
 }
 
 .btn-case-inspect:hover i, .btn-case-inspect:hover svg {
-  color: #7dd3fc !important;
+  color: #ffffff !important;
+}
+
+/* Dark Card Only Override (for AI Assistant Card) */
+.card-ai-assistant .btn-case-inspect {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.card-ai-assistant .btn-case-inspect i,
+.card-ai-assistant .btn-case-inspect svg {
+  color: #58a6ff !important;
+}
+
+.card-ai-assistant .btn-case-inspect:hover {
+  background: #21262d !important;
+  border-color: #58a6ff !important;
+  color: #ffffff !important;
 }
 
 /* Overlay */
