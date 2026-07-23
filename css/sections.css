@@ -776,8 +776,8 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 
 /* TWO & THREE COLS: BENTO GRID */
 .row-tg-calc { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
-.row-tg-calc .card-tg-simulator { grid-column: span 8 !important; }
-.row-tg-calc .card-calc-preview { grid-column: span 4 !important; }
+.row-tg-calc .card-tg-simulator { grid-column: span 9 !important; }
+.row-tg-calc .card-calc-preview { grid-column: span 3 !important; }
 
 .row-two-cols { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
 .row-two-cols > .bento-card,
