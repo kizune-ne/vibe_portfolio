@@ -2,7 +2,7 @@
    VIBECODER & AI ENGINEER PORTFOLIO - MAIN CSS ENTRY (MODULAR STRUCTURE)
    ========================================================================== */
 
-@import 'css/variables.css';
-@import 'css/components.css';
-@import 'css/sections.css';
-@import 'css/responsive.css';
+@import 'css/variables.css?v=v3_fix';
+@import 'css/components.css?v=v3_fix';
+@import 'css/sections.css?v=v3_fix';
+@import 'css/responsive.css?v=v3_fix';
