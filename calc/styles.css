@@ -1,0 +1,897 @@
+:root {
+            --nv-yellow: #18181b;
+            --nv-black: #000;
+        }
+
+        body {
+            background: transparent;
+            font-family: 'Tilda Sans', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .layout-wrapper {
+            display: flex;
+            gap: 20px;
+            max-width: 1180px;
+            margin: 0 auto;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .main-calc-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .nv-main-container {
+            width: 100%;
+            margin: 0;
+        }
+
+        .nv-tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nv-tab-btn {
+            padding: 15px 30px;
+            border-radius: 100px;
+            border: 2px solid var(--nv-black);
+            background: transparent;
+            color: var(--nv-black);
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            font-size: 13px;
+            font-family: inherit;
+        }
+
+        .nv-tab-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .nv-tab-btn.active {
+            background: var(--nv-yellow);
+            border-color: var(--nv-yellow);
+        }
+
+        .nv-tab-content {
+            display: none;
+        }
+
+        .nv-tab-content.active {
+            display: block;
+            animation: nvAppleScale 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .nv-card-box {
+            width: 100%;
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+            overflow: visible;
+            box-sizing: border-box;
+        }
+
+        .nv-card-header {
+            background: #f0f0f0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 25px 22px;
+            text-align: center;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .nv-card-logo {
+            display: inline-block;
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nv-adaptive-layout {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 35px;
+            padding: 35px 30px;
+            align-items: start;
+        }
+
+        .nv-col-controls {
+            position: relative;
+            overflow: visible;
+        }
+
+        .nv-col-visual {
+            z-index: 1;
+        }
+
+        .nv-card-input-group {
+            width: 100%;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .nv-card-row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .nv-inputs-flex {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            position: relative;
+        }
+
+        .nv-card-input-inline {
+            font-family: inherit;
+            width: 100%;
+            padding: 12px;
+            border-radius: 30px;
+            border: 1px solid #efefef;
+            background: #fcfcfc;
+            font-size: 14.5px;
+            text-align: center;
+            font-weight: 600;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .nv-card-x-mark {
+            font-size: 11.5px;
+            color: #ddd;
+            flex-shrink: 0;
+            font-weight: 900;
+        }
+
+        .nv-custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .nv-select-trigger {
+            font-family: inherit;
+            width: 100%;
+            padding: 12px;
+            border-radius: 30px;
+            border: 1px solid #efefef;
+            background: #fcfcfc;
+            font-size: 13.5px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nv-options {
+            position: absolute;
+            display: none;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #efefef;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            z-index: 999999;
+            overflow: hidden;
+            margin-top: 5px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .nv-options::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .nv-options::-webkit-scrollbar-track {
+            background: transparent;
+            margin: 10px 0;
+        }
+
+        .nv-options::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        .nv-custom-select.open .nv-options {
+            display: block !important;
+        }
+
+        .nv-option {
+            padding: 12px;
+            font-size: 12.5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nv-option:hover {
+            background: #f8f8f8;
+        }
+
+        .nv-card-label {
+            display: block;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #bbb;
+            margin-bottom: 6px;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        .nv-segment-control {
+            display: flex;
+            background: #f4f4f4;
+            border-radius: 100px;
+            padding: 4px;
+            width: 100%;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .nv-segment-label {
+            flex: 1;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 12px 5px;
+            cursor: pointer;
+            border-radius: 100px;
+            color: #888;
+            transition: 0.3s;
+            text-transform: uppercase;
+            margin: 0;
+            z-index: 2;
+            position: relative;
+        }
+
+        .nv-segment-label input {
+            display: none;
+        }
+
+        .nv-segment-label.active {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            color: #000;
+        }
+
+        .nv-multi-box {
+            border: 1px dashed #ddd;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #fff;
+            display: none;
+        }
+
+        .nv-multi-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .nv-multi-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 30px;
+            border: 1px solid #efefef;
+            background: #fcfcfc;
+            text-align: center;
+            font-size: 13.5px;
+            font-family: inherit;
+            font-weight: 600;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .nv-multi-del {
+            background: transparent;
+            border: none;
+            color: #ff3333;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 5px;
+            outline: none;
+            line-height: 1;
+        }
+
+        .nv-add-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: 100px;
+            border: 2px solid #000;
+            background: #fff;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+
+        .nv-add-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .nv-layout-tabs {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .nv-layout-tab {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+
+        .nv-layout-tab.active {
+            background: var(--nv-black);
+            color: var(--nv-yellow);
+            border-color: var(--nv-black);
+        }
+
+        .nv-layout-content {
+            display: none;
+            width: 100%;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .nv-layout-content.active {
+            display: flex;
+        }
+
+        .nv-extra-options-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px 5px;
+            margin-bottom: 15px;
+            background: #fcfcfc;
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid #f0f0f0;
+            box-sizing: border-box;
+        }
+
+        .nv-lam-wide {
+            grid-column: span 3;
+            margin-bottom: 5px;
+        }
+
+        .nv-crease-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 10.5px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .nv-crease-label input {
+            display: none;
+        }
+
+        .nv-crease-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #eee;
+            border-radius: 6px;
+            background: #fff;
+            position: relative;
+        }
+
+        .nv-crease-label input:checked+.nv-crease-checkbox {
+            background: var(--nv-black);
+            border-color: var(--nv-black);
+        }
+
+        .nv-crease-label input:checked+.nv-crease-checkbox::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1px;
+            width: 4px;
+            height: 8px;
+            border: solid var(--nv-yellow);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .nv-extra-num {
+            width: 45px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 12px;
+            padding: 2px;
+            font-weight: bold;
+            outline: none;
+        }
+
+        .nv-orange-text {
+            display: none;
+            color: #ff6b00;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .nv-sheet-wrapper {
+            width: 100%;
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            border-radius: 20px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .nv-sheet-area {
+            background: #fff;
+            border: 1px solid #000;
+            position: relative;
+            display: block;
+            transition: 0.3s;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .nv-layout-grid {
+            display: grid;
+            gap: 2px;
+            background: #cbd5e1;
+            padding: 2px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .card-cell {
+            background: #ffffff;
+            border: 1px dashed #64748b;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .nv-card-grid-txt {
+            position: absolute;
+            font-size: 8.5px;
+            color: #fff;
+            font-weight: 900;
+            background: #000;
+            padding: 3px 6px;
+            border-radius: 4px;
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        .label-x {
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .label-y {
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        .nv-card-summary {
+            width: 100%;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .nv-card-details {
+            font-size: 12.5px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .nv-card-total-price {
+            font-size: 25.5px;
+            font-weight: 900;
+        }
+
+        .nv-old-price {
+            text-decoration: line-through;
+            color: #bbb;
+            font-size: 14px;
+            display: none;
+            margin-bottom: 4px;
+        }
+
+        .nv-card-action-btn {
+            font-family: inherit;
+            border: none;
+            padding: 18px 0;
+            border-radius: 1000px;
+            font-weight: 900;
+            width: 100%;
+            cursor: pointer;
+            font-size: 15.5px;
+            background: #000;
+            color: #d7ff2f;
+            transition: 0.3s;
+            display: block;
+            text-align: center;
+        }
+
+        .nv-card-action-btn:hover {
+            background: #222;
+        }
+
+        .nv-details-btn-trigger {
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 5px;
+            margin-top: 10px;
+            width: 100%;
+            transition: 0.2s;
+            font-family: inherit;
+            text-transform: uppercase;
+        }
+
+        .nv-details-btn-trigger:hover {
+            color: var(--nv-black);
+        }
+
+        .nv-details-list {
+            text-align: left;
+            font-size: 12.5px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #eee;
+        }
+
+        .nv-details-list div {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .nv-details-list div:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        @keyframes nvAppleScale {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .nv-lam-trigger {
+            border: 2px solid #000 !important;
+            font-weight: 900 !important;
+            color: #000 !important;
+        }
+
+        .nv-lam-btn {
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            background: #fcfcfc;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 11px;
+            transition: 0.2s;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .nv-lam-btn:hover {
+            border-color: var(--nv-black);
+            background: #f0f0f0;
+        }
+
+        #nv-history-panel {
+            width: 260px;
+            background: #fff;
+            border-radius: 30px;
+            padding: 25px 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+            flex-shrink: 0;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nv-history-item {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: 1px solid #eee;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .nv-history-item:hover {
+            border-color: var(--nv-yellow);
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .hi-title {
+            font-weight: 800;
+            font-size: 11.5px;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .hi-price {
+            font-weight: 900;
+            font-size: 15px;
+            color: #000;
+            margin-bottom: 2px;
+        }
+
+        .hi-date {
+            font-size: 9.5px;
+            color: #aaa;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hi-del {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            color: #ff3333;
+            font-size: 16px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+        }
+
+        #nv-history-panel::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #nv-history-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #nv-history-panel::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 10px;
+        }
+
+        .nv-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nv-modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            width: 340px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .nv-modal-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid #efefef;
+            background: #fcfcfc;
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            box-sizing: border-box;
+            margin-top: 6px;
+            transition: 0.3s;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .nv-modal-input:focus {
+            border-color: var(--nv-yellow);
+            background: #fff;
+        }
+
+        .nv-price-input {
+            width: 60px;
+            padding: 4px 6px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .nv-price-input:focus {
+            border-color: #000;
+        }
+
+        @media (max-width: 1000px) {
+            .layout-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #nv-history-panel {
+                width: 100%;
+                max-width: 900px;
+                max-height: 300px;
+                margin-top: 10px;
+            }
+
+            .main-calc-wrapper {
+                max-width: 100%;
+            }
+
+            .nv-adaptive-layout {
+                display: flex;
+                flex-direction: column;
+                padding: 15px !important;
+                gap: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .nv-col-visual {
+                order: 2;
+                margin-top: 10px !important;
+                width: 100%;
+            }
+
+            .nv-col-controls {
+                order: 1;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .nv-card-row {
+                display: contents;
+            }
+
+            .nv-card-input-group {
+                width: 48.5% !important;
+                margin-bottom: 10px !important;
+            }
+
+            .nv-col-controls>.nv-card-input-group:first-child {
+                width: 100% !important;
+                order: 1;
+            }
+
+            .mob-density {
+                order: 2;
+            }
+
+            .mob-color {
+                order: 3;
+            }
+
+            .mob-layouts {
+                order: 4;
+            }
+
+            .mob-sets {
+                order: 5;
+                width: 48.5% !important;
+                margin-bottom: 10px !important;
+            }
+
+            .mob-qty {
+                order: 6;
+                width: 48.5% !important;
+                margin-bottom: 10px !important;
+            }
+
+            .mob-size {
+                order: 7;
+                width: 100% !important;
+            }
+
+            .nv-extra-options-grid {
+                order: 8;
+                width: 100% !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                padding: 10px !important;
+                gap: 4px !important;
+            }
+
+            .nv-lam-wide {
+                grid-column: span 3 !important;
+            }
+
+            .nv-select-trigger,
+            .nv-card-input-inline {
+                padding: 10px 4px !important;
+                font-size: 13.5px !important;
+            }
+
+            .nv-card-label {
+                font-size: 10px !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
