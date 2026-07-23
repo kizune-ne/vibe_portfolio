@@ -775,6 +775,10 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 .badge-auto { font-family: var(--font-code); font-size: 0.7rem; background: var(--color-obsidian); color: var(--color-pure-white); padding: 4px 8px; border-radius: var(--radius-sm); }
 
 /* TWO & THREE COLS: BENTO GRID */
+.row-tg-calc { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.row-tg-calc .card-tg-simulator { grid-column: span 7 !important; }
+.row-tg-calc .card-calc-preview { grid-column: span 5 !important; }
+
 .row-two-cols { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
 .row-two-cols > .bento-card,
 .row-two-cols > article {

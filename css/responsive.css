@@ -22,6 +22,7 @@ html, body {
 @media (max-width: 1024px) {
   .row-hero .card-hero,
   .row-hero .card-ai-assistant,
+  .row-tg-calc > article,
   .row-two-cols > .bento-card,
   .row-two-cols > article,
   .row-three-cols > .bento-card,
