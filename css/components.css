@@ -888,23 +888,23 @@
   color: #ffffff;
 }
 
-/* Dark card adjustments */
+/* Dark card adjustments (Only for actual dark background cards) */
 .card-ai-assistant .btn-case-inspect,
-.card-docker .btn-case-inspect {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
-  color: #c9d1d9;
+.card-code-viewer .btn-case-inspect {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #f0f6fc;
 }
 
 .card-ai-assistant .btn-case-inspect i,
-.card-docker .btn-case-inspect i,
+.card-code-viewer .btn-case-inspect i,
 .card-ai-assistant .btn-case-inspect svg,
-.card-docker .btn-case-inspect svg {
+.card-code-viewer .btn-case-inspect svg {
   color: #58a6ff;
 }
 
 .card-ai-assistant .btn-case-inspect:hover,
-.card-docker .btn-case-inspect:hover {
+.card-code-viewer .btn-case-inspect:hover {
   background: #21262d;
   border-color: #58a6ff;
   color: #ffffff;
