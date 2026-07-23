@@ -840,31 +840,38 @@
 .btn-case-inspect {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--color-obsidian);
-  border: 1px solid var(--color-hairline);
+  gap: 7px;
+  padding: 8px 14px;
+  background: #161b22;
+  border: 1px solid #30363d;
   border-radius: var(--radius-pill);
+  color: #f0f6fc;
   font-family: var(--font-code);
-  font-size: 0.75rem;
+  font-size: 0.775rem;
   font-weight: 500;
   cursor: pointer;
+  white-space: nowrap;
   transition: all var(--transition-fast);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.btn-case-inspect i, .btn-case-inspect svg {
+  width: 15px;
+  height: 15px;
+  color: #58a6ff;
+  transition: transform var(--transition-fast);
 }
 
 .btn-case-inspect:hover {
-  background: var(--color-obsidian);
-  color: var(--color-pure-white);
-  border-color: var(--color-obsidian);
+  background: #21262d;
+  border-color: #58a6ff;
+  color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 14px rgba(88, 166, 255, 0.2);
 }
 
-.btn-case-inspect svg {
-  width: 14px;
-  height: 14px;
+.btn-case-inspect:hover i, .btn-case-inspect:hover svg {
+  transform: scale(1.1);
 }
 
 /* Overlay */
