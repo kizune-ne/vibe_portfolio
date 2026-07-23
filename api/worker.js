@@ -5,12 +5,14 @@ const DEFAULT_SYSTEM_PROMPT = `Ты — официальный ИИ-Ассист
 
 О КАНДИДАТЕ (KIZUN):
 - Специализация: ИИ-Агенты, асинхронные Telegram-парсеры топиков, Docker & CUDA изоляция, Cloudflare Workers, C-прошивки клавиатур (QMK/Vial), кастомные калькуляторы.
+- Навык защиты от банов в Telegram: Парсер использует асинхронную ротацию прокси-серверов, обработку FloodWait ошибок с экспоненциальной задержкой (backoff) и роутинг по сессиям.
+- Навык дедупликации: Хэширование медиа и текста постов для отсева дубликатов за < 5 миллисекунд.
 - Железо и локальный ИИ: Хост с AMD Ryzen 7 9700X, RTX 4070 Ti SUPER (16GB VRAM), 32GB RAM. Разворачивает локальные LLM (Ollama, Qwen 2.5 Coder 14B/31B) в Docker с прямым пробросом CUDA.
 - Философия: Вайбкодинг — использование ИИ-ассистентов и агентов для ускорения разработки софта в 10 раз без потери качества архитектуры.
 
 ПРАВИЛА ОБЩЕНИЯ И СТИЛЬ:
-1. Отвечай кратко, емко и по делу (2-4 предложения). Избегай душноты и "водных" приветствий.
-2. При вопросах о стеке или проектах делиться конкретными фактами и метриками (99.9% uptime, 10k сообщений/день в Telethon, <500ms задержка CUDA).
+1. Отвечай прямо на вопрос пользователя (2-4 предложения). Избегай шаблонных отписок и сухих приветствий.
+2. При вопросах о стеке, защите от банов или проектах давай конкретные технические подробности (Telethon, ротация прокси, FloodWait backoff, CUDA 16GB, Uptime 99.9%).
 3. Будь дружелюбным, уверенным, профессиональным инженером. Общайся на "ты".
 4. Всегда держи контекст предыдущих сообщений собеседника.`;
 
@@ -41,7 +43,8 @@ export default {
         return new Response(JSON.stringify({ error: "GEMINI_API_KEY not configured in worker environment" }), { status: 500, headers: corsHeaders });
       }
 
-      const selectedModel = model || env.MODEL_NAME || "gemma-4-31b-it";
+      // Default to reliable high-speed Gemini 2.0 Flash / 1.5 Flash models
+      const selectedModel = model || env.MODEL_NAME || "gemini-2.0-flash";
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${selectedModel}:generateContent?key=${apiKey}`;
       const promptToUse = systemPrompt || env.SYSTEM_PROMPT || DEFAULT_SYSTEM_PROMPT;
 
@@ -54,7 +57,6 @@ export default {
         }));
       }
 
-      // If last item in history is not the message, append it
       if (message) {
         const lastContent = apiContents[apiContents.length - 1];
         if (!lastContent || lastContent.role !== 'user' || lastContent.parts[0].text !== message) {
@@ -75,7 +77,7 @@ export default {
           contents: apiContents,
           generationConfig: {
             maxOutputTokens: 650,
-            temperature: 0.75
+            temperature: 0.7
           }
         })
       });
@@ -88,7 +90,7 @@ export default {
       const data = await response.json();
       const parts = data.candidates?.[0]?.content?.parts || [];
 
-      // Filter out thinking process parts from Gemma 4
+      // Filter out thinking process parts if any
       const cleanParts = parts.filter(p => !p.thought);
       const replyPart = cleanParts.length > 0 ? cleanParts[cleanParts.length - 1] : parts[parts.length - 1];
       const reply = replyPart?.text;
