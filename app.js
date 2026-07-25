@@ -10,6 +10,7 @@ import { initSkillMatrix } from './js/skill-matrix.js';
 import { initDevOpsShowcase } from './js/devops.js';
 import { initCaseInspector } from './js/case-inspector.js';
 import { initAiInfluencerInspector } from './js/ai-influencer-inspector.js';
+import { initObsidianRAGInspector } from './js/obsidian-rag-inspector.js';
 import { initLiveReload } from './js/live-reload.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,5 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initDevOpsShowcase();
   initCaseInspector();
   initAiInfluencerInspector();
+  initObsidianRAGInspector();
   initLiveReload(); // Auto-reload browser on code change
 });

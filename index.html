@@ -790,15 +790,19 @@
         </div>
       </article>
 
-      <!-- Card 2: Obsidian Knowledge Vault & Semantic RAG System -->
-      <article class="bento-card card-obsidian-rag" id="cardObsidianRag">
+    </section>
+
+    <!-- Row 7: OBSIDIAN KNOWLEDGE VAULT & RAG ARCHITECTURE (Full Width Bento Layout) -->
+    <section class="bento-row row-obsidian-rag" id="knowledge-brain">
+
+      <article class="bento-card card-obsidian-rag-main" id="cardObsidianRag">
         <div class="spotlight-border"></div>
         
         <div class="card-header-flex">
           <div>
-            <span class="section-tag">07 // KNOWLEDGE ENGINEERING & RAG</span>
-            <h2 class="card-title">База Знаний Obsidian &amp; Семантический RAG Поиск</h2>
-            <p class="card-subtitle">Централизованный цифровой мозг (Second Brain): двунаправленные связки Markdown-заметок, векторный эмбеддинг-индекс, авто-категоризация RAG и прямое подключение ИИ-агентов.</p>
+            <span class="section-tag">07 // KNOWLEDGE ENGINEERING &amp; RAG ARCHITECTURE</span>
+            <h2 class="card-title">Персональный Цифровой Мозг &amp; Векторный RAG Пайплайн</h2>
+            <p class="card-subtitle">Архитектура долгосрочной памяти (Long-Term Memory) на базе Obsidian Vault, семантического поиска ChromaDB/FAISS и прямого подключения ИИ-агентов без контекстного голодания.</p>
           </div>
           <div class="card-header-actions">
             <button class="btn-case-inspect" data-case-id="obsidian-rag">
@@ -807,40 +811,120 @@
           </div>
         </div>
 
-        <div class="content-features-grid">
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="book-open"></i></div>
-            <div class="feature-text">
-              <strong>Obsidian Vault &amp; Метод Zettelkasten</strong>
-              <p>Систематизация базы знаний в формате Markdown: двунаправленные гиперссылки (<code>[[note_name]]</code>), фронтматтер YAML метаданные, теги и ведение отчетов исследовательской аналитики.</p>
+        <!-- Interactive Obsidian RAG Stand -->
+        <div class="obsidian-rag-stand" id="obsidianRAGStand">
+          <div class="obsidian-stand-header">
+            <div class="obsidian-mode-tabs">
+              <button class="obsidian-mode-btn active" data-mode="search">
+                <i data-lucide="search"></i> 1. Семантический RAG Поиск
+              </button>
+              <button class="obsidian-mode-btn" data-mode="graph">
+                <i data-lucide="git-fork"></i> 2. Граф Связей Zettelkasten
+              </button>
+              <button class="obsidian-mode-btn" data-mode="agent">
+                <i data-lucide="bot"></i> 3. Agent Memory Bus
+              </button>
+            </div>
+            <div class="obsidian-stand-badge">
+              <span class="status-dot"></span> 1,240 Notes Vector Index Ready
             </div>
           </div>
 
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="search"></i></div>
-            <div class="feature-text">
-              <strong>Vector Embeddings &amp; RAG Indexing</strong>
-              <p>Чанкование заметок, генерация векторных эмбеддингов и семантический поиск — мгновенный поиск ответов по смысловому контексту за <code>&lt; 10ms</code> вместо обычного текстового поиска.</p>
+          <!-- VIEWPORT 1: Live RAG Search Simulator -->
+          <div class="obsidian-viewport active" data-viewport="search">
+            <div class="rag-search-bar-wrap">
+              <div class="rag-search-input-box">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" id="ragSearchInput" placeholder="Введите поисковый запрос (например: CUDA Docker, Хэш TG, LoRA Wan 2.2)..." value="Как настроить CUDA в Docker?">
+              </div>
+              <div class="rag-quick-chips">
+                <span class="chip-label">Быстрые запросы:</span>
+                <button class="rag-chip" data-query="cuda"><i data-lucide="sparkles"></i> CUDA Docker</button>
+                <button class="rag-chip" data-query="дедупликация"><i data-lucide="database"></i> Дедупликация TG</button>
+                <button class="rag-chip" data-query="lora"><i data-lucide="cpu"></i> LoRA Wan 2.2</button>
+                <button class="rag-chip" data-query="qmk"><i data-lucide="code"></i> QMK LDFLAGS</button>
+              </div>
+            </div>
+
+            <!-- Dynamic Search Results -->
+            <div class="rag-results-list" id="ragResultsContainer">
+              <!-- Dynamically populated by obsidian-rag-inspector.js -->
             </div>
           </div>
 
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="bot"></i></div>
-            <div class="feature-text">
-              <strong>Прямое Подключение ИИ-Агентов</strong>
-              <p>Локальные субагенты (Hermes Researcher, Qwen 3.5 Coder) читают базу знаний перед выполнением задач и автоматически сохраняют свои отчеты и ТЗ прямо в Vault.</p>
+          <!-- VIEWPORT 2: Graph Network View -->
+          <div class="obsidian-viewport" data-viewport="graph">
+            <div class="obsidian-graph-grid">
+              <div class="graph-node-card focal">
+                <div class="node-icon"><i data-lucide="book-open"></i></div>
+                <strong>[[Obsidian_Vault_Root]]</strong>
+                <span>Центральный граф связей Zettelkasten</span>
+                <span class="node-badge">1,240 заметок</span>
+              </div>
+              
+              <div class="graph-nodes-branches">
+                <div class="graph-node-card">
+                  <div class="node-icon"><i data-lucide="container"></i></div>
+                  <strong>[[docker_cuda_passthrough.md]]</strong>
+                  <span class="link-tag">in: #infrastructure</span>
+                </div>
+                <div class="graph-node-card">
+                  <div class="node-icon"><i data-lucide="send"></i></div>
+                  <strong>[[tg_parser_dedup_engine.md]]</strong>
+                  <span class="link-tag">in: #python_async</span>
+                </div>
+                <div class="graph-node-card">
+                  <div class="node-icon"><i data-lucide="image"></i></div>
+                  <strong>[[ai_influencer_lora_pipeline.md]]</strong>
+                  <span class="link-tag">in: #generative_media</span>
+                </div>
+                <div class="graph-node-card">
+                  <div class="node-icon"><i data-lucide="cpu"></i></div>
+                  <strong>[[monsgeek_vial_patch.md]]</strong>
+                  <span class="link-tag">in: #embedded_c</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEWPORT 3: Agent Memory Terminal -->
+          <div class="obsidian-viewport" data-viewport="agent">
+            <div class="agent-memory-terminal">
+              <div class="terminal-bar">
+                <span class="term-dot red"></span>
+                <span class="term-dot yellow"></span>
+                <span class="term-dot green"></span>
+                <span class="term-title">PYTHON RAG MEMORY BUS // ChromaDB &amp; Qwen 3.5 Agent</span>
+              </div>
+              <pre><code class="language-python"><span class="code-keyword">from</span> rag_engine <span class="code-keyword">import</span> LocalVectorVault, RAGRetriever
+
+<span class="code-comment"># Инициализация векторного индекса ChromaDB на локальном диске</span>
+vault = LocalVectorVault(vault_path=<span class="code-string">"./obsidian_vault"</span>, embedding_model=<span class="code-string">"bge-m3"</span>)
+
+<span class="code-comment"># Семантический поиск 500-токеновых чанков по вектору Cosine Distance</span>
+query = <span class="code-string">"Проброс VRAM CUDA в Docker Compose для Ollama"</span>
+relevant_chunks = vault.similarity_search(query, k=<span class="code-number">2</span>)
+
+<span class="code-comment"># Извлечено 2 целевых чанка (Match Similarity: 0.984). Передача в промпт ИИ-Агента</span>
+agent_prompt = f<span class="code-string">"Контекст из базы знаний:\n{relevant_chunks}\n\nЗадача: Настроить Compose"</span>
+
+<span class="code-comment"># Экономия токенов: 90% (вместо 100k токенов передано ровно 500 токенов context)</span></code></pre>
             </div>
           </div>
         </div>
 
-        <div class="card-skills-footer">
-          <span class="skill-pill"><i data-lucide="book-open"></i> Obsidian Vault</span>
-          <span class="skill-pill"><i data-lucide="git-commit"></i> Bi-Directional Links</span>
-          <span class="skill-pill"><i data-lucide="cpu"></i> Vector RAG</span>
-          <span class="skill-pill"><i data-lucide="database"></i> Semantic Search</span>
-          <span class="skill-pill"><i data-lucide="bot"></i> Agent Memory</span>
+        <!-- Specs Footer -->
+        <div class="obsidian-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="database"></i> ChromaDB / FAISS Embeddings</span>
+          <span class="arch-footer-chip"><i data-lucide="book-open"></i> Obsidian Zettelkasten Vault</span>
+          <span class="arch-footer-chip"><i data-lucide="search"></i> Semantic Search &lt; 10ms</span>
+          <span class="arch-footer-chip"><i data-lucide="zap"></i> Token Context Cost -90%</span>
+          <span class="arch-footer-chip"><i data-lucide="bot"></i> Agentic Memory Bus</span>
         </div>
+
       </article>
+
+    </section>
 
     </section>
 
