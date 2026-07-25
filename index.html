@@ -792,7 +792,7 @@
 
     </section>
 
-    <!-- Row 7: OBSIDIAN KNOWLEDGE VAULT & RAG ARCHITECTURE (Full Width Bento Layout) -->
+    <!-- Row 7: OBSIDIAN KNOWLEDGE VAULT & AI MEMORY -->
     <section class="bento-row row-obsidian-rag" id="knowledge-brain">
 
       <article class="bento-card card-obsidian-rag-main" id="cardObsidianRag">
@@ -800,9 +800,9 @@
         
         <div class="card-header-flex">
           <div>
-            <span class="section-tag">07 // KNOWLEDGE ENGINEERING &amp; RAG ARCHITECTURE</span>
-            <h2 class="card-title">Персональный Цифровой Мозг &amp; Векторный RAG Пайплайн</h2>
-            <p class="card-subtitle">Архитектура долгосрочной памяти (Long-Term Memory) на базе Obsidian Vault, семантического поиска ChromaDB/FAISS и прямого подключения ИИ-агентов без контекстного голодания.</p>
+            <span class="section-tag">07 // KNOWLEDGE &amp; AI MEMORY</span>
+            <h2 class="card-title">База Знаний Obsidian &amp; ИИ-Память Проекта</h2>
+            <p class="card-subtitle">Централизованное хранилище шпаргалок, архитектурных решений, консольных команд и скриптов в формате заметок Obsidian с умным ИИ-поиском по смыслу (RAG).</p>
           </div>
           <div class="card-header-actions">
             <button class="btn-case-inspect" data-case-id="obsidian-rag">
@@ -816,17 +816,17 @@
           <div class="obsidian-stand-header">
             <div class="obsidian-mode-tabs">
               <button class="obsidian-mode-btn active" data-mode="search">
-                <i data-lucide="search"></i> 1. Семантический RAG Поиск
+                <i data-lucide="search"></i> 1. Умный ИИ-Поиск (RAG)
               </button>
               <button class="obsidian-mode-btn" data-mode="graph">
-                <i data-lucide="git-fork"></i> 2. Граф Связей Zettelkasten
+                <i data-lucide="git-fork"></i> 2. Карта Связей Заметок
               </button>
               <button class="obsidian-mode-btn" data-mode="agent">
-                <i data-lucide="bot"></i> 3. Agent Memory Bus
+                <i data-lucide="bot"></i> 3. Передача в ИИ-Агента
               </button>
             </div>
             <div class="obsidian-stand-badge">
-              <span class="status-dot"></span> 1,240 Notes Vector Index Ready
+              <span class="status-dot"></span> 1,000+ заметок в базе
             </div>
           </div>
 
@@ -835,14 +835,14 @@
             <div class="rag-search-bar-wrap">
               <div class="rag-search-input-box">
                 <i data-lucide="search" class="search-icon"></i>
-                <input type="text" id="ragSearchInput" placeholder="Введите поисковый запрос (например: CUDA Docker, Хэш TG, LoRA Wan 2.2)..." value="Как настроить CUDA в Docker?">
+                <input type="text" id="ragSearchInput" placeholder="Поиск по базе заметок (например: CUDA Docker, Хэш TG, LoRA Wan 2.2)..." value="Как настроить CUDA в Docker?">
               </div>
               <div class="rag-quick-chips">
-                <span class="chip-label">Быстрые запросы:</span>
-                <button class="rag-chip" data-query="cuda"><i data-lucide="sparkles"></i> CUDA Docker</button>
+                <span class="chip-label">Быстрые примеры:</span>
+                <button class="rag-chip" data-query="cuda"><i data-lucide="container"></i> CUDA Docker</button>
                 <button class="rag-chip" data-query="дедупликация"><i data-lucide="database"></i> Дедупликация TG</button>
-                <button class="rag-chip" data-query="lora"><i data-lucide="cpu"></i> LoRA Wan 2.2</button>
-                <button class="rag-chip" data-query="qmk"><i data-lucide="code"></i> QMK LDFLAGS</button>
+                <button class="rag-chip" data-query="lora"><i data-lucide="sparkles"></i> LoRA Wan 2.2</button>
+                <button class="rag-chip" data-query="qmk"><i data-lucide="cpu"></i> QMK LDFLAGS</button>
               </div>
             </div>
 
@@ -852,36 +852,46 @@
             </div>
           </div>
 
-          <!-- VIEWPORT 2: Graph Network View -->
+          <!-- VIEWPORT 2: Connected Notes Map -->
           <div class="obsidian-viewport" data-viewport="graph">
             <div class="obsidian-graph-grid">
               <div class="graph-node-card focal">
                 <div class="node-icon"><i data-lucide="book-open"></i></div>
-                <strong>[[Obsidian_Vault_Root]]</strong>
-                <span>Центральный граф связей Zettelkasten</span>
-                <span class="node-badge">1,240 заметок</span>
+                <div>
+                  <strong>[[Главная_База_Знаний.md]]</strong>
+                  <p>Центральный хаб всех инженерных инструкций и решений</p>
+                </div>
+                <span class="node-badge">1,000+ Заметок</span>
               </div>
               
               <div class="graph-nodes-branches">
                 <div class="graph-node-card">
                   <div class="node-icon"><i data-lucide="container"></i></div>
-                  <strong>[[docker_cuda_passthrough.md]]</strong>
-                  <span class="link-tag">in: #infrastructure</span>
+                  <div>
+                    <strong>[[docker_cuda_passthrough.md]]</strong>
+                    <p>Проброс VRAM GPU и Compose конфигурации</p>
+                  </div>
                 </div>
                 <div class="graph-node-card">
                   <div class="node-icon"><i data-lucide="send"></i></div>
-                  <strong>[[tg_parser_dedup_engine.md]]</strong>
-                  <span class="link-tag">in: #python_async</span>
+                  <div>
+                    <strong>[[tg_parser_dedup_engine.md]]</strong>
+                    <p>Алгоритмы асинхронной защиты БД от дублей</p>
+                  </div>
                 </div>
                 <div class="graph-node-card">
                   <div class="node-icon"><i data-lucide="image"></i></div>
-                  <strong>[[ai_influencer_lora_pipeline.md]]</strong>
-                  <span class="link-tag">in: #generative_media</span>
+                  <div>
+                    <strong>[[ai_influencer_lora_pipeline.md]]</strong>
+                    <p>Шаблоны капшенинга и обучения LoRA</p>
+                  </div>
                 </div>
                 <div class="graph-node-card">
                   <div class="node-icon"><i data-lucide="cpu"></i></div>
-                  <strong>[[monsgeek_vial_patch.md]]</strong>
-                  <span class="link-tag">in: #embedded_c</span>
+                  <div>
+                    <strong>[[monsgeek_vial_patch.md]]</strong>
+                    <p>Патчи линковщика GCC ARM под QMK</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -894,37 +904,31 @@
                 <span class="term-dot red"></span>
                 <span class="term-dot yellow"></span>
                 <span class="term-dot green"></span>
-                <span class="term-title">PYTHON RAG MEMORY BUS // ChromaDB &amp; Qwen 3.5 Agent</span>
+                <span class="term-title">PYTHON RAG ENGINE // Подгрузка правил в ИИ-Агента</span>
               </div>
-              <pre><code class="language-python"><span class="code-keyword">from</span> rag_engine <span class="code-keyword">import</span> LocalVectorVault, RAGRetriever
-
-<span class="code-comment"># Инициализация векторного индекса ChromaDB на локальном диске</span>
-vault = LocalVectorVault(vault_path=<span class="code-string">"./obsidian_vault"</span>, embedding_model=<span class="code-string">"bge-m3"</span>)
-
-<span class="code-comment"># Семантический поиск 500-токеновых чанков по вектору Cosine Distance</span>
+              <pre><code class="language-python"><span class="code-comment"># 1. Запрос пользователя ИИ-ассистенту: "Настрой Compose для Ollama CUDA"</span>
 query = <span class="code-string">"Проброс VRAM CUDA в Docker Compose для Ollama"</span>
-relevant_chunks = vault.similarity_search(query, k=<span class="code-number">2</span>)
 
-<span class="code-comment"># Извлечено 2 целевых чанка (Match Similarity: 0.984). Передача в промпт ИИ-Агента</span>
-agent_prompt = f<span class="code-string">"Контекст из базы знаний:\n{relevant_chunks}\n\nЗадача: Настроить Compose"</span>
+<span class="code-comment"># 2. ИИ-поисковик моментально находит лучшую готовую инструкцию в базе заметок:</span>
+note_chunk = vault.search(query, top_k=<span class="code-number">1</span>)
+<span class="code-comment"># Найдена заметка: [[docker_nvidia_cuda_passthrough.md]] (Точность совпадения: 98.4%)</span>
 
-<span class="code-comment"># Экономия токенов: 90% (вместо 100k токенов передано ровно 500 токенов context)</span></code></pre>
+<span class="code-comment"># 3. Инструкция передается ИИ перед началом кодинга:</span>
+<span class="code-keyword">print</span>(<span class="code-string">"ИИ генерирует код с 100% соблюдением корпоративных правил!"</span>)</code></pre>
             </div>
           </div>
         </div>
 
         <!-- Specs Footer -->
         <div class="obsidian-arch-footer-bar">
-          <span class="arch-footer-chip"><i data-lucide="database"></i> ChromaDB / FAISS Embeddings</span>
-          <span class="arch-footer-chip"><i data-lucide="book-open"></i> Obsidian Zettelkasten Vault</span>
-          <span class="arch-footer-chip"><i data-lucide="search"></i> Semantic Search &lt; 10ms</span>
-          <span class="arch-footer-chip"><i data-lucide="zap"></i> Token Context Cost -90%</span>
-          <span class="arch-footer-chip"><i data-lucide="bot"></i> Agentic Memory Bus</span>
+          <span class="arch-footer-chip"><i data-lucide="book-open"></i> Obsidian Markdown заметок</span>
+          <span class="arch-footer-chip"><i data-lucide="search"></i> Поиск по смыслу (RAG) &lt; 2 сек</span>
+          <span class="arch-footer-chip"><i data-lucide="git-commit"></i> Связи заметок [[ссылка]]</span>
+          <span class="arch-footer-chip"><i data-lucide="shield-check"></i> 100% Локально и безопасно</span>
+          <span class="arch-footer-chip"><i data-lucide="bot"></i> Интеграция с ИИ-ассистентами</span>
         </div>
 
       </article>
-
-    </section>
 
     </section>
 

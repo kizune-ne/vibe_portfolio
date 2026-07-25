@@ -1652,11 +1652,11 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 
 .obsidian-rag-stand {
   background: #121217;
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.2);
   border-radius: var(--radius-card, 16px);
   margin: 24px 0;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.08);
 }
 
 .obsidian-stand-header {
@@ -1693,16 +1693,16 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 }
 
 .obsidian-mode-btn:hover {
-  background: rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.3);
-  color: #c084fc;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #34d399;
 }
 
 .obsidian-mode-btn.active {
-  background: rgba(168, 85, 247, 0.18);
-  border-color: rgba(168, 85, 247, 0.5);
-  color: #e9d5ff;
-  box-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #a7f3d0;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
 }
 
 .obsidian-stand-badge {
@@ -1711,7 +1711,7 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   gap: 8px;
   font-family: var(--font-code);
   font-size: 0.75rem;
-  color: #c084fc;
+  color: #34d399;
 }
 
 .obsidian-viewport {
@@ -1736,13 +1736,13 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   align-items: center;
   gap: 10px;
   background: #09090b;
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.3);
   border-radius: var(--radius-sm, 8px);
   padding: 10px 14px;
 }
 
 .rag-search-input-box .search-icon {
-  color: #a855f7;
+  color: #10b981;
 }
 
 .rag-search-input-box input {
@@ -1784,9 +1784,9 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 }
 
 .rag-chip:hover {
-  background: rgba(168, 85, 247, 0.15);
-  border-color: rgba(168, 85, 247, 0.4);
-  color: #e9d5ff;
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #a7f3d0;
 }
 
 /* RAG RESULTS LIST */
@@ -1805,7 +1805,7 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 }
 
 .rag-result-card:hover {
-  border-color: rgba(168, 85, 247, 0.4);
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
 .rag-result-header {
@@ -1822,7 +1822,7 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   font-family: var(--font-code);
   font-size: 0.825rem;
   font-weight: 600;
-  color: #c084fc;
+  color: #34d399;
 }
 
 .rag-score-pill {
@@ -1859,8 +1859,8 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 .rag-tag {
   font-family: var(--font-code);
   font-size: 0.7rem;
-  color: #a855f7;
-  background: rgba(168, 85, 247, 0.1);
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
   padding: 1px 6px;
   border-radius: 4px;
 }
@@ -1883,8 +1883,8 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 }
 
 .graph-node-card.focal {
-  background: rgba(168, 85, 247, 0.12);
-  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
 .graph-nodes-branches {
@@ -1894,7 +1894,7 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 }
 
 .graph-node-card .node-icon {
-  color: #c084fc;
+  color: #34d399;
 }
 
 .graph-node-card strong {
@@ -1903,17 +1903,18 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   color: #ffffff;
 }
 
-.graph-node-card span {
+.graph-node-card p {
   font-size: 0.75rem;
   color: #a1a1aa;
+  margin: 2px 0 0 0;
 }
 
 .node-badge {
   margin-left: auto;
   font-family: var(--font-code);
   font-size: 0.7rem;
-  background: rgba(168, 85, 247, 0.2);
-  color: #e9d5ff;
+  background: rgba(16, 185, 129, 0.2);
+  color: #a7f3d0;
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -1959,9 +1960,9 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   line-height: 1.5;
 }
 
-.code-keyword { color: #c084fc; font-weight: 600; }
+.code-keyword { color: #34d399; font-weight: 600; }
 .code-comment { color: #6b7280; font-style: italic; }
-.code-string { color: #34d399; }
+.code-string { color: #a7f3d0; }
 .code-number { color: #f59e0b; }
 
 /* SPECS FOOTER */
