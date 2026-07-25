@@ -1285,9 +1285,9 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   gap: 6px;
   font-family: var(--font-code);
   font-size: 0.725rem;
-  color: var(--color-terminal-green);
-  background: rgba(41, 122, 58, 0.1);
-  border: 1px solid rgba(41, 122, 58, 0.25);
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   padding: 4px 12px;
   border-radius: 999px;
 }

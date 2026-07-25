@@ -12,7 +12,7 @@
   --color-charcoal: #4d4d4d;
   --color-obsidian: #171717;
   --color-carbon: #000000;
-  --color-terminal-green: #297a3a;
+  --color-terminal-green: #10b981;
   
   /* Portfolio Theme Mappings */
   --bg-main: var(--color-paper-white);
@@ -35,7 +35,7 @@
   --accent-obsidian: var(--color-obsidian);
   --accent-carbon: var(--color-carbon);
   --color-success: var(--color-terminal-green);
-  --color-success-bg: rgba(41, 122, 58, 0.08);
+  --color-success-bg: rgba(16, 185, 129, 0.1);
   --accent-indigo: var(--color-obsidian);
   --accent-indigo-glow: rgba(0, 0, 0, 0.04);
   --accent-purple: var(--color-obsidian);
