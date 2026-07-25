@@ -473,18 +473,61 @@
               title="Открыть исходный код прошивки на GitHub">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                  d="M12 0C5.37 0 0 5.37    <!-- Row 5: AI INFLUENCERS & GENERATIVE MEDIA (1:1 Replica of Telegram Showcase Style) -->
-    <section class="bento-row" id="creative-lab">
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>GitHub ↗</span>
+            </a>
+          </div>
+        </div>
 
-      <!-- AI Influencer Showcase Card (Identical Structure to Telegram Card) -->
-      <article class="bento-card card-tg-simulator card-tg-showcase" id="cardAiGen">
+        <div class="firmware-split-container">
+
+          <!-- Column 1: Interactive File Tree Explorer Sidebar -->
+          <div class="file-tree-sidebar">
+            <div class="file-tree-header">
+              <i data-lucide="folder-tree"></i>
+              <span>FIRMWARE EXPLORER</span>
+            </div>
+            <div class="tree-nodes-list" id="fileTreeContainer">
+              <!-- Dynamically rendered 1:1 real folder tree from keyboards/ by firmware-editor.js -->
+            </div>
+          </div>
+
+          <!-- Column 2: Code Editor Window (Full Remaining Width) -->
+          <div class="code-editor-wrap">
+            <div class="editor-tabs">
+              <div class="active-file-breadcrumb" id="activeFileBreadcrumb">
+                <i data-lucide="file-code"></i>
+                <span id="breadcrumbText">keyboards/monsgeek/m1_v5/m1_v5_us/keymaps/vial/keymap.c</span>
+              </div>
+              <div class="editor-actions">
+                <button class="btn-editor-action" id="btnReplayCode" title="Перезапустить печать">
+                  <i data-lucide="rotate-cw"></i> <span>Перепечатать</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="editor-window">
+              <pre><code id="codeOutput"></code><span class="cursor-blink">|</span></pre>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    </section>
+
+
+    <!-- Row 5: AI INFLUENCERS & LORA FINE-TUNING PIPELINE (100% Full Width Bento Layout) -->
+    <section class="bento-row row-ai-influencer" id="creative-lab">
+
+      <article class="bento-card card-ai-influencer-main" id="cardAiGen">
         <div class="spotlight-border"></div>
-
+        
         <div class="card-header-flex">
           <div>
-            <span class="section-tag">05 // AI INFLUENCERS &amp; GENERATIVE MEDIA</span>
-            <h2 class="card-title">AI-Инфлюенсеры, Локальная Тренировка LoRA &amp; ComfyUI</h2>
-            <p class="card-subtitle">Полный цикл производства синтетического медиаконтента: от подбора референсов и капшенинга датасетов (Wan 2.2 / Flux) до локального обучения LoRA в AI-Toolkit и финального сэмплирования в ComfyUI.</p>
+            <span class="section-tag">05 // AI INFLUENCERS & LORA PIPELINE</span>
+            <h2 class="card-title">Виртуальные AI-Инфлюенсеры &amp; Локальная Тренировка LoRA</h2>
+            <p class="card-subtitle">Полный цикл производства синтетического медиаконтента: от генерации референсов лица и капшенинга датасетов (Wan 2.2 / Flux) до локальной тренировки LoRA в AI-Toolkit и финального сэмплирования в ComfyUI.</p>
           </div>
           <div class="card-header-actions">
             <button class="btn-case-inspect" data-case-id="ai-influencer">
@@ -493,167 +536,131 @@
           </div>
         </div>
 
-        <!-- Clean 3-Column Architecture Grid (Identical to Telegram Architecture Grid) -->
-        <div class="tg-architecture-grid">
-
-          <div class="tg-arch-card">
-            <div class="arch-card-header">
-              <div class="tg-cap-icon"><i data-lucide="user-check"></i></div>
-              <span class="arch-tag">DATASET CURATION</span>
-            </div>
-            <h4>Концепт Лица &amp; Разметка</h4>
-            <p>Создание базовых кадров аватара с детализацией черт лица и глаз. Кадрирование и составление описаний под Wan 2.2 и Flux.</p>
-            <div class="arch-tech-tags">
-              <span class="tech-pill">Nanobanano 2</span>
-              <span class="tech-pill">Wan 2.2 / Flux</span>
-              <span class="tech-pill">Auto-Tagging</span>
-            </div>
+        <!-- Pipeline Steps Interactive Flow Visualiser -->
+        <div class="pipeline-flow-container">
+          <div class="pipeline-flow-header">
+            <i data-lucide="git-branch"></i>
+            <span>PRODUCTION PIPELINE // CHARACTER CONSISTENCY ENGINE</span>
           </div>
 
-          <div class="tg-arch-card">
-            <div class="arch-card-header">
-              <div class="tg-cap-icon"><i data-lucide="cpu"></i></div>
-              <span class="arch-tag">AI-TOOLKIT ENGINE</span>
-            </div>
-            <h4>Тренировка LoRA (AI-Toolkit)</h4>
-            <p>Обучение весов LoRA локально на железе RTX 4070 Ti SUPER 16GB VRAM. Сравнительный тест эпох для сохранения аватара.</p>
-            <div class="arch-tech-tags">
-              <span class="tech-pill">AI-Toolkit</span>
-              <span class="tech-pill">RTX 4070 Ti SUPER</span>
-              <span class="tech-pill">16GB VRAM</span>
-            </div>
-          </div>
+          <div class="pipeline-steps-grid">
 
-          <div class="tg-arch-card">
-            <div class="arch-card-header">
-              <div class="tg-cap-icon"><i data-lucide="sparkles"></i></div>
-              <span class="arch-tag">COMFYUI GRAPH</span>
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">01</div>
+              <div class="pipe-step-icon"><i data-lucide="user-check"></i></div>
+              <h4>1. Концепт Лица &amp; Референс</h4>
+              <p>Генерация базовых кадров модели с высокой детализацией черт. Отбор лучшего каноничного референса.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">Nanobanano 2</span>
+                <span class="tech-pill">ComfyUI</span>
+                <span class="tech-pill">ИИ-Промптинг</span>
+              </div>
             </div>
-            <h4>Производство Кадров в ComfyUI</h4>
-            <p>Подключение обученной LoRA к кастомным нодовым воркфлоу ComfyUI. Генерация сетов с 100% сохранением геометрии лица.</p>
-            <div class="arch-tech-tags">
-              <span class="tech-pill">ComfyUI Graph</span>
-              <span class="tech-pill">Character Consistency</span>
-              <span class="tech-pill">High-Res Upscale</span>
-            </div>
-          </div>
 
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">02</div>
+              <div class="pipe-step-icon"><i data-lucide="file-text"></i></div>
+              <h4>2. Датасет &amp; Капшенинг</h4>
+              <p>Формирование сета кадров, кадрирование и составление точных текстовых описаний под целевую модель.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">Wan 2.2 / Wan 2.1</span>
+                <span class="tech-pill">Flux</span>
+                <span class="tech-pill">Auto-Tagging</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">03</div>
+              <div class="pipe-step-icon"><i data-lucide="cpu"></i></div>
+              <h4>3. Тренировка LoRA (AI-Toolkit)</h4>
+              <p>Локальное обучение весов LoRA на железе RTX 4070 Ti SUPER 16GB. Тестирование чекпоинтов.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">AI-Toolkit</span>
+                <span class="tech-pill">RTX 4070 Ti SUPER</span>
+                <span class="tech-pill">16GB VRAM</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">04</div>
+              <div class="pipe-step-icon"><i data-lucide="sparkles"></i></div>
+              <h4>4. Воркфлоу в ComfyUI</h4>
+              <p>Подключение обученной LoRA к ComfyUI. Генерация фотосессий со 100% консистентностью лица.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">ComfyUI Node Graph</span>
+                <span class="tech-pill">Character Consistency</span>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <!-- Interactive Dataset Inspector Window Stand (Identical to Telegram Window Stand) -->
-        <div class="tg-window-wrapper" id="aiInfluencerShowcase" style="height: 440px; margin-top: 20px;">
-
-          <!-- Sidebar: Sample Selector List (Exact TG Sidebar Layout) -->
-          <div class="tg-sidebar" style="width: 300px;">
-            <div class="tg-sidebar-header">
-              <i data-lucide="layers"></i>
-              <span>DATASET SAMPLES (5)</span>
+        <!-- AI Dataset Interactive Showcase Stand -->
+        <div class="ai-showcase-stand" id="aiInfluencerShowcase">
+          <div class="ai-showcase-header">
+            <div>
+              <h4 class="ai-showcase-title"><i data-lucide="scan"></i> Инспектор Датасета &amp; Сэмплов LoRA (Wan 2.2 / Flux)</h4>
+              <span class="ai-showcase-subtitle">Интерактивный просмотр сэмплов обработанного датасета с разметкой освещения и ракурсов</span>
             </div>
-            <div class="tg-chat-list" id="aiSampleSelectorList">
-
-              <div class="tg-chat-item ai-selector-item active" data-sample-id="01">
-                <div class="item-thumb" style="width: 36px; height: 36px; border-radius: 6px; overflow: hidden; flex-shrink: 0;">
-                  <img src="assets/ai_influencer/ref_base.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="01">
-                </div>
-                <div class="chat-info">
-                  <div class="title-row">
-                    <span>Sample #01</span>
-                    <span class="time">WAN 2.2</span>
-                  </div>
-                  <div class="preview">Закатное Освещение</div>
-                </div>
-              </div>
-
-              <div class="tg-chat-item ai-selector-item" data-sample-id="02">
-                <div class="item-thumb" style="width: 36px; height: 36px; border-radius: 6px; overflow: hidden; flex-shrink: 0;">
-                  <img src="assets/ai_influencer/studio_shot.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="02">
-                </div>
-                <div class="chat-info">
-                  <div class="title-row">
-                    <span>Sample #02</span>
-                    <span class="time">FLUX</span>
-                  </div>
-                  <div class="preview">Яркий Студийный Свет</div>
-                </div>
-              </div>
-
-              <div class="tg-chat-item ai-selector-item" data-sample-id="03">
-                <div class="item-thumb" style="width: 36px; height: 36px; border-radius: 6px; overflow: hidden; flex-shrink: 0;">
-                  <img src="assets/ai_influencer/close_up.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="03">
-                </div>
-                <div class="chat-info">
-                  <div class="title-row">
-                    <span>Sample #03</span>
-                    <span class="time">MACRO</span>
-                  </div>
-                  <div class="preview">Нижний Ракурс &amp; Гетерохромия</div>
-                </div>
-              </div>
-
-              <div class="tg-chat-item ai-selector-item" data-sample-id="04">
-                <div class="item-thumb" style="width: 36px; height: 36px; border-radius: 6px; overflow: hidden; flex-shrink: 0;">
-                  <img src="assets/ai_influencer/outdoor_beach.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="04">
-                </div>
-                <div class="chat-info">
-                  <div class="title-row">
-                    <span>Sample #04</span>
-                    <span class="time">OUTDOOR</span>
-                  </div>
-                  <div class="preview">Пляж &amp; Естественный Свет</div>
-                </div>
-              </div>
-
-              <div class="tg-chat-item ai-selector-item" data-sample-id="05">
-                <div class="item-thumb" style="width: 36px; height: 36px; border-radius: 6px; overflow: hidden; flex-shrink: 0;">
-                  <img src="assets/ai_influencer/golden_hour.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="05">
-                </div>
-                <div class="chat-info">
-                  <div class="title-row">
-                    <span>Sample #05</span>
-                    <span class="time">INDOOR</span>
-                  </div>
-                  <div class="preview">Интерьер в Золотой Час</div>
-                </div>
-              </div>
-
+            <div class="ai-showcase-badge">
+              <span class="status-dot"></span> 5 Samples Dataset Ready
             </div>
           </div>
 
-          <!-- Main Viewport: Active Sample Showcase (Exact TG Chat Body Layout) -->
-          <div class="tg-chat-body" style="flex: 1; display: flex; flex-direction: column;">
-            <div class="tg-chat-header">
-              <div class="active-bot-title" id="aiFeaturedTitle"><i data-lucide="image"></i> Sample #01: Закатное Освещение</div>
-              <div class="badge-status">
-                <span class="status-dot"></span> <span id="aiFeaturedTagText">Wan 2.2 Tagged</span>
+          <div class="ai-inspector-grid">
+
+            <!-- LEFT: Featured Image Preview & Metadata (60% width) -->
+            <div class="ai-focal-viewport">
+              <div class="focal-img-wrap">
+                <img src="assets/ai_influencer/ref_base.jpg" id="aiFeaturedImage" alt="Активный кадр датасета">
+                <div class="focal-overlay-badge" id="aiFeaturedTag">
+                  <i data-lucide="file-text"></i> Dataset Sample #01
+                </div>
+                <div class="focal-glow"></div>
+              </div>
+
+              <div class="focal-meta-box">
+                <h4 id="aiFeaturedTitle">Sample #01: Закатное Освещение</h4>
+                <p id="aiFeaturedDesc">Теплый вечерний боковой свет, кружевная одежда, детализация волос и тона кожи в закатный час.</p>
+                <div class="focal-tags" id="aiFeaturedTags">
+                  <span class="chip-accent">Sunset Light</span>
+                  <span class="chip-accent">Wan 2.2 Tagged</span>
+                  <span class="chip-accent">Heterochromia Retained</span>
+                </div>
               </div>
             </div>
 
-            <div style="flex: 1; display: flex; overflow: hidden; position: relative; background: #0c0c0e;">
-              <img src="assets/ai_influencer/ref_base.jpg" id="aiFeaturedImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center 25%; transition: opacity 0.2s ease;" alt="Sample Preview">
-            </div>
-
-            <div style="padding: 12px 18px; background: #121212; border-top: 1px solid #262626; display: flex; justify-content: space-between; align-items: center; gap: 12px;">
-              <p id="aiFeaturedDesc" style="font-size: 0.8rem; color: #a1a1aa; margin: 0; flex: 1;">Теплый вечерний боковой свет, кружевная одежда, детализация волос и тона кожи в закатный час.</p>
-              <div id="aiFeaturedTags" style="display: flex; gap: 4px; flex-shrink: 0;">
-                <span class="tech-pill">Sunset Light</span>
-                <span class="tech-pill">Wan 2.2 Tagged</span>
+            <!-- RIGHT: Interactive Filmstrip Selector (40% width) -->
+            <div class="ai-filmstrip-selector">
+              <div class="selector-head">
+                <i data-lucide="layers"></i>
+                <span>ВЫБОР СЭМПЛА ДАТАСЕТА (5)</span>
               </div>
-            </div>
-          </div>
 
-        </div>
+              <div class="selector-items-list">
 
-        <!-- Telegram Style Footer Chip Bar -->
-        <div class="tg-arch-footer-bar">
-          <span class="arch-footer-chip"><i data-lucide="cpu"></i> NVIDIA RTX 4070 Ti SUPER (16GB)</span>
-          <span class="arch-footer-chip"><i data-lucide="layers"></i> AI-Toolkit Local Training</span>
-          <span class="arch-footer-chip"><i data-lucide="sliders"></i> ComfyUI Workflows</span>
-          <span class="arch-footer-chip"><i data-lucide="check-circle-2"></i> 100% Character Consistency</span>
-        </div>
+                <!-- Sample 01 -->
+                <div class="ai-selector-item active" data-sample-id="01">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/ref_base.jpg" alt="Sample 01">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #01</span>
+                    <strong>Закатное Освещение</strong>
+                    <span class="item-sub">Теплый боковой свет, вечер</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
 
-      </article>
-
-    </section>">
+                <!-- Sample 02 -->
+                <div class="ai-selector-item" data-sample-id="02">
+                  <div class="item-thumb">
                     <img src="assets/ai_influencer/studio_shot.jpg" alt="Sample 02">
                   </div>
                   <div class="item-info">
