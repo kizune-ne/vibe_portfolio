@@ -48,7 +48,7 @@ export function initAiInfluencerInspector() {
   const mainImg = document.getElementById('aiFeaturedImage');
   const mainTitle = document.getElementById('aiFeaturedTitle');
   const mainDesc = document.getElementById('aiFeaturedDesc');
-  const mainTag = document.getElementById('aiFeaturedTag');
+  const mainTagText = document.getElementById('aiFeaturedTagText');
   const tagsContainer = document.getElementById('aiFeaturedTags');
   const selectorItems = showcaseContainer.querySelectorAll('.ai-selector-item');
 
@@ -66,18 +66,16 @@ export function initAiInfluencerInspector() {
 
       // Smooth Fade Transition for Featured Image & Metadata
       mainImg.style.opacity = '0.3';
-      mainImg.style.transform = 'scale(0.98)';
 
       setTimeout(() => {
         mainImg.src = data.src;
-        if (mainTitle) mainTitle.textContent = data.title;
+        if (mainTitle) mainTitle.innerHTML = `<i data-lucide="image"></i> ${data.title}`;
         if (mainDesc) mainDesc.textContent = data.desc;
-        if (mainTag) mainTag.innerHTML = `<i data-lucide="file-text"></i> ${data.tag}`;
+        if (mainTagText) mainTagText.textContent = data.tag;
         if (tagsContainer) {
-          tagsContainer.innerHTML = data.tags.map(t => `<span class="chip-accent">${t}</span>`).join('');
+          tagsContainer.innerHTML = data.tags.map(t => `<span class="tech-pill">${t}</span>`).join('');
         }
         mainImg.style.opacity = '1';
-        mainImg.style.transform = 'scale(1)';
         if (window.lucide) {
           lucide.createIcons();
         }
