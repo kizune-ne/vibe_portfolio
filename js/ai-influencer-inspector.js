@@ -84,4 +84,46 @@ export function initAiInfluencerInspector() {
       }, 150);
     });
   });
+
+  // Click-to-Zoom Lightbox Modal for 100% Uncropped View
+  mainImg.addEventListener('click', () => {
+    let lightbox = document.getElementById('aiLightboxModal');
+    if (!lightbox) {
+      lightbox = document.createElement('div');
+      lightbox.id = 'aiLightboxModal';
+      lightbox.style.cssText = `
+        position: fixed; inset: 0; z-index: 9999;
+        background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(12px);
+        display: flex; align-items: center; justify-content: center;
+        padding: 24px; cursor: zoom-out; opacity: 0; transition: opacity 0.25s ease;
+      `;
+      lightbox.innerHTML = `
+        <div style="position: relative; max-width: 90vw; max-height: 90vh;">
+          <img id="aiLightboxImg" src="" style="max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); object-fit: contain;">
+          <div style="position: absolute; top: -36px; right: 0; color: #a1a1aa; font-family: monospace; font-size: 0.8rem; cursor: pointer;">
+            ✕ ЗАКРЫТЬ [ESC]
+          </div>
+        </div>
+      `;
+      document.body.appendChild(lightbox);
+
+      lightbox.addEventListener('click', () => {
+        lightbox.style.opacity = '0';
+        setTimeout(() => { lightbox.style.display = 'none'; }, 250);
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.style.display !== 'none') {
+          lightbox.style.opacity = '0';
+          setTimeout(() => { lightbox.style.display = 'none'; }, 250);
+        }
+      });
+    }
+
+    const lightboxImg = document.getElementById('aiLightboxImg');
+    if (lightboxImg) lightboxImg.src = mainImg.src;
+
+    lightbox.style.display = 'flex';
+    requestAnimationFrame(() => { lightbox.style.opacity = '1'; });
+  });
 }
