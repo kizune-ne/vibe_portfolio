@@ -2000,6 +2000,38 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 .comparison-col.bad ul li i { color: #ef4444; flex-shrink: 0; margin-top: 2px; }
 .comparison-col.good ul li i { color: #10b981; flex-shrink: 0; margin-top: 2px; }
 
+/* SPECS FOOTER BAR INSIDE OBSIDIAN STAND */
+.obsidian-arch-footer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #181820;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.obsidian-arch-footer-bar .arch-footer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill, 9999px);
+  font-family: var(--font-code);
+  font-size: 0.775rem;
+  color: #d4d4d8;
+}
+
+.obsidian-arch-footer-bar .arch-footer-chip i,
+.obsidian-arch-footer-bar .arch-footer-chip svg {
+  color: #10b981 !important;
+  stroke: #10b981 !important;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 
 
 
