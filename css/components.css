@@ -570,6 +570,16 @@
   flex-shrink: 0;
 }
 
+.topo-node-icon svg,
+.topo-node-icon i {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2px;
+  display: block;
+}
+
 .topo-node-info {
   display: flex;
   flex-direction: column;

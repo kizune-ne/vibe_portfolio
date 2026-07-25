@@ -882,6 +882,28 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+}
+
+.tg-cap-icon svg,
+.tg-cap-icon i {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2px;
+  display: block;
+}
+
+.arch-footer-chip svg,
+.arch-footer-chip i {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .tg-arch-card h4 {

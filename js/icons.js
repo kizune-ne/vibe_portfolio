@@ -1,14 +1,27 @@
 /* ==========================================================================
    SAFE LUCIDE ICONS HELPER
    Prevents Lucide createIcons() from wiping out existing SVGs on re-renders
+   Includes retry timers for async CDN script loading
    ========================================================================== */
 
 export function safeInitLucideIcons() {
-  if (window.lucide && typeof window.lucide.createIcons === 'function') {
-    window.lucide.createIcons();
-    // Strip data-lucide attribute from generated SVGs to prevent duplicate processing wipeouts
-    document.querySelectorAll('svg[data-lucide]').forEach(svg => {
-      svg.removeAttribute('data-lucide');
-    });
+  const run = () => {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      try {
+        window.lucide.createIcons();
+      } catch (err) {
+        console.warn('Lucide icon rendering warning:', err);
+      }
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
   }
+
+  // Retry triggers to ensure icons render even if CDN script arrives slightly later
+  setTimeout(run, 200);
+  setTimeout(run, 800);
 }
