@@ -1779,10 +1779,21 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   border-color: rgba(16, 185, 129, 0.35);
 }
 
-.vault-cat-item i {
-  color: #10b981;
+.vault-cat-item i,
+.vault-cat-item svg {
+  color: #34d399 !important;
+  stroke: #34d399 !important;
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.vault-cat-item.active i,
+.vault-cat-item.active svg {
+  color: #10b981 !important;
+  stroke: #10b981 !important;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));
 }
 
 .vault-cat-item strong {
