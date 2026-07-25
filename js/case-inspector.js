@@ -27,6 +27,15 @@ export const CASES_DATA = {
     results: `• Развернута 100% стабильная, масштабируемая среда для разработки локальных ИИ-агентов.
 • Время поднятия готовой среды с нуля сокращено до 1 команды (\`docker compose up -d\`).
 • Исключена вероятность утечки секретов и случайной деградации хост-системы.`,
+    architecture: {
+      title: 'Архитектура AI Server & GPU-Контейнеризация',
+      desc: 'Спроектирована двухуровневая среда на базе Docker Compose с пробросом аппаратных ускорителей хоста и безопасной изоляцией конфиденциальных файлов.',
+      highlights: [
+        { icon: 'cpu', title: 'NVIDIA CUDA Passthrough', desc: 'Интеграция NVIDIA Container Toolkit для прямого использования 16GB VRAM RTX 4070 Ti SUPER в контейнере ollama.' },
+        { icon: 'hard-drive', title: 'DevContainer Volume Isolation', desc: 'Вынос виртуальных окружений Python (.venv) и зависимостей во внешние тома без загрязнения ОС Windows.' },
+        { icon: 'shield-check', title: 'Entrypoint Extension Patcher', desc: 'Фоновый стартовый скрипт docker-entrypoint.sh, монтирующий расширение встроенного ИИ (Antigravity) и очищающий дубликаты.' }
+      ]
+    },
     techStack: [
       { name: 'Docker / Compose', icon: 'container' },
       { name: 'NVIDIA CUDA Toolkit', icon: 'cpu' },
@@ -63,6 +72,15 @@ export const CASES_DATA = {
     results: `• Автоматизирован сбор новостей и сигналов без участия человека и без дублирования контента.
 • Экономия более 15 часов рабочего времени в неделю на ручной сортировке новостных лент.
 • База данных очищена от спама, рекламы и повторяющихся публикаций.`,
+    architecture: {
+      title: 'Архитектура Потокового Парсинга & Дедупликации',
+      desc: 'Асинхронный многопоточный пайплайн для обработки сотен сообщений в минуту без риска блокировки сессий.',
+      highlights: [
+        { icon: 'refresh-cw', title: 'Async Telethon Engine & Proxy Pool', desc: 'Асинхронное ядро с ротацией прокси-серверов и экспоненциальными задержками для защиты Telegram-сессий.' },
+        { icon: 'database', title: 'Deduplication & Hash Engine', desc: 'Проверка MD5-хэшей изображений/видео и хэширование фрагментов текста для предотвращения повторных записей в БД.' },
+        { icon: 'message-square', title: 'Topic Routing & Qwen Summarizer', desc: 'Автоматическая раскладка входящего потока по топикам супергруппы с ИИ-суммаризацией постов через Qwen 3.5.' }
+      ]
+    },
     techStack: [
       { name: 'Python 3.13 (Asyncio)', icon: 'code' },
       { name: 'Telethon / Pyrogram', icon: 'send' },
@@ -97,6 +115,15 @@ export const CASES_DATA = {
     results: `• Публичный ИИ-ассистент работает 24/7 без риска утечки учетных данных.
 • Нулевая стоимость инфраструктуры за счет работы в рамках бесплатного лимита Cloudflare Workers.
 • Интерактивный чат сохраняет работоспособность даже при сбое внешнего API.`,
+    architecture: {
+      title: 'Архитектура Serverless Proxy & Изоляции Ключей',
+      desc: 'Безопасный прокси-слой на Cloudflare Workers, скрывающий API-ключ Gemini от клиентского JS и фильтрующий поток генерации.',
+      highlights: [
+        { icon: 'shield-check', title: 'Cloudflare Secrets Isolation', desc: 'Вынос GEMINI_API_KEY на Cloudflare Worker, исключающий утечку ключа в Network Tab браузера.' },
+        { icon: 'sparkles', title: 'Thought Stream Token Stripping', desc: 'Автоматическая фильтрация служебных блоков генерации размышлений (<thought>...</thought>) модели Gemma 4.' },
+        { icon: 'zap', title: 'Smart Offline Knowledge Fallback', desc: 'Мгновенный клиентский переключатель на локальную базу знаний при отсутствии связи с API.' }
+      ]
+    },
     techStack: [
       { name: 'Cloudflare Workers (JS)', icon: 'cloud' },
       { name: 'Google AI Studio (Gemma 4)', icon: 'sparkles' },
@@ -130,6 +157,15 @@ export const CASES_DATA = {
     results: `• Время формирования точного расчета менеджером сокращено с 10-15 минут Excel-подсчетов до ~30 секунд ввода параметров.
 • Мгновенный вынос математики на клиентскую сторону (вычисления за < 5 миллисекунд).
 • Исключение человеческих ошибок при расчете расхода печатных листов и ламинации.`,
+    architecture: {
+      title: 'Архитектура Геометрического Модуля & Клиентской Математики',
+      desc: 'Полностью автономное клиентское SPA-приложение, исключающее серверные задержки и выполняющее сложные полиграфические вычисления за < 5ms.',
+      highlights: [
+        { icon: 'ruler', title: 'Prepress Bleed Geometry Engine', desc: 'Алгоритмы укладки прямоугольных и фигурных элементов на печатный лист (SRA3 / A3+) с вылетами под обрез.' },
+        { icon: 'cpu', title: 'Dynamic Price Calculation', desc: 'Мгновенный перерасчет стоимости материалов, работы оборудования и постпечатной обработки при изменении параметров.' },
+        { icon: 'maximize', title: 'Modular Standalone UI', desc: 'Вынос калькулятора в автономный виджет с возможностью интеграции через iframe и запуска в полноэкранном режиме.' }
+      ]
+    },
     techStack: [
       { name: 'HTML5 & Vanilla CSS3', icon: 'layout' },
       { name: 'Modular JavaScript Engine', icon: 'cpu' },
@@ -163,6 +199,15 @@ export const CASES_DATA = {
 3. **Оптимизация кеймапов**: Кастомная настройка слоев, Tap-Hold функций и макросов с сохранением энергоэффективности беспроводного чипа.`,
     results: `• 100% стабильная прошивка с мгновенным изменением раскладки и макросов через браузерный интерфейс Vial.
 • Открытый репозиторий с подробной документацией и проводником исходного кода на сайте.`,
+    architecture: {
+      title: 'Архитектура Прошивки Микроконтроллера & Сборщика QMK',
+      desc: 'Кастомный микрокод на Си под 3 режима связи с динамической таблицей EEPROM под веб-протокол Vial.',
+      highlights: [
+        { icon: 'sliders', title: 'Vial EEPROM Matrix Mapping', desc: 'Конфигурация матричных слоев клавиш, энкодеров и макросов под динамический протокол Vial ID.' },
+        { icon: 'terminal', title: 'GCC ARM Linker Patching', desc: 'Устранение ошибок дублирования символов линковщика (LDFLAGS) при компиляции библиотек QMK.' },
+        { icon: 'cpu', title: 'Tri-Mode Wireless Optimization', desc: 'Сохранение энергоэффективности беспроводного чипа (2.4GHz / Bluetooth 5.0 / USB-C).' }
+      ]
+    },
     techStack: [
       { name: 'C Language (Embedded)', icon: 'code' },
       { name: 'QMK Firmware Core', icon: 'cpu' },
@@ -199,6 +244,15 @@ export const CASES_DATA = {
     results: `• Полная независимость от сторонних сервис-подписок благодаря локальному обучению моделей.
 • Достижение высокой стабильности сохранения внешности аватара во всех сюжетных локациях и ракурсах.
 • Готовый воспроизводимый технологический процесс производства виртуального контента.`,
+    architecture: {
+      title: 'Архитектура Пайплайна Тренировки & Сэмплирования LoRA',
+      desc: 'Локальный 4-этапный производственный комплекс для создания синтетического контента с сохранением уникальных черт аватара.',
+      highlights: [
+        { icon: 'file-text', title: 'Dataset Curation & Captioning', desc: 'Кадрирование высокого разрешения и формирование текстовых описаний под Wan 2.2 и Flux.' },
+        { icon: 'cpu', title: 'AI-Toolkit LoRA Training', desc: 'Обучение кастомных весов LoRA локально на железе Ryzen 7 9700X + RTX 4070 Ti SUPER 16GB с анализом чекпоинтов.' },
+        { icon: 'sliders', title: 'ComfyUI Custom Node Graph', desc: 'Сборка нодовых воркфлоу в ComfyUI для генерации сюжетных сетов с высоким сохранением узнаваемости аватара.' }
+      ]
+    },
     techStack: [
       { name: 'AI-Toolkit (Local LoRA)', icon: 'cpu' },
       { name: 'NVIDIA RTX 4070 Ti SUPER 16GB', icon: 'zap' },
@@ -322,33 +376,31 @@ export function initCaseInspector() {
         </div>
       `;
     } else if (activeTab === 'architecture') {
+      const arch = activeCase.architecture || {
+        title: 'Архитектурный подход и роли компонентов',
+        desc: 'Данный кейс спроектирован с учетом требований высокой отказоустойчивости, модульности и безопасного разделения ответственности.',
+        highlights: [
+          { icon: 'shield-check', title: 'Безопасность & Изоляция', desc: 'Все конфиденциальные данные вынесены за пределы клиентского кода.' },
+          { icon: 'zap', title: 'Производительность & Оптимизация', desc: 'Минимизация задержек за счет асинхронной обработки ресурсов.' },
+          { icon: 'refresh-cw', title: 'Надежность & Fallback', desc: 'Предусмотрены сценарии сохранения работоспособности.' }
+        ]
+      };
+
       bodyContainer.innerHTML = `
         <div class="architecture-tab-wrap">
-          <h4><i data-lucide="layers"></i> Архитектурный подход и роли компонентов</h4>
-          <p class="arch-desc">Данный кейс спроектирован с учетом требований высокой отказоустойчивости, модульности и безопасного разделения ответственности (Separation of Concerns).</p>
+          <h4><i data-lucide="layers"></i> ${arch.title}</h4>
+          <p class="arch-desc">${arch.desc}</p>
           
           <div class="arch-highlights-list">
-            <div class="arch-item">
-              <div class="arch-icon"><i data-lucide="shield-check"></i></div>
-              <div>
-                <strong>Безопасность & Изоляция</strong>
-                <p>Все конфиденциальные данные вынесены за пределы клиентского кода. Применяются стандарты изоляции среды.</p>
+            ${arch.highlights.map(h => `
+              <div class="arch-item">
+                <div class="arch-icon"><i data-lucide="${h.icon}"></i></div>
+                <div>
+                  <strong>${h.title}</strong>
+                  <p>${h.desc}</p>
+                </div>
               </div>
-            </div>
-            <div class="arch-item">
-              <div class="arch-icon"><i data-lucide="zap"></i></div>
-              <div>
-                <strong>Производительность & Оптимизация</strong>
-                <p>Минимизация задержек за счет асинхронной обработки и эффективного использования аппаратных ресурсов.</p>
-              </div>
-            </div>
-            <div class="arch-item">
-              <div class="arch-icon"><i data-lucide="refresh-cw"></i></div>
-              <div>
-                <strong>Надежность & Fallback</strong>
-                <p>Предусмотрены сценарии обработки ошибок сетевого слоя и локальные пути сохранения работоспособности.</p>
-              </div>
-            </div>
+            `).join('')}
           </div>
         </div>
       `;
