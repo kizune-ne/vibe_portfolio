@@ -734,11 +734,9 @@
 
     </section>
 
-    <!-- Row 6 & 7: TG CONTENT MANAGEMENT & OBSIDIAN KNOWLEDGE VAULT (2-Column Bento Row) -->
-    <section class="bento-row row-content-knowledge" id="content-knowledge">
-
-      <!-- Card 1: TG Content Management & SMM -->
-      <article class="bento-card card-tg-content" id="cardTgContent">
+    <!-- Row 6: TG CONTENT MANAGEMENT -->
+    <section class="bento-row row-tg-content" id="tg-content">
+      <article class="bento-card card-tg-content-main" id="cardTgContent">
         <div class="spotlight-border"></div>
         
         <div class="card-header-flex">
@@ -788,16 +786,18 @@
           <span class="skill-pill"><i data-lucide="bar-chart-2"></i> ER Analytics</span>
         </div>
       </article>
+    </section>
 
-      <!-- Card 2: Obsidian Knowledge Vault & AI Memory -->
-      <article class="bento-card card-obsidian-rag" id="cardObsidianRag">
+    <!-- Row 7: OBSIDIAN KNOWLEDGE VAULT & AI MEMORY (Full-Width Interactive Showcase) -->
+    <section class="bento-row row-obsidian-rag" id="knowledge-brain">
+      <article class="bento-card card-obsidian-rag-main" id="cardObsidianRag">
         <div class="spotlight-border"></div>
         
         <div class="card-header-flex">
           <div>
             <span class="section-tag">07 // KNOWLEDGE &amp; AI MEMORY</span>
             <h2 class="card-title">Построение Базы Знаний Obsidian &amp; ИИ-Памяти</h2>
-            <p class="card-subtitle">Системная организация базы знаний в Obsidian: сохранение проверенных команд, инструкций, конфигураций и связка их с ИИ-ассистентами для чистой разработки без ошибок.</p>
+            <p class="card-subtitle">Централизованная организация инженерных знаний: сохранение проверенных команд, архитектурных рецептов, промптов и передача контекста в ИИ-ассистентов.</p>
           </div>
           <div class="card-header-actions">
             <button class="btn-case-inspect" data-case-id="obsidian-rag">
@@ -806,30 +806,142 @@
           </div>
         </div>
 
-        <div class="content-features-grid">
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="book-open"></i></div>
-            <div class="feature-text">
-              <strong>Систематизация &amp; Obsidian Vault</strong>
-              <p>Упаковка команд Docker, конфигураций серверов, шаблонов промптов и алгоритмов в формат Markdown-заметок с тегами и перекрестными ссылками <code>[[ссылка]]</code>. Все решения под рукой за 2 секунды.</p>
+        <!-- Interactive Second Brain Inspector Stand -->
+        <div class="obsidian-rag-stand" id="obsidianRAGStand">
+          <div class="obsidian-stand-header">
+            <div class="obsidian-mode-tabs">
+              <button class="obsidian-mode-btn active" data-mode="vault">
+                <i data-lucide="book-open"></i> 1. База Знаний (Obsidian Vault)
+              </button>
+              <button class="obsidian-mode-btn" data-mode="pipeline">
+                <i data-lucide="bot"></i> 2. Связка с ИИ-Агентом
+              </button>
+              <button class="obsidian-mode-btn" data-mode="manifest">
+                <i data-lucide="bar-chart-2"></i> 3. Сравнение Эффективности
+              </button>
+            </div>
+            <div class="obsidian-stand-badge">
+              <span class="status-dot"></span> 1,000+ заметок в базе
             </div>
           </div>
 
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="bot"></i></div>
-            <div class="feature-text">
-              <strong>Передача Контекста в ИИ-Агента</strong>
-              <p>ИИ-ассистент считывает из базы заметок готовые правила проекта перед началом кодинга, что исключает ошибки, повторные уточнения и «галюцинации» модели.</p>
+          <!-- VIEWPORT 1: Vault Explorer -->
+          <div class="obsidian-viewport active" data-viewport="vault">
+            <div class="vault-explorer-layout">
+              <div class="vault-categories-sidebar">
+                <div class="sidebar-title">КАТЕГОРИИ ЗАМЕТОК</div>
+                <div class="vault-cat-item active" data-cat="infra">
+                  <i data-lucide="container"></i>
+                  <div>
+                    <strong>01_Infrastructure</strong>
+                    <span>Docker, VRAM, Nginx, GPU</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="python">
+                  <i data-lucide="code"></i>
+                  <div>
+                    <strong>02_Python_Modules</strong>
+                    <span>Pyrogram, Async Redis, Deduplicate</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="ai">
+                  <i data-lucide="sparkles"></i>
+                  <div>
+                    <strong>03_AI_Prompts</strong>
+                    <span>LLM Coder, LoRA Flux Captions</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="qmk">
+                  <i data-lucide="cpu"></i>
+                  <div>
+                    <strong>04_Embedded_C</strong>
+                    <span>QMK / Vial GCC Linker Patches</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="vault-note-preview-box" id="vaultNotePreview">
+                <div class="preview-note-header">
+                  <span class="preview-note-title"><i data-lucide="file-text"></i> [[docker_nvidia_cuda_passthrough.md]]</span>
+                  <span class="preview-note-tag">#infrastructure</span>
+                </div>
+                <p class="preview-note-desc">Готовый рабочий рецепт проброса VRAM видеокарты RTX 4070 Ti SUPER в контейнеры Ollama и ComfyUI.</p>
+                <pre><code class="language-yaml">version: "3.8"
+services:
+  ollama:
+    image: ollama/ollama:latest
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]</code></pre>
+              </div>
             </div>
           </div>
 
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="zap"></i></div>
-            <div class="feature-text">
-              <strong>Результат для Проекта &amp; Команды</strong>
-              <p>Исключение потери архитектурных идей, экономия времени на поиск старых скриптов и ускорение разработки новых модулей в 5 раз.</p>
+          <!-- VIEWPORT 2: Context Pipeline -->
+          <div class="obsidian-viewport" data-viewport="pipeline">
+            <div class="pipeline-steps-grid">
+              <div class="pipeline-step-card">
+                <div class="step-num">01</div>
+                <div class="step-icon"><i data-lucide="message-square"></i></div>
+                <h4>Постановка Задачи</h4>
+                <p>Разработчик формулирует задачу ИИ-ассистенту (например: <em>«Создай асинхронный модуль публикации постов»</em>).</p>
+              </div>
+
+              <div class="pipeline-arrow"><i data-lucide="arrow-right"></i></div>
+
+              <div class="pipeline-step-card active">
+                <div class="step-num">02</div>
+                <div class="step-icon"><i data-lucide="book-open"></i></div>
+                <h4>Извлечение Правил</h4>
+                <p>ИИ-ассистент моментально подтягивает из базы заметок Obsidian проверенный шаблон с правилами <code>MarkdownV2</code> и защиты от дублей.</p>
+              </div>
+
+              <div class="pipeline-arrow"><i data-lucide="arrow-right"></i></div>
+
+              <div class="pipeline-step-card">
+                <div class="step-num">03</div>
+                <div class="step-icon"><i data-lucide="check-circle-2"></i></div>
+                <h4>Чистый Код С 1-й Попытки</h4>
+                <p>ИИ генерирует 100% рабочий код строго по стандартам проекта без галюцинаций, ошибок синтаксиса и повторных вопросов.</p>
+              </div>
             </div>
           </div>
+
+          <!-- VIEWPORT 3: Efficiency Manifesto -->
+          <div class="obsidian-viewport" data-viewport="manifest">
+            <div class="manifesto-comparison-grid">
+              <div class="comparison-col bad">
+                <div class="col-head">
+                  <i data-lucide="x-circle"></i>
+                  <span>Без Второго Мозга</span>
+                </div>
+                <ul>
+                  <li><i data-lucide="x"></i> Фрагменты кода и команды теряются в истории терминала и чатах</li>
+                  <li><i data-lucide="x"></i> Разработчик тратит 2-3 часа на повторный поиск старых скриптов</li>
+                  <li><i data-lucide="x"></i> ИИ путает контекст, предлагает костыли и требует 10 уточнений</li>
+                  <li><i data-lucide="x"></i> Высокий риск сломать архитектуру при передаче задач другим людям</li>
+                </ul>
+              </div>
+
+              <div class="comparison-col good">
+                <div class="col-head">
+                  <i data-lucide="check-circle-2"></i>
+                  <span>С Цифровым Мозгом в Obsidian</span>
+                </div>
+                <ul>
+                  <li><i data-lucide="check"></i> Единый структурированный хаб инженерных знаний за 2 секунды</li>
+                  <li><i data-lucide="check"></i> ИИ-ассистенты моментально считывают корпоративные стандарты</li>
+                  <li><i data-lucide="check"></i> Скорость написания новых модулей и скриптов выше в 5 раз</li>
+                  <li><i data-lucide="check"></i> 100% сохранение уникальных архитектурных решений проекта</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="card-skills-footer">
@@ -840,7 +952,6 @@
           <span class="skill-pill"><i data-lucide="shield-check"></i> Zero Context Waste</span>
         </div>
       </article>
-
     </section>
 
   </main>
