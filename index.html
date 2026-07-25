@@ -830,53 +830,46 @@
             <div class="vault-explorer-layout">
               <div class="vault-categories-sidebar">
                 <div class="sidebar-title">КАТЕГОРИИ ЗАМЕТОК</div>
-                <div class="vault-cat-item active" data-cat="infra">
-                  <i data-lucide="container"></i>
+                <div class="vault-cat-item active" data-cat="cheatsheets">
+                  <i data-lucide="file-text"></i>
                   <div>
-                    <strong>01_Infrastructure</strong>
-                    <span>Docker, VRAM, Nginx, GPU</span>
+                    <strong>01_Шпаргалки</strong>
+                    <span>Команды деплоя, конфиги</span>
                   </div>
                 </div>
-                <div class="vault-cat-item" data-cat="python">
-                  <i data-lucide="code"></i>
+                <div class="vault-cat-item" data-cat="architecture">
+                  <i data-lucide="layers"></i>
                   <div>
-                    <strong>02_Python_Modules</strong>
-                    <span>Pyrogram, Async Redis, Deduplicate</span>
+                    <strong>02_Архитектура</strong>
+                    <span>Правила чистой разработки</span>
                   </div>
                 </div>
                 <div class="vault-cat-item" data-cat="ai">
-                  <i data-lucide="sparkles"></i>
+                  <i data-lucide="bot"></i>
                   <div>
-                    <strong>03_AI_Prompts</strong>
-                    <span>LLM Coder, LoRA Flux Captions</span>
+                    <strong>03_ИИ_Инструкции</strong>
+                    <span>Системные промпты</span>
                   </div>
                 </div>
-                <div class="vault-cat-item" data-cat="qmk">
-                  <i data-lucide="cpu"></i>
+                <div class="vault-cat-item" data-cat="research">
+                  <i data-lucide="book-open"></i>
                   <div>
-                    <strong>04_Embedded_C</strong>
-                    <span>QMK / Vial GCC Linker Patches</span>
+                    <strong>04_База_Знаний</strong>
+                    <span>Второй мозг &amp; связи</span>
                   </div>
                 </div>
               </div>
 
               <div class="vault-note-preview-box" id="vaultNotePreview">
                 <div class="preview-note-header">
-                  <span class="preview-note-title"><i data-lucide="file-text"></i> [[docker_nvidia_cuda_passthrough.md]]</span>
-                  <span class="preview-note-tag">#infrastructure</span>
+                  <span class="preview-note-title"><i data-lucide="file-text"></i> [[Команды_и_Шпаргалки.md]]</span>
+                  <span class="preview-note-tag">#cheatsheet</span>
                 </div>
-                <p class="preview-note-desc">Готовый рабочий рецепт проброса VRAM видеокарты RTX 4070 Ti SUPER в контейнеры Ollama и ComfyUI.</p>
-                <pre><code class="language-yaml">version: "3.8"
-services:
-  ollama:
-    image: ollama/ollama:latest
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]</code></pre>
+                <p class="preview-note-desc">Быстрые проверенные инструкции по настройке окружения, запуску серверов и деплою.</p>
+                <pre><code class="language-markdown"># Базовые инструкции по запуску
+1. Проверка переменных среды (.env)
+2. Локальный запуск dev-сервера
+3. Автоматический сбор логов в папку /logs/</code></pre>
               </div>
             </div>
           </div>

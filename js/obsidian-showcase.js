@@ -1,5 +1,5 @@
 /* ==========================================================================
-   OBSIDIAN SECOND BRAIN SHOWCASE MODULE
+   OBSIDIAN SECOND BRAIN SHOWCASE MODULE (HUMAN-READABLE & UNIVERSAL)
    ========================================================================== */
 
 export function initObsidianShowcase() {
@@ -11,53 +11,45 @@ export function initObsidianShowcase() {
   const catItems = stand.querySelectorAll('.vault-cat-item');
   const previewContainer = document.getElementById('vaultNotePreview');
 
-  // Vault Categories Data
+  // Vault Categories Data - Simple, Clean, Universal for Any Reader
   const NOTES_DATA = {
-    'infra': {
-      title: '[[docker_nvidia_cuda_passthrough.md]]',
-      tag: '#infrastructure',
-      desc: 'Готовый рабочий рецепт проброса VRAM видеокарты RTX 4070 Ti SUPER в контейнеры Ollama и ComfyUI.',
-      code: `version: "3.8"
-services:
-  ollama:
-    image: ollama/ollama:latest
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]`
+    'cheatsheets': {
+      title: '[[Команды_и_Шпаргалки.md]]',
+      tag: '#cheatsheet',
+      desc: 'Быстрые проверенные инструкции по настройке окружения, запуску серверов и деплою.',
+      code: `# Базовые инструкции по запуску
+1. Проверка переменных среды (.env)
+2. Локальный запуск dev-сервера
+3. Автоматический сбор логов в папку /logs/`
     },
-    'python': {
-      title: '[[tg_async_dedup_engine.md]]',
-      tag: '#python_async',
-      desc: 'Алгоритм хэширования медиа и асинхронной проверки дубликатов сообщений перед записью в PostgreSQL.',
-      code: `import hashlib
-async def is_duplicate(message_bytes: bytes, redis_client) -> bool:
-    msg_hash = hashlib.sha256(message_bytes).hexdigest()
-    exists = await redis_client.get(f"msg:{msg_hash}")
-    if not exists:
-        await redis_client.setex(f"msg:{msg_hash}", 86400, "1")
-    return bool(exists)`
+    'architecture': {
+      title: '[[Стандарты_и_Архитектура.md]]',
+      tag: '#architecture',
+      desc: 'Зафиксированные правила построения кода, чистой структуры проектов и стандартам качества.',
+      code: `# Стандарты Разработки
+- Модульность: каждый файл решает одну четкую задачу
+- Изоляция: чувствительные ключи хранятся в _keys/.env
+- Документирование: понятные комментарии к ключевой логике`
     },
     'ai': {
-      title: '[[lora_flux_captioning_template.md]]',
-      tag: '#generative_media',
-      desc: 'Откалиброванные системные промпты для идеального капшенинга и обучения персонажных LoRA под Flux/Wan.',
-      code: `[SYSTEM_PROMPT]
-Role: Elite AI Vision Captioner
-Task: Generate precise trigram tags for character consistency.
-Format: [trigger_word], [clothing], [lighting], [camera_angle]`
+      title: '[[Правила_для_ИИ_Разработчика.md]]',
+      tag: '#ai_prompts',
+      desc: 'Откалиброванные системные промпты и правила, которые передаются ИИ перед началом кодинга.',
+      code: `# Системный Промпт для ИИ-Ассистента
+Роль: Senior Fullstack Architect
+Правила:
+- Пиши код строго на английском языке
+- Используй современные стандарты без усложнений
+- Все объяснения давай на понятном русском языке`
     },
-    'qmk': {
-      title: '[[monsgeek_vial_linker_patch.md]]',
-      tag: '#embedded_c',
-      desc: 'Фикс ошибки линковщика GCC ARM LDFLAGS при компиляции прошивки клавиатуры MonsGeek M1 под Vial.',
-      code: `// rules.mk patch for LDFLAGS overflow
-LDFLAGS += -Wl,--gc-sections
-BOOTLOADER = stm32-dfu
-VIAL_ENABLE = yes`
+    'research': {
+      title: '[[База_Знаний_и_Заметок.md]]',
+      tag: '#second_brain',
+      desc: 'Единый каталог всех полезных решений, библиотек, статей и двунаправленных связей.',
+      code: `# Единый Инженерный Хаб
+- [[Команды_и_Шпаргалки]] — инструкции по деплою
+- [[Стандарты_и_Архитектура]] — правила кода
+- [[Правила_для_ИИ_Разработчика]] — системные промпты`
     }
   };
 
@@ -92,7 +84,7 @@ VIAL_ENABLE = yes`
             <span class="preview-note-tag">${note.tag}</span>
           </div>
           <p class="preview-note-desc">${note.desc}</p>
-          <pre><code class="language-yaml">${escapeHtml(note.code)}</code></pre>
+          <pre><code class="language-markdown">${escapeHtml(note.code)}</code></pre>
         `;
         if (window.lucide) lucide.createIcons();
       }
