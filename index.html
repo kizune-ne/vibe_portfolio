@@ -601,105 +601,120 @@
           </div>
         </div>
 
-        <!-- AI Gallery Showcase Grid -->
-        <div class="ai-gallery-stand">
-          <div class="ai-gallery-header">
+        <!-- AI Dataset Interactive Showcase Stand -->
+        <div class="ai-showcase-stand" id="aiInfluencerShowcase">
+          <div class="ai-showcase-header">
             <div>
-              <h4 class="ai-gallery-title"><i data-lucide="image"></i> Галерея Датасета под Обучение LoRA (Dataset Samples)</h4>
-              <span class="ai-gallery-subtitle">Примеры обработанных и описанных кадров датасета для локальной тренировки LoRA (Wan 2.2 / Flux)</span>
+              <h4 class="ai-showcase-title"><i data-lucide="scan"></i> Инспектор Датасета &amp; Сэмплов LoRA (Wan 2.2 / Flux)</h4>
+              <span class="ai-showcase-subtitle">Интерактивный просмотр сэмплов обработанного датасета с разметкой освещения и ракурсов</span>
             </div>
-            <div class="ai-gallery-badge">
-              <span class="status-dot"></span> Dataset Ready (Wan 2.2 / Flux)
+            <div class="ai-showcase-badge">
+              <span class="status-dot"></span> 5 Samples Dataset Ready
             </div>
           </div>
 
-          <div class="ai-gallery-cards-grid" id="aiGalleryGrid">
-            <!-- Card 1: Sunset Lighting Sample -->
-            <div class="ai-media-card">
-              <div class="media-card-thumb">
-                <img src="assets/ai_influencer/ref_base.jpg" alt="Кадр из датасета: закатный свет" loading="lazy">
-                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #01</div>
-                <div class="media-glow"></div>
+          <div class="ai-inspector-grid">
+
+            <!-- LEFT: Featured Image Preview & Metadata (60% width) -->
+            <div class="ai-focal-viewport">
+              <div class="focal-img-wrap">
+                <img src="assets/ai_influencer/ref_base.jpg" id="aiFeaturedImage" alt="Активный кадр датасета">
+                <div class="focal-overlay-badge" id="aiFeaturedTag">
+                  <i data-lucide="file-text"></i> Dataset Sample #01
+                </div>
+                <div class="focal-glow"></div>
               </div>
-              <div class="media-card-body">
-                <h5>Закатное Освещение</h5>
-                <p>Кадр датасета: теплый вечерний боковой свет, кружевная одежда, детализация волос.</p>
-                <div class="media-card-meta">
+
+              <div class="focal-meta-box">
+                <h4 id="aiFeaturedTitle">Sample #01: Закатное Освещение</h4>
+                <p id="aiFeaturedDesc">Теплый вечерний боковой свет, кружевная одежда, детализация волос и тона кожи в закатный час.</p>
+                <div class="focal-tags" id="aiFeaturedTags">
                   <span class="chip-accent">Sunset Light</span>
                   <span class="chip-accent">Wan 2.2 Tagged</span>
+                  <span class="chip-accent">Heterochromia Retained</span>
                 </div>
               </div>
             </div>
 
-            <!-- Card 2: High-Key Studio Sample -->
-            <div class="ai-media-card">
-              <div class="media-card-thumb">
-                <img src="assets/ai_influencer/studio_shot.jpg" alt="Кадр из датасета: студийный свет" loading="lazy">
-                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #02</div>
-                <div class="media-glow"></div>
+            <!-- RIGHT: Interactive Filmstrip Selector (40% width) -->
+            <div class="ai-filmstrip-selector">
+              <div class="selector-head">
+                <i data-lucide="layers"></i>
+                <span>ВЫБОР СЭМПЛА ДАТАСЕТА (5)</span>
               </div>
-              <div class="media-card-body">
-                <h5>Яркий Студийный Свет</h5>
-                <p>Кадр датасета: нейтральный белый фон, студийная вспышка, фронтальный портрет.</p>
-                <div class="media-card-meta">
-                  <span class="chip-accent">Studio Light</span>
-                  <span class="chip-accent">Clear Features</span>
-                </div>
-              </div>
-            </div>
 
-            <!-- Card 3: Low-Angle Macro Sample -->
-            <div class="ai-media-card">
-              <div class="media-card-thumb">
-                <img src="assets/ai_influencer/close_up.jpg" alt="Кадр из датасета: нижний ракурс" loading="lazy">
-                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #03</div>
-                <div class="media-glow"></div>
-              </div>
-              <div class="media-card-body">
-                <h5>Нижний Ракурс &amp; Макро</h5>
-                <p>Кадр датасета: ракурс снизу вверх, фиксация черт лица, бровей и гетерохромии.</p>
-                <div class="media-card-meta">
-                  <span class="chip-accent">Low Angle</span>
-                  <span class="chip-accent">Heterochromia</span>
-                </div>
-              </div>
-            </div>
+              <div class="selector-items-list">
 
-            <!-- Card 4: Outdoor Beach Sample -->
-            <div class="ai-media-card">
-              <div class="media-card-thumb">
-                <img src="assets/ai_influencer/outdoor_beach.jpg" alt="Кадр из датасета: пляжный фон" loading="lazy">
-                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #04</div>
-                <div class="media-glow"></div>
-              </div>
-              <div class="media-card-body">
-                <h5>Пляж &amp; Естественный Свет</h5>
-                <p>Кадр датасета: дневное естественное освещение на открытом воздухе, фон моря.</p>
-                <div class="media-card-meta">
-                  <span class="chip-accent">Outdoor Beach</span>
-                  <span class="chip-accent">Natural Light</span>
+                <!-- Sample 01 -->
+                <div class="ai-selector-item active" data-sample-id="01">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/ref_base.jpg" alt="Sample 01">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #01</span>
+                    <strong>Закатное Освещение</strong>
+                    <span class="item-sub">Теплый боковой свет, вечер</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
                 </div>
-              </div>
-            </div>
 
-            <!-- Card 5: Golden Hour Indoor Sample -->
-            <div class="ai-media-card">
-              <div class="media-card-thumb">
-                <img src="assets/ai_influencer/golden_hour.jpg" alt="Кадр из датасета: золотой час в интерьере" loading="lazy">
-                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #05</div>
-                <div class="media-glow"></div>
-              </div>
-              <div class="media-card-body">
-                <h5>Интерьер в Золотой Час</h5>
-                <p>Кадр датасета: мягкие тени от солнца в комнате, шелковая текстура, домашний сет.</p>
-                <div class="media-card-meta">
-                  <span class="chip-accent">Indoor Sunset</span>
-                  <span class="chip-accent">AI-Toolkit Ready</span>
+                <!-- Sample 02 -->
+                <div class="ai-selector-item" data-sample-id="02">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/studio_shot.jpg" alt="Sample 02">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #02</span>
+                    <strong>Яркий Студийный Свет</strong>
+                    <span class="item-sub">Студийный вспышечный кадр</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
                 </div>
+
+                <!-- Sample 03 -->
+                <div class="ai-selector-item" data-sample-id="03">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/close_up.jpg" alt="Sample 03">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #03</span>
+                    <strong>Нижний Ракурс &amp; Макро</strong>
+                    <span class="item-sub">Перспектива снизу вверх</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 04 -->
+                <div class="ai-selector-item" data-sample-id="04">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/outdoor_beach.jpg" alt="Sample 04">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #04</span>
+                    <strong>Пляж &amp; Естественный Свет</strong>
+                    <span class="item-sub">Дневной свет на фоне моря</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 05 -->
+                <div class="ai-selector-item" data-sample-id="05">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/golden_hour.jpg" alt="Sample 05">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #05</span>
+                    <strong>Интерьер в Золотой Час</strong>
+                    <span class="item-sub">Шелковый халат, тень от окна</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
               </div>
             </div>
 
           </div>
+        </div>
         </div>
 
         <!-- Specs Footer -->
