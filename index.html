@@ -793,16 +793,69 @@
     </section>
 
     <!-- Row 7: OBSIDIAN KNOWLEDGE VAULT & AI MEMORY -->
-    <section class="bento-row row-obsidian-rag" id="knowledge-brain">
+    <section class="bento-row row-content-knowledge" id="content-knowledge">
 
-      <article class="bento-card card-obsidian-rag-main" id="cardObsidianRag">
+      <!-- Card 1: TG Content Management & SMM -->
+      <article class="bento-card card-tg-content" id="cardTgContent">
+        <div class="spotlight-border"></div>
+        
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">06 // TG CONTENT &amp; AUTOMATED PUBLISHING</span>
+            <h2 class="card-title">Автоматизированный Telegram Контент-Менеджмент</h2>
+            <p class="card-subtitle">Создание контент-стратегий, генерация постов через AI Copywriter, автопостинг по расписанию, вариативный Tone-of-Voice (iGaming, Крипта, Трейдинг, IT) и аналитика ER.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="tg-content">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <div class="content-features-grid">
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="sparkles"></i></div>
+            <div class="feature-text">
+              <strong>Контент-Матрица &amp; AI-Копирайтинг</strong>
+              <p>Разработка контент-планов, генерация цепляющих заголовков, офферов и экспертных постов с тонкой настройкой Tone-of-Voice под целевые ниши (iGaming / Крипта / Трейдинг / IT).</p>
+            </div>
+          </div>
+
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="clock"></i></div>
+            <div class="feature-text">
+              <strong>Автопостинг &amp; Инлайн-Оформление 24/7</strong>
+              <p>Планировщик публикаций по расписанию через Telegram Bot API: авто-верстка MarkdownV2, прикрепление медиафайлов и генерация кликабельных инлайн-кнопок с CTA-ссылками.</p>
+            </div>
+          </div>
+
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
+            <div class="feature-text">
+              <strong>Модерационный Канал &amp; Аналитика ER</strong>
+              <p>Предварительный просмотр постов в закрытом канале модератора перед выходом в публичный эфир. Отслеживание охватов (Views), CTR ссылок и реакций аудитории.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-skills-footer">
+          <span class="skill-pill"><i data-lucide="file-edit"></i> Контент-План</span>
+          <span class="skill-pill"><i data-lucide="sparkles"></i> AI Copywriting</span>
+          <span class="skill-pill"><i data-lucide="message-square"></i> Tone-of-Voice</span>
+          <span class="skill-pill"><i data-lucide="clock"></i> Автопостинг</span>
+          <span class="skill-pill"><i data-lucide="bar-chart-2"></i> ER Analytics</span>
+        </div>
+      </article>
+
+      <!-- Card 2: Obsidian Knowledge Vault & AI Memory -->
+      <article class="bento-card card-obsidian-rag" id="cardObsidianRag">
         <div class="spotlight-border"></div>
         
         <div class="card-header-flex">
           <div>
             <span class="section-tag">07 // KNOWLEDGE &amp; AI MEMORY</span>
-            <h2 class="card-title">База Знаний Obsidian &amp; ИИ-Память Проекта</h2>
-            <p class="card-subtitle">Централизованное хранилище шпаргалок, архитектурных решений, консольных команд и скриптов в формате заметок Obsidian с умным ИИ-поиском по смыслу (RAG).</p>
+            <h2 class="card-title">Построение Базы Знаний Obsidian &amp; ИИ-Памяти</h2>
+            <p class="card-subtitle">Системная организация базы знаний в Obsidian: сохранение проверенных команд, инструкций, конфигураций и связка их с ИИ-ассистентами для чистой разработки без ошибок.</p>
           </div>
           <div class="card-header-actions">
             <button class="btn-case-inspect" data-case-id="obsidian-rag">
@@ -811,123 +864,39 @@
           </div>
         </div>
 
-        <!-- Interactive Obsidian RAG Stand -->
-        <div class="obsidian-rag-stand" id="obsidianRAGStand">
-          <div class="obsidian-stand-header">
-            <div class="obsidian-mode-tabs">
-              <button class="obsidian-mode-btn active" data-mode="search">
-                <i data-lucide="search"></i> 1. Умный ИИ-Поиск (RAG)
-              </button>
-              <button class="obsidian-mode-btn" data-mode="graph">
-                <i data-lucide="git-fork"></i> 2. Карта Связей Заметок
-              </button>
-              <button class="obsidian-mode-btn" data-mode="agent">
-                <i data-lucide="bot"></i> 3. Передача в ИИ-Агента
-              </button>
-            </div>
-            <div class="obsidian-stand-badge">
-              <span class="status-dot"></span> 1,000+ заметок в базе
+        <div class="content-features-grid">
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="book-open"></i></div>
+            <div class="feature-text">
+              <strong>Систематизация &amp; Obsidian Vault</strong>
+              <p>Упаковка команд Docker, конфигураций серверов, шаблонов промптов и алгоритмов в формат Markdown-заметок с тегами и перекрестными ссылками <code>[[ссылка]]</code>. Все решения под рукой за 2 секунды.</p>
             </div>
           </div>
 
-          <!-- VIEWPORT 1: Live RAG Search Simulator -->
-          <div class="obsidian-viewport active" data-viewport="search">
-            <div class="rag-search-bar-wrap">
-              <div class="rag-search-input-box">
-                <i data-lucide="search" class="search-icon"></i>
-                <input type="text" id="ragSearchInput" placeholder="Поиск по базе заметок (например: CUDA Docker, Хэш TG, LoRA Wan 2.2)..." value="Как настроить CUDA в Docker?">
-              </div>
-              <div class="rag-quick-chips">
-                <span class="chip-label">Быстрые примеры:</span>
-                <button class="rag-chip" data-query="cuda"><i data-lucide="container"></i> CUDA Docker</button>
-                <button class="rag-chip" data-query="дедупликация"><i data-lucide="database"></i> Дедупликация TG</button>
-                <button class="rag-chip" data-query="lora"><i data-lucide="sparkles"></i> LoRA Wan 2.2</button>
-                <button class="rag-chip" data-query="qmk"><i data-lucide="cpu"></i> QMK LDFLAGS</button>
-              </div>
-            </div>
-
-            <!-- Dynamic Search Results -->
-            <div class="rag-results-list" id="ragResultsContainer">
-              <!-- Dynamically populated by obsidian-rag-inspector.js -->
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="bot"></i></div>
+            <div class="feature-text">
+              <strong>Передача Контекста в ИИ-Агента</strong>
+              <p>ИИ-ассистент считывает из базы заметок готовые правила проекта перед началом кодинга, что исключает ошибки, повторные уточнения и «галюцинации» модели.</p>
             </div>
           </div>
 
-          <!-- VIEWPORT 2: Connected Notes Map -->
-          <div class="obsidian-viewport" data-viewport="graph">
-            <div class="obsidian-graph-grid">
-              <div class="graph-node-card focal">
-                <div class="node-icon"><i data-lucide="book-open"></i></div>
-                <div>
-                  <strong>[[Главная_База_Знаний.md]]</strong>
-                  <p>Центральный хаб всех инженерных инструкций и решений</p>
-                </div>
-                <span class="node-badge">1,000+ Заметок</span>
-              </div>
-              
-              <div class="graph-nodes-branches">
-                <div class="graph-node-card">
-                  <div class="node-icon"><i data-lucide="container"></i></div>
-                  <div>
-                    <strong>[[docker_cuda_passthrough.md]]</strong>
-                    <p>Проброс VRAM GPU и Compose конфигурации</p>
-                  </div>
-                </div>
-                <div class="graph-node-card">
-                  <div class="node-icon"><i data-lucide="send"></i></div>
-                  <div>
-                    <strong>[[tg_parser_dedup_engine.md]]</strong>
-                    <p>Алгоритмы асинхронной защиты БД от дублей</p>
-                  </div>
-                </div>
-                <div class="graph-node-card">
-                  <div class="node-icon"><i data-lucide="image"></i></div>
-                  <div>
-                    <strong>[[ai_influencer_lora_pipeline.md]]</strong>
-                    <p>Шаблоны капшенинга и обучения LoRA</p>
-                  </div>
-                </div>
-                <div class="graph-node-card">
-                  <div class="node-icon"><i data-lucide="cpu"></i></div>
-                  <div>
-                    <strong>[[monsgeek_vial_patch.md]]</strong>
-                    <p>Патчи линковщика GCC ARM под QMK</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- VIEWPORT 3: Agent Memory Terminal -->
-          <div class="obsidian-viewport" data-viewport="agent">
-            <div class="agent-memory-terminal">
-              <div class="terminal-bar">
-                <span class="term-dot red"></span>
-                <span class="term-dot yellow"></span>
-                <span class="term-dot green"></span>
-                <span class="term-title">PYTHON RAG ENGINE // Подгрузка правил в ИИ-Агента</span>
-              </div>
-              <pre><code class="language-python"><span class="code-comment"># 1. Запрос пользователя ИИ-ассистенту: "Настрой Compose для Ollama CUDA"</span>
-query = <span class="code-string">"Проброс VRAM CUDA в Docker Compose для Ollama"</span>
-
-<span class="code-comment"># 2. ИИ-поисковик моментально находит лучшую готовую инструкцию в базе заметок:</span>
-note_chunk = vault.search(query, top_k=<span class="code-number">1</span>)
-<span class="code-comment"># Найдена заметка: [[docker_nvidia_cuda_passthrough.md]] (Точность совпадения: 98.4%)</span>
-
-<span class="code-comment"># 3. Инструкция передается ИИ перед началом кодинга:</span>
-<span class="code-keyword">print</span>(<span class="code-string">"ИИ генерирует код с 100% соблюдением корпоративных правил!"</span>)</code></pre>
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="zap"></i></div>
+            <div class="feature-text">
+              <strong>Результат для Проекта &amp; Команды</strong>
+              <p>Исключение потери архитектурных идей, экономия времени на поиск старых скриптов и ускорение разработки новых модулей в 5 раз.</p>
             </div>
           </div>
         </div>
 
-        <!-- Specs Footer -->
-        <div class="obsidian-arch-footer-bar">
-          <span class="arch-footer-chip"><i data-lucide="book-open"></i> Obsidian Markdown заметок</span>
-          <span class="arch-footer-chip"><i data-lucide="search"></i> Поиск по смыслу (RAG) &lt; 2 сек</span>
-          <span class="arch-footer-chip"><i data-lucide="git-commit"></i> Связи заметок [[ссылка]]</span>
-          <span class="arch-footer-chip"><i data-lucide="shield-check"></i> 100% Локально и безопасно</span>
-          <span class="arch-footer-chip"><i data-lucide="bot"></i> Интеграция с ИИ-ассистентами</span>
+        <div class="card-skills-footer">
+          <span class="skill-pill"><i data-lucide="book-open"></i> Obsidian Vault</span>
+          <span class="skill-pill"><i data-lucide="file-text"></i> Markdown Docs</span>
+          <span class="skill-pill"><i data-lucide="bot"></i> Context Pipeline</span>
+          <span class="skill-pill"><i data-lucide="cpu"></i> AI Memory Bus</span>
+          <span class="skill-pill"><i data-lucide="shield-check"></i> Zero Context Waste</span>
         </div>
-
       </article>
 
     </section>
