@@ -517,22 +517,199 @@
     </section>
 
 
-    <!-- Row 5: AI CREATIVE LAB & GENERATIVE MEDIA (100% Full Width) -->
-    <section class="bento-row" id="creative-lab">
+    <!-- Row 5: AI INFLUENCERS & LORA FINE-TUNING PIPELINE (100% Full Width Bento Layout) -->
+    <section class="bento-row row-ai-influencer" id="creative-lab">
 
-      <!-- AI Influencer & LoRA -->
-      <article class="bento-card card-lab-item" id="cardAiGen">
+      <article class="bento-card card-ai-influencer-main" id="cardAiGen">
         <div class="spotlight-border"></div>
-        <div class="lab-icon">
-          <i data-lucide="sparkles"></i>
+        
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">05 // AI INFLUENCERS & LORA PIPELINE</span>
+            <h2 class="card-title">Виртуальные AI-Инфлюенсеры &amp; Локальная Тренировка LoRA</h2>
+            <p class="card-subtitle">Полный цикл производства синтетического медиаконтента: от генерации референсов лица и капшенинга датасетов (Wan 2.2 / Flux) до локальной тренировки LoRA в AI-Toolkit и финального сэмплирования в ComfyUI.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="ai-influencer">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
         </div>
-        <span class="section-tag">05 // AI & GENERATIVE MEDIA</span>
-        <h3 class="card-title">AI Influencers & Тренировка LoRA</h3>
-        <p class="card-subtitle">Обучение кастомных LoRA моделей (SD / Flux), подготовка датасетов, сгенерированные
-          аватары и персонажи.</p>
-        <div class="lab-footer" style="margin-top: 14px;">
-          <span class="chip-accent">LoRA / Flux Training</span>
+
+        <!-- Pipeline Steps Interactive Flow Visualiser -->
+        <div class="pipeline-flow-container">
+          <div class="pipeline-flow-header">
+            <i data-lucide="git-branch"></i>
+            <span>PRODUCTION PIPELINE // CHARACTER CONSISTENCY ENGINE</span>
+          </div>
+
+          <div class="pipeline-steps-grid">
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">01</div>
+              <div class="pipe-step-icon"><i data-lucide="user-check"></i></div>
+              <h4>1. Концепт Лица &amp; Референс</h4>
+              <p>Генерация базовых кадров модели с высокой детализацией черт. Отбор лучшего каноничного референса.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">Nanobanano 2</span>
+                <span class="tech-pill">ComfyUI</span>
+                <span class="tech-pill">ИИ-Промптинг</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">02</div>
+              <div class="pipe-step-icon"><i data-lucide="file-text"></i></div>
+              <h4>2. Датасет &amp; Капшенинг</h4>
+              <p>Формирование сета кадров, кадрирование и составление точных текстовых описаний под целевую модель.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">Wan 2.2 / Wan 2.1</span>
+                <span class="tech-pill">Flux</span>
+                <span class="tech-pill">Auto-Tagging</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">03</div>
+              <div class="pipe-step-icon"><i data-lucide="cpu"></i></div>
+              <h4>3. Тренировка LoRA (AI-Toolkit)</h4>
+              <p>Локальное обучение весов LoRA на железе RTX 4070 Ti SUPER 16GB. Тестирование чекпоинтов.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">AI-Toolkit</span>
+                <span class="tech-pill">RTX 4070 Ti SUPER</span>
+                <span class="tech-pill">16GB VRAM</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">04</div>
+              <div class="pipe-step-icon"><i data-lucide="sparkles"></i></div>
+              <h4>4. Воркфлоу в ComfyUI</h4>
+              <p>Подключение обученной LoRA к ComfyUI. Генерация фотосессий со 100% консистентностью лица.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">ComfyUI Node Graph</span>
+                <span class="tech-pill">Character Consistency</span>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+        <!-- AI Gallery Showcase Grid -->
+        <div class="ai-gallery-stand">
+          <div class="ai-gallery-header">
+            <div>
+              <h4 class="ai-gallery-title"><i data-lucide="image"></i> Галерея Датасета под Обучение LoRA (Dataset Samples)</h4>
+              <span class="ai-gallery-subtitle">Примеры обработанных и описанных кадров датасета для локальной тренировки LoRA (Wan 2.2 / Flux)</span>
+            </div>
+            <div class="ai-gallery-badge">
+              <span class="status-dot"></span> Dataset Ready (Wan 2.2 / Flux)
+            </div>
+          </div>
+
+          <div class="ai-gallery-cards-grid" id="aiGalleryGrid">
+            <!-- Card 1: Sunset Lighting Sample -->
+            <div class="ai-media-card">
+              <div class="media-card-thumb">
+                <img src="assets/ai_influencer/ref_base.jpg" alt="Кадр из датасета: закатный свет" loading="lazy">
+                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #01</div>
+                <div class="media-glow"></div>
+              </div>
+              <div class="media-card-body">
+                <h5>Закатное Освещение</h5>
+                <p>Кадр датасета: теплый вечерний боковой свет, кружевная одежда, детализация волос.</p>
+                <div class="media-card-meta">
+                  <span class="chip-accent">Sunset Light</span>
+                  <span class="chip-accent">Wan 2.2 Tagged</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: High-Key Studio Sample -->
+            <div class="ai-media-card">
+              <div class="media-card-thumb">
+                <img src="assets/ai_influencer/studio_shot.jpg" alt="Кадр из датасета: студийный свет" loading="lazy">
+                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #02</div>
+                <div class="media-glow"></div>
+              </div>
+              <div class="media-card-body">
+                <h5>Яркий Студийный Свет</h5>
+                <p>Кадр датасета: нейтральный белый фон, студийная вспышка, фронтальный портрет.</p>
+                <div class="media-card-meta">
+                  <span class="chip-accent">Studio Light</span>
+                  <span class="chip-accent">Clear Features</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Low-Angle Macro Sample -->
+            <div class="ai-media-card">
+              <div class="media-card-thumb">
+                <img src="assets/ai_influencer/close_up.jpg" alt="Кадр из датасета: нижний ракурс" loading="lazy">
+                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #03</div>
+                <div class="media-glow"></div>
+              </div>
+              <div class="media-card-body">
+                <h5>Нижний Ракурс &amp; Макро</h5>
+                <p>Кадр датасета: ракурс снизу вверх, фиксация черт лица, бровей и гетерохромии.</p>
+                <div class="media-card-meta">
+                  <span class="chip-accent">Low Angle</span>
+                  <span class="chip-accent">Heterochromia</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Outdoor Beach Sample -->
+            <div class="ai-media-card">
+              <div class="media-card-thumb">
+                <img src="assets/ai_influencer/outdoor_beach.jpg" alt="Кадр из датасета: пляжный фон" loading="lazy">
+                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #04</div>
+                <div class="media-glow"></div>
+              </div>
+              <div class="media-card-body">
+                <h5>Пляж &amp; Естественный Свет</h5>
+                <p>Кадр датасета: дневное естественное освещение на открытом воздухе, фон моря.</p>
+                <div class="media-card-meta">
+                  <span class="chip-accent">Outdoor Beach</span>
+                  <span class="chip-accent">Natural Light</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Golden Hour Indoor Sample -->
+            <div class="ai-media-card">
+              <div class="media-card-thumb">
+                <img src="assets/ai_influencer/golden_hour.jpg" alt="Кадр из датасета: золотой час в интерьере" loading="lazy">
+                <div class="media-overlay-tag"><i data-lucide="file-text"></i> Dataset Sample #05</div>
+                <div class="media-glow"></div>
+              </div>
+              <div class="media-card-body">
+                <h5>Интерьер в Золотой Час</h5>
+                <p>Кадр датасета: мягкие тени от солнца в комнате, шелковая текстура, домашний сет.</p>
+                <div class="media-card-meta">
+                  <span class="chip-accent">Indoor Sunset</span>
+                  <span class="chip-accent">AI-Toolkit Ready</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Specs Footer -->
+        <div class="ai-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="cpu"></i> NVIDIA RTX 4070 Ti SUPER (16GB)</span>
+          <span class="arch-footer-chip"><i data-lucide="layers"></i> AI-Toolkit Local Training</span>
+          <span class="arch-footer-chip"><i data-lucide="sliders"></i> ComfyUI Custom Graphs</span>
+          <span class="arch-footer-chip"><i data-lucide="check-circle-2"></i> 100% Character Consistency</span>
+        </div>
+
       </article>
 
     </section>
