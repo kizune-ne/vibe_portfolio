@@ -1,3 +1,5 @@
+import { safeInitLucideIcons } from './icons.js';
+
 /* ==========================================================================
    AI INFLUENCER & DATASET INSPECTOR MODULE
    Interactive Focal Media Inspector & Selector for Portfolio
@@ -78,9 +80,7 @@ export function initAiInfluencerInspector() {
         }
         mainImg.style.opacity = '1';
         mainImg.style.transform = 'scale(1)';
-        if (window.lucide) {
-          lucide.createIcons();
-        }
+        safeInitLucideIcons();
       }, 150);
     });
   });

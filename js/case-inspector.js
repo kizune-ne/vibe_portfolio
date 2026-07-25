@@ -2,6 +2,8 @@
    CASE INSPECTOR MODULE - STAR METHODOLOGY CASE STUDIES FOR EMPLOYERS
    ========================================================================== */
 
+import { safeInitLucideIcons } from './icons.js';
+
 export const CASES_DATA = {
   'docker-ai': {
     id: 'docker-ai',
@@ -357,9 +359,8 @@ export function initCaseInspector() {
     document.body.style.overflow = 'hidden';
 
     // Re-initialize icons inside modal
-    if (window.lucide) {
-      lucide.createIcons();
-    }
+    safeInitLucideIcons();
+  }
   }
 
   // Close modal
@@ -511,9 +512,8 @@ export function initCaseInspector() {
       });
     }
 
-    if (window.lucide) {
-      lucide.createIcons();
-    }
+    safeInitLucideIcons();
+  }
   }
 
   // Format text paragraphs with markdown bold/bullets

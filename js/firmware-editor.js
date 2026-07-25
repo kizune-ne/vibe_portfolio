@@ -1,5 +1,6 @@
 /* JS Module: Full Explicit VS Code Tree Explorer & Code Inspector with Syntax Highlighting */
 import { REAL_FIRMWARE_TREE } from './firmware-tree-data.js';
+import { safeInitLucideIcons } from './icons.js';
 
 export function initFirmwareEditor() {
   const fileTreeContainer = document.getElementById('fileTreeContainer');
@@ -151,7 +152,7 @@ export function initFirmwareEditor() {
           contentDiv.style.display = 'none';
           if (chevron) chevron.setAttribute('data-lucide', 'chevron-right');
         }
-        if (window.lucide) lucide.createIcons();
+        safeInitLucideIcons();
       });
 
       (node.children || []).forEach(child => {
@@ -196,7 +197,7 @@ export function initFirmwareEditor() {
     const rootNode = renderTreeNode(REAL_FIRMWARE_TREE);
     fileTreeContainer.appendChild(rootNode);
 
-    if (window.lucide) lucide.createIcons();
+    safeInitLucideIcons();
   }
 
   if (btnReplayCode) {

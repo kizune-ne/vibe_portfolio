@@ -11,11 +11,10 @@ import { initDevOpsShowcase } from './js/devops.js';
 import { initCaseInspector } from './js/case-inspector.js';
 import { initAiInfluencerInspector } from './js/ai-influencer-inspector.js';
 import { initLiveReload } from './js/live-reload.js';
+import { safeInitLucideIcons } from './js/icons.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (window.lucide) {
-    lucide.createIcons();
-  }
+  safeInitLucideIcons();
 
   // Initialize Modules
   initSpotlight();
