@@ -10,6 +10,8 @@ export function initSkillMatrix() {
     'calculator': 'cardCalculator',
     'docker': 'cardDocker',
     'ai-gen': 'cardAiGen',
+    'tg-content': 'cardTgContent',
+    'obsidian-rag': 'cardObsidianRag',
     'tiktok': 'cardTikTok',
     'design': 'cardPrintDesign',
     'dashboards': 'cardDocker'
