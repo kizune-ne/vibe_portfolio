@@ -1609,23 +1609,25 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 .card-skills-footer {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: auto;
+  border-top: 1px solid var(--color-hairline, rgba(0, 0, 0, 0.06));
+  margin-top: 20px;
 }
 
 .skill-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: #18181b;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--color-paper-white, #fafafa);
+  border: 1px solid var(--color-hairline, rgba(0, 0, 0, 0.08));
   border-radius: var(--radius-pill, 9999px);
-  font-size: 0.775rem;
+  font-size: 0.8rem;
   font-family: var(--font-code);
-  color: #d4d4d8;
+  font-weight: 500;
+  color: var(--color-charcoal, #18181b);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   transition: all 0.15s ease;
 }
 
@@ -1633,15 +1635,16 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 .skill-pill svg {
   color: #10b981 !important;
   stroke: #10b981 !important;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
 }
 
 .skill-pill:hover {
-  background: rgba(16, 185, 129, 0.12);
+  background: #ffffff;
   border-color: rgba(16, 185, 129, 0.4);
-  color: #34d399;
+  color: #059669;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12);
 }
 
 @media (max-width: 1024px) {
