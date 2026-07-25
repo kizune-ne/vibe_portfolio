@@ -1164,7 +1164,8 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
   display: flex;
   align-items: stretch;
   gap: 12px;
-  overflow-x: auto;
+  padding-top: 8px;
+  margin-top: -4px;
 }
 
 .pipe-step-card {
@@ -1181,9 +1182,10 @@ input[type=range] { accent-color: var(--color-obsidian); cursor: pointer; height
 }
 
 .pipe-step-card:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
-  background: #202023;
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-3px);
+  background: #202025;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .pipe-step-num {
