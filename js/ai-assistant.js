@@ -1,4 +1,6 @@
-import { safeInitLucideIcons } from './icons.js';
+/* ==========================================================================
+   VIBECODER & AI ENGINEER PORTFOLIO - AI ASSISTANT MODULE (MULTI-TURN & METRICS)
+   ========================================================================== */
 
 export const SYSTEM_PROMPT = `Ты — официальный ИИ-Ассистент & Копилот kizun (Senior Vibe Coder & AI Engineer).
 
@@ -147,8 +149,9 @@ export function initAiAssistant() {
       });
     }
 
-    safeInitLucideIcons();
-  }
+    if (window.lucide) {
+      lucide.createIcons();
+    }
   }
 
   function getLocalFallbackAnswer(questionText) {
@@ -185,8 +188,7 @@ export function initAiAssistant() {
     `;
     chatContainer.appendChild(typingDiv);
     chatContainer.scrollTop = chatContainer.scrollHeight;
-    safeInitLucideIcons();
-  }
+    if (window.lucide) lucide.createIcons();
 
     const startTime = performance.now();
     let answer = null;
