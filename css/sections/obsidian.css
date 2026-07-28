@@ -358,6 +358,116 @@
   overflow-x: auto;
 }
 
+/* VIEWPORT 2: CONTEXT PIPELINE STEP CARDS */
+.obsidian-viewport[data-viewport="pipeline"] .pipeline-steps-grid {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .obsidian-viewport[data-viewport="pipeline"] .pipeline-steps-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.pipeline-step-card {
+  flex: 1;
+  background: #181820;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.pipeline-step-card:hover {
+  background: #20202a;
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+.pipeline-step-card.active {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.12);
+}
+
+.pipeline-step-card .step-num {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #34d399;
+  margin-bottom: 8px;
+}
+
+.pipeline-step-card .step-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #34d399;
+  margin-bottom: 12px;
+}
+
+.pipeline-step-card .step-icon i,
+.pipeline-step-card .step-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: #34d399;
+}
+
+.pipeline-step-card h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.pipeline-step-card p {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.pipeline-step-card p code {
+  font-family: var(--font-code);
+  background: rgba(16, 185, 129, 0.15);
+  color: #a7f3d0;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.pipeline-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.pipeline-arrow i,
+.pipeline-arrow svg {
+  width: 24px;
+  height: 24px;
+  stroke: #10b981;
+}
+
+@media (max-width: 768px) {
+  .pipeline-arrow {
+    transform: rotate(90deg);
+    margin: 8px 0;
+  }
+}
+
 /* VIEWPORT 3: MANIFESTO COMPARISON GRID */
 .manifesto-comparison-grid {
   display: grid;
