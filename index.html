@@ -579,6 +579,33 @@
           </div>
         </div>
 
+        <!-- Obsidian 3 Core Features Grid -->
+        <div class="content-features-grid">
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="book-open"></i></div>
+            <div class="feature-text">
+              <strong>Obsidian Vault &amp; Метод Zettelkasten</strong>
+              <p>Систематизация базы знаний в формате Markdown: двунаправленные гиперссылки (<code>[[note_name]]</code>), фронтматтер YAML метаданные и ведение отчетов аналитики.</p>
+            </div>
+          </div>
+
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="search"></i></div>
+            <div class="feature-text">
+              <strong>Vector Embeddings &amp; RAG Indexing</strong>
+              <p>Чанкование заметок, генерация векторных эмбеддингов и семантический поиск — мгновенный поиск ответов по смысловому контексту за <code>&lt; 10ms</code>.</p>
+            </div>
+          </div>
+
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="bot"></i></div>
+            <div class="feature-text">
+              <strong>Прямое Подключение ИИ-Агентов</strong>
+              <p>Локальные субагенты (Hermes Researcher, Qwen 3.5 Coder) читают базу знаний перед выполнением задач и сохраняют ТЗ прямо в Vault.</p>
+            </div>
+          </div>
+        </div>
+
         <!-- Interactive Second Brain Inspector Stand -->
         <div class="obsidian-rag-stand" id="obsidianRAGStand">
           <div class="obsidian-stand-header">
@@ -653,26 +680,35 @@
               <div class="pipeline-step-card">
                 <div class="step-num">01</div>
                 <div class="step-icon"><i data-lucide="message-square"></i></div>
-                <h4>Постановка Задачи</h4>
+                <h4>1. Постановка Задачи</h4>
                 <p>Разработчик формулирует задачу ИИ-ассистенту (например: <em>«Создай асинхронный модуль публикации постов»</em>).</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.1); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+                  <i data-lucide="terminal"></i> Input: "Создай модуль TG-публикаций"
+                </div>
               </div>
 
-              <div class="pipeline-arrow"><i data-lucide="arrow-right"></i></div>
+              <div class="pipeline-arrow"><i data-lucide="chevron-right"></i></div>
 
               <div class="pipeline-step-card active">
                 <div class="step-num">02</div>
                 <div class="step-icon"><i data-lucide="book-open"></i></div>
-                <h4>Извлечение Правил</h4>
+                <h4>2. Извлечение Правил (RAG)</h4>
                 <p>ИИ-ассистент моментально подтягивает из базы заметок Obsidian проверенный шаблон с правилами <code>MarkdownV2</code> и защиты от дублей.</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #34d399; background: rgba(16, 185, 129, 0.15); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">
+                  <i data-lucide="file-text"></i> Match: [[Rules_MarkdownV2.md]]
+                </div>
               </div>
 
-              <div class="pipeline-arrow"><i data-lucide="arrow-right"></i></div>
+              <div class="pipeline-arrow"><i data-lucide="chevron-right"></i></div>
 
               <div class="pipeline-step-card">
                 <div class="step-num">03</div>
                 <div class="step-icon"><i data-lucide="check-circle-2"></i></div>
-                <h4>Чистый Код С 1-й Попытки</h4>
+                <h4>3. Чистый Код С 1-й Попытки</h4>
                 <p>ИИ генерирует 100% рабочий код строго по стандартам проекта без галюцинаций, ошибок синтаксиса и повторных вопросов.</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.1); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+                  <i data-lucide="check"></i> Result: 0 Errors / Ready Code
+                </div>
               </div>
             </div>
           </div>

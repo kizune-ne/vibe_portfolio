@@ -30,6 +30,19 @@
   flex: 1 1 auto;
 }
 
+.card-obsidian-rag-main .content-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+}
+
+@media (max-width: 900px) {
+  .card-obsidian-rag-main .content-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .content-feature-item {
   display: flex;
   align-items: flex-start;
