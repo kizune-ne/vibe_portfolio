@@ -48,16 +48,18 @@
   align-items: flex-start;
   gap: 14px;
   padding: 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--color-paper-white, #fafafa);
+  border: 1px solid var(--color-hairline, rgba(0, 0, 0, 0.08));
   border-radius: var(--radius-card, 12px);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .content-feature-item:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.05);
+  background: #ffffff;
   border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
 }
 
 .content-feature-item .feature-icon {
@@ -75,33 +77,34 @@
 }
 
 .card-obsidian-rag .feature-icon {
-  background: rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.25);
-  color: #a855f7;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+  color: #10b981;
 }
 
 .content-feature-item .feature-text strong {
   display: block;
   font-size: 0.925rem;
-  color: var(--color-ink, #f4f4f5);
+  color: #18181b;
   margin-bottom: 4px;
   font-weight: 600;
 }
 
 .content-feature-item .feature-text p {
   font-size: 0.825rem;
-  color: var(--color-stone, #a1a1aa);
+  color: #52525b;
   line-height: 1.45;
   margin: 0;
 }
 
 .content-feature-item .feature-text code {
   font-family: var(--font-code);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
   padding: 1px 5px;
   border-radius: 4px;
   font-size: 0.775rem;
-  color: #34d399;
+  color: #059669;
 }
 
 .card-skills-footer {
