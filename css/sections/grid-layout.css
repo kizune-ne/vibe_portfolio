@@ -1,0 +1,54 @@
+/* ==========================================================================
+   BENTO GRID LAYOUT (TWO & THREE COLUMNS) & FOOTER STYLES
+   ========================================================================== */
+
+.row-tg-calc { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.row-tg-calc .card-tg-simulator { grid-column: span 9 !important; }
+.row-tg-calc .card-calc-preview { grid-column: span 3 !important; }
+
+.row-two-cols { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.row-two-cols > .bento-card,
+.row-two-cols > article {
+  grid-column: span 6 !important;
+}
+
+.row-three-cols { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.row-three-cols > .bento-card,
+.row-three-cols > article {
+  grid-column: span 4 !important;
+  cursor: pointer;
+}
+.lab-icon {
+  width: 40px; height: 40px; border-radius: var(--radius-sm);
+  background: var(--color-paper-white); border: 1px solid var(--color-hairline);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-obsidian); margin-bottom: 16px;
+}
+
+.lab-footer { margin-top: 18px; }
+.chip-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.725rem;
+  font-family: var(--font-code);
+  color: var(--color-obsidian);
+  background: var(--color-paper-white);
+  border: 1px solid var(--color-hairline);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.chip-accent svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2;
+  color: var(--color-obsidian);
+}
+
+/* Footer */
+.footer { border-top: 1px solid var(--color-hairline); padding: 32px 0; margin-top: 40px; color: var(--color-stone); font-size: 0.825rem; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+.footer-tagline { font-family: var(--font-code); font-size: 0.75rem; color: var(--color-stone); }
+.footer-link { color: var(--color-obsidian); text-decoration: none; font-weight: 500; }
+.footer-link:hover { text-decoration: underline; }

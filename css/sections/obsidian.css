@@ -1,0 +1,455 @@
+/* ==========================================================================
+   INTERACTIVE OBSIDIAN SECOND BRAIN SHOWCASE STYLES
+   ========================================================================== */
+
+.row-content-knowledge {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.row-content-knowledge .card-tg-content {
+  grid-column: span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.row-content-knowledge .card-obsidian-rag {
+  grid-column: span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content-features-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px 0;
+  flex: 1 1 auto;
+}
+
+.content-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-card, 12px);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.content-feature-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.content-feature-item .feature-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: var(--radius-sm, 8px);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.card-obsidian-rag .feature-icon {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.25);
+  color: #a855f7;
+}
+
+.content-feature-item .feature-text strong {
+  display: block;
+  font-size: 0.925rem;
+  color: var(--color-ink, #f4f4f5);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.content-feature-item .feature-text p {
+  font-size: 0.825rem;
+  color: var(--color-stone, #a1a1aa);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.content-feature-item .feature-text code {
+  font-family: var(--font-code);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.775rem;
+  color: #34d399;
+}
+
+.card-skills-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-hairline, rgba(0, 0, 0, 0.06));
+  margin-top: 20px;
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--color-paper-white, #fafafa);
+  border: 1px solid var(--color-hairline, rgba(0, 0, 0, 0.08));
+  border-radius: var(--radius-pill, 9999px);
+  font-size: 0.8rem;
+  font-family: var(--font-code);
+  font-weight: 500;
+  color: var(--color-charcoal, #18181b);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: all 0.15s ease;
+}
+
+.skill-pill i,
+.skill-pill svg {
+  color: #10b981 !important;
+  stroke: #10b981 !important;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.skill-pill:hover {
+  background: #ffffff;
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #059669;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12);
+}
+
+@media (max-width: 1024px) {
+  .row-content-knowledge .card-tg-content,
+  .row-content-knowledge .card-obsidian-rag {
+    grid-column: span 12;
+  }
+}
+
+.row-obsidian-rag .card-obsidian-rag-main {
+  grid-column: span 12;
+}
+
+.obsidian-rag-stand {
+  background: #121217;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-card, 16px);
+  margin: 24px 0;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(16, 185, 129, 0.08);
+}
+
+.obsidian-stand-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #181820;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.obsidian-mode-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.obsidian-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm, 8px);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a1a1aa;
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.obsidian-mode-btn:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+.obsidian-mode-btn.active {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+}
+
+.obsidian-stand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-code);
+  font-size: 0.775rem;
+  color: #34d399;
+}
+
+.obsidian-viewport {
+  display: none;
+  padding: 24px;
+}
+
+.obsidian-viewport.active {
+  display: block;
+}
+
+/* VIEWPORT 1: VAULT EXPLORER LAYOUT */
+.vault-explorer-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .vault-explorer-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vault-categories-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(24, 24, 27, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.sidebar-title {
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  color: #71717a;
+  letter-spacing: 0.05em;
+  padding: 4px 8px 8px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 4px;
+}
+
+.vault-cat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vault-cat-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.vault-cat-item.active {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.vault-cat-item i,
+.vault-cat-item svg {
+  color: #34d399 !important;
+  stroke: #34d399 !important;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.vault-cat-item.active i,
+.vault-cat-item.active svg {
+  color: #10b981 !important;
+  stroke: #10b981 !important;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));
+}
+
+.vault-cat-item strong {
+  display: block;
+  font-family: var(--font-code);
+  font-size: 0.825rem;
+  color: #ffffff;
+}
+
+.vault-cat-item span {
+  display: block;
+  font-size: 0.725rem;
+  color: #a1a1aa;
+  margin-top: 2px;
+}
+
+.vault-note-preview-box {
+  background: #09090b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.preview-note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preview-note-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #34d399;
+}
+
+.preview-note-tag {
+  font-family: var(--font-code);
+  font-size: 0.725rem;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.preview-note-desc {
+  font-size: 0.85rem;
+  color: #d4d4d8;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.vault-note-preview-box pre {
+  margin: 0;
+  background: #121217;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  color: #a7f3d0;
+  overflow-x: auto;
+}
+
+/* VIEWPORT 3: MANIFESTO COMPARISON GRID */
+.manifesto-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .manifesto-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-col {
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.comparison-col.bad {
+  background: rgba(239, 68, 68, 0.04);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.comparison-col.good {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.comparison-col .col-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.comparison-col.bad .col-head { color: #f87171; }
+.comparison-col.good .col-head { color: #34d399; }
+
+.comparison-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comparison-col ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.825rem;
+  color: #d4d4d8;
+  line-height: 1.5;
+}
+
+.comparison-col.bad ul li i { color: #ef4444; flex-shrink: 0; margin-top: 2px; }
+.comparison-col.good ul li i { color: #10b981; flex-shrink: 0; margin-top: 2px; }
+
+/* SPECS FOOTER BAR INSIDE OBSIDIAN STAND */
+.obsidian-arch-footer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #181820;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.obsidian-arch-footer-bar .arch-footer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill, 9999px);
+  font-family: var(--font-code);
+  font-size: 0.775rem;
+  color: #d4d4d8;
+}
+
+.obsidian-arch-footer-bar .arch-footer-chip i,
+.obsidian-arch-footer-bar .arch-footer-chip svg {
+  color: #10b981 !important;
+  stroke: #10b981 !important;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}

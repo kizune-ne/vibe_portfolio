@@ -1,0 +1,281 @@
+/* ==========================================================================
+   FIRMWARE CODE VIEWER & KEYBOARD VISUALIZER STYLES
+   ========================================================================== */
+
+.card-code-viewer { grid-column: span 12; }
+.card-calculator { grid-column: span 12; }
+
+.firmware-split-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .firmware-split-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* File Tree Explorer Sidebar (VS Code Style) */
+.file-tree-sidebar {
+  background: var(--color-paper-white);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-card);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.file-tree-header {
+  font-family: var(--font-code);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.071em;
+  color: var(--color-stone);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--color-hairline);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tree-nodes-list {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-code);
+  font-size: 0.775rem;
+  user-select: none;
+}
+
+.tree-folder {
+  display: flex;
+  flex-direction: column;
+}
+
+.folder-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-obsidian);
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.folder-title:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.chevron-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--color-stone);
+  transition: transform 0.15s ease;
+}
+
+.folder-icon {
+  width: 15px;
+  height: 15px;
+  color: #3b82f6;
+}
+
+.folder-name {
+  font-weight: 500;
+}
+
+.folder-content {
+  padding-left: 12px;
+  margin-left: 10px;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tree-file {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-charcoal);
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tree-file:hover {
+  color: var(--color-obsidian);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.tree-file.active {
+  background: var(--color-obsidian);
+  color: var(--color-pure-white) !important;
+  font-weight: 500;
+}
+
+.tree-file .file-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.85;
+}
+
+.tree-indent-spacer {
+  width: 8px;
+}
+
+/* Code Editor Window */
+.code-editor-wrap {
+  background: var(--color-obsidian);
+  border: 1px solid #262626;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+}
+
+.editor-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #121212;
+  border-bottom: 1px solid #262626;
+  padding: 8px 14px;
+}
+
+.active-file-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  color: #a8a8a8;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-editor-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #1f1f1f;
+  border: 1px solid #333333;
+  color: #d4d4d4;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-family: var(--font-code);
+  font-size: 0.725rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-editor-action:hover {
+  background: #2a2a2a;
+  color: #ffffff;
+  border-color: #555555;
+}
+
+.editor-window {
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: var(--font-code);
+  font-size: 0.825rem;
+  line-height: 1.55;
+  color: #f5f5f5;
+  background: #171717;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.editor-window::-webkit-scrollbar {
+  width: 6px;
+}
+.editor-window::-webkit-scrollbar-track {
+  background: #121212;
+}
+.editor-window::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+  border-radius: 3px;
+}
+
+/* Keyboard Visualizer */
+.keyboard-visualizer {
+  background: var(--color-paper-white);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-card);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px;
+}
+
+.visualizer-header {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-code);
+  font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.071em;
+  color: var(--color-obsidian); margin-bottom: 12px;
+}
+
+.matrix-grid-wrap { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.matrix-half { display: flex; flex-direction: column; gap: 4px; }
+.matrix-row { display: flex; gap: 3px; }
+
+.key-cap {
+  flex: 1; height: 24px;
+  background: var(--color-pure-white); border: 1px solid var(--color-hairline);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-code); font-size: 0.625rem;
+  color: var(--color-charcoal); transition: all 0.1s ease;
+  user-select: none;
+}
+
+.key-cap.key-pressed {
+  background: var(--color-obsidian) !important;
+  border-color: var(--color-obsidian) !important;
+  color: var(--color-pure-white) !important;
+  transform: translateY(1px);
+}
+
+.keyboard-stats {
+  display: flex; flex-direction: column; gap: 5px;
+  font-size: 0.725rem;
+  font-family: var(--font-code);
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 10px;
+}
+
+.stat-item { display: flex; justify-content: space-between; }
+.stat-item .label { color: var(--color-stone); }
+.stat-item .val { font-weight: 500; color: var(--color-obsidian); }
+
+/* Syntax Highlighting Colors */
+.syn-comment { color: #6a9955; font-style: italic; }
+.syn-preproc { color: #c586c0; font-weight: 500; }
+.syn-keyword { color: #569cd6; font-weight: 500; }
+.syn-func { color: #dcdcaa; font-weight: 500; }
+.syn-macro { color: #4ec9b0; font-weight: 500; }
+.syn-str { color: #ce9178; }
+.syn-num { color: #b5cea8; }
+.syn-key { color: #9cdcfe; font-weight: 500; }

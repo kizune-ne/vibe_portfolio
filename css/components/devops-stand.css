@@ -1,0 +1,324 @@
+/* ==========================================================================
+   DOCKER TOPOLOGY & DEVOPS CLI COMPONENT STYLES
+   ========================================================================== */
+
+.docker-topology-container {
+  background: var(--color-paper-white);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  margin-top: 18px;
+}
+
+.topology-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-code);
+  font-size: 0.775rem;
+  color: var(--color-stone);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 18px;
+}
+
+.topology-header svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-obsidian);
+}
+
+.topology-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.topo-host {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffff;
+  border: 1.5px solid var(--color-charcoal);
+  border-radius: var(--radius-card);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.topo-node-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-obsidian);
+  color: var(--color-pure-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.topo-node-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.topo-node-info strong {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--color-obsidian);
+}
+
+.topo-node-info span {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  color: var(--color-stone);
+}
+
+.topo-arrow-down {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-code);
+  font-size: 0.725rem;
+  color: var(--color-terminal-green);
+  background: var(--color-success-bg);
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(41, 122, 58, 0.25);
+}
+
+.topo-arrow-down svg {
+  width: 14px;
+  height: 14px;
+}
+
+.topo-network-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 850px) {
+  .topo-network-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.topo-card {
+  background: #ffffff;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-card);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.topo-card:hover {
+  border-color: var(--color-charcoal);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.topo-card.active {
+  border-color: var(--color-obsidian);
+  border-width: 1.5px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.topo-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.topo-name {
+  font-family: var(--font-code);
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--color-obsidian);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-port {
+  font-family: var(--font-code);
+  font-size: 0.675rem;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-white);
+  border: 1px solid var(--color-hairline);
+  color: var(--color-charcoal);
+}
+
+.topo-role {
+  font-size: 0.8rem;
+  color: var(--color-charcoal);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.topo-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  color: var(--color-stone);
+}
+
+/* DevOps CLI Stand */
+.devops-cli-stand {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-top: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.cli-top-bar {
+  background: #161b22;
+  padding: 8px 14px;
+  border-bottom: 1px solid #30363d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cli-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cli-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #8b949e;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.cli-tab-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+.cli-tab-btn:hover {
+  color: #c9d1d9;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cli-tab-btn.active {
+  background: #21262d;
+  color: #58a6ff;
+  border-color: #30363d;
+}
+
+.cli-badge-live {
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  color: #3fb950;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cli-terminal-window {
+  background: #010409;
+  padding: 16px;
+  overflow: auto;
+  max-height: 240px;
+}
+
+.cli-terminal-window pre {
+  margin: 0;
+  font-family: var(--font-code);
+  font-size: 0.775rem;
+  color: #79c0ff;
+  line-height: 1.5;
+}
+
+/* Benefits Grid */
+.devops-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+@media (max-width: 850px) {
+  .devops-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benefit-card {
+  background: var(--color-paper-white);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.benefit-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--color-obsidian);
+  color: var(--color-pure-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.benefit-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.benefit-content strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  color: var(--color-obsidian);
+  margin-bottom: 4px;
+}
+
+.benefit-content p {
+  font-size: 0.775rem;
+  color: var(--color-charcoal);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.benefit-content code {
+  font-family: var(--font-code);
+  font-size: 0.725rem;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
