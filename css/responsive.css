@@ -119,35 +119,16 @@ html, body {
     display: none !important;
   }
 
-  .nav-links {
-    display: flex !important;
-    width: 100%;
-    order: 3;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    gap: 12px;
-    border-top: 1px solid var(--color-hairline);
-    padding-top: 8px;
-    margin-top: 4px;
-    scrollbar-width: none;
-  }
-
-  .nav-links::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav-item {
-    white-space: nowrap;
-    font-size: 0.785rem;
-    padding: 4px 8px;
-  }
-
   .nav-actions {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
   }
 
   .nav-actions .btn-sm {
-    padding: 6px 12px;
+    padding: 6px 10px;
     font-size: 0.775rem;
   }
 

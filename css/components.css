@@ -51,22 +51,10 @@
   text-transform: uppercase;
 }
 
-.nav-links {
+.nav-actions {
   display: flex;
-  gap: 24px;
-}
-
-.nav-item {
-  color: var(--color-charcoal);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 400;
-  transition: color var(--transition-fast);
-}
-
-.nav-item:hover, .nav-item.active {
-  color: var(--color-obsidian);
-  font-weight: 500;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Buttons & Interactive States */
