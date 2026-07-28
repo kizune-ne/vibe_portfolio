@@ -119,10 +119,14 @@
         .nv-col-controls {
             position: relative;
             overflow: visible;
+            min-width: 0;
         }
 
         .nv-col-visual {
             z-index: 1;
+            min-width: 0;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .nv-card-input-group {
@@ -478,6 +482,9 @@
             z-index: 1;
             margin-bottom: 15px;
             gap: 10px;
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         .nv-sheet-area {
@@ -489,6 +496,9 @@
             margin: 0 auto;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            max-width: 100%;
+            max-height: 100%;
+            box-sizing: border-box;
         }
 
         .nv-layout-grid {
@@ -1583,7 +1593,7 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                     <div class="nv-card-logo" style="font-size: 13px; margin: 0;">История</div>
                     <button onclick="saveCurrentCalculation()"
-                        style="background: var(--nv-yellow); color: #000; border: none; border-radius: 5px; padding: 5px 10px; font-weight: bold; cursor: pointer; font-size: 10px; text-transform: uppercase; transition: 0.2s;">Сохранить</button>
+                        style="background: #18181b; color: #ffffff; border: none; border-radius: 5px; padding: 6px 12px; font-weight: bold; cursor: pointer; font-size: 10px; text-transform: uppercase; transition: 0.2s;">Сохранить</button>
                 </div>
                 <div id="nv-history-list" style="flex: 1; overflow-y: auto;"></div>
             </div>
