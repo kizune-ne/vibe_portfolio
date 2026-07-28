@@ -344,3 +344,7 @@ export const CASES_DATA = {
     ]
   }
 };
+
+// Case ID Aliases for Double Redundancy & Legacy Support
+CASES_DATA['print-calc'] = CASES_DATA['printing-calc'];
+CASES_DATA['qmk-firmware'] = CASES_DATA['firmware-editor'];
