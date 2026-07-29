@@ -27,7 +27,7 @@
   padding: 12px;
   display: flex;
   flex-direction: column;
-  height: 480px;
+  height: 310px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -141,7 +141,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 480px;
+  height: 310px;
 }
 
 .editor-tabs {
