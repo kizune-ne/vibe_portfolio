@@ -4,7 +4,7 @@
 
 .card-tg-showcase,
 .card-tg-simulator {
-  grid-column: span 6 !important;
+  grid-column: span 4 !important;
 }
 
 .card-docker {
@@ -119,6 +119,18 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-top: 16px;
+}
+
+.card-tg-showcase .tg-architecture-grid,
+.card-tg-simulator .tg-architecture-grid {
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.card-tg-showcase .tg-arch-card,
+.card-tg-simulator .tg-arch-card {
+  padding: 14px 16px;
+  border-radius: 10px;
 }
 
 .tg-arch-card {
