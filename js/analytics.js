@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PORTFOLIO VISITOR ANALYTICS & RETURNING RECRUITER TRACKING
+   PORTFOLIO VISITOR ANALYTICS & DYNAMIC EVENT TRACKING
    ========================================================================== */
 
 export function initAnalytics() {
@@ -13,7 +13,7 @@ export function initAnalytics() {
     isReturning = false;
   }
 
-  // 2. Check single-session ping lock
+  // 2. Single-session visit notification guard
   const sessionPingSent = sessionStorage.getItem('vibe_session_ping');
 
   if (!sessionPingSent) {
@@ -28,8 +28,8 @@ export function initAnalytics() {
     });
   }
 
-  // 3. Setup event trackers for key user actions
-  setupEventTrackers(visitorId);
+  // 3. Universal Automatic Event Delegation (Auto-Tracks any link/button)
+  setupAutoTracker(visitorId);
 }
 
 export function trackEvent(eventName, details = {}) {
@@ -61,28 +61,48 @@ function sendAnalyticsPing(payload) {
   } catch (_) {}
 }
 
-function setupEventTrackers(visitorId) {
-  // Track open calculator
-  const openCalcBtn = document.getElementById('btnOpenCalcModal');
-  if (openCalcBtn) {
-    openCalcBtn.addEventListener('click', () => {
-      trackEvent('🧮 Запуск Калькулятора Печати');
-    });
-  }
+function setupAutoTracker(visitorId) {
+  document.addEventListener('click', (e) => {
+    const clickable = e.target.closest('a, button, [data-track]');
+    if (!clickable) return;
 
-  // Track case inspections
-  document.querySelectorAll('.btn-case-inspect').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const caseId = btn.getAttribute('data-case-id') || 'кейс';
+    // 1. Explicit data-track attribute (Custom labels in HTML)
+    if (clickable.dataset && clickable.dataset.track) {
+      trackEvent(clickable.dataset.track);
+      return;
+    }
+
+    // 2. Special Case Inspection buttons
+    if (clickable.classList.contains('btn-case-inspect')) {
+      const caseId = clickable.getAttribute('data-case-id') || 'кейс';
       trackEvent(`📂 Просмотр кейса: [${caseId}]`);
-    });
-  });
+      return;
+    }
 
-  // Track GitHub repo links
-  document.querySelectorAll('.btn-github-repo').forEach(link => {
-    link.addEventListener('click', () => {
-      const repoUrl = link.getAttribute('href') || '';
-      trackEvent(`🐙 Переход на GitHub: ${repoUrl}`);
-    });
-  });
+    // 3. Telegram links (t.me)
+    if (clickable.href && clickable.href.includes('t.me')) {
+      const text = clickable.textContent.trim() || '@kizune_ne';
+      trackEvent(`💬 Переход в Telegram: ${text}`);
+      return;
+    }
+
+    // 4. GitHub links
+    if (clickable.href && clickable.href.includes('github.com')) {
+      const text = clickable.textContent.trim() || 'GitHub Repo';
+      trackEvent(`🐙 Переход на GitHub: ${text}`);
+      return;
+    }
+
+    // 5. Open Calculator button
+    if (clickable.id === 'btnOpenCalcModal') {
+      trackEvent('🧮 Запуск Калькулятора Печати');
+      return;
+    }
+
+    // 6. Generic external links (target="_blank")
+    if (clickable.href && clickable.target === '_blank' && !clickable.href.startsWith('javascript:')) {
+      const label = clickable.textContent.trim() || clickable.href;
+      trackEvent(`🔗 Переход по внешней ссылке: ${label}`);
+    }
+  }, { passive: true });
 }
