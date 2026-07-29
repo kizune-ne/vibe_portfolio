@@ -6,6 +6,7 @@
 html, body {
   overflow-x: hidden !important;
   width: 100% !important;
+  scroll-behavior: auto !important;
 }
 
 /* Base Container Mobile Padding */
@@ -69,7 +70,7 @@ html, body {
    ------------------------------------------ */
 @media (max-width: 768px) {
   
-  /* Restore native WebKit/iOS touch manipulation scrolling */
+  /* Native WebKit / Mobile Touch Scroll Engine Restoration */
   html {
     scroll-behavior: auto !important;
   }
@@ -80,7 +81,17 @@ html, body {
     overscroll-behavior: auto !important;
   }
 
-  /* Disable ambient blurs & heavy spotlight layers on touch screens for 60FPS */
+  /* CRITICAL MOBILE TOUCH SCROLL FIX:
+     Set overflow: visible on bento cards so iOS WebKit does NOT turn cards into non-scrollable overflow containers! */
+  .bento-card, article, section {
+    overflow: visible !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  /* Disable ambient blurs & heavy spotlight layers on touch screens for max 60FPS */
   .ambient-orb,
   .spotlight-overlay,
   .spotlight-border {
@@ -133,15 +144,6 @@ html, body {
   .nav-actions .btn-sm {
     padding: 6px 10px;
     font-size: 0.75rem;
-  }
-
-  /* Bento Cards Universal Mobile Bounds */
-  .bento-card, article {
-    padding: 16px !important;
-    border-radius: 16px !important;
-    box-sizing: border-box !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
   }
 
   /* Hero Section */
@@ -253,13 +255,15 @@ html, body {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 6px !important;
+    width: 100% !important;
   }
 
   .tov-tab {
-    padding: 6px 8px !important;
+    padding: 8px 10px !important;
     font-size: 0.75rem !important;
     white-space: nowrap !important;
     text-align: center !important;
+    justify-content: center !important;
   }
 
   .view-mode-selector {
@@ -293,6 +297,13 @@ html, body {
   }
 
   /* Firmware Explorer MonsGeek M1 V5 (Screenshot 4) */
+  .card-code-viewer .card-header-flex {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
   .firmware-split-container {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
@@ -405,7 +416,7 @@ html, body {
   .obsidian-mode-btn {
     flex: 0 0 auto !important;
     padding: 6px 12px !important;
-    font-size: 0.775rem !important;
+    font-size: 0.75rem !important;
     white-space: nowrap !important;
   }
 
@@ -453,29 +464,6 @@ html, body {
     font-size: 0.9rem !important;
   }
 
-  .calc-options-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  .calc-preset-btns {
-    flex-wrap: wrap !important;
-  }
-
-  .calc-preset-btn {
-    flex: 1 1 calc(50% - 6px);
-    text-align: center;
-    font-size: 0.75rem !important;
-  }
-
-  .calc-summary-card {
-    padding: 14px !important;
-  }
-
-  .calc-total-price {
-    font-size: 1.6rem !important;
-  }
-
   /* STAR Case Inspector Modal Mobile Tuning (Screenshot 5) */
   .case-inspector-modal-overlay {
     padding: 6px !important;
@@ -484,15 +472,19 @@ html, body {
   .case-inspector-modal-container {
     width: calc(100vw - 12px) !important;
     max-width: 100% !important;
-    height: calc(100dvh - 20px) !important;
-    max-height: calc(100dvh - 20px) !important;
+    height: calc(100dvh - 24px) !important;
+    max-height: calc(100dvh - 24px) !important;
     border-radius: 12px !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 auto !important;
   }
 
   .case-inspector-header {
-    padding: 14px 44px 10px 14px !important;
+    padding: 14px 50px 10px 14px !important;
     box-sizing: border-box !important;
+    position: relative !important;
   }
 
   .case-header-meta {
@@ -502,10 +494,12 @@ html, body {
   }
 
   .btn-close-case-inspector {
+    position: absolute !important;
     top: 12px !important;
     right: 12px !important;
-    width: 34px !important;
-    height: 34px !important;
+    width: 36px !important;
+    height: 36px !important;
+    z-index: 10 !important;
   }
 
   .modal-case-title {
@@ -524,6 +518,8 @@ html, body {
     padding: 0 10px !important;
     gap: 4px !important;
     -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .case-inspector-tabs .tab-btn {
@@ -537,6 +533,7 @@ html, body {
     padding: 12px !important;
     box-sizing: border-box !important;
     width: 100% !important;
+    flex: 1 1 auto !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
   }
