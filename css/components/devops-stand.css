@@ -6,8 +6,8 @@
   background: var(--color-paper-white);
   border: 1px solid var(--color-hairline);
   border-radius: var(--radius-card);
-  padding: 20px;
-  margin-top: 18px;
+  padding: 12px 14px;
+  margin-top: 12px;
 }
 
 .topology-header {
@@ -15,16 +15,16 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-code);
-  font-size: 0.775rem;
+  font-size: 0.725rem;
   color: var(--color-stone);
   font-weight: 500;
   letter-spacing: 0.05em;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .topology-header svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   color: var(--color-obsidian);
 }
 
@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 6px;
 }
 
 .topo-host {
@@ -40,17 +40,17 @@
   max-width: 720px;
   background: #ffffff;
   border: 1.5px solid var(--color-charcoal);
-  border-radius: var(--radius-card);
-  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .topo-node-icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-sm);
   background: var(--color-obsidian);
   color: var(--color-pure-white);
@@ -60,46 +60,51 @@
   flex-shrink: 0;
 }
 
+.topo-node-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
 .topo-node-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .topo-node-info strong {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   color: var(--color-obsidian);
 }
 
 .topo-node-info span {
   font-family: var(--font-code);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--color-stone);
 }
 
 .topo-arrow-down {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-family: var(--font-code);
-  font-size: 0.725rem;
+  font-size: 0.675rem;
   color: var(--color-terminal-green);
   background: var(--color-success-bg);
-  padding: 4px 14px;
+  padding: 2px 10px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(41, 122, 58, 0.25);
 }
 
 .topo-arrow-down svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 }
 
 .topo-network-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 10px;
   width: 100%;
 }
 
@@ -112,37 +117,37 @@
 .topo-card {
   background: #ffffff;
   border: 1px solid var(--color-hairline);
-  border-radius: var(--radius-card);
-  padding: 14px;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
   transition: all var(--transition-fast);
   cursor: pointer;
 }
 
 .topo-card:hover {
   border-color: var(--color-charcoal);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .topo-card.active {
   border-color: var(--color-obsidian);
   border-width: 1.5px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .topo-card-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px;
 }
 
 .topo-name {
   font-family: var(--font-code);
-  font-size: 0.825rem;
+  font-size: 0.775rem;
   font-weight: 600;
   color: var(--color-obsidian);
   white-space: nowrap;
@@ -152,8 +157,8 @@
 
 .badge-port {
   font-family: var(--font-code);
-  font-size: 0.675rem;
-  padding: 2px 6px;
+  font-size: 0.625rem;
+  padding: 1px 5px;
   border-radius: var(--radius-sm);
   background: var(--color-paper-white);
   border: 1px solid var(--color-hairline);
@@ -161,19 +166,19 @@
 }
 
 .topo-role {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--color-charcoal);
   font-weight: 500;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 
 .topo-specs {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   font-family: var(--font-code);
-  font-size: 0.7rem;
+  font-size: 0.675rem;
   color: var(--color-stone);
 }
 
@@ -259,12 +264,12 @@
   line-height: 1.5;
 }
 
-/* Benefits Grid */
+/* Compact DevOps Benefits Micro-Row */
 .devops-benefits-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 18px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 @media (max-width: 850px) {
@@ -276,17 +281,18 @@
 .benefit-card {
   background: var(--color-paper-white);
   border: 1px solid var(--color-hairline);
-  border-radius: var(--radius-card);
-  padding: 16px;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 8px;
 }
 
 .benefit-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: var(--radius-sm);
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border-radius: 6px;
   background: var(--color-obsidian);
   color: var(--color-pure-white);
   display: flex;
@@ -296,29 +302,35 @@
 }
 
 .benefit-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
 }
 
 .benefit-content strong {
   display: block;
   font-family: var(--font-heading);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--color-obsidian);
-  margin-bottom: 4px;
+  line-height: 1.25;
+  margin-bottom: 1px;
 }
 
 .benefit-content p {
-  font-size: 0.775rem;
-  color: var(--color-charcoal);
+  font-size: 0.675rem;
+  color: var(--color-stone);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .benefit-content code {
   font-family: var(--font-code);
-  font-size: 0.725rem;
+  font-size: 0.65rem;
   background: rgba(0, 0, 0, 0.05);
-  padding: 1px 4px;
+  padding: 1px 3px;
   border-radius: 3px;
 }
