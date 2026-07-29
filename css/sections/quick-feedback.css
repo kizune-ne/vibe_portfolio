@@ -30,6 +30,15 @@
   gap: 4px;
 }
 
+.card-quick-feedback .section-tag {
+  color: #10b981 !important;
+  font-family: var(--font-code, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .card-title-sm {
   font-family: var(--font-title, sans-serif);
   font-size: 1.05rem;
