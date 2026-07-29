@@ -29,7 +29,7 @@
   flex-direction: column;
   height: 310px;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: clip;
   scrollbar-width: thin;
 }
 
@@ -242,7 +242,7 @@
   padding: 12px 14px;
   height: 100%;
   overflow-y: auto;
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   font-family: var(--font-code, monospace);
   font-size: 0.76rem;
   line-height: 1.5;

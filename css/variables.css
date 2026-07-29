@@ -60,7 +60,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background-color: var(--bg-main);
   color: var(--text-main);
   font-family: var(--font-body);
@@ -72,7 +72,7 @@ html {
 body {
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--bg-main);
   color: var(--text-main);
 }
