@@ -2,9 +2,9 @@
    TELEGRAM AI CONTENT GENERATOR & PREMIUM EDITORIAL SIMULATOR
    ========================================================================== */
 
-const FORMATS_DATABASE = {
-  arch: {
-    badge: "ENGINEERING REVIEW // TELEGRAM PIPELINE",
+const NICHES_DATABASE = {
+  it: {
+    badge: "IT & ARCHITECTURE // TECHNICAL REVIEW",
     time: "14:32",
     views: "4.2k",
     reactions: "👍 240  💡 112  💻 58",
@@ -35,149 +35,149 @@ _Суммаризация лонгридов реализована на баз�
 
 \\#architecture \\#python \\#asyncio \\#telegram\\_api \\#devops`,
 
-    prompt: `SYSTEM ROLE: Senior Python & Infrastructure Engineer.
-TASK: Write a technical architectural post regarding Telegram scraping pipeline.
-STYLE: Editorial, precise, objective, no conversational filler or emojis.
+    prompt: `SYSTEM ROLE: Senior Python & Infrastructure Architect.
+TASK: Write an in-depth technical post about Telegram async ingestion pipeline.
+STYLE: Editorial, precise, data-backed, zero filler words.
 MODEL: Qwen 3.5 Coder (Temperature: 0.2, Top-P: 0.9)`
   },
 
-  news: {
-    badge: "TREND INTELLIGENCE // LLM REWRITE",
-    time: "11:05",
+  crypto: {
+    badge: "WEB3 & CRYPTO // ON-CHAIN ANALYTICS",
+    time: "11:15",
     views: "5.8k",
     reactions: "📈 512  🎯 280  💡 140",
     er: "13.6%",
-    formatted: `<b>Релиз модели Qwen 3.6: Интеграция в локальную инфраструктуру Ollama</b>
+    formatted: `<b>Аналитика ончейн-активности: Чистый приток в L2-протоколы и валидация нод</b>
 
-Событие зафиксировано автоматической системой мониторинга. Аналитическая выжимка сформирована и подготовлена к публикации за 120 секунд.
+Ежедневная аналитическая выжимка активности распределенных сетей, сформированная автоматическим AI-пайплайном.
 
-<b>Основные изменения и метрики:</b>
-• Рост производительности генерации кода на <b>35%</b> по результатам внутренних CUDA-бенчмарков.
-• Расширение контекстного окна до <b>128 000 токенов</b> с сохранением точности извлечения информации.
-• Контейнеризация в Docker Compose с удерживанием весов модели в VRAM видеокарты.
+<b>Ключевые показатели и тренды:</b>
+• <b>Ликвидность L2-сетей:</b> Совокупный приток капитала составил <b>+$140M</b> за прошедшие 24 часа.
+• <b>Валидация транзакций:</b> Зафиксировано снижение комиссии за газовые лимиты на <b>34%</b> в решениях ZK-Rollups.
+• <b>Автоматический мониторинг:</b> Сканирование 50+ профильных смарт-контрактов без участия оператора.
 
-<i>Публикация провалидирована через закрытый модерационный канал.</i>
+<i>Подробный отчет и сигналы роутинга сохранены в закрытой базе знаний.</i>
 
-#ai_engineering #llm #ollama #qwen #benchmarks`,
+#web3 #crypto #onchain #analytics #smart_contracts`,
 
-    markdownV2: `\\*\\*Релиз модели Qwen 3\\.6: Интеграция в локальную инфраструктуру Ollama\\*\\*
+    markdownV2: `\\*\\*Аналитика ончейн\\-активности: Чистый приток в L2\\-протоколы и валидация нод\\*\\*
 
-Событие зафиксировано автоматической системой мониторинга\\. Аналитическая выжимка сформирована и подготовлена к публикации за 120 секунд\\.
+Ежедневная аналитическая выжимка активности распределенных сетей, сформированная автоматическим AI\\-пайплайном\\.
 
-\\*\\*Основные изменения и метрики:\\*\\*
-• Рост производительности генерации кода на \\*\\*35%\\*\\* по результатам внутренних CUDA\\-бенчмарков\\.
-• Расширение контекстного окна до \\*\\*128 000 токенов\\*\\* с сохранением точности извлечения информации\\.
-• Контейнеризация в Docker Compose с удерживанием весов модели в VRAM видеокарты\\.
+\\*\\*Ключевые показатели и тренды:\\*\\*
+• \\*\\*Ликвидность L2\\-сетей:\\*\\* Совокупный приток капитала составил \\*\\*\\+\\$140M\\*\\* за прошедшие 24 часа\\.
+• \\*\\*Валидация транзакций:\\*\\* Зафиксировано снижение комиссии за газовые лимиты на \\*\\*34%\\*\\* в решениях ZK\\-Rollups\\.
+• \\*\\*Автоматический мониторинг:\\*\\* Сканирование 50\\+ профильных смарт\\-контрактов без участия оператора\\.
 
-_Публикация провалидирована через закрытый модерационный канал\\._
+_Подробный отчет и сигналы роутинга сохранены в закрытой базе знаний\\._
 
-\\#ai\\_engineering \\#llm \\#ollama \\#qwen \\#benchmarks`,
+\\#web3 \\#crypto \\#onchain \\#analytics \\#smart\\_contracts`,
 
-    prompt: `SYSTEM ROLE: Senior AI Research Analyst.
-TASK: Produce an executive summary for breaking open-source LLM releases.
-STYLE: Data-driven, precise numbers, benchmark comparisons.
+    prompt: `SYSTEM ROLE: Senior Web3 & On-Chain Analyst.
+TASK: Summarize 24h market signals and L2 rollup metrics.
+STYLE: Quantitative, precise financial figures, clear structure.
 MODEL: Gemini 3.5 Flash (Temperature: 0.1)`
   },
 
-  cta: {
-    badge: "B2B SOLUTIONS // AI AUTOMATION",
-    time: "16:40",
+  igaming: {
+    badge: "IGAMING // TRAFFIC & FUNNEL ANALYTICS",
+    time: "15:45",
     views: "3.5k",
-    reactions: "💼 195  💬 84  👍 62",
+    reactions: "🎯 195  💼 84  👍 62",
     er: "8.9%",
-    formatted: `<b>Разработка автономных Telegram-систем и ИИ-агентов под ключ</b>
+    formatted: `<b>Сквозная аналитика контент-воронок и оптимизация Retention в iGaming</b>
 
-Проектирование и внедрение отказоустойчивых сервисов автоматизации для бизнеса и контент-команд.
+Разбор методов повышения удержания аудитории в медиабайинговых и арбитражных Telegram-каналах.
 
-<b>Направления разработки:</b>
-• <b>Парсеры и мониторинг:</b> Выделенные асинхронные скрипты с дедупликацией и защитой от блокировок.
-• <b>ИИ-Ассистенты и RAG:</b> Интеграция локальных баз знаний Obsidian с поиском по эмбеддингам.
-• <b>Инфраструктура:</b> Развертывание в Docker с обеспечением 99.9% Uptime и полной изоляцией секретов.
-
-<i>Для обсуждения технического задания обратитесь к автору в Telegram.</i>
-
-#b2b #telegram_bot #ai_agents #python #architecture`,
-
-    markdownV2: `\\*\\*Разработка автономных Telegram\\-систем и ИИ\\-агентов под ключ\\*\\*
-
-Проектирование и внедрение отказоустойчивых сервисов автоматизации для бизнеса и контент\\-команд\\.
-
-\\*\\*Направления разработки:\\*\\*
-• \\*\\*Парсеры и мониторинг:\\*\\* Выделенные асинхронные скрипты с дедупликацией и защитой от блокировок\\.
-• \\*\\*ИИ\\-Ассистенты и RAG:\\*\\* Интеграция локальных баз знаний Obsidian с поиском по эмбеддингам\\.
-• \\*\\*Инфраструктура:\\*\\* Развертывание в Docker с обеспечением 99\\.9% Uptime и полной изоляцией секретов\\.
-
-_Для обсуждения технического задания обратитесь к автору в Telegram\\._
-
-\\#b2b \\#telegram\\_bot \\#ai\\_agents \\#python \\#architecture`,
-
-    prompt: `SYSTEM ROLE: B2B Technology Solution Architect.
-TASK: Present technical service offerings clearly and concisely.
-STYLE: Formal, professional, benefit-focused.
-MODEL: Claude 3.5 Sonnet (Temperature: 0.3)`
-  },
-
-  digest: {
-    badge: "EXECUTIVE SUMMARY // WEEKLY REVIEW",
-    time: "19:00",
-    views: "4.9k",
-    reactions: "📊 310  💡 180  👍 125",
-    er: "11.8%",
-    formatted: `<b>Еженедельный отчет: Ключевые публикации и архитектурные решения</b>
-
-Автоматическая суммаризация главных материалов канала за прошедший период.
-
-<b>Топ-3 публикации:</b>
-1. <b>DevContainer Setup:</b> Практическое руководство по изоляции окружения Python и пробросу GPU CUDA.
-2. <b>Obsidian RAG Engine:</b> Построение локальной системы поиска по базе знаний с задержкой отклика до 150 мс.
-3. <b>QMK C-Firmware:</b> Разработка низкоуровневой прошивки клавиатуры MonsGeek M1 V5.
+<b>Применяемые AI-механики:</b>
+• <b>AI-Generative Hooks:</b> Использование структурированных вступлений повышает показатель удержания первого экрана на <b>42%</b>.
+• <b>Dynamic CTA Buttons:</b> Автоматическая генерация адаптивных инлайн-кнопок под каждого провайдера трафика.
+• <b>A/B Testing Tone-of-Voice:</b> Сравнительный анализ конверсии экспертного и инсайдерского стилей подачи.
 
 <i>Сформировано модулем планирования публикаций Telegram Bot API.</i>
 
-#digest #summary #architecture #ai_engineering`,
+#igaming #affiliate #traffic #analytics #funnels`,
 
-    markdownV2: `\\*\\*Еженедельный отчет: Ключевые публикации и архитектурные решения\\*\\*
+    markdownV2: `\\*\\*Сквозная аналитика контент\\-воронок и оптимизация Retention в iGaming\\*\\*
 
-Автоматическая суммаризация главных материалов канала за прошедший период\\.
+Разбор методов повышения удержания аудитории в медиабайинговых и арбитражных Telegram\\-каналах\\.
 
-\\*\\*Топ\\-3 публикации:\\*\\*
-1\\. \\*\\*DevContainer Setup:\\*\\* Практическое руководство по изоляции окружения Python и пробросу GPU CUDA\\.
-2\\. \\*\\*Obsidian RAG Engine:\\*\\* Построение локальной системы поиска по базе знаний с задержкой отклика до 150 мс\\.
-3\\. \\*\\*QMK C\\-Firmware:\\*\\* Разработка низкоуровневой прошивки клавиатуры MonsGeek M1 V5\\.
+\\*\\*Применяемые AI\\-механики:\\*\\*
+• \\*\\*AI\\-Generative Hooks:\\*\\* Использование структурированных вступлений повышает показатель удержания первого экрана на \\*\\*42%\\*\\*\\.
+• \\*\\*Dynamic CTA Buttons:\\*\\* Автоматическая генерация адаптивных инлайн\\-кнопок под каждого провайдера трафика\\.
+• \\*\\*A/B Testing Tone\\-of\\-Voice:\\*\\* Сравнительный анализ конверсии экспертного и инсайдерского стилей подачи\\.
 
 _Сформировано модулем планирования публикаций Telegram Bot API\\._
 
-\\#digest \\#summary \\#architecture \\#ai\\_engineering`,
+\\#igaming \\#affiliate \\#traffic \\#analytics \\#funnels`,
 
-    prompt: `SYSTEM ROLE: Editorial Content Executive.
-TASK: Produce a concise weekly executive summary of published engineering posts.
-STYLE: Structured, clean, bulleted.
-MODEL: Local Qwen 3.5 (Temperature: 0.1)`
+    prompt: `SYSTEM ROLE: Media Buying & Funnel Optimization Strategist.
+TASK: Analyze content conversion mechanics for affiliate networks.
+STYLE: Analytical, conversion-driven, objective metrics.
+MODEL: Claude 3.5 Sonnet / Gemini (Temperature: 0.3)`
+  },
+
+  fintech: {
+    badge: "FINTECH // MACRO & RISK ANALYTICS",
+    time: "09:30",
+    views: "4.9k",
+    reactions: "📊 310  💡 180  👍 125",
+    er: "11.8%",
+    formatted: `<b>Макроэкономический дайджест: Оценка волатильности и корпоративных отчетов</b>
+
+Ежедневный финансовый анализ рынка, созданный с помощью асинхронного парсинга и LLM-суммаризации.
+
+<b>Финансовые индикаторы:</b>
+• <b>Индекс волатильности:</b> Снижение на <b>4.2%</b> на фоне стабилизации ключевых процентных ставок.
+• <b>Автоматическая суммаризация:</b> Извлечение метрик из 50+ корпоративных отчетов за 90 секунд.
+• <b>Risk Management Model:</b> Выявление межсекторальных корреляций в реальном времени.
+
+<i>Сформировано в рамках автоматизированной контент-матрицы.</i>
+
+#fintech #trading #macroeconomics #risk_management #ai_parsing`,
+
+    markdownV2: `\\*\\*Макроэкономический дайджест: Оценка волатильности и корпоративных отчетов\\*\\*
+
+Ежедневный финансовый анализ рынка, созданный с помощью асинхронного парсинга и LLM\\-суммаризации\\.
+
+\\*\\*Финансовые индикаторы:\\*\\*
+• \\*\\*Индекс волатильности:\\*\\* Снижение на \\*\\*4\\.2%\\*\\* на фоне стабилизации ключевых процентных ставок\\.
+• \\*\\*Автоматическая суммаризация:\\*\\* Извлечение метрик из 50\\+ корпоративных отчетов за 90 секунд\\.
+• \\*\\*Risk Management Model:\\*\\* Выявление межсекторальных корреляций в реальном времени\\.
+
+_Сформировано в рамках автоматизированной контент\\-матрицы\\._
+
+\\#fintech \\#trading \\#macroeconomics \\#risk\\_management \\#ai\\_parsing`,
+
+    prompt: `SYSTEM ROLE: Senior FinTech Risk Analyst.
+TASK: Synthesize macroeconomic indicators and market reports.
+STYLE: Formal, quantitative, structured.
+MODEL: Qwen 3.5 (Temperature: 0.1)`
   }
 };
 
-let currentFormat = 'arch';
+let currentNiche = 'it';
 let currentMode = 'preview'; // 'preview' | 'markdown' | 'prompt'
 
 export function initTgContentSimulator() {
   const container = document.getElementById('cardTgContent');
   if (!container) return;
 
-  const formatTabs = container.querySelectorAll('.tov-tab');
+  const nicheTabs = container.querySelectorAll('.tov-tab');
   const btnModePreview = container.querySelector('#btnTgModePreview');
   const btnModeMarkdown = container.querySelector('#btnTgModeMarkdown');
   const btnModePrompt = container.querySelector('#btnTgModePrompt');
 
-  // Format Tab Switching
-  formatTabs.forEach(tab => {
+  // Niche Tab Switching
+  nicheTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const format = tab.getAttribute('data-format');
-      if (!format || format === currentFormat) return;
+      const niche = tab.getAttribute('data-niche');
+      if (!niche || niche === currentNiche) return;
 
-      formatTabs.forEach(t => t.classList.remove('active'));
+      nicheTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
 
-      currentFormat = format;
+      currentNiche = niche;
       renderPost(true);
     });
   });
@@ -206,7 +206,7 @@ function renderPost(animate = true) {
   const postCard = document.getElementById('tgSimPostCard');
   if (!postCard) return;
 
-  const item = FORMATS_DATABASE[currentFormat] || FORMATS_DATABASE.arch;
+  const item = NICHES_DATABASE[currentNiche] || NICHES_DATABASE.it;
 
   if (animate) {
     postCard.classList.add('is-generating');
