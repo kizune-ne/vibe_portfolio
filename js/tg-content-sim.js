@@ -238,46 +238,10 @@ function renderPost(animate = true) {
       }
     }
 
-    // Render Interactive Inline Buttons
+    // Render Interactive Inline Buttons (Hidden per user request)
     if (buttonsContainer) {
-      if (currentMode === 'preview') {
-        buttonsContainer.style.display = 'flex';
-        buttonsContainer.innerHTML = `
-          <button class="tg-inline-btn" id="btnActionMarkdown">
-            <i data-lucide="file-code-2"></i>
-            <span>Код разметки MarkdownV2</span>
-          </button>
-          <button class="tg-inline-btn" id="btnActionPrompt">
-            <i data-lucide="cpu"></i>
-            <span>Промпт и параметры LLM</span>
-          </button>
-          <a href="https://t.me/kizune_ne" target="_blank" class="tg-inline-btn primary-cta">
-            <i data-lucide="send"></i>
-            <span>Обсудить проект в Telegram</span>
-          </a>
-        `;
-
-        // Wire click handlers for inline buttons
-        const btnMd = buttonsContainer.querySelector('#btnActionMarkdown');
-        const btnPr = buttonsContainer.querySelector('#btnActionPrompt');
-        
-        if (btnMd) {
-          btnMd.addEventListener('click', () => {
-            currentMode = 'markdown';
-            updateModeButtonsUI();
-            renderPost(false);
-          });
-        }
-        if (btnPr) {
-          btnPr.addEventListener('click', () => {
-            currentMode = 'prompt';
-            updateModeButtonsUI();
-            renderPost(false);
-          });
-        }
-      } else {
-        buttonsContainer.style.display = 'none';
-      }
+      buttonsContainer.style.display = 'none';
+      buttonsContainer.innerHTML = '';
     }
 
     if (window.lucide) {
