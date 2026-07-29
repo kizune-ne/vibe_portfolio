@@ -1,78 +1,67 @@
 /* ==========================================================================
-   01 // TELEGRAM CONTENT MANAGEMENT & LIVE POST SIMULATOR STYLES
+   01 // TELEGRAM CONTENT MANAGEMENT & LACONIC SHOWCASE STYLES
    ========================================================================== */
 
+/* Main Card Layout */
 .card-tg-content-main {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
-/* Tone-of-Voice Switcher Header */
+/* Tone-of-Voice Controls Header - Compact & Laconic */
 .tov-tabs-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background: var(--bg-surface-elevated, rgba(255, 255, 255, 0.03));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-  border-radius: 14px;
-  padding: 16px;
-  backdrop-filter: blur(12px);
-}
-
-.tov-tabs-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-family: var(--font-mono, monospace);
-  font-size: 0.8rem;
-  color: var(--text-muted, #8e8e93);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  background: var(--bg-card-sub, #fafafa);
+  border: 1px solid var(--border-card, #ebebeb);
+  border-radius: var(--radius-card, 8px);
+  padding: 10px 14px;
 }
 
-.tov-tabs-header .tov-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-primary, #fff);
-  font-weight: 600;
+@media (max-width: 840px) {
+  .tov-tabs-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .tov-tabs-wrapper {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .tov-tab {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 10px;
-  background: var(--bg-card, rgba(0, 0, 0, 0.2));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-  color: var(--text-secondary, #a1a1aa);
-  font-size: 0.85rem;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill, 9999px);
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-card, #ebebeb);
+  color: var(--text-sub, #52525b);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all var(--transition-fast, 0.15s ease);
 }
 
 .tov-tab:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text-primary, #ffffff);
-  border-color: var(--border-hover, rgba(255, 255, 255, 0.2));
+  border-color: var(--text-main, #18181b);
+  color: var(--text-main, #18181b);
 }
 
 .tov-tab.active {
-  background: var(--accent-gradient, linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.15)));
-  color: var(--accent-cyan, #38bdf8);
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+  background: var(--text-main, #18181b);
+  color: var(--bg-card, #ffffff);
+  border-color: var(--text-main, #18181b);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Regenerate / Action Button */
@@ -81,146 +70,150 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  border-radius: 8px;
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  color: var(--accent-cyan, #38bdf8);
+  border-radius: var(--radius-pill, 9999px);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #059669;
+  font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  white-space: nowrap;
+  transition: all var(--transition-fast, 0.15s ease);
 }
 
 .btn-generate-next:hover {
-  background: rgba(56, 189, 248, 0.2);
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.4);
   transform: translateY(-1px);
 }
 
-/* Main Simulator Stage */
+/* Main Interactive Grid Stage */
 .tg-sim-container {
   display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 20px;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+  align-items: start;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 900px) {
   .tg-sim-container {
     grid-template-columns: 1fr;
   }
 }
 
-/* Simulated Telegram Post Widget */
+/* Simulated Telegram Post Widget - Adaptable Paper Design */
 .tg-post-card {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: var(--bg-surface, #121318);
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  background: var(--bg-card-sub, #fcfcfc);
+  border: 1px solid var(--border-card, #ebebeb);
+  border-radius: var(--radius-card, 8px);
+  padding: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .tg-post-card.is-generating {
-  opacity: 0.6;
-  filter: blur(1px);
+  opacity: 0.5;
 }
 
 .tg-post-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-card, #ebebeb);
+  padding-bottom: 10px;
 }
 
 .tg-author-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .tg-author-avatar {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0088cc, #38bdf8);
+  background: var(--text-main, #18181b);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--bg-card, #ffffff);
   font-weight: 700;
-  font-size: 1.1rem;
-  box-shadow: 0 0 10px rgba(0, 136, 204, 0.4);
+  font-size: 0.9rem;
 }
 
 .tg-author-meta {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .tg-author-name {
   font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text-primary, #fff);
+  font-size: 0.875rem;
+  color: var(--text-main, #18181b);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .tg-verified-icon {
-  color: #0088cc;
-  width: 16px;
-  height: 16px;
+  color: #10b981;
+  width: 14px;
+  height: 14px;
 }
 
 .tg-post-badge {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.72rem;
-  color: var(--accent-cyan, #38bdf8);
+  font-family: var(--font-code, monospace);
+  font-size: 0.7rem;
+  color: var(--text-muted, #71717a);
   text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .tg-post-time {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.78rem;
-  color: var(--text-muted, #71717a);
+  font-family: var(--font-code, monospace);
+  font-size: 0.75rem;
+  color: var(--text-disabled, #a1a1aa);
 }
 
 /* Post Body Formatting */
 .tg-post-body {
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   line-height: 1.6;
-  color: var(--text-secondary, #d4d4d8);
+  color: var(--text-sub, #3f3f46);
 }
 
 .tg-post-body code {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 2px 6px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 1px 5px;
   border-radius: 4px;
-  font-family: var(--font-mono, monospace);
-  font-size: 0.84rem;
-  color: #38bdf8;
+  font-family: var(--font-code, monospace);
+  font-size: 0.775rem;
+  color: #059669;
 }
 
 .tg-post-body b {
-  color: var(--text-primary, #ffffff);
+  color: var(--text-main, #18181b);
   font-weight: 600;
 }
 
 .tg-post-body i {
-  color: #a1a1aa;
+  color: var(--text-muted, #71717a);
 }
 
-/* Telegram Inline CTA Buttons */
+/* Telegram Inline CTA Buttons - Laconic Monostyle */
 .tg-post-inline-buttons {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .tg-inline-btn {
@@ -228,120 +221,137 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 16px;
-  border-radius: 10px;
-  background: rgba(0, 136, 204, 0.12);
-  border: 1px solid rgba(0, 136, 204, 0.3);
-  color: #38bdf8;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm, 6px);
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-card, #e4e4e7);
+  color: var(--text-main, #18181b);
+  font-size: 0.8rem;
+  font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast, 0.15s ease);
 }
 
 .tg-inline-btn:hover {
-  background: rgba(0, 136, 204, 0.25);
-  border-color: #0088cc;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.2);
+  background: var(--text-main, #18181b);
+  color: var(--bg-card, #ffffff);
+  border-color: var(--text-main, #18181b);
 }
 
-/* Side Metrics & Workflow Panel */
+.tg-inline-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Sidebar Panels - Laconic Clean Hairline Boxes */
 .tg-sim-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.tg-metrics-card {
-  background: var(--bg-surface-elevated, rgba(255, 255, 255, 0.03));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-  border-radius: 14px;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+.tg-metrics-card,
+.workflow-steps-tracker {
+  background: var(--bg-card-sub, #fafafa);
+  border: 1px solid var(--border-card, #ebebeb);
+  border-radius: var(--radius-card, 8px);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .tg-metrics-title {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.78rem;
+  font-family: var(--font-code, monospace);
+  font-size: 0.725rem;
   color: var(--text-muted, #71717a);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
   gap: 6px;
+  font-weight: 600;
+}
+
+.tg-metrics-title svg {
+  width: 14px;
+  height: 14px;
+  color: #10b981;
 }
 
 .tg-metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 8px;
 }
 
 .tg-metric-box {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 2px;
+  padding: 8px 10px;
+  background: var(--bg-card, #ffffff);
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid var(--border-card, #ebebeb);
 }
 
 .tg-metric-val {
-  font-family: var(--font-mono, monospace);
-  font-size: 1.1rem;
+  font-family: var(--font-code, monospace);
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--text-primary, #ffffff);
+  color: var(--text-main, #18181b);
 }
 
 .tg-metric-lbl {
-  font-size: 0.72rem;
-  color: var(--text-muted, #a1a1aa);
+  font-size: 0.7rem;
+  color: var(--text-muted, #71717a);
 }
 
-/* Workflow Step Tracker Grid */
-.workflow-steps-tracker {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: var(--bg-surface-elevated, rgba(255, 255, 255, 0.03));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-  border-radius: 14px;
-  padding: 16px;
-}
-
+/* Workflow Step Tracker Items */
 .workflow-step-item {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.82rem;
-  color: var(--text-secondary, #d4d4d8);
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm, 6px);
+  transition: background 0.15s ease;
+}
+
+.workflow-step-item:hover {
+  background: var(--bg-card, #ffffff);
 }
 
 .workflow-step-num {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background: rgba(56, 189, 248, 0.15);
-  color: var(--accent-cyan, #38bdf8);
-  font-family: var(--font-mono, monospace);
-  font-size: 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  font-family: var(--font-code, monospace);
+  font-size: 0.7rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin-top: 1px;
 }
 
 .workflow-step-text {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
 .workflow-step-text strong {
   display: block;
-  color: var(--text-primary, #ffffff);
-  font-size: 0.85rem;
+  color: var(--text-main, #18181b);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.workflow-step-text span {
+  font-size: 0.725rem;
+  color: var(--text-muted, #71717a);
 }
