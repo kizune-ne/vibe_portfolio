@@ -7,7 +7,7 @@
 
 .firmware-split-container {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 225px 1fr;
   gap: 14px;
   position: relative;
   z-index: 2;
@@ -24,12 +24,30 @@
   background: var(--color-paper-white);
   border: 1px solid var(--color-hairline);
   border-radius: var(--radius-card);
-  padding: 12px;
+  padding: 8px 10px;
   display: flex;
   flex-direction: column;
   height: 310px;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-width: thin;
+}
+
+.file-tree-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.file-tree-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.file-tree-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.file-tree-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .file-tree-header {
@@ -39,8 +57,8 @@
   text-transform: uppercase;
   letter-spacing: 0.071em;
   color: var(--color-stone);
-  padding-bottom: 8px;
-  margin-bottom: 8px;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
   border-bottom: 1px solid var(--color-hairline);
   display: flex;
   align-items: center;
@@ -51,7 +69,7 @@
   display: flex;
   flex-direction: column;
   font-family: var(--font-code);
-  font-size: 0.775rem;
+  font-size: 0.74rem;
   user-select: none;
 }
 
@@ -65,7 +83,7 @@
   align-items: center;
   gap: 4px;
   color: var(--color-obsidian);
-  padding: 4px 6px;
+  padding: 2px 4px;
   border-radius: var(--radius-sm);
   cursor: pointer;
   font-weight: 500;
@@ -91,13 +109,11 @@
 .folder-name {
   font-weight: 500;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .folder-content {
-  padding-left: 8px;
-  margin-left: 4px;
+  padding-left: 5px;
+  margin-left: 2px;
   border-left: 1px solid rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
@@ -107,15 +123,13 @@
 .tree-file {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   color: var(--color-charcoal);
-  padding: 3px 6px;
+  padding: 2px 4px;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .tree-file:hover {
