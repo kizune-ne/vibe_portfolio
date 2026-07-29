@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  grid-column: span 12 !important;
+  grid-column: span 6 !important;
 }
 
 @media (max-width: 1024px) {
@@ -117,15 +117,9 @@
 /* Main Grid Stage */
 .tg-sim-container {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 14px;
+  grid-template-columns: 1fr;
+  gap: 12px;
   align-items: start;
-}
-
-@media (max-width: 900px) {
-  .tg-sim-container {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Telegram Post Card */
