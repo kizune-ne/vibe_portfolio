@@ -47,14 +47,14 @@
 .tov-tab {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  padding: 3px 6px;
+  gap: 4px;
+  padding: 3px 7px;
   border-radius: var(--radius-pill, 9999px);
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #ebebeb);
   color: var(--text-sub, #52525b);
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
@@ -89,14 +89,14 @@
 .mode-btn {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  padding: 3px 5px;
+  gap: 4px;
+  padding: 3px 6px;
   border-radius: var(--radius-pill, 9999px);
   border: none;
   background: transparent;
   color: var(--text-muted, #71717a);
   font-family: var(--font-code, monospace);
-  font-size: 0.69rem;
+  font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
@@ -179,7 +179,7 @@
 
 .tg-author-name {
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--text-main, #18181b);
   display: flex;
   align-items: center;
@@ -194,7 +194,7 @@
 
 .tg-post-badge {
   font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--text-muted, #71717a);
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -208,7 +208,7 @@
 
 /* Post Content Formatting */
 .tg-post-body {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
   color: var(--text-sub, #3f3f46);
 }
@@ -219,7 +219,7 @@
   padding: 1px 4px;
   border-radius: 4px;
   font-family: var(--font-code, monospace);
-  font-size: 0.775rem;
+  font-size: 0.75rem;
   color: #059669;
 }
 
@@ -245,7 +245,7 @@
 
 .code-view-title {
   font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: #059669;
   letter-spacing: 0.05em;
@@ -259,7 +259,7 @@
 
 .code-view-box code {
   font-family: var(--font-code, monospace);
-  font-size: 0.775rem;
+  font-size: 0.75rem;
   line-height: 1.5;
   color: var(--text-main, #18181b);
   background: transparent;
@@ -287,7 +287,7 @@
 
 .tg-metrics-title {
   font-family: var(--font-code, monospace);
-  font-size: 0.725rem;
+  font-size: 0.75rem;
   color: var(--text-muted, #71717a);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -321,13 +321,13 @@
 
 .tg-metric-val {
   font-family: var(--font-code, monospace);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-main, #18181b);
 }
 
 .tg-metric-lbl {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--text-muted, #71717a);
 }
 
@@ -352,7 +352,7 @@
   background: rgba(16, 185, 129, 0.1);
   color: #059669;
   font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -371,11 +371,11 @@
 .workflow-step-text strong {
   display: block;
   color: var(--text-main, #18181b);
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   font-weight: 600;
 }
 
 .workflow-step-text span {
-  font-size: 0.725rem;
+  font-size: 0.75rem;
   color: var(--text-muted, #71717a);
 }
