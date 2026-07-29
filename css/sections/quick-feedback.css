@@ -1,18 +1,21 @@
 /* ==========================================================================
-   QUICK FEEDBACK CARD (3 COLUMNS BENTO GRID ITEM)
+   QUICK FEEDBACK CARD (3 COLUMNS BENO GRID ITEM - PREMIUM GLASSMORPHISM)
    ========================================================================== */
 
 .card-quick-feedback {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   grid-column: span 3 !important;
-  background: var(--bg-card-sub, #fafafa);
-  border: 1px solid var(--border-card, #ebebeb);
+  background: linear-gradient(145deg, #18181b 0%, #09090b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-card, 12px);
-  padding: 16px;
+  padding: 20px 18px;
   justify-content: space-between;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  overflow: hidden;
 }
 
 @media (max-width: 1024px) {
@@ -21,17 +24,24 @@
   }
 }
 
+.quick-feedback-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .card-title-sm {
   font-family: var(--font-title, sans-serif);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: var(--text-main, #18181b);
+  color: #ffffff;
   margin: 4px 0 2px 0;
+  letter-spacing: -0.01em;
 }
 
 .card-subtitle-sm {
   font-size: 0.775rem;
-  color: var(--text-muted, #71717a);
+  color: #a1a1aa;
   line-height: 1.45;
   margin: 0;
 }
@@ -39,64 +49,95 @@
 .quick-feedback-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 6px;
+  gap: 12px;
+  margin-top: 4px;
 }
 
 .quick-rating-label {
   font-family: var(--font-code, monospace);
   font-size: 0.7rem;
-  color: var(--text-muted, #71717a);
+  color: #10b981;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-weight: 700;
 }
 
 .quick-rating-pills {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 6px;
-  justify-content: space-between;
 }
 
 .rating-pill {
-  flex: 1;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2px;
   padding: 8px 4px;
-  border-radius: var(--radius-card, 8px);
-  background: var(--bg-card, #ffffff);
-  border: 1px solid var(--border-card, #ebebeb);
-  font-size: 1.1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
-  transition: all var(--transition-fast, 0.15s ease);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #fafafa;
+}
+
+.rating-pill .emoji-icon {
+  font-size: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.rating-pill .pill-tag {
+  font-size: 0.65rem;
+  color: #a1a1aa;
+  font-weight: 500;
 }
 
 .rating-pill:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
-  border-color: var(--text-main, #18181b);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.rating-pill:hover .emoji-icon {
+  transform: scale(1.15);
 }
 
 .rating-pill.active {
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(16, 185, 129, 0.15);
   border-color: #10b981;
-  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
 }
 
-.quick-input-group {
+.rating-pill.active .pill-tag {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.input-with-icon {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+}
+
+.input-with-icon svg {
+  position: absolute;
+  left: 10px;
+  width: 14px;
+  height: 14px;
+  color: #71717a;
+  pointer-events: none;
+  transition: color 0.15s ease;
 }
 
 .quick-input-field {
   width: 100%;
-  padding: 8px 10px;
-  border-radius: var(--radius-sm, 6px);
-  border: 1px solid var(--border-card, #e4e4e7);
-  background: var(--bg-card, #ffffff);
-  color: var(--text-main, #18181b);
+  padding: 9px 10px 9px 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(24, 24, 27, 0.8);
+  color: #ffffff;
   font-family: var(--font-body, sans-serif);
   font-size: 0.775rem;
   outline: none;
@@ -106,35 +147,41 @@
 
 .quick-input-field:focus {
   border-color: #10b981;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.quick-input-field:focus + svg,
+.input-with-icon:focus-within svg {
+  color: #10b981;
 }
 
 .quick-input-field::placeholder {
-  color: var(--text-disabled, #a1a1aa);
+  color: #71717a;
 }
 
 .quick-submit-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 9px 14px;
-  border-radius: var(--radius-sm, 6px);
-  background: var(--text-main, #18181b);
-  color: var(--bg-card, #ffffff);
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
   border: none;
   font-family: var(--font-body, sans-serif);
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-fast, 0.15s ease);
+  transition: all 0.2s ease;
   margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 }
 
 .quick-submit-btn:hover {
-  background: #059669;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
   transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
 }
 
 .quick-submit-btn svg {
@@ -147,6 +194,6 @@
   font-weight: 600;
   text-align: center;
   min-height: 18px;
-  color: #10b981;
+  color: #34d399;
   transition: opacity 0.2s ease;
 }

@@ -2,11 +2,15 @@
    TELEGRAM SIMULATOR & DOCKER SHOWCASE STYLES
    ========================================================================== */
 
-.card-tg-simulator,
-.card-tg-showcase {
-  grid-column: span 12 !important;
+.card-docker {
+  grid-column: span 9 !important;
 }
-.card-docker { grid-column: span 12; }
+
+@media (max-width: 1024px) {
+  .card-docker {
+    grid-column: span 12 !important;
+  }
+}
 
 .tg-window-wrapper {
   display: grid;
