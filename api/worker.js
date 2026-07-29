@@ -42,11 +42,30 @@ export default {
         const chatId = env.TELEGRAM_CHAT_ID;
         
         if (botToken && chatId) {
-          const msgText = `⭐ *Новый отзыв о портфолио!*\n\n` +
-            `*Оценка:* ${payload.ratingText || payload.rating + ' / 5'}\n` +
-            `*Комментарий:* ${payload.comment || 'Без комментария'}\n` +
-            `*Контакт:* ${payload.contact || 'Не указан'}\n` +
-            `*Время:* ${new Date(payload.timestamp || Date.now()).toLocaleString('ru-RU')}`;
+          const ratingVal = parseInt(payload.rating || 5, 10);
+          const starsStr = '⭐'.repeat(Math.max(1, Math.min(5, ratingVal)));
+          const ratingLabel = payload.ratingText || `${ratingVal} из 5`;
+          
+          const commentStr = payload.comment ? `«${payload.comment}»` : '_Без комментария_';
+          const contactStr = payload.contact ? `\`${payload.contact}\`` : '_Не указан_';
+
+          // Accurate Moscow Time (Europe/Moscow)
+          const dateObj = payload.timestamp ? new Date(payload.timestamp) : new Date();
+          const timeMsk = dateObj.toLocaleString('ru-RU', {
+            timeZone: 'Europe/Moscow',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+
+          const msgText = 
+            `✨ *Новый отзыв о портфолио!*\n` +
+            `${starsStr} *${ratingLabel}*\n\n` +
+            `💬 *Сообщение:* ${commentStr}\n` +
+            `👤 *Контакт:* ${contactStr}\n` +
+            `🕒 *Время:* \`${timeMsk} МСК\``;
 
           const tgBody = {
             chat_id: chatId,
