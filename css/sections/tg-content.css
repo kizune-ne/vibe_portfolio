@@ -1,0 +1,347 @@
+/* ==========================================================================
+   01 // TELEGRAM CONTENT MANAGEMENT & LIVE POST SIMULATOR STYLES
+   ========================================================================== */
+
+.card-tg-content-main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Tone-of-Voice Switcher Header */
+.tov-tabs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-surface-elevated, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 14px;
+  padding: 16px;
+  backdrop-filter: blur(12px);
+}
+
+.tov-tabs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  color: var(--text-muted, #8e8e93);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tov-tabs-header .tov-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary, #fff);
+  font-weight: 600;
+}
+
+.tov-tabs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tov-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--bg-card, rgba(0, 0, 0, 0.2));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  color: var(--text-secondary, #a1a1aa);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tov-tab:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary, #ffffff);
+  border-color: var(--border-hover, rgba(255, 255, 255, 0.2));
+}
+
+.tov-tab.active {
+  background: var(--accent-gradient, linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.15)));
+  color: var(--accent-cyan, #38bdf8);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+}
+
+/* Regenerate / Action Button */
+.btn-generate-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--accent-cyan, #38bdf8);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-generate-next:hover {
+  background: rgba(56, 189, 248, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Main Simulator Stage */
+.tg-sim-container {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+}
+
+@media (max-width: 960px) {
+  .tg-sim-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Simulated Telegram Post Widget */
+.tg-post-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-surface, #121318);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.tg-post-card.is-generating {
+  opacity: 0.6;
+  filter: blur(1px);
+}
+
+.tg-post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 12px;
+}
+
+.tg-author-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tg-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0088cc, #38bdf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 0 10px rgba(0, 136, 204, 0.4);
+}
+
+.tg-author-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.tg-author-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary, #fff);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tg-verified-icon {
+  color: #0088cc;
+  width: 16px;
+  height: 16px;
+}
+
+.tg-post-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  color: var(--accent-cyan, #38bdf8);
+  text-transform: uppercase;
+}
+
+.tg-post-time {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  color: var(--text-muted, #71717a);
+}
+
+/* Post Body Formatting */
+.tg-post-body {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary, #d4d4d8);
+}
+
+.tg-post-body code {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.84rem;
+  color: #38bdf8;
+}
+
+.tg-post-body b {
+  color: var(--text-primary, #ffffff);
+  font-weight: 600;
+}
+
+.tg-post-body i {
+  color: #a1a1aa;
+}
+
+/* Telegram Inline CTA Buttons */
+.tg-post-inline-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tg-inline-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: rgba(0, 136, 204, 0.12);
+  border: 1px solid rgba(0, 136, 204, 0.3);
+  color: #38bdf8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.tg-inline-btn:hover {
+  background: rgba(0, 136, 204, 0.25);
+  border-color: #0088cc;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.2);
+}
+
+/* Side Metrics & Workflow Panel */
+.tg-sim-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tg-metrics-card {
+  background: var(--bg-surface-elevated, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tg-metrics-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  color: var(--text-muted, #71717a);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tg-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.tg-metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tg-metric-val {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary, #ffffff);
+}
+
+.tg-metric-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted, #a1a1aa);
+}
+
+/* Workflow Step Tracker Grid */
+.workflow-steps-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--bg-surface-elevated, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.workflow-step-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: var(--text-secondary, #d4d4d8);
+}
+
+.workflow-step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan, #38bdf8);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.workflow-step-text {
+  flex: 1;
+}
+
+.workflow-step-text strong {
+  display: block;
+  color: var(--text-primary, #ffffff);
+  font-size: 0.85rem;
+}

@@ -183,7 +183,7 @@
 
     </section>
 
-    <!-- 1. TG CONTENT MANAGEMENT -->
+    <!-- 1. TG CONTENT MANAGEMENT & AI COPYWRITING STAND -->
     <section class="bento-row row-tg-content" id="tg-content">
       <article class="bento-card card-tg-content-main" id="cardTgContent">
         <div class="spotlight-border"></div>
@@ -191,8 +191,8 @@
         <div class="card-header-flex">
           <div>
             <span class="section-tag">01 // TG CONTENT &amp; AUTOMATED PUBLISHING</span>
-            <h2 class="card-title">Автоматизированный Telegram Контент-Менеджмент</h2>
-            <p class="card-subtitle">Создание контент-стратегий, генерация постов через AI Copywriter, автопостинг по расписанию, вариативный Tone-of-Voice (iGaming, Крипта, Трейдинг, IT) и аналитика ER.</p>
+            <h2 class="card-title">Автоматизированный Telegram Контент-Менеджмент &amp; AI Copywriting</h2>
+            <p class="card-subtitle">Полный цикл ведения профильных Telegram-каналов: системные контент-матрицы, парсинг трендов за 2 минуты, генерация с вариативным Tone-of-Voice, закрытый модерационный бот и асинхронный автопостинг 24/7.</p>
           </div>
           <div class="card-header-actions">
             <button class="btn-case-inspect" data-case-id="tg-content">
@@ -201,38 +201,127 @@
           </div>
         </div>
 
-        <div class="content-features-grid">
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="sparkles"></i></div>
-            <div class="feature-text">
-              <strong>Контент-Матрица &amp; AI-Копирайтинг</strong>
-              <p>Разработка контент-планов, генерация цепляющих заголовков, офферов и экспертных постов с тонкой настройкой Tone-of-Voice под целевые ниши (iGaming / Крипта / Трейдинг / IT).</p>
+        <!-- Tone-of-Voice Switcher Header -->
+        <div class="tov-tabs-container">
+          <div class="tov-tabs-header">
+            <div class="tov-title">
+              <i data-lucide="sliders"></i>
+              <span>Стенд AI-Копирайтинга: Выберите Tone-of-Voice канала</span>
             </div>
+            <button class="btn-generate-next" id="btnTgGenerateNext">
+              <i data-lucide="rotate-cw"></i>
+              <span>🎲 Сгенерировать след. пост</span>
+            </button>
           </div>
-
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="clock"></i></div>
-            <div class="feature-text">
-              <strong>Автопостинг &amp; Инлайн-Оформление 24/7</strong>
-              <p>Планировщик публикаций по расписанию через Telegram Bot API: авто-верстка MarkdownV2, прикрепление медиафайлов и генерация кликабельных инлайн-кнопок с CTA-ссылками.</p>
-            </div>
-          </div>
-
-          <div class="content-feature-item">
-            <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
-            <div class="feature-text">
-              <strong>Модерационный Канал &amp; Аналитика ER</strong>
-              <p>Предварительный просмотр постов в закрытом канале модератора перед выходом в публичный эфир. Отслеживание охватов (Views), CTR ссылок и реакций аудитории.</p>
-            </div>
+          <div class="tov-tabs-wrapper">
+            <button class="tov-tab active" data-niche="it">
+              <i data-lucide="code-2"></i> IT &amp; Architecture
+            </button>
+            <button class="tov-tab" data-niche="crypto">
+              <i data-lucide="coins"></i> Web3 &amp; Crypto
+            </button>
+            <button class="tov-tab" data-niche="igaming">
+              <i data-lucide="dices"></i> iGaming &amp; Affiliate
+            </button>
+            <button class="tov-tab" data-niche="fintech">
+              <i data-lucide="line-chart"></i> FinTech &amp; Trading
+            </button>
           </div>
         </div>
 
+        <!-- Main Interactive Stage: Live Telegram Post + Pipeline Tracker -->
+        <div class="tg-sim-container">
+
+          <!-- Live Telegram Post Preview Card -->
+          <div class="tg-post-card" id="tgSimPostCard">
+            <div class="tg-post-header">
+              <div class="tg-author-info">
+                <div class="tg-author-avatar">k</div>
+                <div class="tg-author-meta">
+                  <span class="tg-author-name">kizun // Content Engine <i data-lucide="check-circle-2" class="tg-verified-icon"></i></span>
+                  <span class="tg-post-badge">IT &amp; ARCHITECTURE // EXPERT</span>
+                </div>
+              </div>
+              <span class="tg-post-time">14:32</span>
+            </div>
+
+            <div class="tg-post-body">
+              <!-- Live Text will be inserted by JS -->
+            </div>
+
+            <div class="tg-post-inline-buttons">
+              <!-- Live CTA Inline Buttons inserted by JS -->
+            </div>
+          </div>
+
+          <!-- Sidebar Metrics & Workflow Step Tracker -->
+          <div class="tg-sim-sidebar">
+            <div class="tg-metrics-card">
+              <div class="tg-metrics-title">
+                <i data-lucide="activity"></i>
+                <span>Метрики Поста в Реальном Времени</span>
+              </div>
+              <div class="tg-metrics-grid">
+                <div class="tg-metric-box">
+                  <span class="tg-metric-val" id="tgStatViews">3.8k</span>
+                  <span class="tg-metric-lbl">Просмотры (Views)</span>
+                </div>
+                <div class="tg-metric-box">
+                  <span class="tg-metric-val" id="tgStatEr">9.2%</span>
+                  <span class="tg-metric-lbl">Индекс ER</span>
+                </div>
+              </div>
+              <div class="tg-metric-box">
+                <span class="tg-metric-val" id="tgStatReactions">🔥 210  ⚡ 94</span>
+                <span class="tg-metric-lbl">Живые Реакции</span>
+              </div>
+            </div>
+
+            <div class="workflow-steps-tracker">
+              <div class="tg-metrics-title">
+                <i data-lucide="git-merge"></i>
+                <span>Пайплайн Создания Контента</span>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-step-num">1</span>
+                <div class="workflow-step-text">
+                  <strong>Тренд-Сканер (50+ каналов)</strong>
+                  <span>Асинхронный скрапинг инфоповодов</span>
+                </div>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-step-num">2</span>
+                <div class="workflow-step-text">
+                  <strong>AI Copywriter &amp; Tone-of-Voice</strong>
+                  <span>Генерация структуры &amp; MarkdownV2</span>
+                </div>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-step-num">3</span>
+                <div class="workflow-step-text">
+                  <strong>Human-in-the-Loop Модерация</strong>
+                  <span>Валидация верстки в боте в 1 клик</span>
+                </div>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-step-num">4</span>
+                <div class="workflow-step-text">
+                  <strong>Автопостинг 24/7 по расписанию</strong>
+                  <span>Публикация сочными CTA-кнопками</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
         <div class="card-skills-footer">
-          <span class="skill-pill"><i data-lucide="file-edit"></i> Контент-План</span>
-          <span class="skill-pill"><i data-lucide="sparkles"></i> AI Copywriting</span>
-          <span class="skill-pill"><i data-lucide="message-square"></i> Tone-of-Voice</span>
-          <span class="skill-pill"><i data-lucide="clock"></i> Автопостинг</span>
-          <span class="skill-pill"><i data-lucide="bar-chart-2"></i> ER Analytics</span>
+          <span class="skill-pill"><i data-lucide="file-text"></i> Контент-Матрицы</span>
+          <span class="skill-pill"><i data-lucide="sparkles"></i> Dynamic Tone-of-Voice</span>
+          <span class="skill-pill"><i data-lucide="zap"></i> Newsjacking (2 мин)</span>
+          <span class="skill-pill"><i data-lucide="shield-check"></i> Модерационный Бот</span>
+          <span class="skill-pill"><i data-lucide="clock"></i> Автопостинг 24/7</span>
+          <span class="skill-pill"><i data-lucide="bar-chart-3"></i> ER &amp; CTR Analytics</span>
         </div>
       </article>
     </section>

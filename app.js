@@ -11,6 +11,7 @@ import { initDevOpsShowcase } from './js/devops.js';
 import { initCaseInspector } from './js/case-inspector.js';
 import { initAiInfluencerInspector } from './js/ai-influencer-inspector.js';
 import { initObsidianShowcase } from './js/obsidian-showcase.js';
+import { initTgContentSimulator } from './js/tg-content-sim.js';
 import { initLiveReload } from './js/live-reload.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,5 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCaseInspector();
   initAiInfluencerInspector();
   initObsidianShowcase();
+  initTgContentSimulator();
   initLiveReload(); // Auto-reload browser on code change
 });
