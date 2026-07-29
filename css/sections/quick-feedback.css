@@ -31,18 +31,21 @@
 }
 
 .feedback-tag-row {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  line-height: 1;
 }
 
 .pulse-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #10b981;
   box-shadow: 0 0 8px #10b981;
   animation: pulseGreen 2s infinite;
+  flex-shrink: 0;
+  margin-top: -1px;
 }
 
 @keyframes pulseGreen {
@@ -58,6 +61,8 @@
   letter-spacing: 0.05em;
   font-weight: 700;
   text-transform: uppercase;
+  line-height: 1;
+  display: inline-block;
 }
 
 .card-title-sm {
