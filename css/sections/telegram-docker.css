@@ -133,12 +133,31 @@
 .card-tg-simulator .tg-architecture-grid {
   grid-template-columns: 1fr;
   gap: 10px;
+  margin-top: 14px;
 }
 
 .card-tg-showcase .tg-arch-card,
 .card-tg-simulator .tg-arch-card {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border-radius: 10px;
+}
+
+.card-tg-showcase .arch-card-header,
+.card-tg-simulator .arch-card-header {
+  margin-bottom: 8px;
+}
+
+.card-tg-showcase .tg-arch-card h4,
+.card-tg-simulator .tg-arch-card h4 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.card-tg-showcase .tg-arch-card p,
+.card-tg-simulator .tg-arch-card p {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  margin-bottom: 10px;
 }
 
 .tg-arch-card {
