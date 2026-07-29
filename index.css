@@ -2,7 +2,7 @@
    VIBECODER & AI ENGINEER PORTFOLIO - MAIN CSS ENTRY (MODULAR STRUCTURE)
    ========================================================================== */
 
-@import 'css/variables.css?v=v7_touch_scroll_fix';
-@import 'css/components.css?v=v7_touch_scroll_fix';
-@import 'css/sections.css?v=v7_touch_scroll_fix';
-@import 'css/responsive.css?v=v7_touch_scroll_fix';
+@import 'css/variables.css?v=v8_edge_to_edge_mobile_fix';
+@import 'css/components.css?v=v8_edge_to_edge_mobile_fix';
+@import 'css/sections.css?v=v8_edge_to_edge_mobile_fix';
+@import 'css/responsive.css?v=v8_edge_to_edge_mobile_fix';
