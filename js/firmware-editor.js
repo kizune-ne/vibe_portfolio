@@ -10,7 +10,7 @@ export function initFirmwareEditor() {
   let typewriterTimer = null;
   let activeFileObj = null;
 
-  const DEFAULT_OPEN_FOLDERS = ['keyboards', 'monsgeek', 'm1_v5', 'm1_v5_us', 'keymaps', 'vial'];
+  const DEFAULT_OPEN_FOLDERS = ['keyboards', 'monsgeek', 'm1_v5', 'm1_v5_us', 'keymaps'];
 
   const KEY_MAPPINGS = {
     'TAB': 'key-tab', 'Q': 'key-q', 'W': 'key-w', 'E': 'key-e', 'R': 'key-r', 'T': 'key-t',
@@ -188,8 +188,8 @@ export function initFirmwareEditor() {
         startTypewriterAnimation(node);
       });
 
-      // Default select keyboards/monsgeek/m1_v5/m1_v5_us/keymaps/vial/config.h
-      if (node.path === 'keyboards/monsgeek/m1_v5/m1_v5_us/keymaps/vial/config.h' || node.path === 'keyboards/monsgeek/m1_v5/m1_v5_us/config.h') {
+      // Default select keyboards/monsgeek/m1_v5/m1_v5_us/config.h
+      if (node.path === 'keyboards/monsgeek/m1_v5/m1_v5_us/config.h') {
         setTimeout(() => {
           document.querySelectorAll('.tree-file').forEach(f => f.classList.remove('active'));
           fileDiv.classList.add('active');
