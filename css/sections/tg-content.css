@@ -7,6 +7,13 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+  grid-column: span 9 !important;
+}
+
+@media (max-width: 900px) {
+  .card-tg-content-main {
+    grid-column: span 12 !important;
+  }
 }
 
 /* Format Switcher & Mode Selector Bar */
