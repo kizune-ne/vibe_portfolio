@@ -21,11 +21,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px;
   background: var(--bg-card-sub, #fafafa);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-card, 8px);
-  padding: 6px 10px;
+  padding: 5px 8px;
   flex-wrap: nowrap;
 }
 
@@ -41,21 +41,20 @@
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 4px;
-  overflow-x: auto;
+  gap: 3px;
 }
 
 .tov-tab {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
+  gap: 3px;
+  padding: 3px 6px;
   border-radius: var(--radius-pill, 9999px);
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #ebebeb);
   color: var(--text-sub, #52525b);
   font-family: var(--font-body);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
@@ -90,14 +89,14 @@
 .mode-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 7px;
+  gap: 3px;
+  padding: 3px 5px;
   border-radius: var(--radius-pill, 9999px);
   border: none;
   background: transparent;
   color: var(--text-muted, #71717a);
   font-family: var(--font-code, monospace);
-  font-size: 0.72rem;
+  font-size: 0.69rem;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
