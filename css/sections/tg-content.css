@@ -7,10 +7,10 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  grid-column: span 9 !important;
+  grid-column: span 7 !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .card-tg-content-main {
     grid-column: span 12 !important;
   }
@@ -110,7 +110,7 @@
 /* Main Grid Stage */
 .tg-sim-container {
   display: grid;
-  grid-template-columns: 1fr 310px;
+  grid-template-columns: 1fr 270px;
   gap: 12px;
   align-items: start;
 }
