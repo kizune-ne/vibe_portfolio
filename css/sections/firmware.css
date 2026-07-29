@@ -203,19 +203,13 @@
 }
 
 .active-file-breadcrumb svg,
-#breadcrumbIcon {
-  width: 15px;
-  height: 15px;
+.active-file-breadcrumb #breadcrumbIcon {
+  width: 18px !important;
+  height: 18px !important;
+  color: #a8a8a8 !important;
   flex-shrink: 0;
   stroke-width: 2.2;
 }
-
-#breadcrumbIcon.ext-c { color: #3b82f6 !important; }
-#breadcrumbIcon.ext-h { color: #10b981 !important; }
-#breadcrumbIcon.ext-mk { color: #f59e0b !important; }
-#breadcrumbIcon.ext-json { color: #ec4899 !important; }
-#breadcrumbIcon.ext-md { color: #a855f7 !important; }
-#breadcrumbIcon.ext-inc { color: #06b6d4 !important; }
 
 .editor-actions {
   display: flex;

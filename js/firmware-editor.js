@@ -96,16 +96,13 @@ export function initFirmwareEditor() {
     if (typewriterTimer) clearInterval(typewriterTimer);
     activeFileObj = fileObj;
 
-    if (breadcrumbText) breadcrumbText.textContent = fileObj.path;
-    const breadcrumbIcon = document.getElementById('breadcrumbIcon');
-    if (breadcrumbIcon) {
+    const breadcrumbContainer = document.querySelector('.active-file-breadcrumb');
+    if (breadcrumbContainer) {
       const iconName = getFileIcon(fileObj.name);
-      const ext = fileObj.name.split('.').pop();
-      const newIconNode = document.createElement('i');
-      newIconNode.id = 'breadcrumbIcon';
-      newIconNode.setAttribute('data-lucide', iconName);
-      newIconNode.className = `file-icon-head ext-${ext}`;
-      breadcrumbIcon.replaceWith(newIconNode);
+      breadcrumbContainer.innerHTML = `
+        <i data-lucide="${iconName}" id="breadcrumbIcon" class="breadcrumb-file-icon"></i>
+        <span id="breadcrumbText">${fileObj.path}</span>
+      `;
       if (window.lucide) lucide.createIcons();
     }
     if (codeOutput) codeOutput.innerHTML = '';
