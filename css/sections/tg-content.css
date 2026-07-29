@@ -264,6 +264,32 @@
   padding: 0;
 }
 
+/* Bottom Control Toolbar with Right-Aligned Mode Selector */
+.tg-post-footer-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-card, #ebebeb);
+}
+
+.post-footer-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-code, monospace);
+  font-size: 0.725rem;
+  color: var(--text-disabled, #a1a1aa);
+}
+
+.post-footer-meta svg {
+  width: 13px;
+  height: 13px;
+  color: #10b981;
+}
+
 /* Sidebar Hairline Cards */
 .tg-sim-sidebar {
   display: flex;
