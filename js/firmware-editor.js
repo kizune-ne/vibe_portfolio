@@ -100,7 +100,12 @@ export function initFirmwareEditor() {
     const breadcrumbIcon = document.getElementById('breadcrumbIcon');
     if (breadcrumbIcon) {
       const iconName = getFileIcon(fileObj.name);
-      breadcrumbIcon.setAttribute('data-lucide', iconName);
+      const ext = fileObj.name.split('.').pop();
+      const newIconNode = document.createElement('i');
+      newIconNode.id = 'breadcrumbIcon';
+      newIconNode.setAttribute('data-lucide', iconName);
+      newIconNode.className = `file-icon-head ext-${ext}`;
+      breadcrumbIcon.replaceWith(newIconNode);
       if (window.lucide) lucide.createIcons();
     }
     if (codeOutput) codeOutput.innerHTML = '';
