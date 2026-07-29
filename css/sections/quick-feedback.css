@@ -35,6 +35,7 @@
   align-items: center;
   gap: 8px;
   line-height: 1;
+  margin-bottom: 2px;
 }
 
 .pulse-dot {
@@ -45,7 +46,9 @@
   box-shadow: 0 0 8px #10b981;
   animation: pulseGreen 2s infinite;
   flex-shrink: 0;
-  margin-top: -1px;
+  margin: 0 !important;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 @keyframes pulseGreen {
@@ -61,8 +64,11 @@
   letter-spacing: 0.05em;
   font-weight: 700;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   display: inline-block;
+  vertical-align: middle;
 }
 
 .card-title-sm {
