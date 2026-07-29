@@ -1,11 +1,11 @@
 /* ==========================================
-   MOBILE & TABLET RESPONSIVE SYSTEM (FULL TOUCH ERGONOMICS & OPTIMIZED SCROLL)
+   MOBILE & TABLET RESPONSIVE SYSTEM (CLEAN NATIVE NATIVE IOS SCROLL ENGINE)
    ========================================== */
 
-/* Clean tap highlights & instant touch response */
+/* Clean tap highlights & instant touch response for buttons */
 button, a, input, select, textarea,
 .btn, .tov-tab, .obsidian-mode-btn, .prompt-chip,
-.skill-badge, .tab-btn, .vault-cat-item, .bento-card {
+.skill-badge, .tab-btn, .vault-cat-item {
   -webkit-tap-highlight-color: transparent !important;
   touch-action: manipulation;
 }
@@ -16,15 +16,21 @@ button:active, .btn:active, .tov-tab:active,
   transition: transform 0.08s ease !important;
 }
 
-/* Prevent horizontal page wobble */
-html, body {
-  overflow-x: hidden !important;
-  width: 100% !important;
+/* NATIVE IOS SAFARI ROOT PAGE SCROLLING FIX:
+   Use overflow-x: clip on body so Safari NEVER turns the page into an artificial overflow container! */
+html {
   scroll-behavior: auto !important;
-  -webkit-overflow-scrolling: touch !important;
+  height: 100%;
 }
 
-/* Base Container Mobile Padding (Exact 94% width) */
+body {
+  min-height: 100%;
+  max-width: 100vw !important;
+  overflow-x: clip !important;
+  position: relative;
+}
+
+/* Base Container Mobile Padding (Exact 94% width: 3vw left + 3vw right) */
 @media (max-width: 768px) {
   .container {
     padding-left: 3vw !important;
@@ -87,16 +93,6 @@ html, body {
    2. MOBILE PHONES (<= 768px)
    ------------------------------------------ */
 @media (max-width: 768px) {
-  
-  /* Native Mobile Touch Scroll Engine */
-  html {
-    scroll-behavior: auto !important;
-  }
-
-  html, body, .bento-main, .container, .bento-card, article, section, div, p, span, h1, h2, h3, h4, h5, h6 {
-    -webkit-overflow-scrolling: touch !important;
-    overscroll-behavior: auto !important;
-  }
 
   /* Spacious 16px Vertical Spacing between rows for clean, airy iOS flow */
   .bento-main {
@@ -116,9 +112,8 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 
-  /* 94% Screen Width Cards with elegant 16px 14px inner padding */
+  /* 94% Screen Width Cards with elegant 16px 14px inner padding & clean native document flow */
   .bento-card, article {
-    overflow: visible !important;
     padding: 16px 14px !important;
     border-radius: 16px !important;
     box-sizing: border-box !important;
@@ -255,15 +250,13 @@ html, body {
     line-height: 1.4 !important;
   }
 
-  /* Inner scroll containers with overscroll-behavior-y: auto for seamless page scrolling */
+  /* Inner scrollable containers only */
   .chat-container,
   .file-tree-sidebar,
   .editor-window,
   .tg-main-chat,
   .terminal-window,
   .case-inspector-body {
-    overscroll-behavior-y: auto !important;
-    touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important;
   }
 
