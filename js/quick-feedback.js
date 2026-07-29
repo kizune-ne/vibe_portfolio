@@ -80,12 +80,13 @@ export function initQuickFeedback() {
 
     // Show success confirmation
     if (statusDiv) {
+      statusDiv.innerHTML = `<div class="status-success-badge"><i data-lucide="check-circle-2"></i><span>Отзыв успешно отправлен</span></div>`;
+      if (window.lucide) lucide.createIcons();
       statusDiv.style.opacity = '1';
-      statusDiv.textContent = '🚀 Спасибо за оценку! Отзыв успешно принят.';
       
       setTimeout(() => {
         statusDiv.style.opacity = '0';
-      }, 4000);
+      }, 5000);
     }
 
     if (commentInput) commentInput.value = '';
