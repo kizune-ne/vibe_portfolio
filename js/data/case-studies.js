@@ -51,7 +51,7 @@ export const CASES_DATA = {
 
   'docker-ai': {
     id: 'docker-ai',
-    badge: '02 // INFRASTRUCTURE & DEVOPS',
+    badge: '07 // INFRASTRUCTURE & CONTAINER ORCHESTRATION',
     title: 'Автономный AI Server & DevContainer Инфраструктура',
     subtitle: 'Изолированная среда локальных LLM (Qwen 3.5 / Qwen 3.6 Coder), проброс GPU CUDA, безопасные Bind Mounts и автоматизация DevContainer.',
     role: 'DevOps / AI Infrastructure Engineer',
@@ -184,7 +184,7 @@ export const CASES_DATA = {
 
   'firmware-editor': {
     id: 'firmware-editor',
-    badge: '03 // EMBEDDED C & KEYBOARD FIRMWARE',
+    badge: '06 // HARDWARE INTEGRATION & VIAL PORTING',
     title: 'Кастомная C-Прошивка Клавиатуры M1 V5 (QMK / Vial)',
     subtitle: 'Низкоуровневая C-прошивка микроконтроллера клавиатуры с поддержкой нескольких слоев (Layers), Tap-Dance, макросов и динамической конфигурации через Vial.',
     role: 'Embedded C / Firmware Developer',
