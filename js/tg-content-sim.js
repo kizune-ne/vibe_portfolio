@@ -13,9 +13,18 @@ const NICHES_DATABASE = {
 <p class="tg-post-intro">Разбор микросервисной архитектуры для сбора и обработки потока данных из 50+ источников.</p>
 <div class="tg-post-section-label"><i data-lucide="cpu"></i> Ключевые инженерные решения:</div>
 <ul class="tg-post-bullets">
-  <li><span class="bullet-dot"></span><b>Async Telethon Engine:</b> асинхронная обработка и ротация прокси-серверов.</li>
-  <li><span class="bullet-dot"></span><b>Deduplication &amp; Hash Guard:</b> проверка MD5-сигнатур и защита базы от повторов.</li>
-  <li><span class="bullet-dot"></span><b>Topic Routing Manager:</b> динамическая маршрутизация сообщений по топикам.</li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Async Telethon Engine</b></div>
+    <div class="bullet-desc">асинхронная обработка и ротация прокси-серверов.</div>
+  </li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Deduplication &amp; Hash Guard</b></div>
+    <div class="bullet-desc">проверка MD5-сигнатур и защита базы от повторов.</div>
+  </li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Topic Routing Manager</b></div>
+    <div class="bullet-desc">динамическая маршрутизация сообщений по топикам.</div>
+  </li>
 </ul>
 <div class="tg-post-note"><i>Суммаризация лонгридов реализована на базе локальной модели Qwen 3.5 Coder.</i></div>
 <div class="tg-post-tags">
@@ -54,9 +63,18 @@ MODEL: Qwen 3.5 Coder (Temperature: 0.2, Top-P: 0.9)`
 <p class="tg-post-intro">Ежедневная аналитическая выжимка активности сетей, созданная AI-пайплайном.</p>
 <div class="tg-post-section-label"><i data-lucide="line-chart"></i> Ключевые показатели и тренды:</div>
 <ul class="tg-post-bullets">
-  <li><span class="bullet-dot"></span><b>Ликвидность L2-сетей:</b> приток капитала <b>+$140M</b> за последние 24 часа.</li>
-  <li><span class="bullet-dot"></span><b>Валидация транзакций:</b> снижение комиссии на <b>34%</b> в решениях ZK-Rollups.</li>
-  <li><span class="bullet-dot"></span><b>Авто-Мониторинг:</b> сканирование 50+ смарт-контрактов без оператора.</li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Ликвидность L2-сетей</b></div>
+    <div class="bullet-desc">приток капитала <b>+$140M</b> за последние 24 часа.</div>
+  </li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Валидация транзакций</b></div>
+    <div class="bullet-desc">снижение комиссии на <b>34%</b> в решениях ZK-Rollups.</div>
+  </li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Авто-Мониторинг</b></div>
+    <div class="bullet-desc">сканирование 50+ смарт-контрактов без оператора.</div>
+  </li>
 </ul>
 <div class="tg-post-note"><i>Подробный отчет и сигналы роутинга сохранены в закрытой базе знаний.</i></div>
 <div class="tg-post-tags">
@@ -95,9 +113,18 @@ MODEL: Gemini 3.5 Flash (Temperature: 0.1)`
 <p class="tg-post-intro">Разбор методов повышения удержания аудитории в медиабайинговых Telegram-каналах.</p>
 <div class="tg-post-section-label"><i data-lucide="target"></i> Применяемые AI-механики:</div>
 <ul class="tg-post-bullets">
-  <li><span class="bullet-dot"></span><b>AI-Generative Hooks:</b> рост удержания первого экрана на <b>+42%</b>.</li>
-  <li><span class="bullet-dot"></span><b>Dynamic CTA Buttons:</b> авто-генерация адаптивных инлайн-кнопок под трафик.</li>
-  <li><span class="bullet-dot"></span><b>A/B Testing Tone-of-Voice:</b> анализ конверсии экспертного стиля подачи.</li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>AI-Generative Hooks</b></div>
+    <div class="bullet-desc">рост удержания первого экрана на <b>+42%</b>.</div>
+  </li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Dynamic CTA Buttons</b></div>
+    <div class="bullet-desc">авто-генерация адаптивных инлайн-кнопок под трафик.</div>
+  </li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>A/B Testing Tone-of-Voice</b></div>
+    <div class="bullet-desc">анализ конверсии экспертного стиля подачи.</div>
+  </li>
 </ul>
 <div class="tg-post-note"><i>Сформировано модулем планирования публикаций Telegram Bot API.</i></div>
 <div class="tg-post-tags">
@@ -136,9 +163,18 @@ MODEL: Claude 3.5 Sonnet / Gemini (Temperature: 0.3)`
 <p class="tg-post-intro">Ежедневный финансовый анализ рынка, созданный LLM-суммаризацией.</p>
 <div class="tg-post-section-label"><i data-lucide="bar-chart-3"></i> Финансовые индикаторы:</div>
 <ul class="tg-post-bullets">
-  <li><span class="bullet-dot"></span><b>Индекс волатильности:</b> снижение на <b>4.2%</b> на фоне стабилизации ставок.</li>
-  <li><span class="bullet-dot"></span><b>Авто-Суммаризация:</b> извлечение метрик из 50+ отчетов за 90 секунд.</li>
-  <li><span class="bullet-dot"></span><b>Risk Management Model:</b> выявление корреляций в реальном времени.</li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Индекс волатильности</b></div>
+    <div class="bullet-desc">снижение на <b>4.2%</b> на фоне стабилизации ставок.</div>
+  </li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Авто-Суммаризация</b></div>
+    <div class="bullet-desc">извлечение метрик из 50+ отчетов за 90 секунд.</div>
+  </li>
+  <li>
+    <div class="bullet-head"><span class="bullet-dot"></span><b>Risk Management Model</b></div>
+    <div class="bullet-desc">выявление корреляций в реальном времени.</div>
+  </li>
 </ul>
 <div class="tg-post-note"><i>Сформировано в рамках автоматизированной контент-матрицы.</i></div>
 <div class="tg-post-tags">

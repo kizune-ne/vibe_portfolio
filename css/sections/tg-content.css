@@ -252,7 +252,7 @@
 .tg-post-bullets {
   list-style: none;
   padding: 0;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -260,11 +260,24 @@
 
 .tg-post-bullets li {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.bullet-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.825rem;
-  line-height: 1.45;
-  color: var(--text-sub, #3f3f46);
+  font-weight: 600;
+  color: var(--text-main, #18181b);
+}
+
+.bullet-desc {
+  padding-left: 11px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--text-muted, #52525b);
 }
 
 .bullet-dot {
@@ -273,7 +286,6 @@
   border-radius: 50%;
   background: #10b981;
   flex-shrink: 0;
-  margin-top: 7px;
   box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
 }
 
