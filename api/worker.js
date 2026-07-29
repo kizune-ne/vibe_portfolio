@@ -33,6 +33,35 @@ export default {
     }
 
     try {
+      const urlObj = new URL(request.url);
+      
+      // Handle Feedback submission
+      if (urlObj.pathname.endsWith('/api/feedback') || urlObj.pathname.endsWith('/feedback')) {
+        const payload = await request.json();
+        const botToken = env.TELEGRAM_BOT_TOKEN;
+        const chatId = env.TELEGRAM_CHAT_ID;
+        
+        if (botToken && chatId) {
+          const msgText = `⭐ *Новый отзыв о портфолио!*\n\n` +
+            `*Оценка:* ${payload.ratingText || payload.rating + ' / 5'}\n` +
+            `*Комментарий:* ${payload.comment || 'Без комментария'}\n` +
+            `*Контакт:* ${payload.contact || 'Не указан'}\n` +
+            `*Время:* ${new Date(payload.timestamp || Date.now()).toLocaleString('ru-RU')}`;
+
+          await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: msgText,
+              parse_mode: 'Markdown'
+            })
+          }).catch(() => {});
+        }
+
+        return new Response(JSON.stringify({ success: true }), { status: 200, headers: corsHeaders });
+      }
+
       const { message, history, model, systemPrompt } = await request.json();
       if (!message && (!history || history.length === 0)) {
         return new Response(JSON.stringify({ error: "Message or history required" }), { status: 400, headers: corsHeaders });

@@ -1008,41 +1008,32 @@
 
       </article>
 
-      <!-- 3-Column Premium Quick Feedback Card for HR / Leads -->
+      <!-- 3-Column Premium Portfolio Feedback Card for HR / Leads -->
       <article class="bento-card card-quick-feedback" id="cardQuickFeedback">
         <div class="spotlight-border"></div>
         
         <div class="quick-feedback-head">
-          <span class="section-tag">QUICK REVIEW // HR &amp; LEAD</span>
-          <h3 class="card-title-sm">Быстрый Отклик</h3>
-          <p class="card-subtitle-sm">Оцените впечатление от портфолио в 1 клик или оставьте пожелание</p>
+          <span class="section-tag">FEEDBACK // HR &amp; LEAD</span>
+          <h3 class="card-title-sm">Оценка Портфолио</h3>
+          <p class="card-subtitle-sm">Оцените впечатление от портфолио по 5-балльной шкале или оставьте сообщение для связи</p>
         </div>
 
         <form class="quick-feedback-form" id="quickFeedbackForm">
-          <div class="quick-rating-label">Оценка в 1 клик:</div>
-          <div class="quick-rating-pills">
-            <button type="button" class="rating-pill active" data-rating="fire" title="Супер!">
-              <span class="emoji-icon">🔥</span>
-              <span class="pill-tag">Вау!</span>
-            </button>
-            <button type="button" class="rating-pill" data-rating="like" title="Хорошо">
-              <span class="emoji-icon">👍</span>
-              <span class="pill-tag">Отлично</span>
-            </button>
-            <button type="button" class="rating-pill" data-rating="idea" title="Идея / Пожелание">
-              <span class="emoji-icon">💡</span>
-              <span class="pill-tag">Идея</span>
-            </button>
-            <button type="button" class="rating-pill" data-rating="question" title="Есть вопросы">
-              <span class="emoji-icon">🤔</span>
-              <span class="pill-tag">Вопрос</span>
-            </button>
+          <div class="star-rating-box">
+            <div class="star-rating-row" id="starRatingRow">
+              <button type="button" class="star-btn active" data-value="1" title="1 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="2" title="2 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="3" title="3 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="4" title="4 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="5" title="5 из 5"><i data-lucide="star"></i></button>
+            </div>
+            <div class="star-rating-text" id="starRatingText">5 из 5 (Отлично!)</div>
           </div>
 
           <div class="quick-input-group">
             <div class="input-with-icon">
               <i data-lucide="message-square"></i>
-              <input type="text" class="quick-input-field" id="quickComment" placeholder="Что улучшить? (опционально)" />
+              <input type="text" class="quick-input-field" id="quickComment" placeholder="Что понравилось или что улучшить?" />
             </div>
           </div>
 
@@ -1054,7 +1045,7 @@
           </div>
 
           <button type="submit" class="quick-submit-btn" id="quickSubmitBtn">
-            <i data-lucide="send"></i> Отправить Отзыв
+            <i data-lucide="send"></i> <span>Отправить Отзыв</span>
           </button>
           
           <div class="quick-feedback-status" id="quickFeedbackStatus"></div>

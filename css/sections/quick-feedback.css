@@ -53,66 +53,61 @@
   margin-top: 4px;
 }
 
-.quick-rating-label {
-  font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
-  color: #10b981;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 700;
-}
-
-.quick-rating-pills {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-}
-
-.rating-pill {
+.star-rating-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2px;
-  padding: 8px 4px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 8px;
+}
+
+.star-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.star-btn {
+  background: transparent;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  color: #fafafa;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
 }
 
-.rating-pill .emoji-icon {
-  font-size: 1.25rem;
-  transition: transform 0.2s ease;
+.star-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke: #52525b;
+  fill: transparent;
+  stroke-width: 1.8;
+  transition: all 0.2s ease;
 }
 
-.rating-pill .pill-tag {
-  font-size: 0.65rem;
-  color: #a1a1aa;
-  font-weight: 500;
+.star-btn:hover svg,
+.star-btn.active svg {
+  stroke: #f59e0b;
+  fill: #f59e0b;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4));
 }
 
-.rating-pill:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-.rating-pill:hover .emoji-icon {
+.star-btn:hover {
   transform: scale(1.15);
 }
 
-.rating-pill.active {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: #10b981;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
-}
-
-.rating-pill.active .pill-tag {
-  color: #10b981;
-  font-weight: 700;
+.star-rating-text {
+  font-family: var(--font-code, monospace);
+  font-size: 0.725rem;
+  color: #f59e0b;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .input-with-icon {
