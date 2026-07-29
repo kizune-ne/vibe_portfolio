@@ -74,29 +74,13 @@ html, body {
     scroll-behavior: auto !important;
   }
 
-  html, body {
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: auto !important;
+  /* Universal Touch-Action: Ensure touching ANY card, text or element allows page scrolling */
+  html, body, *, *::before, *::after {
+    touch-action: pan-x pan-y !important;
     overscroll-behavior: auto !important;
   }
 
-  /* Smooth Touch Scroll Propagation for all inner scroll containers */
-  .chat-container,
-  .editor-window,
-  .file-tree-sidebar,
-  .obsidian-viewport,
-  .vault-categories-sidebar,
-  .tg-chat-list,
-  .tg-main-chat,
-  .calc-modal-body,
-  .case-inspector-body,
-  .ai-showcase-stand,
-  .ai-filmstrip-selector {
-    touch-action: pan-y !important;
-    -webkit-overflow-scrolling: touch !important;
-    overscroll-behavior-y: contain !important;
-  }
-
+  /* Disable ambient blurs & heavy spotlight layers on touch screens for max 60FPS */
   .ambient-orb,
   .spotlight-overlay,
   .spotlight-border {
@@ -117,7 +101,16 @@ html, body {
     }
   }
 
-  /* Solid dark background for header without blur lag */
+  /* Clean Typography Wrapping without awkward mid-word breaks */
+  h1, h2, h3, h4, h5, h6,
+  .hero-title, .card-title, .card-subtitle,
+  .hero-description, p, span, div {
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    hyphens: manual !important;
+  }
+
+  /* Solid dark background for header */
   .navbar {
     background: #09090d !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -151,38 +144,41 @@ html, body {
     font-size: 0.775rem;
   }
 
-  /* Bento Cards Universal Mobile Padding */
-  .bento-card {
-    padding: 18px !important;
+  /* Bento Cards Universal Mobile Box-Sizing & Bounds */
+  .bento-card, article {
+    padding: 16px !important;
     border-radius: 16px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
   }
 
   /* Hero Section */
   .hero-title {
-    font-size: clamp(1.4rem, 6vw, 2rem) !important;
+    font-size: clamp(1.35rem, 5.5vw, 1.85rem) !important;
     line-height: 1.25 !important;
     margin-bottom: 12px;
   }
 
   .hero-description {
-    font-size: 0.875rem !important;
+    font-size: 0.85rem !important;
     line-height: 1.5;
     margin-bottom: 16px;
   }
 
   .hero-metrics-row {
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px !important;
-    padding: 12px !important;
+    gap: 6px !important;
+    padding: 10px !important;
     margin-bottom: 16px;
   }
 
   .metric-val {
-    font-size: 1.25rem !important;
+    font-size: 1.15rem !important;
   }
 
   .metric-lbl {
-    font-size: 0.675rem !important;
+    font-size: 0.65rem !important;
   }
 
   .hero-cta-group {
@@ -229,7 +225,7 @@ html, body {
 
   .chat-container {
     height: 230px !important;
-    padding: 12px !important;
+    padding: 10px !important;
     gap: 8px !important;
   }
 
@@ -246,6 +242,7 @@ html, body {
   .prompt-chip {
     font-size: 0.725rem !important;
     padding: 6px 10px !important;
+    white-space: nowrap !important;
   }
 
   .chat-input-wrap input {
@@ -283,7 +280,7 @@ html, body {
     gap: 16px !important;
   }
 
-  /* Firmware Editor Mobile Tuning */
+  /* Firmware Editor Mobile Tuning & Readability */
   .firmware-split-container {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
@@ -304,6 +301,8 @@ html, body {
     padding: 14px !important;
     white-space: pre-wrap !important;
     word-break: break-word !important;
+    color: #f5f5f5 !important;
+    background: #141414 !important;
   }
 
   .keyboard-visualizer {
@@ -366,7 +365,7 @@ html, body {
   }
 
   .obsidian-viewport {
-    padding: 14px !important;
+    padding: 12px !important;
   }
 
   /* Full Printing Calculator Modal Mobile Tuning */
@@ -375,9 +374,11 @@ html, body {
   }
 
   .calc-modal-content {
-    width: 98vw !important;
+    width: calc(100vw - 16px) !important;
+    max-width: 100% !important;
     height: 94vh !important;
     border-radius: 14px !important;
+    box-sizing: border-box !important;
   }
 
   .calc-modal-header {
@@ -417,35 +418,38 @@ html, body {
   }
 
   .case-inspector-modal-container {
-    width: 98vw !important;
+    width: calc(100vw - 16px) !important;
+    max-width: 100% !important;
     max-height: 94vh !important;
     border-radius: 14px !important;
+    box-sizing: border-box !important;
   }
 
   .case-inspector-header {
-    padding: 18px 48px 14px 16px !important;
+    padding: 16px 44px 12px 14px !important;
+    box-sizing: border-box !important;
   }
 
   .btn-close-case-inspector {
-    top: 14px !important;
-    right: 14px !important;
-    width: 36px !important;
-    height: 36px !important;
+    top: 12px !important;
+    right: 12px !important;
+    width: 34px !important;
+    height: 34px !important;
   }
 
   .modal-case-title {
-    font-size: 1.15rem !important;
-    word-break: break-word !important;
+    font-size: 1.1rem !important;
+    line-height: 1.3 !important;
   }
 
   .modal-case-subtitle {
-    font-size: 0.8rem !important;
+    font-size: 0.775rem !important;
   }
 
   .case-inspector-tabs {
     overflow-x: auto !important;
     flex-wrap: nowrap !important;
-    padding: 0 12px !important;
+    padding: 0 10px !important;
     gap: 6px !important;
     -webkit-overflow-scrolling: touch !important;
   }
@@ -457,11 +461,24 @@ html, body {
   }
 
   .case-inspector-body {
-    padding: 16px !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
   }
 
   .star-card {
-    padding: 14px !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+
+  .star-card pre, .star-card code {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    font-size: 0.775rem !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
   }
 
   /* Skill Matrix Badges */
@@ -481,17 +498,6 @@ html, body {
   select,
   textarea {
     font-size: 16px !important;
-  }
-
-  /* Prevent text overflow or layout breakages on narrow screens */
-  .hero-title, .card-title, h1, h2, h3, h4 {
-    word-break: break-word !important;
-    overflow-wrap: break-word !important;
-  }
-
-  .bento-card, article {
-    box-sizing: border-box !important;
-    max-width: 100% !important;
   }
 
   /* Footer */
