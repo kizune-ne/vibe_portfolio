@@ -2,7 +2,7 @@
    VIBECODER & AI ENGINEER PORTFOLIO - MAIN CSS ENTRY (MODULAR STRUCTURE)
    ========================================================================== */
 
-@import 'css/variables.css?v=v200_native_safari_root_scroll';
-@import 'css/components.css?v=v200_native_safari_root_scroll';
-@import 'css/sections.css?v=v200_native_safari_root_scroll';
-@import 'css/responsive.css?v=v200_native_safari_root_scroll';
+@import 'css/variables.css?v=v300_masterclass_final_sticky_navbar';
+@import 'css/components.css?v=v300_masterclass_final_sticky_navbar';
+@import 'css/sections.css?v=v300_masterclass_final_sticky_navbar';
+@import 'css/responsive.css?v=v300_masterclass_final_sticky_navbar';
