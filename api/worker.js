@@ -78,10 +78,28 @@ export default {
               `🔗 *Источник:* \`${payload.referrer || 'Прямой заход'}\`\n` +
               `🕒 *Время:* \`${timeMsk} МСК\``;
           } else if (payload.type === 'event') {
+            let eventIcon = '⚡';
+            let eventTitle = payload.eventName || 'Действие';
+
+            if (payload.eventName?.includes('открыл Резюме')) {
+              eventIcon = '📄';
+              eventTitle = '*РЕКРУТЕР ОТКРЫЛ РЕЗЮМЕ (PDF)*';
+            } else if (payload.eventName?.includes('скачал Резюме')) {
+              eventIcon = '📥';
+              eventTitle = '*РЕКРУТЕР СКАЧАЛ РЕЗЮМЕ (CV)*';
+            } else if (payload.eventName?.includes('Email')) {
+              eventIcon = '✉️';
+              eventTitle = '*Скопирован Email адрес*';
+            } else if (payload.eventName?.includes('Telegram')) {
+              eventIcon = '💬';
+              eventTitle = '*Переход в Telegram личку*';
+            }
+
             msgText = 
-              `⚡ *Событие:* ${payload.eventName}\n\n` +
+              `${eventIcon} ${eventTitle}\n\n` +
               `👤 *ID:* \`${payload.visitorId || 'аноним'}\`\n` +
               `🌐 *Гео:* \`${geoStr}\`\n` +
+              `💻 *Устройство:* \`${deviceType}\`\n` +
               `🕒 *Время:* \`${timeMsk} МСК\``;
           }
 
