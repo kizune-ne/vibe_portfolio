@@ -50,7 +50,6 @@
   grid-column: span 9 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important;
   height: 100% !important;
 }
 
