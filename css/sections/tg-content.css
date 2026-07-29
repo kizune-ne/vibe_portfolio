@@ -238,6 +238,25 @@
   border: 1px solid var(--border-card, #e4e4e7);
   border-radius: 6px;
   padding: 10px 12px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.code-view-box::-webkit-scrollbar {
+  width: 4px;
+}
+
+.code-view-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-view-box::-webkit-scrollbar-thumb {
+  background: #e4e4e7;
+  border-radius: 4px;
+}
+
+.code-view-box::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
 }
 
 .code-view-title {
