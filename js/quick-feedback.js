@@ -71,9 +71,12 @@ export function initQuickFeedback() {
     saved.push(payload);
     localStorage.setItem('vibe_portfolio_feedback', JSON.stringify(saved));
 
-    // Send to Worker feedback endpoint if available
+    // Send to Worker feedback endpoint
+    const baseUrl = window.AI_WORKER_URL || 'https://vibe-ai-proxy.androidvgb.workers.dev/';
+    const workerFeedbackUrl = baseUrl.replace(/\/$/, '') + '/feedback';
+
     try {
-      fetch('/api/feedback', {
+      fetch(workerFeedbackUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
