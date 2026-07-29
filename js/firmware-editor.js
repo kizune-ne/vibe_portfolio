@@ -1,8 +1,12 @@
 /* JS Module: Full Explicit VS Code Tree Explorer & Code Inspector with Syntax Highlighting */
-import { REAL_FIRMWARE_TREE } from './firmware-tree-data.js';
 
-export function initFirmwareEditor() {
+export async function initFirmwareEditor() {
   const fileTreeContainer = document.getElementById('fileTreeContainer');
+  if (!fileTreeContainer) return;
+
+  // Lazy load heavy firmware tree data (247 KB) to boost initial LCP performance
+  const { REAL_FIRMWARE_TREE } = await import('./firmware-tree-data.js');
+
   const codeOutput = document.getElementById('codeOutput');
   const breadcrumbText = document.getElementById('breadcrumbText');
   const btnReplayCode = document.getElementById('btnReplayCode');

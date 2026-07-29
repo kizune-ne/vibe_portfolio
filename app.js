@@ -36,5 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initQuickFeedback();
   initCopyEmail();
   initAnalytics();
-  initLiveReload(); // Auto-reload browser on code change
+  
+  // Auto-reload browser ONLY during local development (localhost / 127.0.0.1)
+  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+    initLiveReload();
+  }
 });
