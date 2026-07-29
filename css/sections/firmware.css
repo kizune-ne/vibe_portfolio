@@ -90,11 +90,14 @@
 
 .folder-name {
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .folder-content {
-  padding-left: 12px;
-  margin-left: 10px;
+  padding-left: 8px;
+  margin-left: 4px;
   border-left: 1px solid rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
@@ -106,10 +109,13 @@
   align-items: center;
   gap: 6px;
   color: var(--color-charcoal);
-  padding: 4px 6px;
+  padding: 3px 6px;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tree-file:hover {

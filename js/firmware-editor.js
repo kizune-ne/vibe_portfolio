@@ -10,7 +10,7 @@ export function initFirmwareEditor() {
   let typewriterTimer = null;
   let activeFileObj = null;
 
-  const DEFAULT_OPEN_FOLDERS = ['keyboards', 'linker', 'monsgeek', 'm1_v5', 'm1_v5_us', 'keymaps'];
+  const DEFAULT_OPEN_FOLDERS = ['m1_v5_us', 'keymaps', 'vial'];
 
   const KEY_MAPPINGS = {
     'TAB': 'key-tab', 'Q': 'key-q', 'W': 'key-w', 'E': 'key-e', 'R': 'key-r', 'T': 'key-t',
