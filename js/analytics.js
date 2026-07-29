@@ -47,62 +47,96 @@ function sendAnalyticsPing(payload) {
   const baseUrl = window.AI_WORKER_URL || 'https://vibe-ai-proxy.androidvgb.workers.dev/';
   const endpoint = baseUrl.replace(/\/$/, '') + '/analytics';
 
-  try {
-    if (navigator.sendBeacon) {
-      const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-      navigator.sendBeacon(endpoint, blob);
-    } else {
-      fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(() => {});
-    }
-  } catch (_) {}
+  // Use reliable fetch with keepalive: true (prevents silent sendBeacon CORS drops)
+  fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    keepalive: true
+  }).catch((err) => {
+    console.warn('[Analytics Error]', err);
+  });
 }
 
 function setupAutoTracker(visitorId) {
   document.addEventListener('click', (e) => {
-    const clickable = e.target.closest('a, button, [data-track]');
+    const clickable = e.target.closest('a, button, .ai-selector-item, [data-track]');
     if (!clickable) return;
 
-    // 1. Explicit data-track attribute (Custom labels in HTML)
+    // 1. Explicit data-track attribute (Highest priority)
     if (clickable.dataset && clickable.dataset.track) {
       trackEvent(clickable.dataset.track);
       return;
     }
 
-    // 2. Special Case Inspection buttons
+    // 2. Resume Open / Download
+    if (clickable.href && clickable.href.includes('resume.pdf')) {
+      if (clickable.hasAttribute('download')) {
+        trackEvent('📥 Рекрутер скачал Резюме (CV)');
+      } else {
+        trackEvent('📄 Рекрутер открыл Резюме (PDF)');
+      }
+      return;
+    }
+
+    // 3. Case Inspection buttons
     if (clickable.classList.contains('btn-case-inspect')) {
       const caseId = clickable.getAttribute('data-case-id') || 'кейс';
       trackEvent(`📂 Просмотр кейса: [${caseId}]`);
       return;
     }
 
-    // 3. Telegram links (t.me)
+    // 4. Telegram links (t.me)
     if (clickable.href && clickable.href.includes('t.me')) {
-      const text = clickable.textContent.trim() || '@kizune_ne';
+      const text = clickable.textContent.trim().replace(/\s+/g, ' ') || '@kizune_ne';
       trackEvent(`💬 Переход в Telegram: ${text}`);
       return;
     }
 
-    // 4. GitHub links
+    // 5. GitHub links
     if (clickable.href && clickable.href.includes('github.com')) {
-      const text = clickable.textContent.trim() || 'GitHub Repo';
+      const text = clickable.textContent.trim().replace(/\s+/g, ' ') || 'GitHub';
       trackEvent(`🐙 Переход на GitHub: ${text}`);
       return;
     }
 
-    // 5. Open Calculator button
-    if (clickable.id === 'btnOpenCalcModal') {
+    // 6. Copy Email button
+    if (clickable.classList.contains('btn-copy-email')) {
+      trackEvent('✉️ Скопирован Email');
+      return;
+    }
+
+    // 7. Open Calculator button
+    if (clickable.id === 'btnOpenCalcModal' || clickable.classList.contains('btn-launch-calc-hero')) {
       trackEvent('🧮 Запуск Калькулятора Печати');
       return;
     }
 
-    // 6. Generic external links (target="_blank")
+    // 8. Skill Matrix badges
+    if (clickable.classList.contains('skill-badge')) {
+      const skillName = clickable.textContent.trim().replace(/\s+/g, ' ');
+      trackEvent(`🎯 Фильтр навыков: ${skillName}`);
+      return;
+    }
+
+    // 9. TOV Niche tabs
+    if (clickable.classList.contains('tov-tab')) {
+      const niche = clickable.textContent.trim().replace(/\s+/g, ' ');
+      trackEvent(`💬 Смена ниши постов TG: ${niche}`);
+      return;
+    }
+
+    // 10. AI Assistant prompt chips
+    if (clickable.classList.contains('prompt-chip')) {
+      const promptText = clickable.textContent.trim().replace(/\s+/g, ' ');
+      trackEvent(`🤖 Клик подсказки ИИ: ${promptText}`);
+      return;
+    }
+
+    // 11. Generic external links (target="_blank")
     if (clickable.href && clickable.target === '_blank' && !clickable.href.startsWith('javascript:')) {
-      const label = clickable.textContent.trim() || clickable.href;
-      trackEvent(`🔗 Переход по внешней ссылке: ${label}`);
+      const label = clickable.textContent.trim().replace(/\s+/g, ' ') || clickable.href;
+      trackEvent(`🔗 Переход по ссылке: ${label}`);
     }
   }, { passive: true });
 }
