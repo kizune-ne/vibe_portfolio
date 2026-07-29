@@ -14,6 +14,7 @@ import { initObsidianShowcase } from './js/obsidian-showcase.js';
 import { initTgContentSimulator } from './js/tg-content-sim.js';
 import { initQuickFeedback } from './js/quick-feedback.js';
 import { initCopyEmail } from './js/copy-email.js';
+import { initAnalytics } from './js/analytics.js';
 import { initLiveReload } from './js/live-reload.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,5 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTgContentSimulator();
   initQuickFeedback();
   initCopyEmail();
+  initAnalytics();
   initLiveReload(); // Auto-reload browser on code change
 });

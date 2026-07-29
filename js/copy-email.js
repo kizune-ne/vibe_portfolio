@@ -2,6 +2,8 @@
    COPY EMAIL INTERACTIVITY (CLIPBOARD SYNC + TOAST/BADGE FEEDBACK)
    ========================================================================== */
 
+import { trackEvent } from './analytics.js';
+
 export function initCopyEmail() {
   const emailElements = document.querySelectorAll('.btn-copy-email, [href^="mailto:"]');
 
@@ -11,6 +13,9 @@ export function initCopyEmail() {
       
       const email = el.getAttribute('data-email') || 'kizunezn@gmail.com';
       
+      // Track analytics event
+      trackEvent('✉️ Скопирован Email', { email: email });
+
       // Copy to clipboard
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).catch(() => fallbackCopy(email));

@@ -34,6 +34,79 @@ export default {
 
     try {
       const urlObj = new URL(request.url);
+
+      // Handle Analytics & Visitor Tracking
+      if (urlObj.pathname.endsWith('/analytics')) {
+        const payload = await request.json();
+        const botToken = env.TELEGRAM_BOT_TOKEN;
+        const chatId = env.TELEGRAM_CHAT_ID;
+
+        if (botToken && chatId) {
+          // Cloudflare Geolocation Headers
+          const country = request.cf?.country || 'RU';
+          const city = request.cf?.city || 'Москва';
+          const geoStr = city ? `${country}, ${city}` : country;
+
+          // User Agent device info
+          const ua = request.headers.get('user-agent') || '';
+          let deviceType = 'Desktop 💻';
+          if (/mobile/i.test(ua)) deviceType = 'Mobile 📱';
+          if (/tablet|ipad/i.test(ua)) deviceType = 'Tablet 📱';
+
+          const dateObj = payload.timestamp ? new Date(payload.timestamp) : new Date();
+          const timeMsk = dateObj.toLocaleString('ru-RU', {
+            timeZone: 'Europe/Moscow',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+
+          let msgText = '';
+
+          if (payload.type === 'visit') {
+            const isReturning = payload.isReturning;
+            const headerIcon = isReturning ? '🔄' : '👀';
+            const headerTitle = isReturning ? '*ПОСЕТИТЕЛЬ СНОВА ВЕРНУЛСЯ!*' : '*Новый визит на портфолио!*';
+
+            msgText = 
+              `${headerIcon} ${headerTitle}\n\n` +
+              `👤 *ID:* \`${payload.visitorId || 'аноним'}\`\n` +
+              `🌐 *Гео:* \`${geoStr}\`\n` +
+              `💻 *Устройство:* \`${deviceType}\` (${payload.screen || 'N/A'})\n` +
+              `🔗 *Источник:* \`${payload.referrer || 'Прямой заход'}\`\n` +
+              `🕒 *Время:* \`${timeMsk} МСК\``;
+          } else if (payload.type === 'event') {
+            msgText = 
+              `⚡ *Событие:* ${payload.eventName}\n\n` +
+              `👤 *ID:* \`${payload.visitorId || 'аноним'}\`\n` +
+              `🌐 *Гео:* \`${geoStr}\`\n` +
+              `🕒 *Время:* \`${timeMsk} МСК\``;
+          }
+
+          if (msgText) {
+            const tgBody = {
+              chat_id: chatId,
+              text: msgText,
+              parse_mode: 'Markdown'
+            };
+
+            const threadId = env.TELEGRAM_THREAD_ID || env.TELEGRAM_TOPIC_ID;
+            if (threadId) {
+              tgBody.message_thread_id = parseInt(threadId, 10);
+            }
+
+            await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(tgBody)
+            }).catch(() => {});
+          }
+        }
+
+        return new Response(JSON.stringify({ success: true }), { status: 200, headers: corsHeaders });
+      }
       
       // Handle Feedback submission
       if (urlObj.pathname.endsWith('/api/feedback') || urlObj.pathname.endsWith('/feedback')) {
