@@ -21,40 +21,45 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   background: var(--bg-card-sub, #fafafa);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-card, 8px);
-  padding: 8px 12px;
+  padding: 6px 10px;
+  flex-wrap: nowrap;
 }
 
 @media (max-width: 860px) {
   .tov-tabs-container {
     flex-direction: column;
     align-items: stretch;
+    gap: 6px;
   }
 }
 
 .tov-tabs-wrapper {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow-x: auto;
 }
 
 .tov-tab {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 11px;
+  gap: 4px;
+  padding: 4px 8px;
   border-radius: var(--radius-pill, 9999px);
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #ebebeb);
   color: var(--text-sub, #52525b);
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 500;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast, 0.15s ease);
 }
 
@@ -74,26 +79,28 @@
 .view-mode-selector {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-pill, 9999px);
-  padding: 3px;
+  padding: 2px;
+  flex-shrink: 0;
 }
 
 .mode-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 9px;
+  gap: 4px;
+  padding: 3px 7px;
   border-radius: var(--radius-pill, 9999px);
   border: none;
   background: transparent;
   color: var(--text-muted, #71717a);
   font-family: var(--font-code, monospace);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 500;
   cursor: pointer;
+  white-space: nowrap;
   transition: all 0.15s ease;
 }
 
