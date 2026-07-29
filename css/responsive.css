@@ -26,7 +26,9 @@ html, body {
   .row-two-cols > .bento-card,
   .row-two-cols > article,
   .row-three-cols > .bento-card,
-  .row-three-cols > article {
+  .row-three-cols > article,
+  .row-content-knowledge .card-tg-content,
+  .row-content-knowledge .card-obsidian-rag {
     grid-column: span 12 !important;
   }
   
@@ -76,6 +78,23 @@ html, body {
     -webkit-overflow-scrolling: touch !important;
     touch-action: auto !important;
     overscroll-behavior: auto !important;
+  }
+
+  /* Smooth Touch Scroll Propagation for all inner scroll containers */
+  .chat-container,
+  .editor-window,
+  .file-tree-sidebar,
+  .obsidian-viewport,
+  .vault-categories-sidebar,
+  .tg-chat-list,
+  .tg-main-chat,
+  .calc-modal-body,
+  .case-inspector-body,
+  .ai-showcase-stand,
+  .ai-filmstrip-selector {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
   }
 
   .ambient-orb,
@@ -140,7 +159,7 @@ html, body {
 
   /* Hero Section */
   .hero-title {
-    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    font-size: clamp(1.4rem, 6vw, 2rem) !important;
     line-height: 1.25 !important;
     margin-bottom: 12px;
   }
@@ -175,6 +194,7 @@ html, body {
   .hero-cta-group .btn {
     width: 100% !important;
     justify-content: center !important;
+    min-height: 44px !important;
   }
 
   /* AI Assistant Mobile Tuning */
@@ -208,14 +228,14 @@ html, body {
   }
 
   .chat-container {
-    height: 220px !important;
+    height: 230px !important;
     padding: 12px !important;
     gap: 8px !important;
   }
 
   .chat-message .bubble {
     padding: 8px 12px !important;
-    font-size: 0.8rem !important;
+    font-size: 0.825rem !important;
   }
 
   .chat-quick-prompts {
@@ -224,21 +244,79 @@ html, body {
   }
 
   .prompt-chip {
-    font-size: 0.7rem !important;
+    font-size: 0.725rem !important;
     padding: 6px 10px !important;
   }
 
   .chat-input-wrap input {
     padding: 8px 12px !important;
-    font-size: 0.8rem !important;
+    font-size: 0.825rem !important;
   }
 
   .btn-send {
-    width: 36px !important;
-    height: 36px !important;
+    width: 38px !important;
+    height: 38px !important;
   }
 
-  /* TG Simulator & DevOps */
+  /* AI Influencer & Obsidian Pipeline Step Cards Vertical Stacking */
+  .pipeline-steps-grid {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .pipe-step-card,
+  .pipeline-step-card {
+    width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .pipe-step-arrow,
+  .pipeline-arrow {
+    transform: rotate(90deg) !important;
+    padding: 4px 0 !important;
+    align-self: center !important;
+  }
+
+  .ai-inspector-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Firmware Editor Mobile Tuning */
+  .firmware-split-container {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .file-tree-sidebar {
+    height: 160px !important;
+    max-height: 160px !important;
+  }
+
+  .code-editor-wrap {
+    height: 350px !important;
+  }
+
+  .editor-window {
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+    padding: 14px !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+  }
+
+  .keyboard-visualizer {
+    height: auto !important;
+    padding: 12px !important;
+  }
+
+  .key-cap {
+    height: 26px !important;
+    font-size: 0.65rem !important;
+  }
+
+  /* TG Simulator & DevOps Docker Topology */
   .tg-main-chat {
     padding: 12px !important;
   }
@@ -250,7 +328,7 @@ html, body {
 
   .terminal-window {
     padding: 12px !important;
-    font-size: 0.75rem !important;
+    font-size: 0.775rem !important;
     max-height: 240px !important;
   }
 
@@ -259,18 +337,57 @@ html, body {
     gap: 8px !important;
   }
 
-  /* Firmware Editor */
-  .firmware-file-tree {
-    max-height: 140px;
-    overflow-y: auto;
+  .topo-host {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 12px !important;
   }
 
-  .firmware-code-editor {
-    height: 220px !important;
-    font-size: 0.75rem !important;
+  .topo-network-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
   }
 
-  /* Printing Calculator Mobile */
+  /* Obsidian Vault Explorer Mobile */
+  .vault-explorer-layout {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .obsidian-stand-header {
+    padding: 10px 14px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .obsidian-mode-tabs {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  .obsidian-viewport {
+    padding: 14px !important;
+  }
+
+  /* Full Printing Calculator Modal Mobile Tuning */
+  .calc-modal-overlay {
+    padding: 8px !important;
+  }
+
+  .calc-modal-content {
+    width: 98vw !important;
+    height: 94vh !important;
+    border-radius: 14px !important;
+  }
+
+  .calc-modal-header {
+    padding: 12px 14px !important;
+  }
+
+  .calc-modal-header h3 {
+    font-size: 0.95rem !important;
+  }
+
   .calc-options-grid {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
@@ -294,6 +411,59 @@ html, body {
     font-size: 1.75rem !important;
   }
 
+  /* STAR Case Inspector Modal Mobile Tuning */
+  .case-inspector-modal-overlay {
+    padding: 8px !important;
+  }
+
+  .case-inspector-modal-container {
+    width: 98vw !important;
+    max-height: 94vh !important;
+    border-radius: 14px !important;
+  }
+
+  .case-inspector-header {
+    padding: 18px 48px 14px 16px !important;
+  }
+
+  .btn-close-case-inspector {
+    top: 14px !important;
+    right: 14px !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .modal-case-title {
+    font-size: 1.15rem !important;
+    word-break: break-word !important;
+  }
+
+  .modal-case-subtitle {
+    font-size: 0.8rem !important;
+  }
+
+  .case-inspector-tabs {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding: 0 12px !important;
+    gap: 6px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .case-inspector-tabs .tab-btn {
+    white-space: nowrap !important;
+    padding: 8px 12px !important;
+    font-size: 0.775rem !important;
+  }
+
+  .case-inspector-body {
+    padding: 16px !important;
+  }
+
+  .star-card {
+    padding: 14px !important;
+  }
+
   /* Skill Matrix Badges */
   .badges-wrapper {
     gap: 6px !important;
@@ -301,10 +471,10 @@ html, body {
 
   .skill-badge {
     padding: 4px 8px !important;
-    font-size: 0.7rem !important;
+    font-size: 0.725rem !important;
   }
 
-  /* Prevent iOS Safari auto-zoom on input focus by enforcing 16px font-size on mobile inputs */
+  /* Prevent iOS Safari auto-zoom on input focus */
   input[type="text"],
   input[type="number"],
   input[type="email"],
