@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   grid-column: span 9 !important;
 }
 
@@ -21,11 +21,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
   background: var(--bg-card-sub, #fafafa);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-card, 8px);
-  padding: 6px 10px;
+  padding: 8px 12px;
 }
 
 @media (max-width: 860px) {
@@ -39,20 +39,20 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
 }
 
 .tov-tab {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
+  gap: 5px;
+  padding: 5px 11px;
   border-radius: var(--radius-pill, 9999px);
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #ebebeb);
   color: var(--text-sub, #52525b);
   font-family: var(--font-body);
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast, 0.15s ease);
@@ -74,24 +74,24 @@
 .view-mode-selector {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-pill, 9999px);
-  padding: 2px;
+  padding: 3px;
 }
 
 .mode-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 7px;
+  gap: 5px;
+  padding: 4px 9px;
   border-radius: var(--radius-pill, 9999px);
   border: none;
   background: transparent;
   color: var(--text-muted, #71717a);
   font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -110,8 +110,8 @@
 /* Main Grid Stage */
 .tg-sim-container {
   display: grid;
-  grid-template-columns: 1fr 270px;
-  gap: 12px;
+  grid-template-columns: 1fr 300px;
+  gap: 14px;
   align-items: start;
 }
 
@@ -126,11 +126,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   background: var(--bg-card-sub, #fcfcfc);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-card, 8px);
-  padding: 12px 14px;
+  padding: 14px 16px;
   transition: opacity 0.2s ease;
 }
 
@@ -143,7 +143,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border-card, #ebebeb);
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 }
 
 .tg-author-info {
@@ -153,8 +153,8 @@
 }
 
 .tg-author-avatar {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--text-main, #18181b);
   display: flex;
@@ -162,7 +162,7 @@
   justify-content: center;
   color: var(--bg-card, #ffffff);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 }
 
 .tg-author-meta {
@@ -173,7 +173,7 @@
 
 .tg-author-name {
   font-weight: 600;
-  font-size: 0.825rem;
+  font-size: 0.875rem;
   color: var(--text-main, #18181b);
   display: flex;
   align-items: center;
@@ -182,13 +182,13 @@
 
 .tg-verified-icon {
   color: #10b981;
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
 }
 
 .tg-post-badge {
   font-family: var(--font-code, monospace);
-  font-size: 0.675rem;
+  font-size: 0.7rem;
   color: var(--text-muted, #71717a);
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -196,14 +196,14 @@
 
 .tg-post-time {
   font-family: var(--font-code, monospace);
-  font-size: 0.725rem;
+  font-size: 0.75rem;
   color: var(--text-disabled, #a1a1aa);
 }
 
 /* Post Content Formatting */
 .tg-post-body {
-  font-size: 0.8125rem;
-  line-height: 1.5;
+  font-size: 0.875rem;
+  line-height: 1.55;
   color: var(--text-sub, #3f3f46);
 }
 
@@ -213,7 +213,7 @@
   padding: 1px 4px;
   border-radius: 4px;
   font-family: var(--font-code, monospace);
-  font-size: 0.75rem;
+  font-size: 0.775rem;
   color: #059669;
 }
 
@@ -234,12 +234,12 @@
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #e4e4e7);
   border-radius: 6px;
-  padding: 10px;
+  padding: 10px 12px;
 }
 
 .code-view-title {
   font-family: var(--font-code, monospace);
-  font-size: 0.675rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: #059669;
   letter-spacing: 0.05em;
@@ -253,8 +253,8 @@
 
 .code-view-box code {
   font-family: var(--font-code, monospace);
-  font-size: 0.75rem;
-  line-height: 1.45;
+  font-size: 0.775rem;
+  line-height: 1.5;
   color: var(--text-main, #18181b);
   background: transparent;
   border: none;
@@ -265,7 +265,7 @@
 .tg-sim-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .tg-metrics-card,
@@ -273,27 +273,27 @@
   background: var(--bg-card-sub, #fafafa);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-card, 8px);
-  padding: 10px 12px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .tg-metrics-title {
   font-family: var(--font-code, monospace);
-  font-size: 0.675rem;
+  font-size: 0.725rem;
   color: var(--text-muted, #71717a);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-weight: 600;
 }
 
 .tg-metrics-title svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
   color: #10b981;
 }
 
@@ -307,7 +307,7 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
-  padding: 5px 8px;
+  padding: 6px 9px;
   background: var(--bg-card, #ffffff);
   border-radius: var(--radius-sm, 6px);
   border: 1px solid var(--border-card, #ebebeb);
@@ -315,13 +315,13 @@
 
 .tg-metric-val {
   font-family: var(--font-code, monospace);
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-main, #18181b);
 }
 
 .tg-metric-lbl {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: var(--text-muted, #71717a);
 }
 
@@ -330,7 +330,7 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  padding: 3px 5px;
+  padding: 4px 6px;
   border-radius: var(--radius-sm, 6px);
   transition: background 0.15s ease;
 }
@@ -340,13 +340,13 @@
 }
 
 .workflow-step-num {
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
   background: rgba(16, 185, 129, 0.1);
   color: #059669;
   font-family: var(--font-code, monospace);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -359,17 +359,17 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 1px;
 }
 
 .workflow-step-text strong {
   display: block;
   color: var(--text-main, #18181b);
-  font-size: 0.765rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 
 .workflow-step-text span {
-  font-size: 0.675rem;
+  font-size: 0.725rem;
   color: var(--text-muted, #71717a);
 }
