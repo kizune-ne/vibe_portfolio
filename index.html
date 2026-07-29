@@ -1018,7 +1018,7 @@
           <p class="card-subtitle-sm">Оцените впечатление от портфолио по 5-балльной шкале или оставьте сообщение для связи</p>
         </div>
 
-        <form class="quick-feedback-form" id="quickFeedbackForm">
+        <form class="quick-feedback-form" id="quickFeedbackForm" autocomplete="off">
           <div class="star-rating-box">
             <div class="star-rating-row" id="starRatingRow">
               <button type="button" class="star-btn active" data-value="1" title="1 из 5"><i data-lucide="star"></i></button>
@@ -1033,14 +1033,14 @@
           <div class="quick-input-group">
             <div class="input-with-icon">
               <i data-lucide="message-square"></i>
-              <input type="text" class="quick-input-field" id="quickComment" placeholder="Что понравилось или что улучшить?" />
+              <input type="text" class="quick-input-field" id="quickComment" placeholder="Что понравилось или что улучшить?" autocomplete="off" spellcheck="false" />
             </div>
           </div>
 
           <div class="quick-input-group">
             <div class="input-with-icon">
               <i data-lucide="user"></i>
-              <input type="text" class="quick-input-field" id="quickContact" placeholder="Telegram / Email для связи" />
+              <input type="text" class="quick-input-field" id="quickContact" placeholder="Telegram / Email для связи" autocomplete="off" spellcheck="false" />
             </div>
           </div>
 

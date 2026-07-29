@@ -66,11 +66,6 @@ export function initQuickFeedback() {
       timestamp: new Date().toISOString()
     };
 
-    // Save to localStorage
-    const saved = JSON.parse(localStorage.getItem('vibe_portfolio_feedback') || '[]');
-    saved.push(payload);
-    localStorage.setItem('vibe_portfolio_feedback', JSON.stringify(saved));
-
     // Send to Worker feedback endpoint
     const baseUrl = window.AI_WORKER_URL || 'https://vibe-ai-proxy.androidvgb.workers.dev/';
     const workerFeedbackUrl = baseUrl.replace(/\/$/, '') + '/feedback';
