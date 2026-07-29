@@ -61,21 +61,54 @@
         -webkit-backdrop-filter: blur(16px) !important;
         border: 1px solid var(--color-hairline) !important;
         border-radius: 12px !important;
-        padding: 8px 12px !important;
+        padding: 6px 12px !important;
+        height: 48px !important;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
+        flex-wrap: nowrap !important;
         width: 100% !important;
         box-sizing: border-box !important;
+      }
+      .brand-logo {
+        font-size: 0.95rem;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+      }
+      .logo-badge {
+        display: none !important;
+      }
+      .nav-actions {
+        margin-left: auto;
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+      }
+      .nav-actions .btn-sm {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+        height: 34px !important;
+        min-height: 34px !important;
+        border-radius: 8px !important;
+        white-space: nowrap !important;
+      }
+      #btnCopyEmail span,
+      .nav-actions #btnCopyEmail .btn-text {
+        display: none !important;
       }
       .bento-main {
         gap: 16px !important;
         padding-bottom: 32px !important;
       }
-      .bento-row, .row-hero, .row-two-cols, .row-three-cols, .row-tg-calc, .row-obsidian-rag, .row-calc-firmware, .row-docker-feedback {
+      .bento-row > *, .row-hero > *, .row-two-cols > *, .row-three-cols > *, .row-tg-calc > *, .row-obsidian-rag > *, .row-calc-firmware > *, .row-docker-feedback > * {
         gap: 16px !important;
-        grid-template-columns: 1fr !important;
+        grid-column: span 12 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
       }
       .bento-card, article {
         padding: 16px 14px !important;
@@ -83,6 +116,15 @@
         box-sizing: border-box !important;
         width: 100% !important;
         max-width: 100% !important;
+        min-width: 0 !important;
+      }
+      .vault-categories-sidebar,
+      .vault-note-preview-box,
+      .card-tg-content,
+      .firmware-split-container,
+      .tg-architecture-grid,
+      .devops-stats-grid {
+        min-width: 0 !important;
       }
     }
   </style>

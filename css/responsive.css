@@ -28,7 +28,59 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ------------------------------------------
+   1. TABLETS & SMALL LAPTOPS (<= 1024px)
+   ------------------------------------------ */
+@media (max-width: 1024px) {
+  .row-hero .card-hero,
+  .row-hero .card-ai-assistant,
+  .row-tg-calc > article,
+  .row-two-cols > .bento-card,
+  .row-two-cols > article,
+  .row-three-cols > .bento-card,
+  .row-three-cols > article,
+  .row-content-knowledge .card-tg-content,
+  .row-content-knowledge .card-obsidian-rag {
+    grid-column: span 12 !important;
+  }
+  
+  .firmware-split-container {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  .tg-window-wrapper {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .tg-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--color-hairline);
+    padding: 10px;
+  }
+
+  .tg-chat-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+  }
+
+  .tg-chat-item {
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+  .tg-chat-item .preview {
+    display: none;
+  }
+}
+
+/* ------------------------------------------
+   2. MOBILE PHONES (<= 768px)
+   ------------------------------------------ */
 @media (max-width: 768px) {
+  /* Base Container Mobile Padding (Exact 94% card width: 3vw left + 3vw right) */
   .container {
     padding-left: 3vw !important;
     padding-right: 3vw !important;
@@ -37,6 +89,7 @@ body {
     box-sizing: border-box !important;
   }
 
+  /* SLEEK SINGLE-ROW STICKY GLASS FLOATING NAVBAR (NO OVERLAP) */
   .navbar {
     position: sticky !important;
     top: 8px !important;
@@ -53,17 +106,21 @@ body {
     -webkit-backdrop-filter: blur(16px) !important;
     border: 1px solid var(--color-hairline) !important;
     border-radius: 12px !important;
-    padding: 8px 12px !important;
+    padding: 6px 12px !important;
+    height: 48px !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
+    flex-wrap: nowrap !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
 
   .brand-logo {
     font-size: 0.95rem;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
 
   .logo-badge {
@@ -72,34 +129,47 @@ body {
 
   .nav-actions {
     margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
   }
 
   .nav-actions .btn-sm {
     padding: 6px 10px !important;
     font-size: 0.75rem !important;
-    min-height: 36px !important;
+    height: 34px !important;
+    min-height: 34px !important;
     border-radius: 8px !important;
+    white-space: nowrap !important;
   }
 
+  /* Hide email text on mobile screens to fit email icon + Telegram button on 1 row */
+  #btnCopyEmail span,
+  .nav-actions #btnCopyEmail .btn-text {
+    display: none !important;
+  }
+
+  /* Grid Layout Single Column & Gap Overrides */
   .bento-main {
     gap: 16px !important;
     padding-bottom: 32px !important;
   }
 
-  .bento-row,
-  .row-hero,
-  .row-two-cols,
-  .row-three-cols,
-  .row-tg-calc,
-  .row-obsidian-rag,
-  .row-calc-firmware,
-  .row-docker-feedback {
+  .bento-row > *,
+  .row-hero > *,
+  .row-two-cols > *,
+  .row-three-cols > *,
+  .row-tg-calc > *,
+  .row-obsidian-rag > *,
+  .row-calc-firmware > *,
+  .row-docker-feedback > * {
     gap: 16px !important;
-    grid-template-columns: 1fr !important;
+    grid-column: span 12 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .bento-card, article {
@@ -108,6 +178,17 @@ body {
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Prevent layout overflow inside sub-containers */
+  .vault-categories-sidebar,
+  .vault-note-preview-box,
+  .card-tg-content,
+  .firmware-split-container,
+  .tg-architecture-grid,
+  .devops-stats-grid {
+    min-width: 0 !important;
   }
 
   .ambient-orb,
