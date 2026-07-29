@@ -9,18 +9,21 @@ const NICHES_DATABASE = {
     views: "4.2k",
     reactions: "👍 240  💡 112  💻 58",
     er: "10.4%",
-    formatted: `<b>Проектирование асинхронного Telegram-пайплайна: дедупликация и защита сессий</b>
-
-Разбор микросервисной архитектуры для сбора и обработки потока данных из 50+ источников.
-
-<b>Ключевые инженерные решения:</b>
-• <b>Async Telethon Engine:</b> асинхронная обработка и ротация прокси-серверов.
-• <b>Deduplication &amp; Hash Guard:</b> проверка MD5-сигнатур и защита базы от повторов.
-• <b>Topic Routing Manager:</b> динамическая маршрутизация сообщений по топикам.
-
-<i>Суммаризация лонгридов реализована на базе локальной модели Qwen 3.5 Coder.</i>
-
-#architecture #python #asyncio #telegram_api #devops`,
+    formatted: `<h3 class="tg-post-title">Проектирование асинхронного Telegram-пайплайна: дедупликация и защита сессий</h3>
+<p class="tg-post-intro">Разбор микросервисной архитектуры для сбора и обработки потока данных из 50+ источников.</p>
+<div class="tg-post-section-label"><i data-lucide="cpu"></i> Ключевые инженерные решения:</div>
+<ul class="tg-post-bullets">
+  <li><span class="bullet-dot"></span><b>Async Telethon Engine:</b> асинхронная обработка и ротация прокси-серверов.</li>
+  <li><span class="bullet-dot"></span><b>Deduplication &amp; Hash Guard:</b> проверка MD5-сигнатур и защита базы от повторов.</li>
+  <li><span class="bullet-dot"></span><b>Topic Routing Manager:</b> динамическая маршрутизация сообщений по топикам.</li>
+</ul>
+<div class="tg-post-note"><i>Суммаризация лонгридов реализована на базе локальной модели Qwen 3.5 Coder.</i></div>
+<div class="tg-post-tags">
+  <span class="tag-chip">#architecture</span>
+  <span class="tag-chip">#python</span>
+  <span class="tag-chip">#asyncio</span>
+  <span class="tag-chip">#devops</span>
+</div>`,
 
     markdownV2: `\\*\\*Проектирование асинхронного Telegram\\-пайплайна: дедупликация и защита сессий\\*\\*
 
@@ -47,18 +50,21 @@ MODEL: Qwen 3.5 Coder (Temperature: 0.2, Top-P: 0.9)`
     views: "5.8k",
     reactions: "📈 512  🎯 280  💡 140",
     er: "13.6%",
-    formatted: `<b>Аналитика ончейн-активности: Чистый приток в L2-протоколы и валидация нод</b>
-
-Ежедневная аналитическая выжимка активности сетей, созданная AI-пайплайном.
-
-<b>Ключевые показатели и тренды:</b>
-• <b>Ликвидность L2-сетей:</b> приток капитала <b>+$140M</b> за последние 24 часа.
-• <b>Валидация транзакций:</b> снижение комиссии на <b>34%</b> в решениях ZK-Rollups.
-• <b>Авто-Мониторинг:</b> сканирование 50+ смарт-контрактов без оператора.
-
-<i>Подробный отчет и сигналы роутинга сохранены в закрытой базе знаний.</i>
-
-#web3 #crypto #onchain #analytics #smart_contracts`,
+    formatted: `<h3 class="tg-post-title">Аналитика ончейн-активности: Чистый приток в L2-протоколы и валидация нод</h3>
+<p class="tg-post-intro">Ежедневная аналитическая выжимка активности сетей, созданная AI-пайплайном.</p>
+<div class="tg-post-section-label"><i data-lucide="line-chart"></i> Ключевые показатели и тренды:</div>
+<ul class="tg-post-bullets">
+  <li><span class="bullet-dot"></span><b>Ликвидность L2-сетей:</b> приток капитала <b>+$140M</b> за последние 24 часа.</li>
+  <li><span class="bullet-dot"></span><b>Валидация транзакций:</b> снижение комиссии на <b>34%</b> в решениях ZK-Rollups.</li>
+  <li><span class="bullet-dot"></span><b>Авто-Мониторинг:</b> сканирование 50+ смарт-контрактов без оператора.</li>
+</ul>
+<div class="tg-post-note"><i>Подробный отчет и сигналы роутинга сохранены в закрытой базе знаний.</i></div>
+<div class="tg-post-tags">
+  <span class="tag-chip">#web3</span>
+  <span class="tag-chip">#crypto</span>
+  <span class="tag-chip">#onchain</span>
+  <span class="tag-chip">#smart_contracts</span>
+</div>`,
 
     markdownV2: `\\*\\*Аналитика ончейн\\-активности: Чистый приток в L2\\-протоколы и валидация нод\\*\\*
 
@@ -85,18 +91,21 @@ MODEL: Gemini 3.5 Flash (Temperature: 0.1)`
     views: "3.5k",
     reactions: "🎯 195  💼 84  👍 62",
     er: "8.9%",
-    formatted: `<b>Сквозная аналитика контент-воронок и оптимизация Retention в iGaming</b>
-
-Разбор методов повышения удержания аудитории в медиабайинговых Telegram-каналах.
-
-<b>Применяемые AI-механики:</b>
-• <b>AI-Generative Hooks:</b> рост удержания первого экрана на <b>+42%</b>.
-• <b>Dynamic CTA Buttons:</b> авто-генерация адаптивных инлайн-кнопок под трафик.
-• <b>A/B Testing Tone-of-Voice:</b> анализ конверсии экспертного стиля подачи.
-
-<i>Сформировано модулем планирования публикаций Telegram Bot API.</i>
-
-#igaming #affiliate #traffic #analytics #funnels`,
+    formatted: `<h3 class="tg-post-title">Сквозная аналитика контент-воронок и оптимизация Retention в iGaming</h3>
+<p class="tg-post-intro">Разбор методов повышения удержания аудитории в медиабайинговых Telegram-каналах.</p>
+<div class="tg-post-section-label"><i data-lucide="target"></i> Применяемые AI-механики:</div>
+<ul class="tg-post-bullets">
+  <li><span class="bullet-dot"></span><b>AI-Generative Hooks:</b> рост удержания первого экрана на <b>+42%</b>.</li>
+  <li><span class="bullet-dot"></span><b>Dynamic CTA Buttons:</b> авто-генерация адаптивных инлайн-кнопок под трафик.</li>
+  <li><span class="bullet-dot"></span><b>A/B Testing Tone-of-Voice:</b> анализ конверсии экспертного стиля подачи.</li>
+</ul>
+<div class="tg-post-note"><i>Сформировано модулем планирования публикаций Telegram Bot API.</i></div>
+<div class="tg-post-tags">
+  <span class="tag-chip">#igaming</span>
+  <span class="tag-chip">#affiliate</span>
+  <span class="tag-chip">#traffic</span>
+  <span class="tag-chip">#funnels</span>
+</div>`,
 
     markdownV2: `\\*\\*Сквозная аналитика контент\\-воронок и оптимизация Retention в iGaming\\*\\*
 
@@ -123,18 +132,21 @@ MODEL: Claude 3.5 Sonnet / Gemini (Temperature: 0.3)`
     views: "4.9k",
     reactions: "📊 310  💡 180  👍 125",
     er: "11.8%",
-    formatted: `<b>Макроэкономический дайджест: Оценка волатильности и корпоративных отчетов</b>
-
-Ежедневный финансовый анализ рынка, созданный LLM-суммаризацией.
-
-<b>Финансовые индикаторы:</b>
-• <b>Индекс волатильности:</b> снижение на <b>4.2%</b> на фоне стабилизации ставок.
-• <b>Авто-Суммаризация:</b> извлечение метрик из 50+ отчетов за 90 секунд.
-• <b>Risk Management Model:</b> выявление корреляций в реальном времени.
-
-<i>Сформировано в рамках автоматизированной контент-матрицы.</i>
-
-#fintech #trading #macroeconomics #risk_management #ai_parsing`,
+    formatted: `<h3 class="tg-post-title">Макроэкономический дайджест: Оценка волатильности и корпоративных отчетов</h3>
+<p class="tg-post-intro">Ежедневный финансовый анализ рынка, созданный LLM-суммаризацией.</p>
+<div class="tg-post-section-label"><i data-lucide="bar-chart-3"></i> Финансовые индикаторы:</div>
+<ul class="tg-post-bullets">
+  <li><span class="bullet-dot"></span><b>Индекс волатильности:</b> снижение на <b>4.2%</b> на фоне стабилизации ставок.</li>
+  <li><span class="bullet-dot"></span><b>Авто-Суммаризация:</b> извлечение метрик из 50+ отчетов за 90 секунд.</li>
+  <li><span class="bullet-dot"></span><b>Risk Management Model:</b> выявление корреляций в реальном времени.</li>
+</ul>
+<div class="tg-post-note"><i>Сформировано в рамках автоматизированной контент-матрицы.</i></div>
+<div class="tg-post-tags">
+  <span class="tag-chip">#fintech</span>
+  <span class="tag-chip">#trading</span>
+  <span class="tag-chip">#macroeconomics</span>
+  <span class="tag-chip">#ai_parsing</span>
+</div>`,
 
     markdownV2: `\\*\\*Макроэкономический дайджест: Оценка волатильности и корпоративных отчетов\\*\\*
 
