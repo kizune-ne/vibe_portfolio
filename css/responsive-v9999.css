@@ -6,7 +6,7 @@ button, a, input, select, textarea,
 .btn, .tov-tab, .obsidian-mode-btn, .prompt-chip,
 .skill-badge, .tab-btn, .vault-cat-item {
   -webkit-tap-highlight-color: transparent !important;
-  touch-action: manipulation;
+  touch-action: pan-y manipulation !important;
 }
 
 button:active, .btn:active, .tov-tab:active,

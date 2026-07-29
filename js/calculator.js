@@ -51,7 +51,9 @@ export function initCalculator() {
   function openModal() {
     if (calcModalOverlay) {
       calcModalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      if (window.innerWidth > 768) {
+        document.body.style.overflow = 'hidden';
+      }
     }
   }
 
@@ -64,7 +66,7 @@ export function initCalculator() {
 
   if (btnOpenCalcModal) btnOpenCalcModal.addEventListener('click', (e) => { e.stopPropagation(); openModal(); });
   if (cardCalculator) cardCalculator.addEventListener('click', (e) => {
-    // Prevent opening modal if clicking directly on GitHub button
+    if (window.innerWidth <= 768) return;
     if (e.target.closest('#btnCalcGitRepo')) return;
     openModal();
   });
