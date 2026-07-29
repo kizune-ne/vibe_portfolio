@@ -317,6 +317,43 @@
 
         </div>
       </article>
+
+      <!-- 3-Column Quick Feedback Card for HR / Leads -->
+      <article class="bento-card card-quick-feedback" id="cardQuickFeedback">
+        <div class="spotlight-border"></div>
+        
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">QUICK REVIEW // HR &amp; LEAD</span>
+            <h3 class="card-title-sm">Быстрый Отклик</h3>
+            <p class="card-subtitle-sm">Оцените портфолио в 1 клик или оставьте пожелание</p>
+          </div>
+        </div>
+
+        <form class="quick-feedback-form" id="quickFeedbackForm">
+          <div class="quick-rating-label">Ваша оценка:</div>
+          <div class="quick-rating-pills">
+            <button type="button" class="rating-pill active" data-rating="fire" title="Супер!">🔥</button>
+            <button type="button" class="rating-pill" data-rating="like" title="Хорошо">👍</button>
+            <button type="button" class="rating-pill" data-rating="idea" title="Идея / Пожелание">💡</button>
+            <button type="button" class="rating-pill" data-rating="question" title="Есть вопросы">🤔</button>
+          </div>
+
+          <div class="quick-input-group">
+            <input type="text" class="quick-input-field" id="quickComment" placeholder="Что изменить или добавить?" />
+          </div>
+
+          <div class="quick-input-group">
+            <input type="text" class="quick-input-field" id="quickContact" placeholder="Telegram / Email для связи" />
+          </div>
+
+          <button type="submit" class="quick-submit-btn" id="quickSubmitBtn">
+            <i data-lucide="send"></i> Отправить отзыв
+          </button>
+          
+          <div class="quick-feedback-status" id="quickFeedbackStatus"></div>
+        </form>
+      </article>
     </section>
 
     <!-- 2. AI INFLUENCERS & LORA FINE-TUNING PIPELINE -->

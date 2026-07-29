@@ -12,6 +12,7 @@ import { initCaseInspector } from './js/case-inspector.js';
 import { initAiInfluencerInspector } from './js/ai-influencer-inspector.js';
 import { initObsidianShowcase } from './js/obsidian-showcase.js';
 import { initTgContentSimulator } from './js/tg-content-sim.js';
+import { initQuickFeedback } from './js/quick-feedback.js';
 import { initLiveReload } from './js/live-reload.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,5 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initAiInfluencerInspector();
   initObsidianShowcase();
   initTgContentSimulator();
+  initQuickFeedback();
   initLiveReload(); // Auto-reload browser on code change
 });
