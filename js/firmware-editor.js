@@ -36,6 +36,8 @@ export function initFirmwareEditor() {
     if (filename.endsWith('.h')) return 'file-text';
     if (filename.endsWith('.mk')) return 'file-cog';
     if (filename.endsWith('.json')) return 'file-json';
+    if (filename.endsWith('.inc')) return 'file-code-2';
+    if (filename.endsWith('.md')) return 'book-open';
     return 'file-text';
   }
 

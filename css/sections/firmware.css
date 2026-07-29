@@ -129,10 +129,27 @@
   font-weight: 500;
 }
 
-.tree-file .file-icon {
-  width: 14px;
-  height: 14px;
-  opacity: 0.85;
+.tree-file .file-icon,
+.folder-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  stroke-width: 2.2;
+}
+
+.folder-icon {
+  color: #3b82f6;
+}
+
+.tree-file[data-path$=".c"] .file-icon { color: #3b82f6; }
+.tree-file[data-path$=".h"] .file-icon { color: #10b981; }
+.tree-file[data-path$=".mk"] .file-icon { color: #f59e0b; }
+.tree-file[data-path$=".json"] .file-icon { color: #ec4899; }
+.tree-file[data-path$=".md"] .file-icon { color: #a855f7; }
+.tree-file[data-path$=".inc"] .file-icon { color: #06b6d4; }
+
+.tree-file.active .file-icon {
+  color: #10b981 !important;
 }
 
 .tree-indent-spacer {
