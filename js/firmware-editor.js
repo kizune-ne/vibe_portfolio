@@ -97,6 +97,12 @@ export function initFirmwareEditor() {
     activeFileObj = fileObj;
 
     if (breadcrumbText) breadcrumbText.textContent = fileObj.path;
+    const breadcrumbIcon = document.getElementById('breadcrumbIcon');
+    if (breadcrumbIcon) {
+      const iconName = getFileIcon(fileObj.name);
+      breadcrumbIcon.setAttribute('data-lucide', iconName);
+      if (window.lucide) lucide.createIcons();
+    }
     if (codeOutput) codeOutput.innerHTML = '';
 
     const lines = (fileObj.content || '').split('\n');
