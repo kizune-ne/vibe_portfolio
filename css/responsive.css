@@ -1,17 +1,30 @@
 /* ==========================================
-   MOBILE & TABLET RESPONSIVE SYSTEM (PROFESSIONAL 94% WIDTH & 16PX GAP LAYOUT)
+   MOBILE & TABLET RESPONSIVE SYSTEM (FULL TOUCH ERGONOMICS & OPTIMIZED SCROLL)
    ========================================== */
 
-/* Prevent horizontal scroll on small devices */
+/* Clean tap highlights & instant touch response */
+button, a, input, select, textarea,
+.btn, .tov-tab, .obsidian-mode-btn, .prompt-chip,
+.skill-badge, .tab-btn, .vault-cat-item, .bento-card {
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation;
+}
+
+button:active, .btn:active, .tov-tab:active,
+.obsidian-mode-btn:active, .prompt-chip:active, .tab-btn:active {
+  transform: scale(0.97) !important;
+  transition: transform 0.08s ease !important;
+}
+
+/* Prevent horizontal page wobble */
 html, body {
   overflow-x: hidden !important;
   width: 100% !important;
   scroll-behavior: auto !important;
-  touch-action: auto !important;
   -webkit-overflow-scrolling: touch !important;
 }
 
-/* Base Container Mobile Padding (EXACT 94% Card Width: 3vw left + 3vw right) */
+/* Base Container Mobile Padding (Exact 94% width) */
 @media (max-width: 768px) {
   .container {
     padding-left: 3vw !important;
@@ -75,13 +88,12 @@ html, body {
    ------------------------------------------ */
 @media (max-width: 768px) {
   
-  /* Native Mobile Touch Scroll Engine (touch-action: auto guarantees 100% smooth scrolling on all cards) */
+  /* Native Mobile Touch Scroll Engine */
   html {
     scroll-behavior: auto !important;
   }
 
   html, body, .bento-main, .container, .bento-card, article, section, div, p, span, h1, h2, h3, h4, h5, h6 {
-    touch-action: auto !important;
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior: auto !important;
   }
@@ -165,8 +177,9 @@ html, body {
   }
 
   .nav-actions .btn-sm {
-    padding: 6px 10px;
-    font-size: 0.75rem;
+    padding: 8px 12px !important;
+    font-size: 0.775rem !important;
+    min-height: 38px !important;
   }
 
   /* Hero Section */
@@ -207,6 +220,7 @@ html, body {
     width: 100% !important;
     justify-content: center !important;
     min-height: 44px !important;
+    font-size: 0.85rem !important;
   }
 
   /* AI Assistant Mobile Tuning */
@@ -249,7 +263,7 @@ html, body {
   .terminal-window,
   .case-inspector-body {
     overscroll-behavior-y: auto !important;
-    touch-action: auto !important;
+    touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important;
   }
 
@@ -272,8 +286,11 @@ html, body {
   }
 
   .prompt-chip {
-    font-size: 0.725rem !important;
-    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
+    padding: 8px 12px !important;
+    min-height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
     white-space: nowrap !important;
   }
 
@@ -286,15 +303,19 @@ html, body {
 
   .chat-input-wrap input {
     flex: 1 !important;
-    padding: 8px 10px !important;
-    font-size: 0.8rem !important;
+    padding: 10px 12px !important;
+    font-size: 16px !important; /* Prevents iOS auto-zoom */
     min-width: 0 !important;
+    height: 40px !important;
   }
 
   .btn-send {
-    width: 36px !important;
-    height: 36px !important;
+    width: 40px !important;
+    height: 40px !important;
     flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   /* Telegram Content Generator Stand */
@@ -306,10 +327,13 @@ html, body {
   }
 
   .tov-tab {
-    padding: 8px 10px !important;
-    font-size: 0.75rem !important;
+    padding: 10px 12px !important;
+    font-size: 0.775rem !important;
+    min-height: 40px !important;
     white-space: nowrap !important;
     text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
     justify-content: center !important;
   }
 
@@ -395,8 +419,9 @@ html, body {
   }
 
   .key-cap {
-    height: 24px !important;
-    font-size: 0.625rem !important;
+    height: 28px !important;
+    font-size: 0.65rem !important;
+    min-width: 24px !important;
   }
 
   /* TG Simulator & DevOps Docker Topology */
@@ -458,9 +483,12 @@ html, body {
 
   .obsidian-mode-btn {
     flex: 0 0 auto !important;
-    padding: 6px 12px !important;
-    font-size: 0.75rem !important;
+    padding: 8px 12px !important;
+    min-height: 38px !important;
+    font-size: 0.775rem !important;
     white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .vault-categories-sidebar {
@@ -469,16 +497,19 @@ html, body {
   }
 
   .vault-cat-item {
-    padding: 8px 10px !important;
+    padding: 10px 12px !important;
     gap: 8px !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .vault-cat-item strong {
-    font-size: 0.775rem !important;
+    font-size: 0.8rem !important;
   }
 
   .vault-cat-item span {
-    font-size: 0.65rem !important;
+    font-size: 0.675rem !important;
   }
 
   .obsidian-viewport {
@@ -525,7 +556,7 @@ html, body {
   }
 
   .case-inspector-header {
-    padding: 14px 44px 10px 12px !important;
+    padding: 14px 48px 10px 14px !important;
     box-sizing: border-box !important;
     position: relative !important;
   }
@@ -540,9 +571,12 @@ html, body {
     position: absolute !important;
     top: 10px !important;
     right: 10px !important;
-    width: 34px !important;
-    height: 34px !important;
+    width: 40px !important;
+    height: 40px !important;
     z-index: 10 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .modal-case-title {
@@ -567,9 +601,12 @@ html, body {
 
   .case-inspector-tabs .tab-btn {
     white-space: nowrap !important;
-    padding: 8px 10px !important;
-    font-size: 0.75rem !important;
+    padding: 10px 12px !important;
+    min-height: 40px !important;
+    font-size: 0.775rem !important;
     flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .case-inspector-body {
@@ -619,8 +656,11 @@ html, body {
   }
 
   .skill-badge {
-    padding: 4px 8px !important;
-    font-size: 0.725rem !important;
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
+    min-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 
   /* Prevent iOS Safari auto-zoom on input focus */
@@ -650,8 +690,8 @@ html, body {
   }
 
   .prompt-chip {
-    font-size: 0.675rem !important;
-    padding: 5px 8px !important;
+    font-size: 0.7rem !important;
+    padding: 6px 10px !important;
   }
 }
 
