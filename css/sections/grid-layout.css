@@ -6,6 +6,36 @@
 .row-tg-calc .card-tg-simulator { grid-column: span 9 !important; }
 .row-tg-calc .card-calc-preview { grid-column: span 3 !important; }
 
+.row-rag-calc {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: stretch !important;
+}
+
+.row-rag-calc .card-obsidian-rag-main {
+  grid-column: span 9 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 100% !important;
+}
+
+.row-rag-calc .card-calc-preview {
+  grid-column: span 3 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 100% !important;
+}
+
+@media (max-width: 1024px) {
+  .row-rag-calc .card-obsidian-rag-main,
+  .row-rag-calc .card-calc-preview {
+    grid-column: span 12 !important;
+  }
+}
+
 .row-two-cols { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
 .row-two-cols > .bento-card,
 .row-two-cols > article {
