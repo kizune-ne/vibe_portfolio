@@ -201,7 +201,7 @@
           </div>
         </div>
 
-        <!-- Niche Switcher & Mode Selector Bar -->
+        <!-- Niche Switcher Bar -->
         <div class="tov-tabs-container">
           <div class="tov-tabs-wrapper">
             <button class="tov-tab active" data-niche="it">
@@ -215,18 +215,6 @@
             </button>
             <button class="tov-tab" data-niche="fintech">
               <i data-lucide="line-chart"></i> FinTech &amp; Trading
-            </button>
-          </div>
-
-          <div class="view-mode-selector">
-            <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
-              <i data-lucide="eye"></i> Превью
-            </button>
-            <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
-              <i data-lucide="code"></i> MarkdownV2
-            </button>
-            <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
-              <i data-lucide="cpu"></i> Промпт
             </button>
           </div>
         </div>
@@ -244,7 +232,19 @@
                   <span class="tg-post-badge">IT &amp; ARCHITECTURE // EXPERT</span>
                 </div>
               </div>
-              <span class="tg-post-time">14:32</span>
+
+              <!-- Embedded View Mode Switcher inside Telegram Post Header -->
+              <div class="view-mode-selector">
+                <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
+                  <i data-lucide="eye"></i> Превью
+                </button>
+                <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
+                  <i data-lucide="code"></i> MarkdownV2
+                </button>
+                <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
+                  <i data-lucide="cpu"></i> Промпт
+                </button>
+              </div>
             </div>
 
             <div class="tg-post-body">
