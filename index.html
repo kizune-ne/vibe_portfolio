@@ -917,113 +917,98 @@
           </div>
         </div>
 
-        <!-- 1. Visual Topology Graph Diagram -->
-        <div class="docker-topology-container">
-          <div class="topology-header">
-            <i data-lucide="network"></i>
-            <span>DOCKER COMPOSE INFRASTRUCTURE TOPOLOGY GRAPH</span>
-          </div>
-
-          <div class="topology-diagram">
-
-            <!-- Host Hardware Block -->
-            <div class="topo-node topo-host">
-              <div class="topo-node-icon"><i data-lucide="cpu"></i></div>
-              <div class="topo-node-info">
-                <strong>Host Machine (Windows 11 Pro)</strong>
-                <span>AMD Ryzen 7 9700X | NVIDIA GeForce RTX 4070 Ti SUPER (16GB VRAM)</span>
-              </div>
+        <!-- 2-Column Split Layout: Left Topology Graph (50%) + Right Skills Cards (50%) -->
+        <div class="docker-split-layout">
+          
+          <!-- Column 1: Visual Topology Graph Diagram -->
+          <div class="docker-topology-container">
+            <div class="topology-header">
+              <i data-lucide="network"></i>
+              <span>DOCKER COMPOSE TOPOLOGY GRAPH</span>
             </div>
 
-            <div class="topo-arrow-down">
-              <div class="line-pulse"></div>
-              <span><i data-lucide="arrow-down"></i> NVIDIA Container Toolkit &amp; Bind Mounts (_keys/)</span>
-            </div>
-
-            <!-- Docker Compose Internal Network Grid -->
-            <div class="topo-network-grid">
-
-              <!-- Container 1: Ollama GPU -->
-              <div class="topo-card topo-container" data-container="ollama">
-                <div class="topo-card-head">
-                  <span class="status-dot"></span>
-                  <span class="topo-name">ollama:latest</span>
-                  <span class="badge-port">11434:11434</span>
+            <div class="topology-diagram">
+              <!-- Host Hardware Block -->
+              <div class="topo-host">
+                <div class="topo-node-icon"><i data-lucide="cpu"></i></div>
+                <div class="topo-node-info">
+                  <strong>Host Machine (Windows 11 Pro)</strong>
+                  <span>AMD Ryzen 7 9700X | RTX 4070 Ti SUPER (16GB)</span>
                 </div>
-                <div class="topo-card-body">
-                  <span class="topo-role">GPU CUDA LLM Engine</span>
-                  <div class="topo-specs">
-                    <span>NVIDIA Driver: Passthrough</span>
-                    <span>OLLAMA_KEEP_ALIVE: 10m</span>
+              </div>
+
+              <div class="topo-arrow-down">
+                <span><i data-lucide="arrow-down"></i> NVIDIA Container Toolkit &amp; Bind Mounts (_keys/)</span>
+              </div>
+
+              <!-- Docker Compose Internal Network Grid -->
+              <div class="topo-network-grid">
+                <!-- Container 1: Ollama GPU -->
+                <div class="topo-card topo-container" data-container="ollama">
+                  <div class="topo-card-head">
+                    <span class="status-dot"></span>
+                    <span class="topo-name">ollama:latest</span>
+                    <span class="badge-port">11434</span>
+                  </div>
+                  <div class="topo-card-body">
+                    <span class="topo-role">GPU CUDA LLM Engine</span>
+                  </div>
+                </div>
+
+                <!-- Container 2: AI Server DevContainer -->
+                <div class="topo-card topo-container active" data-container="devcontainer">
+                  <div class="topo-card-head">
+                    <span class="status-dot"></span>
+                    <span class="topo-name">ai_server (DevContainer)</span>
+                    <span class="badge-port">SSH 22</span>
+                  </div>
+                  <div class="topo-card-body">
+                    <span class="topo-role">VS Code Remote Linux Workspace</span>
+                  </div>
+                </div>
+
+                <!-- Container 3: Open-WebUI -->
+                <div class="topo-card topo-container" data-container="webui">
+                  <div class="topo-card-head">
+                    <span class="status-dot"></span>
+                    <span class="topo-name">open-webui:main</span>
+                    <span class="badge-port">3000</span>
+                  </div>
+                  <div class="topo-card-body">
+                    <span class="topo-role">Inter-Container Web UI</span>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <!-- Container 2: AI Server DevContainer -->
-              <div class="topo-card topo-container active" data-container="devcontainer">
-                <div class="topo-card-head">
-                  <span class="status-dot"></span>
-                  <span class="topo-name">ai_server (DevContainer)</span>
-                  <span class="badge-port">Port 22 / SSH</span>
-                </div>
-                <div class="topo-card-body">
-                  <span class="topo-role">VS Code Remote Linux Workspace</span>
-                  <div class="topo-specs">
-                    <span>Volume: ai-server-venv</span>
-                    <span>Mount: _keys/ + docker.sock</span>
-                  </div>
-                </div>
+          <!-- Column 2: 3 Portfolio Skill Showcase Cards -->
+          <div class="docker-skills-list">
+            <div class="skill-feature-card">
+              <div class="skill-feature-icon"><i data-lucide="shield-check"></i></div>
+              <div class="skill-feature-text">
+                <strong>100% Изоляция &amp; Zero Host Conflict</strong>
+                <p>Разделение зависимостей Python через вынесенный том <code>ai-server-venv</code>. Хост-система остаётся чистой от конфликтующих библиотек.</p>
               </div>
+            </div>
 
-              <!-- Container 3: Open-WebUI -->
-              <div class="topo-card topo-container" data-container="webui">
-                <div class="topo-card-head">
-                  <span class="status-dot"></span>
-                  <span class="topo-name">open-webui:main</span>
-                  <span class="badge-port">3000:8080</span>
-                </div>
-                <div class="topo-card-body">
-                  <span class="topo-role">Inter-Container Web UI</span>
-                  <div class="topo-specs">
-                    <span>Route: http://ollama:11434</span>
-                    <span>Volume: ./_keys/open-webui</span>
-                  </div>
-                </div>
+            <div class="skill-feature-card">
+              <div class="skill-feature-icon"><i data-lucide="cpu"></i></div>
+              <div class="skill-feature-text">
+                <strong>Прямой Проброс GPU (NVIDIA CUDA)</strong>
+                <p>Конфигурация <code>NVIDIA Container Toolkit</code> для работы локальных нейросетей (Ollama, Qwen 2.5 Coder 14B) с задействованием 16GB VRAM.</p>
               </div>
-
             </div>
 
-          </div>
-        </div>
-
-        <!-- 3. Engineering Proof Cards Grid -->
-        <div class="devops-benefits-grid">
-          <div class="benefit-card">
-            <div class="benefit-icon"><i data-lucide="shield-check"></i></div>
-            <div class="benefit-content">
-              <strong>100% Изоляция &amp; Zero Host Conflict</strong>
-              <p>Разделение зависимостей Python через вынесенный том <code>ai-server-venv</code>. Хост-система остаётся
-                чистой от конфликтующих библиотек.</p>
+            <div class="skill-feature-card">
+              <div class="skill-feature-icon"><i data-lucide="key-round"></i></div>
+              <div class="skill-feature-text">
+                <strong>Безопасность Секретов (_keys/)</strong>
+                <p>Монтирование локальных директорий с API-ключами и ключами SSH через <code>Bind Mounts</code> с исключением попадания секретов в Git.</p>
+              </div>
             </div>
           </div>
 
-          <div class="benefit-card">
-            <div class="benefit-icon"><i data-lucide="key-round"></i></div>
-            <div class="benefit-content">
-              <strong>Безопасность Секретов (_keys/)</strong>
-              <p>Монтирование локальных директорий с API-ключами и ключами SSH через <code>Bind Mounts</code> с
-                исключением попадания секретов в Git.</p>
-            </div>
-          </div>
-
-          <div class="benefit-card">
-            <div class="benefit-icon"><i data-lucide="cpu"></i></div>
-            <div class="benefit-content">
-              <strong>Прямой Проброс GPU (NVIDIA CUDA)</strong>
-              <p>Конфигурация <code>NVIDIA Container Toolkit</code> для работы локальных нейросетей (Ollama, Qwen 2.5
-                Coder 14B) с задействованием 16GB VRAM.</p>
-            </div>
-          </div>
         </div>
 
       </article>
