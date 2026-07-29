@@ -73,13 +73,13 @@ html, body {
    ------------------------------------------ */
 @media (max-width: 768px) {
   
-  /* Native Mobile Touch Scroll Engine & Pan-Y Rule */
+  /* Native Mobile Touch Scroll Engine Restoration (touch-action: manipulation allows thumb swipes at ANY angle) */
   html {
     scroll-behavior: auto !important;
   }
 
   html, body, .bento-main, .container, .bento-card, article, section, div {
-    touch-action: pan-y !important;
+    touch-action: manipulation !important;
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior: auto !important;
   }
@@ -102,7 +102,7 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 
-  /* Edge-to-Edge Wide Cards with compact 12px inner padding */
+  /* Edge-to-Edge Wide Cards with compact 12px inner padding & overflow visible for WebKit scroll */
   .bento-card, article {
     overflow: visible !important;
     padding: 14px 12px !important;
