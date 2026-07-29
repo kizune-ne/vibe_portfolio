@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
   grid-column: span 9 !important;
 }
 
@@ -21,11 +21,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
   background: var(--bg-card-sub, #fafafa);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-card, 8px);
-  padding: 10px 14px;
+  padding: 6px 10px;
 }
 
 @media (max-width: 860px) {
@@ -39,20 +39,20 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
 
 .tov-tab {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
+  gap: 4px;
+  padding: 4px 8px;
   border-radius: var(--radius-pill, 9999px);
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #ebebeb);
   color: var(--text-sub, #52525b);
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast, 0.15s ease);
@@ -74,24 +74,24 @@
 .view-mode-selector {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-pill, 9999px);
-  padding: 3px;
+  padding: 2px;
 }
 
 .mode-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 10px;
+  gap: 4px;
+  padding: 3px 7px;
   border-radius: var(--radius-pill, 9999px);
   border: none;
   background: transparent;
   color: var(--text-muted, #71717a);
   font-family: var(--font-code, monospace);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -110,8 +110,8 @@
 /* Main Grid Stage */
 .tg-sim-container {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 16px;
+  grid-template-columns: 1fr 310px;
+  gap: 12px;
   align-items: start;
 }
 
@@ -126,11 +126,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   background: var(--bg-card-sub, #fcfcfc);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-card, 8px);
-  padding: 18px;
+  padding: 12px 14px;
   transition: opacity 0.2s ease;
 }
 
@@ -143,18 +143,18 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border-card, #ebebeb);
-  padding-bottom: 10px;
+  padding-bottom: 6px;
 }
 
 .tg-author-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .tg-author-avatar {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: var(--text-main, #18181b);
   display: flex;
@@ -162,33 +162,33 @@
   justify-content: center;
   color: var(--bg-card, #ffffff);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .tg-author-meta {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .tg-author-name {
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.825rem;
   color: var(--text-main, #18181b);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
 .tg-verified-icon {
   color: #10b981;
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
 }
 
 .tg-post-badge {
   font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
+  font-size: 0.675rem;
   color: var(--text-muted, #71717a);
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -196,24 +196,24 @@
 
 .tg-post-time {
   font-family: var(--font-code, monospace);
-  font-size: 0.75rem;
+  font-size: 0.725rem;
   color: var(--text-disabled, #a1a1aa);
 }
 
 /* Post Content Formatting */
 .tg-post-body {
-  font-size: 0.875rem;
-  line-height: 1.6;
+  font-size: 0.8125rem;
+  line-height: 1.5;
   color: var(--text-sub, #3f3f46);
 }
 
 .tg-post-body code {
   background: rgba(16, 185, 129, 0.08);
   border: 1px solid rgba(16, 185, 129, 0.2);
-  padding: 1px 5px;
+  padding: 1px 4px;
   border-radius: 4px;
   font-family: var(--font-code, monospace);
-  font-size: 0.775rem;
+  font-size: 0.75rem;
   color: #059669;
 }
 
@@ -230,16 +230,16 @@
 .code-view-box {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-card, #e4e4e7);
   border-radius: 6px;
-  padding: 12px;
+  padding: 10px;
 }
 
 .code-view-title {
   font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
+  font-size: 0.675rem;
   font-weight: 700;
   color: #059669;
   letter-spacing: 0.05em;
@@ -253,68 +253,19 @@
 
 .code-view-box code {
   font-family: var(--font-code, monospace);
-  font-size: 0.78rem;
-  line-height: 1.5;
+  font-size: 0.75rem;
+  line-height: 1.45;
   color: var(--text-main, #18181b);
   background: transparent;
   border: none;
   padding: 0;
 }
 
-/* Inline Buttons */
-.tg-post-inline-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 6px;
-}
-
-.tg-inline-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: var(--radius-sm, 6px);
-  background: var(--bg-card, #ffffff);
-  border: 1px solid var(--border-card, #e4e4e7);
-  color: var(--text-main, #18181b);
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all var(--transition-fast, 0.15s ease);
-}
-
-.tg-inline-btn:hover {
-  background: var(--text-main, #18181b);
-  color: var(--bg-card, #ffffff);
-  border-color: var(--text-main, #18181b);
-}
-
-.tg-inline-btn.primary-cta {
-  background: rgba(16, 185, 129, 0.08);
-  border-color: rgba(16, 185, 129, 0.25);
-  color: #059669;
-  font-weight: 600;
-}
-
-.tg-inline-btn.primary-cta:hover {
-  background: #10b981;
-  color: #ffffff;
-  border-color: #10b981;
-}
-
-.tg-inline-btn svg {
-  width: 14px;
-  height: 14px;
-}
-
 /* Sidebar Hairline Cards */
 .tg-sim-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .tg-metrics-card,
@@ -322,41 +273,41 @@
   background: var(--bg-card-sub, #fafafa);
   border: 1px solid var(--border-card, #ebebeb);
   border-radius: var(--radius-card, 8px);
-  padding: 14px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .tg-metrics-title {
   font-family: var(--font-code, monospace);
-  font-size: 0.725rem;
+  font-size: 0.675rem;
   color: var(--text-muted, #71717a);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-weight: 600;
 }
 
 .tg-metrics-title svg {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   color: #10b981;
 }
 
 .tg-metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 6px;
 }
 
 .tg-metric-box {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 8px 10px;
+  gap: 1px;
+  padding: 5px 8px;
   background: var(--bg-card, #ffffff);
   border-radius: var(--radius-sm, 6px);
   border: 1px solid var(--border-card, #ebebeb);
@@ -364,13 +315,13 @@
 
 .tg-metric-val {
   font-family: var(--font-code, monospace);
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--text-main, #18181b);
 }
 
 .tg-metric-lbl {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--text-muted, #71717a);
 }
 
@@ -378,8 +329,8 @@
 .workflow-step-item {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  padding: 6px 8px;
+  gap: 8px;
+  padding: 3px 5px;
   border-radius: var(--radius-sm, 6px);
   transition: background 0.15s ease;
 }
@@ -389,13 +340,13 @@
 }
 
 .workflow-step-num {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: rgba(16, 185, 129, 0.1);
   color: #059669;
   font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -408,17 +359,17 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0px;
 }
 
 .workflow-step-text strong {
   display: block;
   color: var(--text-main, #18181b);
-  font-size: 0.8rem;
+  font-size: 0.765rem;
   font-weight: 600;
 }
 
 .workflow-step-text span {
-  font-size: 0.725rem;
+  font-size: 0.675rem;
   color: var(--text-muted, #71717a);
 }
