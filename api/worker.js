@@ -48,14 +48,22 @@ export default {
             `*Контакт:* ${payload.contact || 'Не указан'}\n` +
             `*Время:* ${new Date(payload.timestamp || Date.now()).toLocaleString('ru-RU')}`;
 
+          const tgBody = {
+            chat_id: chatId,
+            text: msgText,
+            parse_mode: 'Markdown'
+          };
+
+          // Support for Telegram Forum Topics / Threads
+          const threadId = env.TELEGRAM_THREAD_ID || env.TELEGRAM_TOPIC_ID;
+          if (threadId) {
+            tgBody.message_thread_id = parseInt(threadId, 10);
+          }
+
           await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              chat_id: chatId,
-              text: msgText,
-              parse_mode: 'Markdown'
-            })
+            body: JSON.stringify(tgBody)
           }).catch(() => {});
         }
 
