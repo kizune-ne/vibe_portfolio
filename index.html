@@ -110,13 +110,20 @@
         max-width: 100% !important;
         box-sizing: border-box !important;
       }
-      .bento-card, article {
+      html, body, main, section, article, div, p, span, h1, h2, h3, h4, h5, h6, form, input, button, a, img, label, header, footer,
+      .container, .bento-main, .bento-row, .bento-card, .card-content {
+        touch-action: pan-y manipulation !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      .bento-card, article, section {
         padding: 16px 14px !important;
         border-radius: 16px !important;
         box-sizing: border-box !important;
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
+        overflow: clip !important;
+        cursor: default !important;
       }
       .vault-categories-sidebar,
       .vault-note-preview-box,
@@ -914,7 +921,7 @@
     <!-- 5. PRINT CALCULATOR (3 cols) & 6. FIRMWARE PORTING (9 cols) -->
     <section class="bento-row row-calc-firmware" id="firmware">
       <!-- Left: Print Calculator Card (3 Columns) -->
-      <article class="bento-card card-calc-preview" id="cardCalculator" style="cursor: pointer; display: flex; flex-direction: column; justify-content: space-between;">
+      <article class="bento-card card-calc-preview" id="cardCalculator" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div class="spotlight-border"></div>
 
         <div>

@@ -2,11 +2,12 @@
    MOBILE & TABLET RESPONSIVE SYSTEM (v9999 UNBREAKABLE INLINE & EXTERNAL)
    ========================================== */
 
-button, a, input, select, textarea,
-.btn, .tov-tab, .obsidian-mode-btn, .prompt-chip,
-.skill-badge, .tab-btn, .vault-cat-item {
+*, *::before, *::after,
+html, body, main, section, article, div, p, span, h1, h2, h3, h4, h5, h6, form, input, button, a, img, label, header, footer,
+.container, .bento-main, .bento-row, .bento-card, .card-content {
   -webkit-tap-highlight-color: transparent !important;
   touch-action: pan-y manipulation !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
 button:active, .btn:active, .tov-tab:active,
@@ -14,7 +15,6 @@ button:active, .btn:active, .tov-tab:active,
   transform: scale(0.97) !important;
   transition: transform 0.08s ease !important;
 }
-
 html {
   scroll-behavior: auto !important;
   height: 100%;
@@ -172,7 +172,10 @@ body {
     box-sizing: border-box !important;
   }
 
-  .bento-card, article {
+  .bento-card, article, section {
+    overflow: clip !important;
+    cursor: default !important;
+
     padding: 16px 14px !important;
     border-radius: 16px !important;
     box-sizing: border-box !important;
