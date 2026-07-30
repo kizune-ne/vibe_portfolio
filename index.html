@@ -36,8 +36,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="index.css?v=1785424614">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785424614">
+  <link rel="stylesheet" href="index.css?v=1785425008">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785425008">
 
   <!-- INLINE CRITICAL MOBILE STYLES FOR INSTANT TELEGRAM / SAFARI CACHE BYPASS -->
   <style id="mobile-responsive-inline">
@@ -341,7 +341,7 @@
     <div class="container nav-container">
       <a href="#" class="brand-logo">
         <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-PC-AND-MOBILE-PERFECT</span>
+        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-CLEAN-COMPACT-MOBILE</span>
         <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
       </a>
       <div class="nav-actions">
@@ -455,19 +455,21 @@
       <article class="bento-card card-ai-assistant" id="cardAiAssistant">
         <div class="spotlight-border"></div>
         <div class="card-header-flex">
-          <div class="ai-title-wrap">
-            <div class="ai-avatar-icon"><i data-lucide="bot"></i></div>
-            <div>
-              <span class="section-tag">00 // AI ASSISTANT</span>
-              <h3 class="card-title">ИИ-Ассистент kizun</h3>
-              <p class="card-subtitle">Демо-бот для показа возможностей ИИ-интеграций</p>
+          <div class="card-top-header-line" style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 6px;">
+            <span class="section-tag">00 // AI ASSISTANT</span>
+            <div class="card-header-actions" style="display: flex; align-items: center; gap: 6px;">
+              <button class="btn-case-inspect" data-case-id="ai-assistant">
+                <i data-lucide="layers"></i> Кейс ↗
+              </button>
+              <span class="live-pill"><span class="status-dot"></span> Online</span>
             </div>
           </div>
-          <div class="card-header-actions">
-            <button class="btn-case-inspect" data-case-id="ai-assistant">
-              <i data-lucide="layers"></i> Кейс ↗
-            </button>
-            <span class="live-pill"><span class="status-dot"></span> Online</span>
+          <div class="ai-title-wrap" style="display: flex; align-items: flex-start; gap: 10px; width: 100%; margin-bottom: 6px;">
+            <div class="ai-avatar-icon" style="flex-shrink: 0; width: 34px; height: 34px; min-width: 34px; min-height: 34px;"><i data-lucide="bot"></i></div>
+            <div class="ai-title-info" style="flex: 1 1 100%; min-width: 0; width: 100%;">
+              <h3 class="card-title" style="margin-bottom: 2px; font-size: 1.15rem;">ИИ-Ассистент kizun</h3>
+              <p class="card-subtitle" style="font-size: 0.82rem; color: #a1a1aa; margin: 0; line-height: 1.4; white-space: normal; word-break: normal;">Демо-бот для показа возможностей ИИ-интеграций</p>
+            </div>
           </div>
         </div>
 
@@ -480,14 +482,7 @@
           </div>
         </div>
 
-        <div class="chat-quick-prompts">
-          <button class="prompt-chip" data-prompt="Что kizun может разработать с помощью вайбкодинга?"><i
-              data-lucide="sparkles"></i> Что кодишь?</button>
-          <button class="prompt-chip" data-prompt="Покажи примеры готовых проектов kizun"><i data-lucide="layers"></i>
-            Примеры работ</button>
-          <button class="prompt-chip" data-prompt="Как связаться с kizun в Telegram для обсуждения проекта?"><i data-lucide="send"></i>
-            Написать @kizune_ne</button>
-        </div>
+        
 
         <form class="chat-input-wrap" id="chatForm">
           <input type="text" id="chatInput" placeholder="Спросите ассистента о проектах..." autocomplete="off">
@@ -536,20 +531,7 @@
         </div>
 
         <!-- Dedicated View Mode Selector Bar (Placed HIGHER right after Topic Buttons) -->
-        <div class="tg-top-mode-bar">
-          <span class="tg-mode-title"><i data-lucide="sliders"></i> Режим отображения:</span>
-          <div class="view-mode-selector">
-            <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
-              <i data-lucide="eye"></i> Превью
-            </button>
-            <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
-              <i data-lucide="code"></i> MarkdownV2
-            </button>
-            <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
-              <i data-lucide="cpu"></i> Промпт
-            </button>
-          </div>
-        </div>
+         </div>
 
         <!-- Main Interactive Stage: Live Telegram Post + Pipeline Tracker -->
         <div class="tg-sim-container">
@@ -1443,16 +1425,15 @@
     </div>
   </footer>
 
-  <script type="module" src="app.js?v=1785424614"></script>
+  <script type="module" src="app.js?v=1785425008"></script>
 
 
 
 
 
 
-<!-- 100% PERFECT TARGETED MOBILE OVERRIDES (VER 1785424614) -->
+<!-- 100% PERFECT TARGETED MOBILE OVERRIDES (VER 1785425008) -->
 <style id="mobile-bottom-inline-override">
-/* 1. STICKY / FIXED NAVBAR FOR MOBILE */
 @media screen and (max-width: 1024px) {
   header.navbar, .navbar {
     position: fixed !important;
@@ -1478,58 +1459,56 @@
     touch-action: manipulation !important;
   }
   body {
-    padding-top: 56px !important;
+    padding-top: 52px !important;
+    padding-bottom: 24px !important;
   }
-}
-
-/* 2. PC & DESKTOP STYLES FOR TG MODE BAR */
-.tg-top-mode-bar {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  width: 100% !important;
-  margin: 12px 0 16px 0 !important;
-  padding: 8px 14px !important;
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 10px !important;
-  box-sizing: border-box !important;
-}
-
-.tg-mode-title {
-  font-family: var(--font-code, monospace) !important;
-  font-size: 0.74rem !important;
-  color: #a1a1aa !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
 }
 
 @media screen and (max-width: 1200px), (pointer: coarse) {
-  /* 3. AI ASSISTANT CARD MOBILE HEADER (CASE BUTTON LEFT OF ONLINE & 100% WIDTH TITLE) */
+  /* TIGHTEN VERTICAL MARGINS & COMPACT MOBILE LAYOUT */
+  section.bento-row, .bento-row {
+    margin-bottom: 14px !important;
+    gap: 14px !important;
+  }
+  .bento-card {
+    padding: 14px 12px !important;
+    margin-bottom: 12px !important;
+  }
+  .card-header-flex {
+    margin-bottom: 8px !important;
+  }
+  .tov-tabs-container {
+    margin-bottom: 8px !important;
+  }
+  .tg-sim-container {
+    margin-top: 6px !important;
+    gap: 10px !important;
+  }
+
+  /* AI ASSISTANT CARD MOBILE HEADER */
   .card-ai-assistant .card-header-flex {
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-start !important;
     width: 100% !important;
-    gap: 8px !important;
+    margin-bottom: 8px !important;
+  }
+  .card-ai-assistant .card-top-header-line {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: 6px !important;
   }
   .card-ai-assistant .card-header-actions {
     display: flex !important;
-    flex-direction: row !important;
     align-items: center !important;
-    justify-content: flex-end !important;
-    width: 100% !important;
-    order: -1 !important;
-    gap: 8px !important;
+    gap: 6px !important;
   }
   .card-ai-assistant .ai-title-wrap {
     display: flex !important;
     flex-direction: row !important;
     align-items: flex-start !important;
-    gap: 12px !important;
+    gap: 10px !important;
     width: 100% !important;
   }
   .card-ai-assistant .ai-title-info {
@@ -1537,14 +1516,9 @@
     min-width: 0 !important;
     width: 100% !important;
   }
-  .card-ai-assistant .card-title {
-    font-size: 1.15rem !important;
-    margin-bottom: 4px !important;
-    width: 100% !important;
-  }
   .card-ai-assistant .card-subtitle {
     font-size: 0.82rem !important;
-    line-height: 1.45 !important;
+    line-height: 1.4 !important;
     color: #a1a1aa !important;
     white-space: normal !important;
     word-break: normal !important;
@@ -1552,8 +1526,8 @@
     width: 100% !important;
   }
   .chat-container {
-    height: 280px !important;
-    max-height: 280px !important;
+    height: 260px !important;
+    max-height: 260px !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     pointer-events: auto !important;
@@ -1561,7 +1535,7 @@
     box-sizing: border-box !important;
   }
 
-  /* 4. CASE INSPECTOR MODAL TABS 100% FIT */
+  /* CASE INSPECTOR MODAL TABS 100% FIT */
   .case-inspector-modal-container {
     display: flex !important;
     flex-direction: column !important;
@@ -1581,7 +1555,7 @@
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
-    padding: 8px 6px !important;
+    padding: 6px 4px !important;
     background: #121217 !important;
     border-bottom: 1px solid #27272a !important;
     gap: 4px !important;
@@ -1593,7 +1567,7 @@
     min-width: 0 !important;
     white-space: nowrap !important;
     font-size: 0.7rem !important;
-    padding: 6px 6px !important;
+    padding: 6px 4px !important;
     justify-content: center !important;
     text-align: center !important;
   }
@@ -1601,10 +1575,10 @@
     flex: 1 1 auto !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    padding: 14px 12px 48px 12px !important;
+    padding: 12px 10px 40px 10px !important;
   }
 
-  /* 5. TG CONTENT CARD AVATAR & BADGES */
+  /* TG CONTENT CARD AVATAR & BADGES */
   .tg-author-avatar,
   .post-header-author .author-avatar,
   .post-header-author img,
@@ -1633,14 +1607,8 @@
     align-items: center !important;
     gap: 4px !important;
   }
-  .mode-btn {
-    font-size: 0.72rem !important;
-    padding: 5px 10px !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-  }
 
-  /* 6. CODE VIEWER (FIRMWARE CARD 06) SMALL FONT SIZE */
+  /* CODE VIEWER (FIRMWARE CARD 06) SMALL FONT SIZE */
   .card-code-viewer,
   .card-code-viewer *,
   .firmware-split-container,
@@ -1659,7 +1627,7 @@
   .firmware-split-container {
     display: flex !important;
     flex-direction: column !important;
-    gap: 14px !important;
+    gap: 12px !important;
     width: 100% !important;
   }
   .file-tree-sidebar {
@@ -1670,15 +1638,15 @@
   }
   .code-editor-wrap {
     height: auto !important;
-    min-height: 280px !important;
+    min-height: 260px !important;
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
   }
   .editor-window {
     flex: 1 1 auto !important;
-    height: 300px !important;
-    max-height: 420px !important;
+    height: 280px !important;
+    max-height: 400px !important;
     overflow-x: auto !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
@@ -1697,6 +1665,7 @@
   }
 }
 </style>
+
 
 
 
