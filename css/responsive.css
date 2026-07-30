@@ -13,10 +13,10 @@ html, body {
 }
 
 a, button, input, select, textarea,
-.btn, .tov-tab, .obsidian-mode-btn, .prompt-chip,
-.skill-badge, .tab-btn, .vault-cat-item {
+.btn, .btn-sm, .btn-case-inspect, .tov-tab, .obsidian-mode-btn, .prompt-chip,
+.skill-badge, .tab-btn, .vault-cat-item, .ai-selector-item, .calc-tab-btn, .mode-btn, .star-btn {
   -webkit-tap-highlight-color: transparent !important;
-  touch-action: manipulation !important;
+  touch-action: pan-y manipulation !important;
 }
 
 button:active, .btn:active, .tov-tab:active,
