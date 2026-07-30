@@ -138,7 +138,14 @@
         box-sizing: border-box !important;
       }
 
-      .bento-card, article {
+      .bento-card, article,
+      .card-hero, .card-ai-assistant, .card-tg-content,
+      .card-tg-simulator, .card-tg-showcase, .card-ai-influencer-main,
+      .card-obsidian-rag-main, .card-calc-preview, .card-code-viewer,
+      .card-docker, .card-quick-feedback {
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
         padding: 16px 14px !important;
         border-radius: 16px !important;
         box-sizing: border-box !important;
