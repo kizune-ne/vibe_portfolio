@@ -6,10 +6,10 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Diagnostic Test Lab (Phase 7)</title>
+  <title>Scroll Diagnostic Test Lab (Phase 8 - ALL CARDS)</title>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="index.css?v=20260730_p7_v3">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=20260730_p7_v3">
+  <link rel="stylesheet" href="index.css?v=20260730_p8">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=20260730_p8">
   <style>
     #diagHeader {
       position: fixed !important;
@@ -34,7 +34,7 @@
 <body>
 
 <div id="diagHeader">
-  <div><strong>SCROLL LAB PHASE 7 (+ CARDS 01 TG & 02 SIMULATOR & 03 AI GEN)</strong></div>
+  <div><strong>SCROLL LAB PHASE 8 (ALL CARDS 00-08 ACTIVE)</strong></div>
   <div>Touch Target: <span id="diagTarget">None</span></div>
   <div>Scroll Y: <span id="diagScrollY">0</span>px</div>
 </div>
@@ -312,9 +312,6 @@
 
         </div>
       </article>
-  </section>
-
-  <section class="bento-row">
     <article class="bento-card card-tg-simulator card-tg-showcase" id="cardTgSimulator">
         <div class="spotlight-border"></div>
         <div class="card-header-flex">
@@ -588,9 +585,453 @@
       </article>
   </section>
 
-  <div style="height: 800px; background: repeating-linear-gradient(45deg, #e4e4e7, #e4e4e7 10px, #f4f4f5 10px, #f4f4f5 20px); border-radius: 16px; padding: 20px; margin-top: 24px;">
-    <h3>Нижний блок для скролла</h3>
-  </div>
+  <section class="bento-row">
+    <article class="bento-card card-obsidian-rag-main" id="cardObsidianRag">
+        <div class="spotlight-border"></div>
+        
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">04 // KNOWLEDGE &amp; AI MEMORY</span>
+            <h2 class="card-title">Построение Базы Знаний Obsidian &amp; ИИ-Памяти</h2>
+            <p class="card-subtitle">Централизованная организация инженерных знаний: сохранение проверенных команд, архитектурных рецептов, промптов и передача контекста в ИИ-ассистентов.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="obsidian-rag">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Obsidian 3 Core Features Grid -->
+        <div class="content-features-grid">
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="book-open"></i></div>
+            <div class="feature-text">
+              <strong>Obsidian Vault &amp; Метод Zettelkasten</strong>
+              <p>Систематизация базы знаний в формате Markdown: двунаправленные гиперссылки (<code>[[note_name]]</code>), фронтматтер YAML метаданные и ведение отчетов аналитики.</p>
+            </div>
+          </div>
+
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="search"></i></div>
+            <div class="feature-text">
+              <strong>Vector Embeddings &amp; RAG Indexing</strong>
+              <p>Чанкование заметок, генерация векторных эмбеддингов и семантический поиск — мгновенный поиск ответов по смысловому контексту за <code>&lt; 10ms</code>.</p>
+            </div>
+          </div>
+
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="bot"></i></div>
+            <div class="feature-text">
+              <strong>Прямое Подключение ИИ-Агентов</strong>
+              <p>Локальные субагенты (Hermes Researcher, Qwen 3.5 Coder) читают базу знаний перед выполнением задач и сохраняют ТЗ прямо в Vault.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Second Brain Inspector Stand -->
+        <div class="obsidian-rag-stand" id="obsidianRAGStand">
+          <div class="obsidian-stand-header">
+            <div class="obsidian-mode-tabs">
+              <button class="obsidian-mode-btn active" data-mode="vault">
+                <i data-lucide="book-open"></i> 1. База Знаний (Obsidian Vault)
+              </button>
+              <button class="obsidian-mode-btn" data-mode="pipeline">
+                <i data-lucide="bot"></i> 2. Связка с ИИ-Агентом
+              </button>
+              <button class="obsidian-mode-btn" data-mode="manifest">
+                <i data-lucide="bar-chart-2"></i> 3. Сравнение Эффективности
+              </button>
+            </div>
+            <div class="obsidian-stand-badge">
+              <span class="status-dot"></span> 1,000+ заметок в базе
+            </div>
+          </div>
+
+          <!-- VIEWPORT 1: Vault Explorer -->
+          <div class="obsidian-viewport active" data-viewport="vault">
+            <div class="vault-explorer-layout">
+              <div class="vault-categories-sidebar">
+                <div class="sidebar-title">КАТЕГОРИИ ЗАМЕТОК</div>
+                <div class="vault-cat-item active" data-cat="cheatsheets">
+                  <i data-lucide="file-text"></i>
+                  <div>
+                    <strong>01_Шпаргалки</strong>
+                    <span>Команды деплоя, конфиги</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="architecture">
+                  <i data-lucide="layers"></i>
+                  <div>
+                    <strong>02_Архитектура</strong>
+                    <span>Правила чистой разработки</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="ai">
+                  <i data-lucide="bot"></i>
+                  <div>
+                    <strong>03_ИИ_Инструкции</strong>
+                    <span>Системные промпты</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="research">
+                  <i data-lucide="book-open"></i>
+                  <div>
+                    <strong>04_База_Знаний</strong>
+                    <span>Второй мозг &amp; связи</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="vault-note-preview-box" id="vaultNotePreview">
+                <div class="preview-note-header">
+                  <span class="preview-note-title"><i data-lucide="file-text"></i> [[Команды_и_Шпаргалки.md]]</span>
+                  <span class="preview-note-tag">#cheatsheet</span>
+                </div>
+                <p class="preview-note-desc">Быстрые проверенные инструкции по настройке окружения, запуску серверов и деплою.</p>
+                <pre><code class="language-markdown"># Базовые инструкции по запуску
+1. Проверка переменных среды (.env)
+2. Локальный запуск dev-сервера
+3. Автоматический сбор логов в папку /logs/</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEWPORT 2: Context Pipeline -->
+          <div class="obsidian-viewport" data-viewport="pipeline">
+            <div class="pipeline-steps-grid">
+              <div class="pipeline-step-card">
+                <div class="step-num">01</div>
+                <div class="step-icon"><i data-lucide="message-square"></i></div>
+                <h4>1. Постановка Задачи</h4>
+                <p>Разработчик формулирует задачу ИИ-ассистенту (например: <em>«Создай асинхронный модуль публикации постов»</em>).</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.1); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+                  <i data-lucide="terminal"></i> Input: "Создай модуль TG-публикаций"
+                </div>
+              </div>
+
+              <div class="pipeline-arrow"><i data-lucide="chevron-right"></i></div>
+
+              <div class="pipeline-step-card active">
+                <div class="step-num">02</div>
+                <div class="step-icon"><i data-lucide="book-open"></i></div>
+                <h4>2. Извлечение Правил (RAG)</h4>
+                <p>ИИ-ассистент моментально подтягивает из базы заметок Obsidian проверенный шаблон с правилами <code>MarkdownV2</code> и защиты от дублей.</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #34d399; background: rgba(16, 185, 129, 0.15); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">
+                  <i data-lucide="file-text"></i> Match: [[Rules_MarkdownV2.md]]
+                </div>
+              </div>
+
+              <div class="pipeline-arrow"><i data-lucide="chevron-right"></i></div>
+
+              <div class="pipeline-step-card">
+                <div class="step-num">03</div>
+                <div class="step-icon"><i data-lucide="check-circle-2"></i></div>
+                <h4>3. Чистый Код С 1-й Попытки</h4>
+                <p>ИИ генерирует 100% рабочий код строго по стандартам проекта без галюцинаций, ошибок синтаксиса и повторных вопросов.</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.1); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+                  <i data-lucide="check"></i> Result: 0 Errors / Ready Code
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEWPORT 3: Efficiency Manifesto -->
+          <div class="obsidian-viewport" data-viewport="manifest">
+            <div class="manifesto-comparison-grid">
+              <div class="comparison-col bad">
+                <div class="col-head">
+                  <i data-lucide="x-circle"></i>
+                  <span>Без Второго Мозга</span>
+                </div>
+                <ul>
+                  <li><i data-lucide="x"></i> Фрагменты кода и команды теряются в истории терминала и чатах</li>
+                  <li><i data-lucide="x"></i> Разработчик тратит 2-3 часа на повторный поиск старых скриптов</li>
+                  <li><i data-lucide="x"></i> ИИ путает контекст, предлагает костыли и требует 10 уточнений</li>
+                  <li><i data-lucide="x"></i> Высокий риск сломать архитектуру при передаче задач другим людям</li>
+                </ul>
+              </div>
+
+              <div class="comparison-col good">
+                <div class="col-head">
+                  <i data-lucide="check-circle-2"></i>
+                  <span>С Цифровым Мозгом в Obsidian</span>
+                </div>
+                <ul>
+                  <li><i data-lucide="check"></i> Единый структурированный хаб инженерных знаний за 2 секунды</li>
+                  <li><i data-lucide="check"></i> ИИ-ассистенты моментально считывают корпоративные стандарты</li>
+                  <li><i data-lucide="check"></i> Скорость написания новых модулей и скриптов выше в 5 раз</li>
+                  <li><i data-lucide="check"></i> 100% сохранение уникальных архитектурных решений проекта</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tg-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="book-open"></i> Obsidian Vault</span>
+          <span class="arch-footer-chip"><i data-lucide="file-text"></i> Markdown Docs</span>
+          <span class="arch-footer-chip"><i data-lucide="bot"></i> Context Pipeline</span>
+          <span class="arch-footer-chip"><i data-lucide="cpu"></i> AI Memory Bus</span>
+          <span class="arch-footer-chip"><i data-lucide="shield-check"></i> Zero Context Waste</span>
+        </div>
+      </article>
+  </section>
+
+  <section class="bento-row">
+    <article class="bento-card card-calc-preview" id="cardCalculator" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="spotlight-border"></div>
+
+        <div>
+          <span class="section-tag">05 // SPECIALIZED PRINT CALCULATOR</span>
+          <h3 class="card-title" style="font-size: 1.1rem; line-height: 1.35;">Промышленный Калькулятор Печати</h3>
+          <p class="card-subtitle" style="margin-top: 6px;">Сервис автоматической калькуляции заказов: мгновенный расчёт стоимости продукции и услуг типографии.</p>
+
+          <div class="lab-footer" style="display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 14px 0;">
+            <span class="chip-accent"><i data-lucide="credit-card"></i> Визитки</span>
+            <span class="chip-accent"><i data-lucide="file-text"></i> Листовки</span>
+            <span class="chip-accent"><i data-lucide="ruler"></i> Чертежи</span>
+            <span class="chip-accent"><i data-lucide="tag"></i> Стикеры</span>
+            <span class="chip-accent"><i data-lucide="scissors"></i> SRA3</span>
+          </div>
+
+          <!-- Launch Full Screen Calculator CTA Button -->
+          <button class="btn-launch-calc-hero" id="btnOpenCalcModal" style="margin-top: 4px; width: 100%; justify-content: center;">
+            <i data-lucide="calculator"></i>
+            <span>Запустить Калькулятор ↗</span>
+          </button>
+        </div>
+
+        <!-- Bottom Actions Group (Anchored at very bottom) -->
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 14px;">
+          <button class="btn-case-inspect" data-case-id="printing-calc" style="flex: 1; justify-content: center;">
+            <i data-lucide="layers"></i> Кейс ↗
+          </button>
+          <a href="https://github.com/kizune-ne/printing_calculator" target="_blank" class="btn-github-repo"
+            id="btnCalcGitRepo" style="flex: 1; justify-content: center;" title="Открыть исходный код калькулятора на GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            <span>GitHub ↗</span>
+          </a>
+        </div>
+      </article>
+    <article class="bento-card card-code-viewer" id="cardCodeViewer">
+        <div class="spotlight-border"></div>
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">06 // HARDWARE INTEGRATION &amp; VIAL PORTING</span>
+            <h2 class="card-title">Разработка Кастомной Прошивки MonsGeek M1 V5 (QMK / Vial)</h2>
+            <p class="card-subtitle">Портирование динамической конфигурации Vial GUI, оптимизация системного протокола
+              2.4GHz / Bluetooth 5.0, патчинг дубликатов символов линковщика LDFLAGS и сборка мультислойных кеймапов.
+            </p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="firmware-editor">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+            <a href="https://github.com/kizune-ne/monsgeek_m1_v5_qmk-vial" target="_blank" class="btn-github-repo"
+              title="Открыть исходный код прошивки на GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>GitHub ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="firmware-split-container">
+
+          <!-- Column 1: Interactive File Tree Explorer Sidebar -->
+          <div class="file-tree-sidebar">
+            <div class="file-tree-header">
+              <i data-lucide="folder-tree"></i>
+              <span>FIRMWARE EXPLORER</span>
+            </div>
+            <div class="tree-nodes-list" id="fileTreeContainer">
+              <!-- Dynamically rendered 1:1 real folder tree from keyboards/ by firmware-editor.js -->
+            </div>
+          </div>
+
+          <!-- Column 2: Code Editor Window (Full Remaining Width) -->
+          <div class="code-editor-wrap">
+            <div class="editor-tabs">
+              <div class="active-file-breadcrumb" id="activeFileBreadcrumb">
+                <i data-lucide="file-code"></i>
+                <span id="breadcrumbText">keyboards/monsgeek/m1_v5/m1_v5_us/keymaps/vial/keymap.c</span>
+              </div>
+              <div class="editor-actions">
+                <button class="btn-editor-action" id="btnReplayCode" title="Перезапустить печать">
+                  <i data-lucide="rotate-cw"></i> <span>Перепечатать</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="editor-window">
+              <pre><code id="codeOutput"></code><span class="cursor-blink">|</span></pre>
+            </div>
+          </div>
+
+        </div>
+      </article>
+  </section>
+
+  <section class="bento-row">
+    <article class="bento-card card-docker" id="cardDocker">
+        <div class="spotlight-border"></div>
+
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">07 // INFRASTRUCTURE &amp; CONTAINER ORCHESTRATION</span>
+            <h3 class="card-title">Docker Контейнеры &amp; Схема Микросервисов</h3>
+            <p class="card-subtitle">Архитектура изолированной Linux-среды, проброс GPU CUDA, безопасные Bind Mounts и
+              автоматизация Docker Compose.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="docker-ai">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. Visual Topology Graph Diagram (Full Width) -->
+        <div class="docker-topology-container">
+          <div class="topology-header">
+            <i data-lucide="network"></i>
+            <span>DOCKER COMPOSE INFRASTRUCTURE TOPOLOGY GRAPH</span>
+          </div>
+
+          <div class="topology-diagram">
+            <!-- Host Hardware Block -->
+            <div class="topo-node topo-host">
+              <div class="topo-node-icon"><i data-lucide="cpu"></i></div>
+              <div class="topo-node-info">
+                <strong>Host Machine (Windows 11 Pro)</strong>
+                <span>AMD Ryzen 7 9700X | NVIDIA GeForce RTX 4070 Ti SUPER (16GB VRAM)</span>
+              </div>
+            </div>
+
+            <div class="topo-arrow-down">
+              <span><i data-lucide="arrow-down"></i> NVIDIA Container Toolkit &amp; Bind Mounts (_keys/)</span>
+            </div>
+
+            <!-- Docker Compose Internal Network Grid -->
+            <div class="topo-network-grid">
+              <!-- Container 1: Ollama GPU -->
+              <div class="topo-card topo-container" data-container="ollama">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">ollama:latest</span>
+                  <span class="badge-port">11434:11434</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">GPU CUDA LLM Engine</span>
+                </div>
+              </div>
+
+              <!-- Container 2: AI Server DevContainer -->
+              <div class="topo-card topo-container active" data-container="devcontainer">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">ai_server (DevContainer)</span>
+                  <span class="badge-port">Port 22 / SSH</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">VS Code Remote Linux Workspace</span>
+                </div>
+              </div>
+
+              <!-- Container 3: Open-WebUI -->
+              <div class="topo-card topo-container" data-container="webui">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">open-webui:main</span>
+                  <span class="badge-port">3000:8080</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">Inter-Container Web UI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Engineering Proof & Skills Cards Grid (3 Columns Below) -->
+        <div class="devops-benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="shield-check"></i></div>
+            <div class="benefit-content">
+              <strong>100% Изоляция &amp; Zero Host Conflict</strong>
+              <p>Разделение зависимостей Python через том <code>ai-server-venv</code>. Хост-система остаётся чистой.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="cpu"></i></div>
+            <div class="benefit-content">
+              <strong>Прямой Проброс GPU (NVIDIA CUDA)</strong>
+              <p>Конфигурация <code>NVIDIA Container Toolkit</code> для нейросетей (Ollama, Qwen 2.5) с 16GB VRAM.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="key-round"></i></div>
+            <div class="benefit-content">
+              <strong>Безопасность Секретов (_keys/)</strong>
+              <p>Монтирование локальных API-ключей и SSH через <code>Bind Mounts</code> без риска утечки в Git.</p>
+            </div>
+          </div>
+        </div>
+
+      </article>
+    <article class="bento-card card-quick-feedback" id="cardQuickFeedback">
+        <div class="spotlight-border"></div>
+        
+        <div class="quick-feedback-head">
+          <div class="feedback-tag-row">
+            <span class="pulse-dot"></span>
+            <span class="section-tag">FEEDBACK // HR &amp; LEAD</span>
+          </div>
+          <h3 class="card-title-sm">Оценка Портфолио</h3>
+          <p class="card-subtitle-sm">Оцените впечатление от портфолио по 5-балльной шкале или оставьте сообщение для связи</p>
+        </div>
+
+        <form class="quick-feedback-form" id="quickFeedbackForm" autocomplete="off">
+          <div class="star-rating-box">
+            <div class="star-rating-row" id="starRatingRow">
+              <button type="button" class="star-btn active" data-value="1" title="1 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="2" title="2 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="3" title="3 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="4" title="4 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="5" title="5 из 5"><i data-lucide="star"></i></button>
+            </div>
+            <div class="star-rating-text" id="starRatingText">5 из 5 (Отлично!)</div>
+          </div>
+
+          <div class="quick-input-group">
+            <div class="input-with-icon">
+              <i data-lucide="message-square"></i>
+              <input type="text" class="quick-input-field" id="quickComment" placeholder="Что понравилось или что улучшить?" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+
+          <div class="quick-input-group">
+            <div class="input-with-icon">
+              <i data-lucide="user"></i>
+              <input type="text" class="quick-input-field" id="quickContact" placeholder="Telegram / Email для связи" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+
+          <button type="submit" class="quick-submit-btn" id="quickSubmitBtn">
+            <i data-lucide="send"></i> <span>Отправить Отзыв</span>
+          </button>
+          
+          <div class="quick-feedback-status" id="quickFeedbackStatus"></div>
+        </form>
+      </article>
+  </section>
 </main>
 
 <script>
