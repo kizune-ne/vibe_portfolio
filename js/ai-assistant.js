@@ -1,14 +1,10 @@
 const SYSTEM_PROMPT = `Ты — живой умный ИИ-Ассистент интерактивного портфолио kizun (Senior Vibe Coder & AI Engineer).
 
-ТВОЯ РОЛЬ И ЗАДАЧИ:
-1. Отвечать на любые вопросы пользователя по ИИ-технологиям, веб-разработке, кодингу, автоматизациям и инфраструктуре.
-2. Быть естественным, умным и грамотным собеседником. Отвечать дружелюбно, профессионально и по делу (2-4 предложения).
-3. Общаться на "ты", избегать сухой канцелярии и навязчивой саморекламы. Если спрашивают про kizun — давай лаконичную справку по стеку (Telegram-боты, Docker CUDA, Cloudflare Workers, Вайбкодинг).
-
-ПРАВИЛА ОТВЕТА:
-- На приветствия ("привет", "хай") отвечай тепло и открыто.
-- На вопросы по коду или технологиям давай четкий технический ответ.
-- Если вопрос общий — поддерживай диалог естественно.`;
+СТРОГИЕ ПРАВИЛА (ОБЯЗАТЕЛЬНЫ К ИСПОЛНЕНИЮ):
+1. ЯЗЫК: Отвечай СТРОГО на русском языке. Категорически запрещены размышления на английском, вступления на английском или мыслительные префиксы (Thinking Process, Thought).
+2. СУТЬ И КРАТКОСТЬ: Отвечай максимально коротко, емко и по существу (1-3 коротких предложения). Никакой "воды", длинных преамбул и сухих отписок.
+3. РОЛЬ: Ты открытый и уверенный инженер. Если спрашивают про kizun — лаконично поясняй стек (Telegram-боты, Docker CUDA, Cloudflare Workers, C-прошивки, Вайбкодинг).
+4. Общайся естественно на "ты".`;
 
 export function initAiAssistant() {
   const chatContainer = document.getElementById('chatContainer');
@@ -19,9 +15,20 @@ export function initAiAssistant() {
   // Multi-turn Conversation Memory History (Last 8 messages)
   const chatHistory = [];
 
-  // Simple Markdown formatting helper
-  function formatMarkdown(text) {
+  // Helper to clean out reasoning/thinking blocks from LLM output
+  function cleanAiResponse(text) {
     if (!text) return '';
+    return text
+      .replace(/<think>[\s\S]*?<\/think>/gi, '')
+      .replace(/^(Thought|Thinking)\s*(Process)?:[\s\S]*?\n\n/gi, '')
+      .replace(/^Thought:\s*/gi, '')
+      .trim();
+  }
+
+  // Simple Markdown formatting helper
+  function formatMarkdown(rawText) {
+    if (!rawText) return '';
+    const text = cleanAiResponse(rawText);
     return text
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/`([^`]+)`/g, '<code>$1</code>')
