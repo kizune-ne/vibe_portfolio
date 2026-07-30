@@ -1439,6 +1439,170 @@
   </footer>
 
   <script type="module" src="app.js?v=1785411071"></script>
+
+<!-- 100% DIRECT MOBILE OVERRIDE STYLES (INLINE AT BOTTOM FOR GUARANTEED INSTANT RENDER) -->
+<style id="mobile-bottom-inline-override">
+@media (max-width: 768px) {
+  /* 1. STICKY NAVBAR AT TOP */
+  header.navbar, .navbar {
+    position: sticky !important;
+    top: 8px !important;
+    z-index: 1000 !important;
+    margin-bottom: 16px !important;
+    pointer-events: none !important;
+  }
+  .nav-container {
+    background: rgba(250, 250, 250, 0.96) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    pointer-events: none !important;
+  }
+  .nav-container a, .nav-container button, .nav-container .btn {
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+
+  /* 2. AI ASSISTANT CARD HEADER TEXT WRAPPING (FIX 60PX SQUEEZE) */
+  .card-ai-assistant .ai-title-wrap, .ai-title-wrap {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .ai-avatar-icon {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    flex-shrink: 0 !important;
+  }
+  .ai-title-info {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .ai-title-info .card-title {
+    font-size: 1.15rem !important;
+    line-height: 1.25 !important;
+    color: #ffffff !important;
+    margin-bottom: 4px !important;
+  }
+  .ai-title-info .card-subtitle {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+    color: #a1a1aa !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* 3. TG CONTENT CARD (CARD 01) - PERFECT AVATAR CIRCLE & CLEAN API BADGE */
+  .post-header-author, .tg-post-card .post-header-author {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .post-header-author .author-avatar,
+  .post-header-author img,
+  .channel-avatar, .post-avatar, .avatar-circle {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+  }
+  .tg-bot-api-label, .bot-api-ver {
+    white-space: nowrap !important;
+    font-size: 0.72rem !important;
+    flex-shrink: 0 !important;
+    font-family: var(--font-code, monospace) !important;
+    line-height: 1.2 !important;
+    display: inline-block !important;
+  }
+  .card-tg-content .tov-tabs-container,
+  .card-tg-content .tab-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    max-width: 100% !important;
+  }
+  .tov-tab {
+    font-size: 0.72rem !important;
+    padding: 5px 10px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 4. CODE VIEWER (FIRMWARE CARD 06) - FULL CODE DISPLAY & SCROLLING */
+  .card-code-viewer, .card-code-viewer * {
+    pointer-events: auto !important;
+  }
+  .firmware-split-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+  .file-tree-sidebar {
+    height: auto !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    pointer-events: auto !important;
+    touch-action: pan-x pan-y manipulation !important;
+  }
+  .code-editor-wrap {
+    height: auto !important;
+    min-height: 320px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .editor-window {
+    flex: 1 1 auto !important;
+    height: 300px !important;
+    max-height: 420px !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    pointer-events: auto !important;
+    touch-action: pan-x pan-y manipulation !important;
+    white-space: pre !important;
+    word-break: normal !important;
+    font-size: 0.76rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 5. TABS OVERFLOW IN MODALS & CARDS (STAR METHODOLOGY & OBSIDIAN TABS) */
+  .star-tabs, .modal-tabs, .obsidian-mode-tabs, .calc-modal-header .modal-title-flex {
+    display: flex !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 4px !important;
+    touch-action: pan-x manipulation !important;
+    pointer-events: auto !important;
+  }
+  .star-tabs .tab-btn, .obsidian-mode-btn, .tov-tab {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    font-size: 0.73rem !important;
+    padding: 6px 12px !important;
+  }
+}
+</style>
+
 </body>
 
 </html>
