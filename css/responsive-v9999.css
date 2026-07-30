@@ -76,7 +76,7 @@ button:active, .btn:active, .tov-tab:active,
 /* ------------------------------------------
    2. MOBILE PHONES (<= 768px)
    ------------------------------------------ */
-@media (max-width: 768px) {
+@media (max-width: 1024px), (pointer: coarse) {
 
     /* ==========================================================================
        MOBILE UI POLISH (STICKY NAVBAR, FULL CODE SCROLL, PERFECT TABS & AVATARS)
