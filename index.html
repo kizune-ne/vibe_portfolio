@@ -36,8 +36,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="index.css?v=1785422727">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785422727">
+  <link rel="stylesheet" href="index.css?v=1785422996">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785422996">
 
   <!-- INLINE CRITICAL MOBILE STYLES FOR INSTANT TELEGRAM / SAFARI CACHE BYPASS -->
   <style id="mobile-responsive-inline">
@@ -341,7 +341,7 @@
     <div class="container nav-container">
       <a href="#" class="brand-logo">
         <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-PERFECT</span>
+        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-100PCT-FIXED</span>
         <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
       </a>
       <div class="nav-actions">
@@ -460,7 +460,7 @@
             <div>
               <span class="section-tag">00 // AI ASSISTANT</span>
               <h3 class="card-title">ИИ-Ассистент kizun</h3>
-              <span class="card-subtitle">Демо-бот для показа возможностей ИИ-интеграций</span>
+              <p class="card-subtitle">Демо-бот для показа возможностей ИИ-интеграций</p>
             </div>
           </div>
           <div class="card-header-actions">
@@ -1438,46 +1438,47 @@
     </div>
   </footer>
 
-  <script type="module" src="app.js?v=1785422727"></script>
+  <script type="module" src="app.js?v=1785422996"></script>
 
 
 
 
 
-<!-- 100% PERFECT MOBILE OVERRIDES (TIMESTAMP 1785422727) -->
+
+<!-- 100% EXACT TARGETED MOBILE OVERRIDES (VER 1785422996) -->
 <style id="mobile-bottom-inline-override">
-/* 1. STICKY NAVBAR FIX: ALLOW BROWSER STICKY BY USING OVERFLOW-X: CLIP */
-html, body {
-  overflow-x: clip !important;
-  overflow-y: auto !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-@media screen and (max-width: 1200px), (pointer: coarse) {
-  /* 1. STICKY NAVBAR AT TOP */
+/* 1. FIXED FLOATING NAVBAR FOR 100% RELIABLE TOP STICKING */
+@media screen and (max-width: 1024px) {
   header.navbar, .navbar {
-    position: sticky !important;
+    position: fixed !important;
     top: 6px !important;
-    z-index: 1000 !important;
-    margin-bottom: 16px !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: calc(100% - 16px) !important;
+    z-index: 9999 !important;
+    margin: 0 auto !important;
     pointer-events: none !important;
   }
   .nav-container {
     background: rgba(255, 255, 255, 0.96) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
     border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
     pointer-events: none !important;
   }
   .nav-container a, .nav-container button, .nav-container .btn {
     pointer-events: auto !important;
     touch-action: manipulation !important;
   }
+  body {
+    padding-top: 56px !important;
+  }
+}
 
-  /* 2. AI ASSISTANT CARD HEADER TEXT WRAPPING (FIX 60PX SQUEEZE) */
+@media screen and (max-width: 1200px), (pointer: coarse) {
+  /* 2. AI ASSISTANT CARD HEADER TEXT WRAPPING (.ai-title-info & .card-subtitle) */
   .card-ai-assistant .ai-title-wrap, .ai-title-wrap {
     display: flex !important;
     flex-direction: row !important;
@@ -1494,7 +1495,7 @@ html, body {
     flex-shrink: 0 !important;
   }
   .card-ai-assistant .ai-title-info, .ai-title-info {
-    flex: 1 1 0% !important;
+    flex: 1 1 100% !important;
     min-width: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
@@ -1517,13 +1518,8 @@ html, body {
     max-width: 100% !important;
   }
 
-  /* 3. TG CONTENT CARD (CARD 01) - PERFECT AVATAR CIRCLE & CLEAN API BADGE */
-  .post-header-author, .tg-post-card .post-header-author {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important;
-  }
+  /* 3. TG CONTENT CARD 01 - PERFECT AVATAR CIRCLE & CLEAN API BADGE & PILLS */
+  .tg-author-avatar,
   .post-header-author .author-avatar,
   .post-header-author img,
   .channel-avatar, .post-avatar, .avatar-circle {
@@ -1537,32 +1533,55 @@ html, body {
     flex-shrink: 0 !important;
     aspect-ratio: 1 / 1 !important;
     object-fit: cover !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
-  .tg-bot-api-label, .bot-api-ver {
+  .post-footer-meta, .tg-bot-api-label, .bot-api-ver {
     white-space: nowrap !important;
     font-size: 0.72rem !important;
     flex-shrink: 0 !important;
     font-family: var(--font-code, monospace) !important;
     line-height: 1.2 !important;
-    display: inline-block !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
   }
-  .card-tg-content .tov-tabs-container,
-  .card-tg-content .tab-group {
+  .tg-post-footer-toolbar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .view-mode-selector {
     display: flex !important;
     flex-wrap: wrap !important;
     gap: 6px !important;
-    max-width: 100% !important;
   }
-  .tov-tab {
+  .mode-btn {
     font-size: 0.72rem !important;
     padding: 5px 10px !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
   }
 
-  /* 4. CODE VIEWER (FIRMWARE CARD 06) - FULL CODE DISPLAY & SCROLLING */
-  .card-code-viewer, .card-code-viewer * {
+  /* 4. CODE VIEWER (FIRMWARE CARD 06) - FULL CODE DISPLAY & 2D TOUCH SCROLLING */
+  .card-code-viewer,
+  .card-code-viewer *,
+  .firmware-split-container,
+  .firmware-split-container *,
+  .file-tree-sidebar,
+  .file-tree-sidebar *,
+  .code-editor-wrap,
+  .code-editor-wrap *,
+  .editor-window,
+  .editor-window *,
+  pre,
+  code {
     pointer-events: auto !important;
+    touch-action: pan-x pan-y manipulation !important;
   }
   .firmware-split-container {
     display: flex !important;
@@ -1575,12 +1594,10 @@ html, body {
     max-height: 180px !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    pointer-events: auto !important;
-    touch-action: pan-x pan-y manipulation !important;
   }
   .code-editor-wrap {
     height: auto !important;
-    min-height: 320px !important;
+    min-height: 280px !important;
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
@@ -1588,19 +1605,33 @@ html, body {
   .editor-window {
     flex: 1 1 auto !important;
     height: 280px !important;
-    max-height: 400px !important;
-    overflow: auto !important;
+    max-height: 380px !important;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    pointer-events: auto !important;
-    touch-action: pan-x pan-y manipulation !important;
+    background: #171717 !important;
+  }
+  .editor-window pre {
+    margin: 0 !important;
+    padding: 0 !important;
     white-space: pre !important;
     word-break: normal !important;
+    font-family: var(--font-code, monospace) !important;
     font-size: 0.74rem !important;
     line-height: 1.5 !important;
+    overflow: visible !important;
+  }
+  .editor-window code {
+    white-space: pre !important;
+    word-break: normal !important;
   }
 
-  /* 5. TABS OVERFLOW IN MODALS & CARDS (STAR METHODOLOGY & OBSIDIAN TABS) */
-  .star-tabs, .modal-tabs, .obsidian-mode-tabs, .calc-modal-header .modal-title-flex {
+  /* 5. CASE INSPECTOR MODAL TABS (.case-inspector-tabs & .star-tabs) */
+  .case-inspector-tabs,
+  .star-tabs,
+  .modal-tabs,
+  .obsidian-mode-tabs,
+  .calc-modal-header .modal-title-flex {
     display: flex !important;
     max-width: 100% !important;
     overflow-x: auto !important;
@@ -1608,10 +1639,14 @@ html, body {
     scrollbar-width: none !important;
     -webkit-overflow-scrolling: touch !important;
     padding-bottom: 6px !important;
+    gap: 6px !important;
     touch-action: pan-x manipulation !important;
     pointer-events: auto !important;
   }
-  .star-tabs .tab-btn, .obsidian-mode-btn, .tov-tab {
+  .case-inspector-tabs .tab-btn,
+  .star-tabs .tab-btn,
+  .obsidian-mode-btn,
+  .tov-tab {
     flex-shrink: 0 !important;
     white-space: nowrap !important;
     font-size: 0.73rem !important;
@@ -1619,6 +1654,7 @@ html, body {
   }
 }
 </style>
+
 
 
 
