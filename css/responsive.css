@@ -169,8 +169,11 @@ button:active, .btn:active, .tov-tab:active,
     box-sizing: border-box !important;
   }
 
-  .bento-card, article {
+  .bento-card, article, .bento-card *, article * {
     pointer-events: none !important;
+  }
+
+  .bento-card, article {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
@@ -183,12 +186,16 @@ button:active, .btn:active, .tov-tab:active,
   .bento-card .btn, .bento-card .btn-sm, .bento-card .btn-case-inspect, .bento-card .tov-tab,
   .bento-card .obsidian-mode-btn, .bento-card .prompt-chip, .bento-card .skill-badge,
   .bento-card .tab-btn, .bento-card .vault-cat-item, .bento-card .ai-selector-item,
-  .bento-card .calc-tab-btn, .bento-card .mode-btn, .bento-card .star-btn {
+  .bento-card .calc-tab-btn, .bento-card .mode-btn, .bento-card .star-btn,
+  article a, article button, article input, article select, article textarea,
+  article .btn, article .btn-sm, article .btn-case-inspect, article .tov-tab,
+  article .obsidian-mode-btn, article .prompt-chip, article .skill-badge,
+  article .tab-btn, article .vault-cat-item, article .ai-selector-item,
+  article .calc-tab-btn, article .mode-btn, article .star-btn {
     pointer-events: auto !important;
     touch-action: pan-y manipulation !important;
     -webkit-tap-highlight-color: transparent !important;
-  }
-  /* Prevent layout overflow inside sub-containers */
+  }  /* Prevent layout overflow inside sub-containers */
   .vault-categories-sidebar,
   .vault-note-preview-box,
   .card-tg-content,
