@@ -1,4 +1,8 @@
-const DEFAULT_SYSTEM_PROMPT = `IDENTITY & PURPOSE:
+// ==========================================================================
+// KIZUN AI ASSISTANT - CLEAN PRODUCTION ARCHITECTURE (GOOGLE API NATIVE CONFIG)
+// ==========================================================================
+
+const SYSTEM_PROMPT = `IDENTITY & PURPOSE:
 Ты — VibeCopilot, умный, харизматичный ИИ-копилот и цифровой напарник разработчика kizun (Senior Vibe Coder & AI Engineer). Твоя задача — общаться с посетителями портфолио, поддерживать живой душевный диалог, отвечать на вопросы и создавать классную технологичную атмосферу.
 
 САМОИДЕНТИФИКАЦИЯ И РОЛЬ:
@@ -27,249 +31,156 @@ const DEFAULT_SYSTEM_PROMPT = `IDENTITY & PURPOSE:
 4. ЭМОДЗИ И МАРКДАУН: 1–2 аккуратных эмодзи на ответ. Используй **жирный шрифт** для акцентов и \`код\` для технологий (\`Docker\`, \`Telethon\`, \`QMK\`).
 5. СТРОГИЙ ЗАПРЕТ: Никаких служебных размышлений на английском, блоков Thought/Thinking Process и тегов <think>.`;
 
+// Helper to extract clean text from raw string or JSON output
+function extractCleanReply(rawText) {
+  if (!rawText) return '';
+  let str = rawText.trim();
+
+  // Strip markdown codeblock wrapping
+  if (str.startsWith('```')) {
+    str = str.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/i, '').trim();
+  }
+
+  // If model returned a raw JSON string like { "thought": "...", "response": "..." }
+  if (str.startsWith('{') && str.endsWith('}')) {
+    try {
+      const parsed = JSON.parse(str);
+      if (parsed.response && typeof parsed.response === 'string') {
+        str = parsed.response;
+      } else if (parsed.reply && typeof parsed.reply === 'string') {
+        str = parsed.reply;
+      } else if (parsed.text && typeof parsed.text === 'string') {
+        str = parsed.text;
+      }
+    } catch (e) {
+      // Ignore JSON parse error, keep raw string
+    }
+  }
+
+  // Clean out any leftover reasoning tags or prefixes
+  return str
+    .replace(/<think>[\s\S]*?<\/think>/gi, '')
+    .replace(/^(Thought|Thinking)\s*(Process)?:[\s\S]*?\n\n/gi, '')
+    .replace(/^Thought:\s*/gi, '')
+    .trim();
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const corsHeaders = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type"
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
     };
 
-    if (request.method === "OPTIONS") {
+    if (request.method === 'OPTIONS') {
       return new Response(null, { headers: corsHeaders });
     }
 
-    if (request.method !== "POST") {
-      return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers: corsHeaders });
+    if (request.method !== 'POST') {
+      return new Response(JSON.stringify({ error: 'Only POST allowed' }), {
+        status: 405,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
     }
 
     try {
-      const urlObj = new URL(request.url);
+      const body = await request.json();
+      const userMessage = body.message || '';
+      const history = body.history || [];
+      const activeSystemPrompt = body.systemPrompt || SYSTEM_PROMPT;
 
-      // Handle Analytics & Visitor Tracking
-      if (urlObj.pathname.endsWith('/analytics')) {
-        const payload = await request.json();
-        const botToken = env.TELEGRAM_BOT_TOKEN;
-        const chatId = env.TELEGRAM_CHAT_ID;
+      const keysString = env.GEMINI_API_KEYS || env.GEMINI_API_KEY || '';
+      const apiKeys = keysString.split(',').map(k => k.trim()).filter(Boolean);
 
-        if (botToken && chatId) {
-          // Cloudflare Geolocation Headers
-          const country = request.cf?.country || 'RU';
-          const city = request.cf?.city || 'Москва';
-          const geoStr = city ? `${country}, ${city}` : country;
+      if (apiKeys.length === 0) {
+        return new Response(JSON.stringify({ error: 'No API keys configured on worker' }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
 
-          // User Agent device info
-          const ua = request.headers.get('user-agent') || '';
-          let deviceType = 'Desktop 💻';
-          if (/mobile/i.test(ua)) deviceType = 'Mobile 📱';
-          if (/tablet|ipad/i.test(ua)) deviceType = 'Tablet 📱';
+      // Каскадный список ваших 4 моделей
+      const MODEL_CASCADE = [
+        { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash' },
+        { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash Lite' },
+        { id: 'gemma-4-31b-it', name: 'Gemma 4 31B' },
+        { id: 'gemma-4-26b-a4b-it', name: 'Gemma 4 26B' }
+      ];
 
-          const dateObj = payload.timestamp ? new Date(payload.timestamp) : new Date();
-          const timeMsk = dateObj.toLocaleString('ru-RU', {
-            timeZone: 'Europe/Moscow',
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          });
+      // Официальная структура Google AI Studio REST API
+      const requestPayload = {
+        system_instruction: {
+          parts: [{ text: activeSystemPrompt }]
+        },
+        contents: [
+          ...history.map(h => ({
+            role: h.role === 'user' ? 'user' : 'model',
+            parts: [{ text: h.text }]
+          })),
+          { role: 'user', parts: [{ text: userMessage }] }
+        ],
+        generationConfig: {
+          temperature: 0.5,
+          topP: 0.9,
+          maxOutputTokens: 400
+        }
+      };
 
-          let msgText = '';
-
-          if (payload.type === 'visit') {
-            const isReturning = payload.isReturning;
-            const headerIcon = isReturning ? '🔄' : '👀';
-            const headerTitle = isReturning ? '*ПОСЕТИТЕЛЬ СНОВА ВЕРНУЛСЯ!*' : '*Новый визит на портфолио!*';
-
-            msgText = 
-              `${headerIcon} ${headerTitle}\n\n` +
-              `👤 *ID:* \`${payload.visitorId || 'аноним'}\`\n` +
-              `🌐 *Гео:* \`${geoStr}\`\n` +
-              `💻 *Устройство:* \`${deviceType}\` (${payload.screen || 'N/A'})\n` +
-              `🔗 *Источник:* \`${payload.referrer || 'Прямой заход'}\`\n` +
-              `🕒 *Время:* \`${timeMsk} МСК\``;
-          } else if (payload.type === 'event') {
-            let eventIcon = '⚡';
-            let eventTitle = payload.eventName || 'Действие';
-
-            if (payload.eventName?.includes('открыл Резюме')) {
-              eventIcon = '📄';
-              eventTitle = '*РЕКРУТЕР ОТКРЫЛ РЕЗЮМЕ (PDF)*';
-            } else if (payload.eventName?.includes('скачал Резюме')) {
-              eventIcon = '📥';
-              eventTitle = '*РЕКРУТЕР СКАЧАЛ РЕЗЮМЕ (CV)*';
-            } else if (payload.eventName?.includes('Email')) {
-              eventIcon = '✉️';
-              eventTitle = '*Скопирован Email адрес*';
-            } else if (payload.eventName?.includes('Telegram')) {
-              eventIcon = '💬';
-              eventTitle = '*Переход в Telegram личку*';
-            }
-
-            msgText = 
-              `${eventIcon} ${eventTitle}\n\n` +
-              `👤 *ID:* \`${payload.visitorId || 'аноним'}\`\n` +
-              `🌐 *Гео:* \`${geoStr}\`\n` +
-              `💻 *Устройство:* \`${deviceType}\`\n` +
-              `🕒 *Время:* \`${timeMsk} МСК\``;
-          }
-
-          if (msgText) {
-            const tgBody = {
-              chat_id: chatId,
-              text: msgText,
-              parse_mode: 'Markdown'
-            };
-
-            const threadId = env.TELEGRAM_THREAD_ID || env.TELEGRAM_TOPIC_ID;
-            if (threadId) {
-              tgBody.message_thread_id = parseInt(threadId, 10);
-            }
-
-            await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      for (const apiKey of apiKeys) {
+        for (const model of MODEL_CASCADE) {
+          try {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model.id}:generateContent?key=${apiKey}`;
+            
+            const response = await fetch(apiUrl, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(tgBody)
-            }).catch(() => {});
+              body: JSON.stringify(requestPayload)
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              const parts = data.candidates?.[0]?.content?.parts || [];
+              
+              // Find first non-thought part or last part
+              const cleanParts = parts.filter(p => !p.thought);
+              const replyPart = cleanParts.length > 0 ? cleanParts[cleanParts.length - 1] : parts[parts.length - 1];
+              const rawText = replyPart?.text || '';
+              
+              const cleanReply = extractCleanReply(rawText);
+
+              if (cleanReply) {
+                return new Response(JSON.stringify({
+                  reply: cleanReply,
+                  model: model.name,
+                  provider: 'Google AI Studio'
+                }), {
+                  status: 200,
+                  headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+                });
+              }
+            } else {
+              console.warn(`[ROUTER] Model ${model.id} with key ...${apiKey.slice(-4)} failed (Status ${response.status}). Trying next...`);
+            }
+          } catch (err) {
+            console.warn(`[ROUTER] Error fetching ${model.id}:`, err);
           }
         }
-
-        return new Response(JSON.stringify({ success: true }), { status: 200, headers: corsHeaders });
-      }
-      
-      // Handle Feedback submission
-      if (urlObj.pathname.endsWith('/api/feedback') || urlObj.pathname.endsWith('/feedback')) {
-        const payload = await request.json();
-        const botToken = env.TELEGRAM_BOT_TOKEN;
-        const chatId = env.TELEGRAM_CHAT_ID;
-        
-        if (botToken && chatId) {
-          const ratingVal = parseInt(payload.rating || 5, 10);
-          const starsStr = '⭐'.repeat(Math.max(1, Math.min(5, ratingVal)));
-          const ratingLabel = payload.ratingText || `${ratingVal} из 5`;
-          
-          const commentStr = payload.comment ? `«${payload.comment}»` : '_Без комментария_';
-          const contactStr = payload.contact ? `\`${payload.contact}\`` : '_Не указан_';
-
-          // Accurate Moscow Time (Europe/Moscow)
-          const dateObj = payload.timestamp ? new Date(payload.timestamp) : new Date();
-          const timeMsk = dateObj.toLocaleString('ru-RU', {
-            timeZone: 'Europe/Moscow',
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          });
-
-          const msgText = 
-            `✨ *Новый отзыв о портфолио!*\n` +
-            `${starsStr} *${ratingLabel}*\n\n` +
-            `💬 *Сообщение:* ${commentStr}\n` +
-            `👤 *Контакт:* ${contactStr}\n` +
-            `🕒 *Время:* \`${timeMsk} МСК\``;
-
-          const tgBody = {
-            chat_id: chatId,
-            text: msgText,
-            parse_mode: 'Markdown'
-          };
-
-          // Support for Telegram Forum Topics / Threads
-          const threadId = env.TELEGRAM_THREAD_ID || env.TELEGRAM_TOPIC_ID;
-          if (threadId) {
-            tgBody.message_thread_id = parseInt(threadId, 10);
-          }
-
-          await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(tgBody)
-          }).catch(() => {});
-        }
-
-        return new Response(JSON.stringify({ success: true }), { status: 200, headers: corsHeaders });
       }
 
-      const { message, history, model, systemPrompt } = await request.json();
-      if (!message && (!history || history.length === 0)) {
-        return new Response(JSON.stringify({ error: "Message or history required" }), { status: 400, headers: corsHeaders });
-      }
-
-      const apiKey = env.GEMINI_API_KEY;
-      if (!apiKey) {
-        return new Response(JSON.stringify({ error: "GEMINI_API_KEY not configured in worker environment" }), { status: 500, headers: corsHeaders });
-      }
-
-      // Default to reliable high-speed Gemini 2.0 Flash / 1.5 Flash models
-      const selectedModel = model || env.MODEL_NAME || "gemini-2.0-flash";
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${selectedModel}:generateContent?key=${apiKey}`;
-      const promptToUse = systemPrompt || env.SYSTEM_PROMPT || DEFAULT_SYSTEM_PROMPT;
-
-      // Construct multi-turn contents list
-      let apiContents = [];
-      if (Array.isArray(history) && history.length > 0) {
-        apiContents = history.map(item => ({
-          role: item.role === 'user' ? 'user' : 'model',
-          parts: [{ text: item.text }]
-        }));
-      }
-
-      if (message) {
-        const lastContent = apiContents[apiContents.length - 1];
-        if (!lastContent || lastContent.role !== 'user' || lastContent.parts[0].text !== message) {
-          apiContents.push({
-            role: 'user',
-            parts: [{ text: message }]
-          });
-        }
-      }
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: promptToUse }]
-          },
-          contents: apiContents,
-          generationConfig: {
-            maxOutputTokens: 650,
-            temperature: 0.7
-          }
-        })
+      return new Response(JSON.stringify({
+        error: 'Rate limit hit on all keys and models',
+        reply: 'Все бесплатные лимиты моделей сейчас исчерпаны. Попробуйте еще раз через минуту!'
+      }), {
+        status: 429,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        return new Response(JSON.stringify({ error: "Google AI Studio API error", details: errorText }), { status: 502, headers: corsHeaders });
-      }
-
-      const data = await response.json();
-      const parts = data.candidates?.[0]?.content?.parts || [];
-
-      // Filter out thinking process parts if any
-      const cleanParts = parts.filter(p => !p.thought);
-      const replyPart = cleanParts.length > 0 ? cleanParts[cleanParts.length - 1] : parts[parts.length - 1];
-      let reply = replyPart?.text || '';
-
-      // Clean out any inline <think> tags or reasoning prefixes
-      if (reply) {
-        reply = reply
-          .replace(/<think>[\s\S]*?<\/think>/gi, '')
-          .replace(/^(Thought|Thinking)\s*(Process)?:[\s\S]*?\n\n/gi, '')
-          .replace(/^Thought:\s*/gi, '')
-          .trim();
-      }
-
-      if (reply) {
-        return new Response(JSON.stringify({ reply, model: selectedModel }), { status: 200, headers: corsHeaders });
-      }
-
-      return new Response(JSON.stringify({ error: "No response text from model" }), { status: 500, headers: corsHeaders });
-
     } catch (e) {
-      return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: corsHeaders });
+      return new Response(JSON.stringify({ error: e.message }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
     }
   }
 };
