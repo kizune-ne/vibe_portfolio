@@ -36,8 +36,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="index.css?v=1785411319">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785411319">
+  <link rel="stylesheet" href="index.css?v=1785422727">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785422727">
 
   <!-- INLINE CRITICAL MOBILE STYLES FOR INSTANT TELEGRAM / SAFARI CACHE BYPASS -->
   <style id="mobile-responsive-inline">
@@ -45,7 +45,7 @@
     html, body {
       width: 100% !important;
       max-width: 100% !important;
-      overflow-x: hidden !important;
+      overflow-x: clip !important;
       position: relative !important;
       margin: 0 !important;
       padding: 0 !important;
@@ -240,7 +240,7 @@
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
-        overflow-x: hidden !important;
+        overflow-x: clip !important;
         overflow-y: visible !important;
         cursor: default !important;
       }
@@ -267,7 +267,7 @@
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
-        overflow-x: hidden !important;
+        overflow-x: clip !important;
       }
 
       .container {
@@ -341,7 +341,7 @@
     <div class="container nav-container">
       <a href="#" class="brand-logo">
         <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span>
+        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-PERFECT</span>
         <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
       </a>
       <div class="nav-actions">
@@ -1438,27 +1438,38 @@
     </div>
   </footer>
 
-  <script type="module" src="app.js?v=1785411319"></script>
+  <script type="module" src="app.js?v=1785422727"></script>
 
 
 
 
-<!-- 100% DIRECT MOBILE OVERRIDE STYLES (VER 1785411459) -->
+
+<!-- 100% PERFECT MOBILE OVERRIDES (TIMESTAMP 1785422727) -->
 <style id="mobile-bottom-inline-override">
-/* FORCE APPLIED MOBILE OVERRIDES FOR ALL MOBILE & TABLET VIEWPORTS */
-@media screen and (max-width: 1200px) {
+/* 1. STICKY NAVBAR FIX: ALLOW BROWSER STICKY BY USING OVERFLOW-X: CLIP */
+html, body {
+  overflow-x: clip !important;
+  overflow-y: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@media screen and (max-width: 1200px), (pointer: coarse) {
   /* 1. STICKY NAVBAR AT TOP */
   header.navbar, .navbar {
     position: sticky !important;
-    top: 8px !important;
+    top: 6px !important;
     z-index: 1000 !important;
     margin-bottom: 16px !important;
     pointer-events: none !important;
   }
   .nav-container {
-    background: rgba(250, 250, 250, 0.96) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
     pointer-events: none !important;
   }
   .nav-container a, .nav-container button, .nav-container .btn {
@@ -1469,32 +1480,33 @@
   /* 2. AI ASSISTANT CARD HEADER TEXT WRAPPING (FIX 60PX SQUEEZE) */
   .card-ai-assistant .ai-title-wrap, .ai-title-wrap {
     display: flex !important;
+    flex-direction: row !important;
     align-items: flex-start !important;
     gap: 12px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
-  .ai-avatar-icon {
+  .card-ai-assistant .ai-avatar-icon, .ai-avatar-icon {
     width: 38px !important;
     height: 38px !important;
     min-width: 38px !important;
     min-height: 38px !important;
     flex-shrink: 0 !important;
   }
-  .ai-title-info {
+  .card-ai-assistant .ai-title-info, .ai-title-info {
     flex: 1 1 0% !important;
     min-width: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
-  .ai-title-info .card-title {
+  .card-ai-assistant .card-title, .ai-title-info .card-title {
     font-size: 1.15rem !important;
     line-height: 1.25 !important;
     color: #ffffff !important;
     margin-bottom: 4px !important;
   }
-  .ai-title-info .card-subtitle {
-    font-size: 0.8rem !important;
+  .card-ai-assistant .card-subtitle, .ai-title-info .card-subtitle {
+    font-size: 0.82rem !important;
     line-height: 1.45 !important;
     color: #a1a1aa !important;
     white-space: normal !important;
@@ -1502,6 +1514,7 @@
     overflow-wrap: break-word !important;
     display: block !important;
     width: 100% !important;
+    max-width: 100% !important;
   }
 
   /* 3. TG CONTENT CARD (CARD 01) - PERFECT AVATAR CIRCLE & CLEAN API BADGE */
@@ -1559,7 +1572,7 @@
   }
   .file-tree-sidebar {
     height: auto !important;
-    max-height: 200px !important;
+    max-height: 180px !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     pointer-events: auto !important;
@@ -1574,15 +1587,15 @@
   }
   .editor-window {
     flex: 1 1 auto !important;
-    height: 300px !important;
-    max-height: 420px !important;
+    height: 280px !important;
+    max-height: 400px !important;
     overflow: auto !important;
     -webkit-overflow-scrolling: touch !important;
     pointer-events: auto !important;
     touch-action: pan-x pan-y manipulation !important;
     white-space: pre !important;
     word-break: normal !important;
-    font-size: 0.76rem !important;
+    font-size: 0.74rem !important;
     line-height: 1.5 !important;
   }
 
@@ -1594,7 +1607,7 @@
     flex-wrap: nowrap !important;
     scrollbar-width: none !important;
     -webkit-overflow-scrolling: touch !important;
-    padding-bottom: 4px !important;
+    padding-bottom: 6px !important;
     touch-action: pan-x manipulation !important;
     pointer-events: auto !important;
   }
@@ -1606,6 +1619,7 @@
   }
 }
 </style>
+
 
 
 </body>
