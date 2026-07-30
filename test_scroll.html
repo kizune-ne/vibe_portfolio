@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Diagnostic Test Lab (Phase 2)</title>
-  <link rel="stylesheet" href="index.css?v=20260730_phase2">
+  <title>Scroll Diagnostic Test Lab (Phase 3)</title>
+  <link rel="stylesheet" href="index.css?v=20260730_phase3">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=20260730_phase3">
   <style>
     * { box-sizing: border-box; }
     html, body {
@@ -45,18 +46,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
-    .test-card h3 {
-      margin-top: 0;
-      color: #000;
-      font-size: 16px;
-    }
-
-    .test-card p {
-      color: #52525b;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
     .test-btn {
       display: inline-block;
       padding: 10px 16px;
@@ -71,8 +60,14 @@
 </head>
 <body>
 
+<!-- Ambient Grid & Spotlights from main portfolio -->
+<div class="bg-grid-pattern"></div>
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<div class="spotlight-overlay" id="spotlightOverlay"></div>
+
 <div id="diagHeader">
-  <div><strong>SCROLL LAB PHASE 2 (INDEX.CSS LOADED)</strong></div>
+  <div><strong>SCROLL LAB PHASE 3 (JS APP.JS + RESPONSIVE CSS + OVERLAYS)</strong></div>
   <div>Touch Target: <span id="diagTarget">None</span></div>
   <div>Scroll Y: <span id="diagScrollY">0</span>px</div>
 </div>
@@ -80,13 +75,13 @@
 <div class="test-container bento-main">
 
   <div class="bento-card test-card" id="testCard1">
-    <h3>ФАЗА 2: Подключены стили index.css (с классом bento-card)</h3>
-    <p>Проверь свайп прямо сейчас по этой карточке c объектом index.css.</p>
+    <h3>ФАЗА 3: Подключен JS-модуль app.js и фоновые оверлеи</h3>
+    <p>Проверь свайп прямо сейчас по этой карточке после подключения полного скрипта app.js.</p>
     <a href="#" class="test-btn">Кнопка 1</a>
   </div>
 
   <div class="bento-card test-card" id="testCard2">
-    <h3>ФАЗА 2: Вторая карточка с классом bento-card</h3>
+    <h3>ФАЗА 3: Вторая карточка с полной JS средой</h3>
     <p>Проверь свайп прямо сейчас по этой второй карточке.</p>
     <a href="#" class="test-btn">Кнопка 2</a>
   </div>
@@ -96,6 +91,8 @@
   </div>
 
 </div>
+
+<script type="module" src="app.js?v=20260730_phase3"></script>
 
 <script>
   const diagTarget = document.getElementById('diagTarget');
