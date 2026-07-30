@@ -31,38 +31,41 @@ const SYSTEM_PROMPT = `IDENTITY & PURPOSE:
 4. ЭМОДЗИ И МАРКДАУН: 1–2 аккуратных эмодзи на ответ. Используй **жирный шрифт** для акцентов и \`код\` для технологий (\`Docker\`, \`Telethon\`, \`QMK\`).
 5. СТРОГИЙ ЗАПРЕТ: Никаких служебных размышлений на английском, блоков Thought/Thinking Process и тегов <think>.`;
 
-// Helper to extract clean text from raw string or JSON output
+// Bulletproof extraction & sanitization pipeline
 function extractCleanReply(rawText) {
   if (!rawText) return '';
   let str = rawText.trim();
 
-  // Strip markdown codeblock wrapping
+  // 1. Regex extraction if output contains "response": "..." or "reply": "..."
+  const responseMatch = str.match(/"(response|reply)"\s*:\s*"((?:[^"\\]|\\.)*)"/i);
+  if (responseMatch && responseMatch[2]) {
+    str = responseMatch[2]
+      .replace(/\\n/g, '\n')
+      .replace(/\\"/g, '"')
+      .replace(/\\\\/g, '\\');
+  }
+
+  // 2. Strip markdown codeblock wrapping (```json ... ```)
   if (str.startsWith('```')) {
     str = str.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/i, '').trim();
   }
 
-  // If model returned a raw JSON string like { "thought": "...", "response": "..." }
+  // 3. Try standard JSON parse if pure JSON object
   if (str.startsWith('{') && str.endsWith('}')) {
     try {
       const parsed = JSON.parse(str);
-      if (parsed.response && typeof parsed.response === 'string') {
-        str = parsed.response;
-      } else if (parsed.reply && typeof parsed.reply === 'string') {
-        str = parsed.reply;
-      } else if (parsed.text && typeof parsed.text === 'string') {
-        str = parsed.text;
-      }
-    } catch (e) {
-      // Ignore JSON parse error, keep raw string
-    }
+      str = parsed.response || parsed.reply || parsed.text || str;
+    } catch (e) {}
   }
 
-  // Clean out any leftover reasoning tags or prefixes
-  return str
-    .replace(/<think>[\s\S]*?<\/think>/gi, '')
-    .replace(/^(Thought|Thinking)\s*(Process)?:[\s\S]*?\n\n/gi, '')
-    .replace(/^Thought:\s*/gi, '')
-    .trim();
+  // 4. Strip <think>...</think> (closed or unclosed)
+  str = str.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '');
+
+  // 5. Strip "Thought:", "Thinking:", "Reasoning:", "Thought Process:" blocks
+  str = str.replace(/^(Thought|Thinking|Reasoning)\s*(Process)?:[\s\S]*?\n(?=[A-Яа-яЁё0-9«"📱🤖🧠⌨️📐🐳✨👋⚡])/gi, '');
+  str = str.replace(/^(Thought|Thinking|Reasoning)\s*(Process)?:[^\n]*\n?/gim, '');
+
+  return str.trim();
 }
 
 export default {
@@ -100,7 +103,7 @@ export default {
         });
       }
 
-      // Каскадный список ваших 4 моделей
+      // Model fallback cascade
       const MODEL_CASCADE = [
         { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash' },
         { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash Lite' },
@@ -108,7 +111,7 @@ export default {
         { id: 'gemma-4-26b-a4b-it', name: 'Gemma 4 26B' }
       ];
 
-      // Официальная структура Google AI Studio REST API
+      // Google AI Studio REST API Payload with Thinking Config Suppressor
       const requestPayload = {
         system_instruction: {
           parts: [{ text: activeSystemPrompt }]
@@ -123,7 +126,10 @@ export default {
         generationConfig: {
           temperature: 0.5,
           topP: 0.9,
-          maxOutputTokens: 400
+          maxOutputTokens: 400,
+          thinkingConfig: {
+            thinkingBudget: 0
+          }
         }
       };
 
@@ -142,7 +148,7 @@ export default {
               const data = await response.json();
               const parts = data.candidates?.[0]?.content?.parts || [];
               
-              // Find first non-thought part or last part
+              // Find non-thought parts
               const cleanParts = parts.filter(p => !p.thought);
               const replyPart = cleanParts.length > 0 ? cleanParts[cleanParts.length - 1] : parts[parts.length - 1];
               const rawText = replyPart?.text || '';

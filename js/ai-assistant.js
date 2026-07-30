@@ -37,13 +37,41 @@ export function initAiAssistant() {
   const chatHistory = [];
 
   // Helper to clean out reasoning/thinking blocks from LLM output
-  function cleanAiResponse(text) {
-    if (!text) return '';
-    return text
-      .replace(/<think>[\s\S]*?<\/think>/gi, '')
-      .replace(/^(Thought|Thinking)\s*(Process)?:[\s\S]*?\n\n/gi, '')
-      .replace(/^Thought:\s*/gi, '')
-      .trim();
+  // Bulletproof extraction & sanitization pipeline
+  function cleanAiResponse(rawText) {
+    if (!rawText) return '';
+    let str = rawText.trim();
+
+    // 1. Regex extraction if output contains "response": "..." or "reply": "..."
+    const responseMatch = str.match(/"(response|reply)"\s*:\s*"((?:[^"\\]|\\.)*)"/i);
+    if (responseMatch && responseMatch[2]) {
+      str = responseMatch[2]
+        .replace(/\\n/g, '\n')
+        .replace(/\\"/g, '"')
+        .replace(/\\\\/g, '\\');
+    }
+
+    // 2. Strip markdown codeblock wrapping
+    if (str.startsWith('```')) {
+      str = str.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/i, '').trim();
+    }
+
+    // 3. Try standard JSON parse if pure JSON object
+    if (str.startsWith('{') && str.endsWith('}')) {
+      try {
+        const parsed = JSON.parse(str);
+        str = parsed.response || parsed.reply || parsed.text || str;
+      } catch (e) {}
+    }
+
+    // 4. Strip <think>...</think> (closed or unclosed)
+    str = str.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '');
+
+    // 5. Strip "Thought:", "Thinking:", "Reasoning:", "Thought Process:" blocks
+    str = str.replace(/^(Thought|Thinking|Reasoning)\s*(Process)?:[\s\S]*?\n(?=[A-Яа-яЁё0-9«"📱🤖🧠⌨️📐🐳✨👋⚡])/gi, '');
+    str = str.replace(/^(Thought|Thinking|Reasoning)\s*(Process)?:[^\n]*\n?/gim, '');
+
+    return str.trim();
   }
 
   // Simple Markdown formatting helper
