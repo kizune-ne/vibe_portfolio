@@ -35,30 +35,46 @@ export function initAiAssistant() {
     const lower = text.toLowerCase();
     if (lower.includes('docker') || lower.includes('cuda') || lower.includes('gpu')) {
       return [
-        { label: 'Как устроен проброс CUDA?', prompt: 'Расскажи подробнее про настройку NVIDIA CUDA в Docker' },
-        { label: 'Хранение секретов _keys/', prompt: 'Как устроена защита секретов в Bind Mounts?' }
+        { label: 'Проброс CUDA в Docker', prompt: 'Расскажи подробнее про настройку NVIDIA CUDA в Docker' },
+        { label: 'Защита секретов _keys/', prompt: 'Как устроена защита секретов в Bind Mounts?' }
       ];
     }
-    if (lower.includes('telegram') || lower.includes('парсер') || lower.includes('бот') || lower.includes('бан')) {
+    if (lower.includes('telegram') || lower.includes('парсер') || lower.includes('бот') || lower.includes('telethon')) {
       return [
-        { label: 'Как обходить баны в Telethon?', prompt: 'Как устроена защита от бана сессий Telegram в парсере?' },
-        { label: 'Дедупликация постов', prompt: 'Как работает алгоритм дедупликации сообщений за 2 секунды?' }
+        { label: 'Обход банов Telethon', prompt: 'Как устроена защита от бана сессий Telegram в парсере?' },
+        { label: 'Скорость парсинга постов', prompt: 'Как работает алгоритм дедупликации сообщений за 2 секунды?' }
       ];
     }
-    if (lower.includes('гемма') || lower.includes('gemma') || lower.includes('модель') || lower.includes('ии')) {
+    if (lower.includes('гемма') || lower.includes('gemma') || lower.includes('модель') || lower.includes('llm') || lower.includes('нейросет')) {
       return [
-        { label: 'Какое железо используется?', prompt: 'На каком железе развернуты локальные нейросети?' },
-        { label: 'Написать @kizune_ne', prompt: 'Как связаться с kizun в Telegram?' }
+        { label: 'Железо для Ollama', prompt: 'На каком железе развернуты локальные нейросети?' },
+        { label: 'Связь с разработчиком', prompt: 'Как связаться с kizun в Telegram?' }
+      ];
+    }
+    if (lower.includes('клавиатур') || lower.includes('прошивк') || lower.includes('qmk') || lower.includes('vial')) {
+      return [
+        { label: 'QMK & Vial прошивки', prompt: 'Расскажи про C-прошивки для кастомных клавиатур' },
+        { label: 'MonsGeek M1 V5', prompt: 'Какие особенности у клавиатуры MonsGeek M1 V5?' }
+      ];
+    }
+    if (lower.includes('стек') || lower.includes('верстк') || lower.includes('портфолио') || lower.includes('дизайн')) {
+      return [
+        { label: 'Стек этого портфолио', prompt: 'Расскажи про стек и архитектуру этого портфолио' },
+        { label: 'Bento Grid адаптив', prompt: 'Как устроена верстка Bento Grid на чистом CSS?' }
       ];
     }
     return [
-      { label: 'В чем суть Вайбкодинга?', prompt: 'Расскажи про философию Вайбкодинга kizun' },
+      { label: 'Философия Vibe Coding', prompt: 'Расскажи про философию Вайбкодинга kizun' },
       { label: 'Написать @kizune_ne', prompt: 'Как написать kizun в Telegram?' }
     ];
   }
 
   function appendChatMessage(sender, htmlContent, metrics = null, suggestedChips = null) {
     if (!chatContainer) return;
+
+    // Clean up any previously displayed prompt chips so ONLY the latest message has chips
+    chatContainer.querySelectorAll('.msg-suggested-chips').forEach(chipsEl => chipsEl.remove());
+
     const msgDiv = document.createElement('div');
     msgDiv.className = `chat-message msg-${sender}`;
 
