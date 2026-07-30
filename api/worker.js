@@ -31,7 +31,7 @@ const SYSTEM_PROMPT = `IDENTITY & PURPOSE:
 4. ЭМОДЗИ И МАРКДАУН: 1–2 аккуратных эмодзи на ответ. Используй **жирный шрифт** для акцентов и \`код\` для технологий (\`Docker\`, \`Telethon\`, \`QMK\`).
 5. СТРОГИЙ ЗАПРЕТ: Никаких служебных размышлений на английском, блоков Thought/Thinking Process и тегов <think>.`;
 
-// Bulletproof extraction & sanitization pipeline
+// Multi-layer extraction & sanitization pipeline
 function extractCleanReply(rawText) {
   if (!rawText) return '';
   let str = rawText.trim();
@@ -103,7 +103,7 @@ export default {
         });
       }
 
-      // Model fallback cascade
+      // Каскадный список ваших 4 моделей
       const MODEL_CASCADE = [
         { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash' },
         { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash Lite' },
@@ -111,7 +111,7 @@ export default {
         { id: 'gemma-4-26b-a4b-it', name: 'Gemma 4 26B' }
       ];
 
-      // Google AI Studio REST API Payload with Thinking Config Suppressor
+      // Нативный чистый payload
       const requestPayload = {
         system_instruction: {
           parts: [{ text: activeSystemPrompt }]
@@ -126,10 +126,7 @@ export default {
         generationConfig: {
           temperature: 0.5,
           topP: 0.9,
-          maxOutputTokens: 400,
-          thinkingConfig: {
-            thinkingBudget: 0
-          }
+          maxOutputTokens: 400
         }
       };
 
@@ -148,7 +145,7 @@ export default {
               const data = await response.json();
               const parts = data.candidates?.[0]?.content?.parts || [];
               
-              // Find non-thought parts
+              // Находим не-thought парты
               const cleanParts = parts.filter(p => !p.thought);
               const replyPart = cleanParts.length > 0 ? cleanParts[cleanParts.length - 1] : parts[parts.length - 1];
               const rawText = replyPart?.text || '';
