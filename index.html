@@ -40,6 +40,15 @@
   <style id="mobile-responsive-inline">
     @media (max-width: 768px) {
       /* Clean Native Touch Defaults */
+      html {
+        scroll-behavior: auto !important;
+      }
+      body {
+        min-height: 100vh !important;
+        max-width: 100vw !important;
+        overflow-x: clip !important;
+        position: relative !important;
+      }
       a, button, input, select, textarea, .btn, .tov-tab, .obsidian-mode-btn, .prompt-chip {
         -webkit-tap-highlight-color: transparent !important;
       }
