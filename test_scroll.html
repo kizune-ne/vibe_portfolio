@@ -6,10 +6,10 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Diagnostic Test Lab (Phase 7 Binary Search)</title>
+  <title>Scroll Diagnostic Test Lab (Phase 7)</title>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="index.css?v=20260730_p7_v2">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=20260730_p7_v2">
+  <link rel="stylesheet" href="index.css?v=20260730_p7_v3">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=20260730_p7_v3">
   <style>
     #diagHeader {
       position: fixed !important;
@@ -19,57 +19,29 @@
       z-index: 99999 !important;
       background: #18181b !important;
       color: #00ff66 !important;
-      padding: 8px 12px !important;
+      padding: 10px 14px !important;
       font-family: monospace !important;
       font-size: 11px !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
       line-height: 1.4 !important;
       pointer-events: none !important;
     }
     body {
-      padding-top: 42px !important;
-    }
-    .navbar {
-      top: 48px !important;
+      padding-top: 50px !important;
     }
   </style>
 </head>
 <body>
 
 <div id="diagHeader">
-  <div><strong>SCROLL LAB PHASE 7 (+ TELEGRAM CARDS 01 & 02)</strong></div>
+  <div><strong>SCROLL LAB PHASE 7 (+ CARDS 01 TG & 02 SIMULATOR & 03 AI GEN)</strong></div>
   <div>Touch Target: <span id="diagTarget">None</span></div>
   <div>Scroll Y: <span id="diagScrollY">0</span>px</div>
 </div>
 
 <main class="container bento-main">
-<header class="navbar">
-    <div class="container nav-container">
-      <a href="#" class="brand-logo">
-        <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span>
-        <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
-      </a>
-      <div class="nav-actions">
-        <a href="mailto:kizunezn@gmail.com" class="btn btn-secondary btn-sm btn-copy-email" data-email="kizunezn@gmail.com" title="Нажмите, чтобы скопировать Email">
-          <i data-lucide="mail"></i>
-          <span>kizunezn@gmail.com</span>
-        </a>
-        <a href="https://t.me/kizune_ne" target="_blank" class="btn btn-primary btn-sm" title="Telegram: @kizune_ne">
-          <i data-lucide="send"></i>
-          <span>@kizune_ne</span>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Bento Grid -->
-  <main class="container bento-main">
-
-    <!-- 1. HERO SECTION -->
-    <section class="bento-row row-hero" id="hero">
-
-      <article class="bento-card card-hero" id="cardHero">
+  <section class="bento-row">
+    <article class="bento-card card-hero" id="cardHero">
         <div class="spotlight-border"></div>
         <div class="card-content">
           <div class="status-badge">
@@ -156,9 +128,7 @@
           </div>
         </div>
       </article>
-
-      <!-- 2. NARROW-CONTEXT AI ASSISTANT -->
-      <article class="bento-card card-ai-assistant" id="cardAiAssistant">
+    <article class="bento-card card-ai-assistant" id="cardAiAssistant">
         <div class="spotlight-border"></div>
         <div class="card-header-flex">
           <div class="ai-title-wrap">
@@ -202,9 +172,423 @@
           </button>
         </form>
       </article>
+  </section>
 
-    </section>
-  <div style="height: 1000px; background: repeating-linear-gradient(45deg, #e4e4e7, #e4e4e7 10px, #f4f4f5 10px, #f4f4f5 20px); border-radius: 16px; padding: 20px; margin-top: 24px;">
+  <section class="bento-row">
+    <article class="bento-card card-tg-content-main" id="cardTgContent">
+        <div class="spotlight-border"></div>
+        
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">01 // TELEGRAM AUTOMATION &amp; AI PUBLISHING</span>
+            <h2 class="card-title">Автоматизация Telegram-Каналов &amp; AI-Копирайтинг</h2>
+            <p class="card-subtitle">Архитектура автономного ведения медиа-ресурсов: проектирование контент-матриц, парсинг и суммаризация инфоповодов, адаптация авторского стиля и публикация по расписанию через Telegram Bot API.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="tg-content">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Niche Switcher Bar -->
+        <div class="tov-tabs-container">
+          <div class="tov-tabs-wrapper">
+            <button class="tov-tab active" data-niche="it">
+              <i data-lucide="code-2"></i> IT &amp; Arch
+            </button>
+            <button class="tov-tab" data-niche="crypto">
+              <i data-lucide="coins"></i> Web3 &amp; Crypto
+            </button>
+            <button class="tov-tab" data-niche="igaming">
+              <i data-lucide="dices"></i> iGaming &amp; Aff
+            </button>
+            <button class="tov-tab" data-niche="fintech">
+              <i data-lucide="line-chart"></i> FinTech &amp; Trading
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Interactive Stage: Live Telegram Post + Pipeline Tracker -->
+        <div class="tg-sim-container">
+
+          <!-- Live Telegram Post Preview Card -->
+          <div class="tg-post-card" id="tgSimPostCard">
+            <div class="tg-post-header">
+              <div class="tg-author-info">
+                <div class="tg-author-avatar">k</div>
+                <div class="tg-author-meta">
+                  <span class="tg-author-name">kizun // Content Engine <i data-lucide="check-circle-2" class="tg-verified-icon"></i></span>
+                  <span class="tg-post-badge">IT &amp; ARCHITECTURE // EXPERT</span>
+                </div>
+              </div>
+
+              <span class="tg-post-time">14:32</span>
+            </div>
+
+            <div class="tg-post-body">
+              <!-- Live Text will be inserted by JS -->
+            </div>
+
+            <div class="tg-post-inline-buttons">
+              <!-- Live CTA Inline Buttons inserted by JS -->
+            </div>
+
+            <!-- Bottom Control Toolbar with Right-Aligned Mode Selector -->
+            <div class="tg-post-footer-toolbar">
+              <span class="post-footer-meta"><i data-lucide="shield"></i> TG Bot API 7.0</span>
+              <div class="view-mode-selector">
+                <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
+                  <i data-lucide="eye"></i> Превью
+                </button>
+                <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
+                  <i data-lucide="code"></i> MarkdownV2
+                </button>
+                <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
+                  <i data-lucide="cpu"></i> Промпт
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Metrics & Workflow Step Tracker -->
+          <div class="tg-sim-sidebar">
+            <div class="tg-metrics-card">
+              <div class="tg-metrics-title">
+                <i data-lucide="activity"></i>
+                <span>Метрики Поста в Реальном Времени</span>
+              </div>
+              <div class="tg-metrics-grid">
+                <div class="tg-metric-box">
+                  <span class="tg-metric-val" id="tgStatViews">3.8k</span>
+                  <span class="tg-metric-lbl">Просмотры (Views)</span>
+                </div>
+                <div class="tg-metric-box">
+                  <span class="tg-metric-val" id="tgStatEr">9.2%</span>
+                  <span class="tg-metric-lbl">Индекс ER</span>
+                </div>
+              </div>
+              <div class="tg-metric-box">
+                <span class="tg-metric-val" id="tgStatReactions">🔥 210  ⚡ 94</span>
+                <span class="tg-metric-lbl">Живые Реакции</span>
+              </div>
+            </div>
+
+            <div class="workflow-steps-tracker">
+              <div class="tg-metrics-title">
+                <i data-lucide="git-merge"></i>
+                <span>Пайплайн Создания Контента</span>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-step-num">1</span>
+                <div class="workflow-step-text">
+                  <strong>Тренд-Сканер (50+ каналов)</strong>
+                  <span>Асинхронный скрапинг инфоповодов</span>
+                </div>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-step-num">2</span>
+                <div class="workflow-step-text">
+                  <strong>AI Copywriter &amp; Tone-of-Voice</strong>
+                  <span>Генерация структуры &amp; MarkdownV2</span>
+                </div>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-step-num">3</span>
+                <div class="workflow-step-text">
+                  <strong>Human-in-the-Loop Модерация</strong>
+                  <span>Валидация верстки в боте в 1 клик</span>
+                </div>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-step-num">4</span>
+                <div class="workflow-step-text">
+                  <strong>Автопостинг 24/7 по расписанию</strong>
+                  <span>Публикация сочными CTA-кнопками</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+  </section>
+
+  <section class="bento-row">
+    <article class="bento-card card-tg-simulator card-tg-showcase" id="cardTgSimulator">
+        <div class="spotlight-border"></div>
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">02 // AUTOMATIONS &amp; BOTS</span>
+            <h2 class="card-title">Telegram-Автоматизации &amp; Боты</h2>
+            <p class="card-subtitle">Архитектура автономных парсеров каналов, диалоговых ИИ-ассистентов и скрапинга 24/7.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="tg-automation">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Clean 1-Column Compact Architecture Stack -->
+        <div class="tg-architecture-grid">
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="layers"></i></div>
+              <span class="arch-tag">STREAM PARSING</span>
+            </div>
+            <h4>Потоковый парсинг &amp; Топики</h4>
+            <p>Реалтайм скан каналов, фильтрация рекламы, дублей и маршрутизация по топикам.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Telethon / Pyrogram</span>
+              <span class="tech-pill">Topic Routing</span>
+            </div>
+          </div>
+
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="bot"></i></div>
+              <span class="arch-tag">NEURAL AGENTS</span>
+            </div>
+            <h4>Умные ИИ-Боты (LLM)</h4>
+            <p>Интеграция локальных (Ollama / Qwen) и облачных (Gemma) моделей в диалоги.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Ollama / Qwen</span>
+              <span class="tech-pill">Context RAG</span>
+            </div>
+          </div>
+
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="database"></i></div>
+              <span class="arch-tag">ASYNC SCRAPING</span>
+            </div>
+            <h4>Скрапинг Данных 24/7</h4>
+            <p>Асинхронный сбор данных с ротацией прокси, обходом антифрода и выгрузкой отчетов.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Proxy Rotation</span>
+              <span class="tech-pill">APScheduler</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telegram Security & Architecture Footbar -->
+        <div class="tg-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="shield-check"></i> Docker-Изоляция</span>
+          <span class="arch-footer-chip"><i data-lucide="activity"></i> 99.9% Аптайм</span>
+        </div>
+      </article>
+  </section>
+
+  <section class="bento-row">
+    <article class="bento-card card-ai-influencer-main" id="cardAiGen">
+        <div class="spotlight-border"></div>
+        
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">03 // AI INFLUENCERS &amp; LORA PIPELINE</span>
+            <h2 class="card-title">Виртуальные AI-Инфлюенсеры &amp; Локальная Тренировка LoRA</h2>
+            <p class="card-subtitle">Полный цикл производства синтетического медиаконтента: от генерации референсов лица и капшенинга датасетов (Wan 2.2 / Flux) до локальной тренировки LoRA в AI-Toolkit и финального сэмплирования в ComfyUI.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="ai-influencer">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Pipeline Steps Interactive Flow Visualiser -->
+        <div class="pipeline-flow-container">
+          <div class="pipeline-flow-header">
+            <i data-lucide="git-branch"></i>
+            <span>PRODUCTION PIPELINE // CHARACTER CONSISTENCY ENGINE</span>
+          </div>
+
+          <div class="pipeline-steps-grid">
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">01</div>
+              <div class="pipe-step-icon"><i data-lucide="user-check"></i></div>
+              <h4>1. Концепт Лица &amp; Референс</h4>
+              <p>Генерация базовых кадров модели с высокой детализацией черт. Отбор лучшего каноничного референса.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">Nanobanano 2</span>
+                <span class="tech-pill">ComfyUI</span>
+                <span class="tech-pill">ИИ-Промптинг</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">02</div>
+              <div class="pipe-step-icon"><i data-lucide="file-text"></i></div>
+              <h4>2. Датасет &amp; Капшенинг</h4>
+              <p>Формирование сета кадров, кадрирование и составление точных текстовых описаний под целевую модель.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">Wan 2.2 / Wan 2.1</span>
+                <span class="tech-pill">Flux</span>
+                <span class="tech-pill">Auto-Tagging</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">03</div>
+              <div class="pipe-step-icon"><i data-lucide="cpu"></i></div>
+              <h4>3. Тренировка LoRA (AI-Toolkit)</h4>
+              <p>Локальное обучение весов LoRA на железе RTX 4070 Ti SUPER 16GB. Тестирование чекпоинтов.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">AI-Toolkit</span>
+                <span class="tech-pill">RTX 4070 Ti SUPER</span>
+                <span class="tech-pill">16GB VRAM</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">04</div>
+              <div class="pipe-step-icon"><i data-lucide="sparkles"></i></div>
+              <h4>4. Воркфлоу в ComfyUI</h4>
+              <p>Подключение обученной LoRA к ComfyUI. Генерация фотосессий со 100% консистентностью лица.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">ComfyUI Node Graph</span>
+                <span class="tech-pill">Character Consistency</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- AI Dataset Interactive Showcase Stand -->
+        <div class="ai-showcase-stand" id="aiInfluencerShowcase">
+          <div class="ai-showcase-header">
+            <div>
+              <h4 class="ai-showcase-title"><i data-lucide="scan"></i> Инспектор Датасета &amp; Сэмплов LoRA (Wan 2.2 / Flux)</h4>
+              <span class="ai-showcase-subtitle">Интерактивный просмотр сэмплов обработанного датасета с разметкой освещения и ракурсов</span>
+            </div>
+            <div class="ai-showcase-badge">
+              <span class="status-dot"></span> 5 Samples Dataset Ready
+            </div>
+          </div>
+
+          <div class="ai-inspector-grid">
+
+            <!-- LEFT: Featured Image Preview & Metadata (60% width) -->
+            <div class="ai-focal-viewport">
+              <div class="focal-img-wrap">
+                <img src="assets/ai_influencer/ref_base.jpg" id="aiFeaturedImage" alt="Активный кадр датасета">
+                <div class="focal-overlay-badge" id="aiFeaturedTag">
+                  <i data-lucide="file-text"></i> Dataset Sample #01
+                </div>
+                <div class="focal-glow"></div>
+              </div>
+
+              <div class="focal-meta-box">
+                <h4 id="aiFeaturedTitle">Sample #01: Закатное Освещение</h4>
+                <p id="aiFeaturedDesc">Теплый вечерний боковой свет, кружевная одежда, детализация волос и тона кожи в закатный час.</p>
+                <div class="focal-tags" id="aiFeaturedTags">
+                  <span class="chip-accent">Sunset Light</span>
+                  <span class="chip-accent">Wan 2.2 Tagged</span>
+                  <span class="chip-accent">Heterochromia Retained</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Interactive Filmstrip Selector (40% width) -->
+            <div class="ai-filmstrip-selector">
+              <div class="selector-head">
+                <i data-lucide="layers"></i>
+                <span>ВЫБОР СЭМПЛА ДАТАСЕТА (5)</span>
+              </div>
+
+              <div class="selector-items-list">
+
+                <!-- Sample 01 -->
+                <div class="ai-selector-item active" data-sample-id="01">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/ref_base.jpg" alt="Sample 01">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #01</span>
+                    <strong>Закатное Освещение</strong>
+                    <span class="item-sub">Теплый боковой свет, вечер</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 02 -->
+                <div class="ai-selector-item" data-sample-id="02">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/studio_shot.jpg" alt="Sample 02">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #02</span>
+                    <strong>Яркий Студийный Свет</strong>
+                    <span class="item-sub">Студийный вспышечный кадр</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 03 -->
+                <div class="ai-selector-item" data-sample-id="03">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/close_up.jpg" alt="Sample 03">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #03</span>
+                    <strong>Нижний Ракурс &amp; Макро</strong>
+                    <span class="item-sub">Перспектива снизу вверх</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 04 -->
+                <div class="ai-selector-item" data-sample-id="04">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/outdoor_beach.jpg" alt="Sample 04">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #04</span>
+                    <strong>Пляж &amp; Естественный Свет</strong>
+                    <span class="item-sub">Дневной свет на фоне моря</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 05 -->
+                <div class="ai-selector-item" data-sample-id="05">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/golden_hour.jpg" alt="Sample 05">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #05</span>
+                    <strong>Интерьер в Золотой Час</strong>
+                    <span class="item-sub">Шелковый халат, тень от окна</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Specs Footer -->
+        <div class="ai-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="cpu"></i> NVIDIA RTX 4070 Ti SUPER (16GB)</span>
+          <span class="arch-footer-chip"><i data-lucide="layers"></i> AI-Toolkit Local Training</span>
+          <span class="arch-footer-chip"><i data-lucide="sliders"></i> ComfyUI Custom Graphs</span>
+          <span class="arch-footer-chip"><i data-lucide="check-circle-2"></i> 100% Character Consistency</span>
+        </div>
+
+      </article>
+  </section>
+
+  <div style="height: 800px; background: repeating-linear-gradient(45deg, #e4e4e7, #e4e4e7 10px, #f4f4f5 10px, #f4f4f5 20px); border-radius: 16px; padding: 20px; margin-top: 24px;">
     <h3>Нижний блок для скролла</h3>
   </div>
 </main>
