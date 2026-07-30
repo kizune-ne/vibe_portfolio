@@ -2,12 +2,12 @@
    VIBECODER PORTFOLIO - SECTIONS CSS ENTRY (MODULAR HUB)
    ========================================================================== */
 
-@import './sections/hero.css';
-@import './sections/ai-assistant.css';
-@import './sections/telegram-docker.css';
-@import './sections/firmware.css';
-@import './sections/grid-layout.css';
-@import './sections/ai-influencer.css';
-@import './sections/obsidian.css';
-@import './sections/tg-content.css';
-@import './sections/quick-feedback.css';
+@import './sections/hero.css?v=1785411071';
+@import './sections/ai-assistant.css?v=1785411071';
+@import './sections/telegram-docker.css?v=1785411071';
+@import './sections/firmware.css?v=1785411071';
+@import './sections/grid-layout.css?v=1785411071';
+@import './sections/ai-influencer.css?v=1785411071';
+@import './sections/obsidian.css?v=1785411071';
+@import './sections/tg-content.css?v=1785411071';
+@import './sections/quick-feedback.css?v=1785411071';
