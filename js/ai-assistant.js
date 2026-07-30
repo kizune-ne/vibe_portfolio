@@ -1,8 +1,4 @@
-/* ==========================================================================
-   VIBECODER & AI ENGINEER PORTFOLIO - AI ASSISTANT MODULE (MULTI-TURN & METRICS)
-   ========================================================================== */
-
-export const SYSTEM_PROMPT = `Ты — современный дружелюбный ИИ-Ассистент, встроенный в интерактивное портфолио kizun (Senior Vibe Coder & AI Engineer).
+const SYSTEM_PROMPT = `Ты — живой умный ИИ-Ассистент интерактивного портфолио kizun (Senior Vibe Coder & AI Engineer).
 
 ТВОЯ РОЛЬ И ЗАДАЧИ:
 1. Отвечать на любые вопросы пользователя по ИИ-технологиям, веб-разработке, кодингу, автоматизациям и инфраструктуре.
@@ -22,41 +18,6 @@ export function initAiAssistant() {
 
   // Multi-turn Conversation Memory History (Last 8 messages)
   const chatHistory = [];
-
-  const LOCAL_KNOWLEDGE = [
-    {
-      keywords: ['привет', 'здравствуй', 'хай', 'hello', 'hi', 'добрый'],
-      answer: 'Привет! Рад диалогу. Я могу проконсультировать по вопросам ИИ-интеграций, веб-разработке, Telegram-автоматизации и веб-технологиям. О чем тебе рассказать?'
-    },
-    {
-      keywords: ['как дела', 'что делаешь', 'что умеешь', 'возможности'],
-      answer: 'Всё отлично! Я работаю в реальном времени, помогая тестировать ИИ-интерфейсы, обсуждать код, веб-сервисы и современные технологии разработки.'
-    },
-    {
-      keywords: ['бан', 'сесси', 'бан сессий', 'floodwait', 'забанят', 'блокировк', 'защита от бана'],
-      answer: 'Для защиты от банов Telegram применяется асинхронный ротационный пул прокси-серверов, авто-отлов ошибок FloodWait с экспоненциальной задержкой (backoff) и разделение запросов по сессиям.'
-    },
-    {
-      keywords: ['дедупликация', 'пост', 'дубликат', 'повтор'],
-      answer: 'Алгоритм дедупликации рассчитывает уникальный хэш текстовых блоков и медиафайлов входящего поста. Повторяющиеся публикации отсекаются за доли миллисекунды.'
-    },
-    {
-      keywords: ['docker', 'cuda', 'ollama', 'контейнер', 'gpu', 'инфраструктура'],
-      answer: 'Инфраструктура на базе Docker Compose пробрасывает VRAM RTX 4070 Ti SUPER прямо в контейнеры с нейросетями, обеспечивая задержку инференса < 500мс.'
-    },
-    {
-      keywords: ['qmk', 'прошивк', 'vial', 'клавиатур'],
-      answer: 'Прошивки кастомных клавиатур собираются на C в QMK с портированием протокола Vial GUI для нативной перенастройки клавиш на лету.'
-    },
-    {
-      keywords: ['kizun', 'ник', 'кто', 'автор', 'вайбкодер', 'резюме', 'сайт', 'о себе', 'кто ты', 'вайбкодинг'],
-      answer: 'kizun — Senior Vibe Coder & AI Engineer. С помощью вайбкодинга он создает веб-сервисы, Telegram-ботов, парсеры и ИИ-автоматизации в разы быстрее обычного.'
-    },
-    {
-      keywords: ['связь', 'контакт', 'написать', 'написать kizun', 'как связаться', 'цена', 'заказ'],
-      answer: 'Связаться с kizun напрямую для обсуждения проекта можно в Telegram: @kizune_ne (https://t.me/kizune_ne).'
-    }
-  ];
 
   // Simple Markdown formatting helper
   function formatMarkdown(text) {
@@ -156,16 +117,6 @@ export function initAiAssistant() {
     }
   }
 
-  function getLocalFallbackAnswer(questionText) {
-    const lower = questionText.toLowerCase();
-    for (const item of LOCAL_KNOWLEDGE) {
-      if (item.keywords.some(kw => lower.includes(kw))) {
-        return item.answer;
-      }
-    }
-    return 'Отличный вопрос! Я могу проконсультировать по разработке ИИ-интеграций, веб-сервисов, Telegram-ботов и Docker. О чем рассказать подробнее?';
-  }
-
   async function handleUserQuestion(questionText) {
     if (!questionText || !questionText.trim()) return;
 
@@ -223,14 +174,14 @@ export function initAiAssistant() {
         }
       }
     } catch (e) {
-      console.warn('AI Worker timeout or network issue, using fallback:', e);
+      console.warn('AI Worker timeout or network issue:', e);
     }
 
     const endTime = performance.now();
     const latency = Math.round(endTime - startTime);
 
     if (!answer) {
-      answer = getLocalFallbackAnswer(questionText);
+      answer = 'Серверная модель временно недоступна или превышен лимит API-запросов. Пожалуйста, повторите попытку через пару секунд!';
     }
 
     // Save model reply to conversation history
