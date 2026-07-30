@@ -36,8 +36,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="index.css?v=1785423535">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785423535">
+  <link rel="stylesheet" href="index.css?v=1785423880">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785423880">
 
   <!-- INLINE CRITICAL MOBILE STYLES FOR INSTANT TELEGRAM / SAFARI CACHE BYPASS -->
   <style id="mobile-responsive-inline">
@@ -341,7 +341,7 @@
     <div class="container nav-container">
       <a href="#" class="brand-logo">
         <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-4-REQS-POLISHED</span>
+        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-3-SCREENSHOTS-PERFECT</span>
         <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
       </a>
       <div class="nav-actions">
@@ -454,21 +454,27 @@
       <!-- 2. NARROW-CONTEXT AI ASSISTANT -->
       <article class="bento-card card-ai-assistant" id="cardAiAssistant">
         <div class="spotlight-border"></div>
-        <div class="card-header-flex">
-          <div class="ai-title-wrap">
-            <div class="ai-avatar-icon"><i data-lucide="bot"></i></div>
-            <div>
-              <span class="section-tag">00 // AI ASSISTANT</span>
-              <h3 class="card-title">ИИ-Ассистент kizun</h3>
-              <p class="card-subtitle">Демо-бот для показа возможностей ИИ-интеграций</p>
-            </div>
+        
+        <!-- Top Line: Section Tag on Left, Online Pill on Right -->
+        <div class="ai-header-top-line" style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 8px;">
+          <span class="section-tag">00 // AI ASSISTANT</span>
+          <span class="live-pill"><span class="status-dot"></span> Online</span>
+        </div>
+
+        <!-- Title Wrap: Bot Icon + Title + Subtitle (Full Width) -->
+        <div class="ai-title-wrap" style="display: flex; align-items: flex-start; gap: 12px; width: 100%; margin-bottom: 8px;">
+          <div class="ai-avatar-icon" style="flex-shrink: 0; width: 38px; height: 38px; min-width: 38px; min-height: 38px;"><i data-lucide="bot"></i></div>
+          <div class="ai-title-info" style="flex: 1 1 100%; min-width: 0; width: 100%;">
+            <h3 class="card-title" style="margin-bottom: 4px;">ИИ-Ассистент kizun</h3>
+            <p class="card-subtitle" style="font-size: 0.82rem; color: #a1a1aa; margin: 0; line-height: 1.45; white-space: normal; word-break: normal;">Демо-бот для показа возможностей ИИ-интеграций</p>
           </div>
-          <div class="card-header-actions">
-            <button class="btn-case-inspect" data-case-id="ai-assistant">
-              <i data-lucide="layers"></i> Кейс ↗
-            </button>
-            <span class="live-pill"><span class="status-dot"></span> Online</span>
-          </div>
+        </div>
+
+        <!-- Action Line: Case Button Under Subtitle -->
+        <div class="ai-actions-row" style="display: flex; align-items: center; width: 100%; margin-bottom: 12px;">
+          <button class="btn-case-inspect" data-case-id="ai-assistant">
+            <i data-lucide="layers"></i> Кейс ↗
+          </button>
         </div>
 
         <div class="chat-container" id="chatContainer">
@@ -534,21 +540,6 @@
             </button>
           </div>
                 <!-- Dedicated View Mode Selector Top Bar -->
-        <div class="tg-view-modes-bar" style="margin-top: 10px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: rgba(0,0,0,0.03); padding: 8px 12px; border-radius: 10px; border: 1px solid var(--color-hairline);">
-          <span class="tg-modes-label" style="font-family: var(--font-code); font-size: 0.72rem; color: var(--color-stone); font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">
-            <i data-lucide="sliders" style="width: 14px; height: 14px;"></i> Режим отображения:
-          </span>
-          <div class="view-mode-selector">
-            <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
-              <i data-lucide="eye"></i> Превью
-            </button>
-            <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
-              <i data-lucide="code"></i> MarkdownV2
-            </button>
-            <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
-              <i data-lucide="cpu"></i> Промпт
-            </button>
-          </div>
         </div>
 </div>
 
@@ -1444,14 +1435,14 @@
     </div>
   </footer>
 
-  <script type="module" src="app.js?v=1785423535"></script>
+  <script type="module" src="app.js?v=1785423880"></script>
 
 
 
 
 
 
-<!-- 100% PERFECT TARGETED MOBILE OVERRIDES (VER 1785423535) -->
+<!-- 100% PERFECT TARGETED MOBILE OVERRIDES (VER 1785423880) -->
 <style id="mobile-bottom-inline-override">
 @media screen and (max-width: 1024px) {
   header.navbar, .navbar {
@@ -1483,67 +1474,59 @@
 }
 
 @media screen and (max-width: 1200px), (pointer: coarse) {
-  /* 1. AI ASSISTANT CARD HEADER WRAPPING (.card-header-flex & .ai-title-wrap) */
-  .card-ai-assistant .card-header-flex {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    width: 100% !important;
-    gap: 8px !important;
+  /* 1. AI ASSISTANT CARD - LOCKED CHAT SCROLL & CLEAN HEADER */
+  .card-ai-assistant {
+    height: auto !important;
+    max-height: none !important;
   }
-  .card-ai-assistant .card-header-actions {
+  .chat-container {
+    height: 280px !important;
+    max-height: 280px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    pointer-events: auto !important;
+    touch-action: pan-y manipulation !important;
+    box-sizing: border-box !important;
+  }
+  .card-ai-assistant .ai-header-top-line {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
-    margin-bottom: 4px !important;
+    margin-bottom: 8px !important;
   }
-  .card-ai-assistant .ai-title-wrap, .ai-title-wrap {
+  .card-ai-assistant .ai-title-wrap {
     display: flex !important;
     flex-direction: row !important;
     align-items: flex-start !important;
     gap: 12px !important;
     width: 100% !important;
-    box-sizing: border-box !important;
   }
-  .card-ai-assistant .ai-avatar-icon, .ai-avatar-icon {
-    width: 38px !important;
-    height: 38px !important;
-    min-width: 38px !important;
-    min-height: 38px !important;
-    flex-shrink: 0 !important;
-  }
-  .card-ai-assistant .ai-title-info, .ai-title-info,
-  .card-ai-assistant .ai-title-wrap > div:last-child {
+  .card-ai-assistant .ai-title-info {
     flex: 1 1 100% !important;
     min-width: 0 !important;
     width: 100% !important;
-    box-sizing: border-box !important;
   }
-  .card-ai-assistant .card-title, .ai-title-info .card-title {
+  .card-ai-assistant .card-title {
     font-size: 1.15rem !important;
-    line-height: 1.25 !important;
-    color: #ffffff !important;
     margin-bottom: 4px !important;
     width: 100% !important;
   }
-  .card-ai-assistant .card-subtitle, .ai-title-info .card-subtitle {
+  .card-ai-assistant .card-subtitle {
     font-size: 0.82rem !important;
     line-height: 1.45 !important;
     color: #a1a1aa !important;
     white-space: normal !important;
     word-break: normal !important;
-    overflow-wrap: break-word !important;
     display: block !important;
     width: 100% !important;
-    max-width: 100% !important;
   }
 
-  /* 2. CASE INSPECTOR MODAL STRUCTURE (ZERO OVERLAP) */
+  /* 2. CASE INSPECTOR MODAL STRUCTURE & 48px BOTTOM PADDING */
   .case-inspector-modal-container {
     display: flex !important;
     flex-direction: column !important;
-    max-height: 88vh !important;
+    max-height: 90vh !important;
     overflow: hidden !important;
     border-radius: 16px !important;
     position: relative !important;
@@ -1553,17 +1536,6 @@
     padding: 12px 14px !important;
     background: #18181b !important;
     border-bottom: 1px solid #27272a !important;
-  }
-  .case-inspector-header .modal-case-title {
-    font-size: 1.05rem !important;
-    line-height: 1.3 !important;
-    margin-top: 4px !important;
-    margin-bottom: 2px !important;
-  }
-  .case-inspector-header .modal-case-subtitle {
-    font-size: 0.78rem !important;
-    line-height: 1.35 !important;
-    color: #a1a1aa !important;
   }
   .case-inspector-tabs {
     flex: 0 0 auto !important;
@@ -1585,16 +1557,23 @@
     flex: 1 1 auto !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    padding: 14px 12px !important;
+    padding: 14px 12px 48px 12px !important;
   }
 
-  /* 3. TG CONTENT CARD 01 - PERFECT AVATAR CIRCLE & TOP VIEW MODE BAR */
+  /* 3. TG CONTENT CARD 01 - CLEAN STATIC TOP MODE BAR */
   .tg-view-modes-bar {
     display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    flex-wrap: wrap !important;
+    flex-direction: column !important;
     gap: 8px !important;
+    width: 100% !important;
+    margin: 12px 0 !important;
+    clear: both !important;
+    position: static !important;
+  }
+  .view-mode-selector {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
     width: 100% !important;
   }
   .tg-author-avatar,
@@ -1689,6 +1668,7 @@
   }
 }
 </style>
+
 
 
 

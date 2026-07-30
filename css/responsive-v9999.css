@@ -637,7 +637,7 @@ button:active, .btn:active, .tov-tab:active,
     max-height: none !important;
     padding: 10px !important;
     gap: 8px !important;
-    overflow: visible !important;
+    overflow-y: auto !important;
   }
 
   .chat-message .bubble {
@@ -757,7 +757,7 @@ button:active, .btn:active, .tov-tab:active,
     max-height: none !important;
     font-size: 0.775rem !important;
     padding: 6px !important;
-    overflow: visible !important;
+    overflow-y: auto !important;
   }
 
   .code-editor-wrap {
@@ -793,7 +793,7 @@ button:active, .btn:active, .tov-tab:active,
     padding: 10px !important;
     height: auto !important;
     max-height: none !important;
-    overflow: visible !important;
+    overflow-y: auto !important;
   }
 
   .tg-architecture-grid {
