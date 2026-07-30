@@ -150,7 +150,7 @@ export function initAiAssistant() {
 
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      const timeoutId = setTimeout(() => controller.abort(), 25000);
 
       const res = await fetch(workerUrl, {
         method: 'POST',
