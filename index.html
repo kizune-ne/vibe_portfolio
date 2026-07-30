@@ -36,8 +36,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="index.css?v=1785422996">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785422996">
+  <link rel="stylesheet" href="index.css?v=1785423535">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785423535">
 
   <!-- INLINE CRITICAL MOBILE STYLES FOR INSTANT TELEGRAM / SAFARI CACHE BYPASS -->
   <style id="mobile-responsive-inline">
@@ -341,7 +341,7 @@
     <div class="container nav-container">
       <a href="#" class="brand-logo">
         <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-100PCT-FIXED</span>
+        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-4-REQS-POLISHED</span>
         <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
       </a>
       <div class="nav-actions">
@@ -533,7 +533,24 @@
               <i data-lucide="line-chart"></i> FinTech &amp; Trading
             </button>
           </div>
+                <!-- Dedicated View Mode Selector Top Bar -->
+        <div class="tg-view-modes-bar" style="margin-top: 10px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: rgba(0,0,0,0.03); padding: 8px 12px; border-radius: 10px; border: 1px solid var(--color-hairline);">
+          <span class="tg-modes-label" style="font-family: var(--font-code); font-size: 0.72rem; color: var(--color-stone); font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">
+            <i data-lucide="sliders" style="width: 14px; height: 14px;"></i> Режим отображения:
+          </span>
+          <div class="view-mode-selector">
+            <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
+              <i data-lucide="eye"></i> Превью
+            </button>
+            <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
+              <i data-lucide="code"></i> MarkdownV2
+            </button>
+            <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
+              <i data-lucide="cpu"></i> Промпт
+            </button>
+          </div>
         </div>
+</div>
 
         <!-- Main Interactive Stage: Live Telegram Post + Pipeline Tracker -->
         <div class="tg-sim-container">
@@ -560,20 +577,9 @@
               <!-- Live CTA Inline Buttons inserted by JS -->
             </div>
 
-            <!-- Bottom Control Toolbar with Right-Aligned Mode Selector -->
+            <!-- Bottom Control Toolbar -->
             <div class="tg-post-footer-toolbar">
               <span class="post-footer-meta"><i data-lucide="shield"></i> TG Bot API 7.0</span>
-              <div class="view-mode-selector">
-                <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
-                  <i data-lucide="eye"></i> Превью
-                </button>
-                <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
-                  <i data-lucide="code"></i> MarkdownV2
-                </button>
-                <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
-                  <i data-lucide="cpu"></i> Промпт
-                </button>
-              </div>
             </div>
           </div>
 
@@ -1438,16 +1444,15 @@
     </div>
   </footer>
 
-  <script type="module" src="app.js?v=1785422996"></script>
+  <script type="module" src="app.js?v=1785423535"></script>
 
 
 
 
 
 
-<!-- 100% EXACT TARGETED MOBILE OVERRIDES (VER 1785422996) -->
+<!-- 100% PERFECT TARGETED MOBILE OVERRIDES (VER 1785423535) -->
 <style id="mobile-bottom-inline-override">
-/* 1. FIXED FLOATING NAVBAR FOR 100% RELIABLE TOP STICKING */
 @media screen and (max-width: 1024px) {
   header.navbar, .navbar {
     position: fixed !important;
@@ -1478,7 +1483,21 @@
 }
 
 @media screen and (max-width: 1200px), (pointer: coarse) {
-  /* 2. AI ASSISTANT CARD HEADER TEXT WRAPPING (.ai-title-info & .card-subtitle) */
+  /* 1. AI ASSISTANT CARD HEADER WRAPPING (.card-header-flex & .ai-title-wrap) */
+  .card-ai-assistant .card-header-flex {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+  .card-ai-assistant .card-header-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: 4px !important;
+  }
   .card-ai-assistant .ai-title-wrap, .ai-title-wrap {
     display: flex !important;
     flex-direction: row !important;
@@ -1494,7 +1513,8 @@
     min-height: 38px !important;
     flex-shrink: 0 !important;
   }
-  .card-ai-assistant .ai-title-info, .ai-title-info {
+  .card-ai-assistant .ai-title-info, .ai-title-info,
+  .card-ai-assistant .ai-title-wrap > div:last-child {
     flex: 1 1 100% !important;
     min-width: 0 !important;
     width: 100% !important;
@@ -1505,6 +1525,7 @@
     line-height: 1.25 !important;
     color: #ffffff !important;
     margin-bottom: 4px !important;
+    width: 100% !important;
   }
   .card-ai-assistant .card-subtitle, .ai-title-info .card-subtitle {
     font-size: 0.82rem !important;
@@ -1518,7 +1539,64 @@
     max-width: 100% !important;
   }
 
-  /* 3. TG CONTENT CARD 01 - PERFECT AVATAR CIRCLE & CLEAN API BADGE & PILLS */
+  /* 2. CASE INSPECTOR MODAL STRUCTURE (ZERO OVERLAP) */
+  .case-inspector-modal-container {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 88vh !important;
+    overflow: hidden !important;
+    border-radius: 16px !important;
+    position: relative !important;
+  }
+  .case-inspector-header {
+    flex: 0 0 auto !important;
+    padding: 12px 14px !important;
+    background: #18181b !important;
+    border-bottom: 1px solid #27272a !important;
+  }
+  .case-inspector-header .modal-case-title {
+    font-size: 1.05rem !important;
+    line-height: 1.3 !important;
+    margin-top: 4px !important;
+    margin-bottom: 2px !important;
+  }
+  .case-inspector-header .modal-case-subtitle {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+    color: #a1a1aa !important;
+  }
+  .case-inspector-tabs {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding: 8px 10px !important;
+    background: #121217 !important;
+    border-bottom: 1px solid #27272a !important;
+    gap: 6px !important;
+  }
+  .case-inspector-tabs .tab-btn {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    font-size: 0.73rem !important;
+    padding: 6px 12px !important;
+  }
+  .case-inspector-body {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 14px 12px !important;
+  }
+
+  /* 3. TG CONTENT CARD 01 - PERFECT AVATAR CIRCLE & TOP VIEW MODE BAR */
+  .tg-view-modes-bar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
   .tg-author-avatar,
   .post-header-author .author-avatar,
   .post-header-author img,
@@ -1547,19 +1625,6 @@
     align-items: center !important;
     gap: 4px !important;
   }
-  .tg-post-footer-toolbar {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    width: 100% !important;
-  }
-  .view-mode-selector {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-  }
   .mode-btn {
     font-size: 0.72rem !important;
     padding: 5px 10px !important;
@@ -1567,7 +1632,7 @@
     flex-shrink: 0 !important;
   }
 
-  /* 4. CODE VIEWER (FIRMWARE CARD 06) - FULL CODE DISPLAY & 2D TOUCH SCROLLING */
+  /* 4. CODE VIEWER (FIRMWARE CARD 06) - SMALLER FONT SIZE & MORE CODE VISIBLE */
   .card-code-viewer,
   .card-code-viewer *,
   .firmware-split-container,
@@ -1604,56 +1669,27 @@
   }
   .editor-window {
     flex: 1 1 auto !important;
-    height: 280px !important;
-    max-height: 380px !important;
+    height: 300px !important;
+    max-height: 420px !important;
     overflow-x: auto !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     background: #171717 !important;
   }
-  .editor-window pre {
+  .editor-window pre,
+  .editor-window code {
     margin: 0 !important;
     padding: 0 !important;
     white-space: pre !important;
     word-break: normal !important;
     font-family: var(--font-code, monospace) !important;
-    font-size: 0.74rem !important;
-    line-height: 1.5 !important;
+    font-size: 0.63rem !important;
+    line-height: 1.35 !important;
     overflow: visible !important;
-  }
-  .editor-window code {
-    white-space: pre !important;
-    word-break: normal !important;
-  }
-
-  /* 5. CASE INSPECTOR MODAL TABS (.case-inspector-tabs & .star-tabs) */
-  .case-inspector-tabs,
-  .star-tabs,
-  .modal-tabs,
-  .obsidian-mode-tabs,
-  .calc-modal-header .modal-title-flex {
-    display: flex !important;
-    max-width: 100% !important;
-    overflow-x: auto !important;
-    flex-wrap: nowrap !important;
-    scrollbar-width: none !important;
-    -webkit-overflow-scrolling: touch !important;
-    padding-bottom: 6px !important;
-    gap: 6px !important;
-    touch-action: pan-x manipulation !important;
-    pointer-events: auto !important;
-  }
-  .case-inspector-tabs .tab-btn,
-  .star-tabs .tab-btn,
-  .obsidian-mode-btn,
-  .tov-tab {
-    flex-shrink: 0 !important;
-    white-space: nowrap !important;
-    font-size: 0.73rem !important;
-    padding: 6px 12px !important;
   }
 }
 </style>
+
 
 
 
