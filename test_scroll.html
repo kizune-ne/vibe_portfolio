@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Diagnostic Test Lab</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f4f4f5;
+      color: #18181b;
+    }
+
+    #diagHeader {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #18181b;
+      color: #00ff66;
+      padding: 10px 14px;
+      font-family: monospace;
+      font-size: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      line-height: 1.4;
+    }
+
+    .test-container {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .test-card {
+      background: #ffffff;
+      border: 1px solid #e4e4e7;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .test-card h3 {
+      margin-top: 0;
+      color: #000;
+      font-size: 16px;
+    }
+
+    .test-card p {
+      color: #52525b;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Variant 1: Current Bento Card (position relative + transition) */
+    .card-v1 {
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    /* Variant 2: Position Static (no relative positioning) */
+    .card-v2 {
+      position: static;
+    }
+
+    /* Variant 3: No Transition */
+    .card-v3 {
+      position: relative;
+      transition: none !important;
+    }
+
+    /* Variant 4: Plain Div (No styles) */
+    .card-v4 {
+      background: #ffffff;
+      border: 1px solid #ccc;
+      padding: 15px;
+    }
+
+    .test-btn {
+      display: inline-block;
+      padding: 10px 16px;
+      background: #18181b;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 13px;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="diagHeader">
+  <div><strong>SCROLL DIAGNOSTIC LAB V1.0</strong></div>
+  <div>Touch Target: <span id="diagTarget">None</span></div>
+  <div>Scroll Y: <span id="diagScrollY">0</span>px</div>
+  <div>Last Touch Event: <span id="diagEvent">None</span></div>
+</div>
+
+<div class="test-container">
+
+  <div class="test-card card-v1" id="testCard1">
+    <h3>ТЕСТ 1: Текущая структура Bento-Card (relative + transition)</h3>
+    <p>Попробуй начать свайп пальцем прямо по этому тексту в Варианте 1.</p>
+    <a href="#" class="test-btn">Кнопка в Тесте 1</a>
+  </div>
+
+  <div class="test-card card-v2" id="testCard2">
+    <h3>ТЕСТ 2: Карточка со статической позицией (position: static)</h3>
+    <p>Попробуй начать свайп пальцем прямо по этому тексту в Варианте 2.</p>
+    <a href="#" class="test-btn">Кнопка в Тесте 2</a>
+  </div>
+
+  <div class="test-card card-v3" id="testCard3">
+    <h3>ТЕСТ 3: Карточка без анимаций transitions (transition: none)</h3>
+    <p>Попробуй начать свайп пальцем прямо по этому тексту в Варианте 3.</p>
+    <a href="#" class="test-btn">Кнопка в Тесте 3</a>
+  </div>
+
+  <div class="test-card card-v4" id="testCard4">
+    <h3>ТЕСТ 4: Минимальная простая карточка (Plain Div)</h3>
+    <p>Попробуй начать свайп пальцем прямо по этому тексту в Варианте 4.</p>
+    <a href="#" class="test-btn">Кнопка в Тесте 4</a>
+  </div>
+
+  <div style="height: 1000px; background: repeating-linear-gradient(45deg, #e4e4e7, #e4e4e7 10px, #f4f4f5 10px, #f4f4f5 20px); border-radius: 16px; padding: 20px;">
+    <h3>Нижний длинный блок для проверки скролла</h3>
+    <p>Если скролл работает, эта область будет плавно уходить вверх.</p>
+  </div>
+
+</div>
+
+<script>
+  const diagTarget = document.getElementById('diagTarget');
+  const diagScrollY = document.getElementById('diagScrollY');
+  const diagEvent = document.getElementById('diagEvent');
+
+  window.addEventListener('scroll', () => {
+    diagScrollY.textContent = Math.round(window.scrollY);
+  }, { passive: true });
+
+  document.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 0) {
+      const target = e.target;
+      const tag = target.tagName;
+      const id = target.id || target.className || 'no-id';
+      diagTarget.textContent = tag + ' (' + id.toString().substring(0, 20) + ')';
+      diagEvent.textContent = 'touchstart';
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchmove', (e) => {
+    diagEvent.textContent = 'touchmove (Y: ' + Math.round(window.scrollY) + ')';
+  }, { passive: true });
+</script>
+
+</body>
+</html>
