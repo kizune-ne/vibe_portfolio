@@ -4,6 +4,7 @@
 
 /* Calc Modal Window Overlay */
 .calc-modal-overlay {
+  display: none;
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
@@ -21,6 +22,7 @@
 }
 
 .calc-modal-overlay.active {
+  display: flex !important;
   opacity: 1;
   pointer-events: auto;
 }
@@ -142,6 +144,7 @@
 
 /* Case Inspector Modal Overlay */
 .case-inspector-modal-overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -161,6 +164,7 @@
 }
 
 .case-inspector-modal-overlay.active {
+  display: flex !important;
   opacity: 1;
   pointer-events: auto;
 }

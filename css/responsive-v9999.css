@@ -78,6 +78,15 @@ button:active, .btn:active, .tov-tab:active,
    ------------------------------------------ */
 @media (max-width: 768px) {
 
+    /* Hard Modal Display None Fix: Destroys invisible 100vw backdrop-filter WebKit touch traps when modals are closed */
+    .calc-modal-overlay, .case-inspector-modal-overlay, #aiLightboxModal {
+      display: none !important;
+    }
+    .calc-modal-overlay.active, .case-inspector-modal-overlay.active, #aiLightboxModal.active {
+      display: flex !important;
+    }
+
+
     /* Sticky Navbar Touch Pass-Through: Prevents sticky header from swallowing Hero gestures */
     .navbar, .navbar * {
       pointer-events: none !important;
