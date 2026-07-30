@@ -36,8 +36,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="index.css?v=1785425008">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785425008">
+  <link rel="stylesheet" href="index.css?v=1785427287">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785427287">
 
   <!-- INLINE CRITICAL MOBILE STYLES FOR INSTANT TELEGRAM / SAFARI CACHE BYPASS -->
   <style id="mobile-responsive-inline">
@@ -341,7 +341,7 @@
     <div class="container nav-container">
       <a href="#" class="brand-logo">
         <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-CLEAN-COMPACT-MOBILE</span>
+        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-AI-HEADER-EXACT-SCREENSHOT2</span>
         <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
       </a>
       <div class="nav-actions">
@@ -455,21 +455,16 @@
       <article class="bento-card card-ai-assistant" id="cardAiAssistant">
         <div class="spotlight-border"></div>
         <div class="card-header-flex">
-          <div class="card-top-header-line" style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 6px;">
+          <div>
             <span class="section-tag">00 // AI ASSISTANT</span>
-            <div class="card-header-actions" style="display: flex; align-items: center; gap: 6px;">
-              <button class="btn-case-inspect" data-case-id="ai-assistant">
-                <i data-lucide="layers"></i> Кейс ↗
-              </button>
-              <span class="live-pill"><span class="status-dot"></span> Online</span>
-            </div>
+            <h3 class="card-title">ИИ-Ассистент kizun</h3>
+            <p class="card-subtitle">Демо-бот для показа возможностей ИИ-интеграций</p>
           </div>
-          <div class="ai-title-wrap" style="display: flex; align-items: flex-start; gap: 10px; width: 100%; margin-bottom: 6px;">
-            <div class="ai-avatar-icon" style="flex-shrink: 0; width: 34px; height: 34px; min-width: 34px; min-height: 34px;"><i data-lucide="bot"></i></div>
-            <div class="ai-title-info" style="flex: 1 1 100%; min-width: 0; width: 100%;">
-              <h3 class="card-title" style="margin-bottom: 2px; font-size: 1.15rem;">ИИ-Ассистент kizun</h3>
-              <p class="card-subtitle" style="font-size: 0.82rem; color: #a1a1aa; margin: 0; line-height: 1.4; white-space: normal; word-break: normal;">Демо-бот для показа возможностей ИИ-интеграций</p>
-            </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="ai-assistant">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+            <span class="live-pill"><span class="status-dot"></span> Online</span>
           </div>
         </div>
 
@@ -1425,15 +1420,16 @@
     </div>
   </footer>
 
-  <script type="module" src="app.js?v=1785425008"></script>
+  <script type="module" src="app.js?v=1785427287"></script>
 
 
 
 
 
 
-<!-- 100% PERFECT TARGETED MOBILE OVERRIDES (VER 1785425008) -->
+<!-- 100% EXACT MATCH SCREENSHOT 2 FOR AI ASSISTANT (VER 1785427287) -->
 <style id="mobile-bottom-inline-override">
+/* STICKY NAVBAR FOR MOBILE */
 @media screen and (max-width: 1024px) {
   header.navbar, .navbar {
     position: fixed !important;
@@ -1464,75 +1460,70 @@
   }
 }
 
+/* AI ASSISTANT CARD HEADER EXACT MATCH SCREENSHOT 2 */
+.card-ai-assistant .card-header-flex {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  gap: 10px !important;
+  margin-bottom: 16px !important;
+}
+
+.card-ai-assistant .section-tag {
+  white-space: nowrap !important;
+  display: inline-block !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.05em !important;
+  color: #10b981 !important;
+  margin-bottom: 4px !important;
+}
+
+.card-ai-assistant .card-header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-shrink: 0 !important;
+  margin-top: -2px !important;
+}
+
+.card-ai-assistant .card-title {
+  color: #ffffff !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  margin-top: 2px !important;
+  margin-bottom: 4px !important;
+  white-space: nowrap !important;
+}
+
+.card-ai-assistant .card-subtitle {
+  color: #a1a1aa !important;
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+}
+
 @media screen and (max-width: 1200px), (pointer: coarse) {
-  /* TIGHTEN VERTICAL MARGINS & COMPACT MOBILE LAYOUT */
+  /* MOBILE SPACING UNIFICATION */
   section.bento-row, .bento-row {
     margin-bottom: 14px !important;
     gap: 14px !important;
   }
   .bento-card {
-    padding: 14px 12px !important;
-    margin-bottom: 12px !important;
-  }
-  .card-header-flex {
-    margin-bottom: 8px !important;
-  }
-  .tov-tabs-container {
-    margin-bottom: 8px !important;
-  }
-  .tg-sim-container {
-    margin-top: 6px !important;
-    gap: 10px !important;
+    padding: 16px 14px !important;
+    margin-bottom: 14px !important;
   }
 
-  /* AI ASSISTANT CARD MOBILE HEADER */
-  .card-ai-assistant .card-header-flex {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-    margin-bottom: 8px !important;
-  }
-  .card-ai-assistant .card-top-header-line {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    margin-bottom: 6px !important;
-  }
-  .card-ai-assistant .card-header-actions {
-    display: flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-  }
-  .card-ai-assistant .ai-title-wrap {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    gap: 10px !important;
-    width: 100% !important;
-  }
-  .card-ai-assistant .ai-title-info {
-    flex: 1 1 100% !important;
-    min-width: 0 !important;
-    width: 100% !important;
-  }
-  .card-ai-assistant .card-subtitle {
-    font-size: 0.82rem !important;
-    line-height: 1.4 !important;
-    color: #a1a1aa !important;
-    white-space: normal !important;
-    word-break: normal !important;
-    display: block !important;
-    width: 100% !important;
-  }
+  /* CHAT CONTAINER */
   .chat-container {
-    height: 260px !important;
-    max-height: 260px !important;
+    height: 270px !important;
+    max-height: 270px !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    pointer-events: auto !important;
-    touch-action: pan-y manipulation !important;
-    box-sizing: border-box !important;
   }
 
   /* CASE INSPECTOR MODAL TABS 100% FIT */
@@ -1542,16 +1533,8 @@
     max-height: 90vh !important;
     overflow: hidden !important;
     border-radius: 16px !important;
-    position: relative !important;
-  }
-  .case-inspector-header {
-    flex: 0 0 auto !important;
-    padding: 12px 14px !important;
-    background: #18181b !important;
-    border-bottom: 1px solid #27272a !important;
   }
   .case-inspector-tabs {
-    flex: 0 0 auto !important;
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
@@ -1560,7 +1543,6 @@
     border-bottom: 1px solid #27272a !important;
     gap: 4px !important;
     width: 100% !important;
-    scrollbar-width: none !important;
   }
   .case-inspector-tabs .tab-btn {
     flex: 1 1 0% !important;
@@ -1569,102 +1551,27 @@
     font-size: 0.7rem !important;
     padding: 6px 4px !important;
     justify-content: center !important;
-    text-align: center !important;
-  }
-  .case-inspector-body {
-    flex: 1 1 auto !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    padding: 12px 10px 40px 10px !important;
   }
 
-  /* TG CONTENT CARD AVATAR & BADGES */
-  .tg-author-avatar,
-  .post-header-author .author-avatar,
-  .post-header-author img,
-  .channel-avatar, .post-avatar, .avatar-circle {
+  /* TG CONTENT AVATAR */
+  .tg-author-avatar, .post-header-author .author-avatar, .channel-avatar {
     width: 38px !important;
     height: 38px !important;
     min-width: 38px !important;
-    min-height: 38px !important;
-    max-width: 38px !important;
-    max-height: 38px !important;
     border-radius: 50% !important;
-    flex-shrink: 0 !important;
-    aspect-ratio: 1 / 1 !important;
     object-fit: cover !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  .post-footer-meta, .tg-bot-api-label, .bot-api-ver {
-    white-space: nowrap !important;
-    font-size: 0.72rem !important;
-    flex-shrink: 0 !important;
-    font-family: var(--font-code, monospace) !important;
-    line-height: 1.2 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 4px !important;
   }
 
-  /* CODE VIEWER (FIRMWARE CARD 06) SMALL FONT SIZE */
-  .card-code-viewer,
-  .card-code-viewer *,
-  .firmware-split-container,
-  .firmware-split-container *,
-  .file-tree-sidebar,
-  .file-tree-sidebar *,
-  .code-editor-wrap,
-  .code-editor-wrap *,
-  .editor-window,
-  .editor-window *,
-  pre,
-  code {
-    pointer-events: auto !important;
-    touch-action: pan-x pan-y manipulation !important;
-  }
-  .firmware-split-container {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    width: 100% !important;
-  }
-  .file-tree-sidebar {
-    height: auto !important;
-    max-height: 180px !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  .code-editor-wrap {
-    height: auto !important;
-    min-height: 260px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-  }
-  .editor-window {
-    flex: 1 1 auto !important;
-    height: 280px !important;
-    max-height: 400px !important;
-    overflow-x: auto !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    background: #171717 !important;
-  }
-  .editor-window pre,
-  .editor-window code {
-    margin: 0 !important;
-    padding: 0 !important;
+  /* CODE EDITOR SMALL FONT */
+  .editor-window pre, .editor-window code {
     white-space: pre !important;
     word-break: normal !important;
-    font-family: var(--font-code, monospace) !important;
     font-size: 0.63rem !important;
     line-height: 1.35 !important;
-    overflow: visible !important;
   }
 }
 </style>
+
 
 
 
