@@ -252,12 +252,16 @@
       .bento-card .tab-btn, .bento-card .vault-cat-item, .bento-card .ai-selector-item,
       .bento-card .calc-tab-btn, .bento-card .mode-btn, .bento-card .star-btn,
       .bento-card .file-tree-sidebar, .bento-card .code-editor-wrap, .bento-card .editor-window,
+      .bento-card .chat-container, .bento-card .chat-container *, .bento-card .chat-quick-prompts,
+      .bento-card .vault-note-preview-box, .bento-card .obsidian-rag-stand,
       article a, article button, article input, article select, article textarea,
       article .btn, article .btn-sm, article .btn-case-inspect, article .tov-tab,
       article .obsidian-mode-btn, article .prompt-chip, article .skill-badge,
       article .tab-btn, article .vault-cat-item, article .ai-selector-item,
       article .calc-tab-btn, article .mode-btn, article .star-btn,
-      article .file-tree-sidebar, article .code-editor-wrap, article .editor-window {
+      article .file-tree-sidebar, article .code-editor-wrap, article .editor-window,
+      article .chat-container, article .chat-container *, article .chat-quick-prompts,
+      article .vault-note-preview-box, article .obsidian-rag-stand {
         pointer-events: auto !important;
         touch-action: pan-y manipulation !important;
         -webkit-tap-highlight-color: transparent !important;
@@ -1621,13 +1625,19 @@ section.bento-row,
     margin-bottom: 0 !important;
   }
 
-  /* MOBILE CHAT CONTAINER (KEPT COMPACT AT 270px) */
+  /* MOBILE CHAT CONTAINER (EXPLICIT FLEXIBLE SCROLL AT 280px WITH NATIVE TOUCH PAN) */
   .chat-container {
-    height: 270px !important;
-    min-height: auto !important;
-    max-height: 270px !important;
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
     overflow-y: auto !important;
+    overscroll-behavior-y: contain !important;
     -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    pointer-events: auto !important;
+  }
+  .chat-container * {
+    pointer-events: auto !important;
   }
 
   /* CASE INSPECTOR MODAL TABS 100% FIT */

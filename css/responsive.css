@@ -633,11 +633,19 @@ button:active, .btn:active, .tov-tab:active,
   }
 
   .chat-container {
-    height: auto !important;
-    max-height: none !important;
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
     padding: 10px !important;
     gap: 8px !important;
     overflow-y: auto !important;
+    overscroll-behavior-y: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    pointer-events: auto !important;
+  }
+  .chat-container * {
+    pointer-events: auto !important;
   }
 
   .chat-message .bubble {
