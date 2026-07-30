@@ -50,11 +50,34 @@
     }
 
     @media (max-width: 768px) {
-      a, button, input, select, textarea, .btn, .btn-sm, .btn-case-inspect, .tov-tab, .obsidian-mode-btn, .prompt-chip, .skill-badge, .tab-btn, .vault-cat-item, .ai-selector-item, .calc-tab-btn, .mode-btn, .star-btn {
-        -webkit-tap-highlight-color: transparent !important;
-        touch-action: pan-y manipulation !important;
+      /* Card Touch Pass-Through: Pass touch events to body for 100% instant native scroll */
+      .bento-card, article {
+        pointer-events: none !important;
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+        padding: 16px 14px !important;
+        border-radius: 16px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        cursor: default !important;
       }
-      
+
+      /* Re-enable touch for interactive controls inside cards */
+      .bento-card a, .bento-card button, .bento-card input, .bento-card select, .bento-card textarea,
+      .bento-card .btn, .bento-card .btn-sm, .bento-card .btn-case-inspect, .bento-card .tov-tab,
+      .bento-card .obsidian-mode-btn, .bento-card .prompt-chip, .bento-card .skill-badge,
+      .bento-card .tab-btn, .bento-card .vault-cat-item, .bento-card .ai-selector-item,
+      .bento-card .calc-tab-btn, .bento-card .mode-btn, .bento-card .star-btn {
+        pointer-events: auto !important;
+        touch-action: pan-y manipulation !important;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+
       .container, .bento-main, .bento-row, .navbar, .nav-container, header, main, section, footer {
         width: 100% !important;
         max-width: 100% !important;
@@ -136,25 +159,6 @@
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
-      }
-
-      .bento-card, article,
-      .card-hero, .card-ai-assistant, .card-tg-content,
-      .card-tg-simulator, .card-tg-showcase, .card-ai-influencer-main,
-      .card-obsidian-rag-main, .card-calc-preview, .card-code-viewer,
-      .card-docker, .card-quick-feedback {
-        height: auto !important;
-        min-height: auto !important;
-        max-height: none !important;
-        padding: 16px 14px !important;
-        border-radius: 16px !important;
-        box-sizing: border-box !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        overflow-x: hidden !important;
-        overflow-y: visible !important;
-        cursor: default !important;
       }
 
       img, video, svg, iframe, canvas, table, pre, code {

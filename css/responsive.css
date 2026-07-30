@@ -169,26 +169,25 @@ button:active, .btn:active, .tov-tab:active,
     box-sizing: border-box !important;
   }
 
-  .bento-card, article,
-  .card-hero, .card-ai-assistant, .card-tg-content,
-  .card-tg-simulator, .card-tg-showcase, .card-ai-influencer-main,
-  .card-obsidian-rag-main, .card-calc-preview, .card-code-viewer,
-  .card-docker, .card-quick-feedback {
+  .bento-card, article {
+    pointer-events: none !important;
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
     overflow-x: hidden !important;
     overflow-y: visible !important;
     cursor: default !important;
-
-    padding: 16px 14px !important;
-    border-radius: 16px !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
   }
 
+  .bento-card a, .bento-card button, .bento-card input, .bento-card select, .bento-card textarea,
+  .bento-card .btn, .bento-card .btn-sm, .bento-card .btn-case-inspect, .bento-card .tov-tab,
+  .bento-card .obsidian-mode-btn, .bento-card .prompt-chip, .bento-card .skill-badge,
+  .bento-card .tab-btn, .bento-card .vault-cat-item, .bento-card .ai-selector-item,
+  .bento-card .calc-tab-btn, .bento-card .mode-btn, .bento-card .star-btn {
+    pointer-events: auto !important;
+    touch-action: pan-y manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
   /* Prevent layout overflow inside sub-containers */
   .vault-categories-sidebar,
   .vault-note-preview-box,
