@@ -36,8 +36,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="index.css?v=1785428283">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785428283">
+  <link rel="stylesheet" href="index.css?v=1785428431">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785428431">
 
   <!-- INLINE CRITICAL MOBILE STYLES FOR INSTANT TELEGRAM / SAFARI CACHE BYPASS -->
   <style id="mobile-responsive-inline">
@@ -341,7 +341,7 @@
     <div class="container nav-container">
       <a href="#" class="brand-logo">
         <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-PERFECT-10PX-MOBILE-GAPS</span>
+        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-PC-16PX-GRID-MATCH</span>
         <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
       </a>
       <div class="nav-actions">
@@ -1420,16 +1420,20 @@
     </div>
   </footer>
 
-  <script type="module" src="app.js?v=1785428283"></script>
+  <script type="module" src="app.js?v=1785428431"></script>
 
 
 
 
 
 
-<!-- 100% PERFECT EQUAL 10px MOBILE CARD & SECTION MARGINS (VER 1785428283) -->
+<!-- 100% PERFECT EQUAL 16px PC GRID & 10px MOBILE GAPS (VER 1785428431) -->
 <style id="mobile-bottom-inline-override">
-/* PC DESKTOP (DEFAULT > 1024px): ALL SECTION MARGINS EXACTLY EQUAL TO 20px */
+/* 1. PC DESKTOP (DEFAULT > 1024px): VERTICAL MARGINS MATCH EXACT HORIZONTAL 16px GAP */
+main.bento-grid, .bento-grid {
+  gap: 16px !important;
+}
+
 .hero-section,
 section.bento-row,
 .bento-row,
@@ -1441,7 +1445,8 @@ section.bento-row,
 .row-firmware,
 .row-feedback {
   margin-top: 0 !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 16px !important;
+  gap: 16px !important;
 }
 
 .card-ai-assistant .card-header-flex {
@@ -1649,6 +1654,7 @@ section.bento-row,
   }
 }
 </style>
+
 
 
 
