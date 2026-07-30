@@ -36,8 +36,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="index.css?v=1785424281">
-  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785424281">
+  <link rel="stylesheet" href="index.css?v=1785424488">
+  <link rel="stylesheet" href="css/responsive-v9999.css?v=1785424488">
 
   <!-- INLINE CRITICAL MOBILE STYLES FOR INSTANT TELEGRAM / SAFARI CACHE BYPASS -->
   <style id="mobile-responsive-inline">
@@ -341,7 +341,7 @@
     <div class="container nav-container">
       <a href="#" class="brand-logo">
         <span class="brand-glyph">▲</span>
-        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-ALL-3-EXPLICIT-FIXED</span>
+        <span class="logo-text">kizun</span> <span class="version-debug-tag" style="background: #10b981; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; display: inline-block;">v2026.07.30-PERFECT-LAYOUT</span>
         <span class="logo-badge">// VIBECODER & AI ENGINEER</span>
       </a>
       <div class="nav-actions">
@@ -448,99 +448,25 @@
               <span>Скачать CV (PDF)</span>
             </a>
           </div>
-        </div>
-      </article>
-
-      <!-- 2. NARROW-CONTEXT AI ASSISTANT -->
-      <article class="bento-card card-ai-assistant" id="cardAiAssistant">
-        <div class="spotlight-border"></div>
-        <div class="card-header-flex" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
-          <div class="header-top-bar" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-            <span class="section-tag">00 // AI ASSISTANT</span>
-            <div class="card-header-actions" style="display: flex; align-items: center; gap: 8px;">
-              <button class="btn-case-inspect" data-case-id="ai-assistant">
-                <i data-lucide="layers"></i> Кейс ↗
-              </button>
-              <span class="live-pill"><span class="status-dot"></span> Online</span>
-            </div>
-          </div>
-
-          <div class="ai-title-wrap" style="display: flex; align-items: flex-start; gap: 12px; width: 100%; margin-top: 4px;">
-            <div class="ai-avatar-icon" style="flex-shrink: 0; width: 38px; height: 38px; min-width: 38px; min-height: 38px;"><i data-lucide="bot"></i></div>
-            <div class="ai-title-info" style="flex: 1 1 100%; min-width: 0; width: 100%;">
-              <h3 class="card-title" style="margin-bottom: 4px; font-size: 1.15rem; color: #ffffff;">ИИ-Ассистент kizun</h3>
-              <p class="card-subtitle" style="font-size: 0.82rem; color: #a1a1aa; margin: 0; line-height: 1.45; white-space: normal; word-break: normal;">Демо-бот для показа возможностей ИИ-интеграций</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="chat-container" id="chatContainer">
-          <div class="chat-message msg-agent">
-            <div class="avatar"><i data-lucide="bot"></i></div>
-            <div class="bubble">
-              Привет! Я легкий демо-бот на модели Gemma 4, встроенный для демонстрации интеграции ИИ в веб-сервисы. Я помогу сориентироваться по работам и идеям kizun — спроси меня о чем-нибудь!
-            </div>
-          </div>
-        </div>
-
-        <div class="chat-quick-prompts">
-          <button class="prompt-chip" data-prompt="Что kizun может разработать с помощью вайбкодинга?"><i
-              data-lucide="sparkles"></i> Что кодишь?</button>
-          <button class="prompt-chip" data-prompt="Покажи примеры готовых проектов kizun"><i data-lucide="layers"></i>
-            Примеры работ</button>
-          <button class="prompt-chip" data-prompt="Как связаться с kizun в Telegram для обсуждения проекта?"><i data-lucide="send"></i>
-            Написать @kizune_ne</button>
-        </div>
-
-        <form class="chat-input-wrap" id="chatForm">
-          <input type="text" id="chatInput" placeholder="Спросите ассистента о проектах..." autocomplete="off">
-          <button type="submit" class="btn-send">
-            <i data-lucide="arrow-right"></i>
-          </button>
-        </form>
-      </article>
-
-    </section>
-
-    <!-- 1. TG CONTENT MANAGEMENT & AUTOMATION STAND -->
-    <section class="bento-row row-tg-content" id="tg-content">
-      <article class="bento-card card-tg-content-main" id="cardTgContent">
-        <div class="spotlight-border"></div>
         
-        <div class="card-header-flex">
-          <div>
-            <span class="section-tag">01 // TELEGRAM AUTOMATION &amp; AI PUBLISHING</span>
-            <h2 class="card-title">Автоматизация Telegram-Каналов &amp; AI-Копирайтинг</h2>
-            <p class="card-subtitle">Архитектура автономного ведения медиа-ресурсов: проектирование контент-матриц, парсинг и суммаризация инфоповодов, адаптация авторского стиля и публикация по расписанию через Telegram Bot API.</p>
-          </div>
-          <div class="card-header-actions">
-            <button class="btn-case-inspect" data-case-id="tg-content">
-              <i data-lucide="layers"></i> Кейс ↗
+        <!-- Dedicated View Mode Selector Bar (Higher Position Right After Topic Buttons) -->
+        <div class="tg-top-mode-switcher-bar" style="margin-top: 10px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: rgba(255, 255, 255, 0.04); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.08); width: 100%; box-sizing: border-box;">
+          <span class="tg-mode-label" style="font-family: var(--font-code, monospace); font-size: 0.73rem; color: #a1a1aa; display: inline-flex; align-items: center; gap: 5px;">
+            <i data-lucide="eye" style="width: 14px; height: 14px;"></i> Режим отображения:
+          </span>
+          <div class="view-mode-selector" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
+              <i data-lucide="eye"></i> Превью
+            </button>
+            <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
+              <i data-lucide="code"></i> MarkdownV2
+            </button>
+            <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
+              <i data-lucide="cpu"></i> Промпт
             </button>
           </div>
         </div>
-
-        <!-- Niche Switcher Bar -->
-        <div class="tov-tabs-container">
-          <div class="tov-tabs-wrapper">
-            <button class="tov-tab active" data-niche="it">
-              <i data-lucide="code-2"></i> IT &amp; Arch
-            </button>
-            <button class="tov-tab" data-niche="crypto">
-              <i data-lucide="coins"></i> Web3 &amp; Crypto
-            </button>
-            <button class="tov-tab" data-niche="igaming">
-              <i data-lucide="dices"></i> iGaming &amp; Aff
-            </button>
-            <button class="tov-tab" data-niche="fintech">
-              <i data-lucide="line-chart"></i> FinTech &amp; Trading
-            </button>
-          </div>
-                <!-- Dedicated View Mode Selector Top Bar -->
-        </div>
-</div>
-
-        <!-- Main Interactive Stage: Live Telegram Post + Pipeline Tracker -->
+<!-- Main Interactive Stage: Live Telegram Post + Pipeline Tracker -->
         <div class="tg-sim-container">
 
           <!-- Live Telegram Post Preview Card -->
@@ -565,20 +491,9 @@
               <!-- Live CTA Inline Buttons inserted by JS -->
             </div>
 
-            <!-- Bottom Control Toolbar with Right-Aligned Mode Selector -->
+            <!-- Bottom Control Toolbar -->
             <div class="tg-post-footer-toolbar">
               <span class="post-footer-meta"><i data-lucide="shield"></i> TG Bot API 7.0</span>
-              <div class="view-mode-selector">
-                <button class="mode-btn active" id="btnTgModePreview" data-mode="preview" title="Показать пост глазами подписчика">
-                  <i data-lucide="eye"></i> Превью
-                </button>
-                <button class="mode-btn" id="btnTgModeMarkdown" data-mode="markdown" title="Исходный код разметки MarkdownV2">
-                  <i data-lucide="code"></i> MarkdownV2
-                </button>
-                <button class="mode-btn" id="btnTgModePrompt" data-mode="prompt" title="Системный промпт и параметры генерации">
-                  <i data-lucide="cpu"></i> Промпт
-                </button>
-              </div>
             </div>
           </div>
 
@@ -1443,14 +1358,14 @@
     </div>
   </footer>
 
-  <script type="module" src="app.js?v=1785424281"></script>
+  <script type="module" src="app.js?v=1785424488"></script>
 
 
 
 
 
 
-<!-- 100% PERFECT TARGETED MOBILE OVERRIDES (VER 1785424281) -->
+<!-- 100% PERFECT TARGETED MOBILE OVERRIDES (VER 1785424488) -->
 <style id="mobile-bottom-inline-override">
 @media screen and (max-width: 1024px) {
   header.navbar, .navbar {
@@ -1482,18 +1397,19 @@
 }
 
 @media screen and (max-width: 1200px), (pointer: coarse) {
-  /* 1. AI ASSISTANT CARD - CASE BUTTON LEFT OF ONLINE & FULL WIDTH */
+  /* 1. AI ASSISTANT CARD - PERFECT HEADER LAYOUT & CHAT SCROLL */
   .card-ai-assistant {
     height: auto !important;
     max-height: none !important;
   }
-  .card-ai-assistant .header-top-bar {
+  .card-ai-assistant .ai-top-bar {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
+    margin-bottom: 12px !important;
   }
-  .card-ai-assistant .card-header-actions {
+  .card-ai-assistant .ai-actions-group {
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
@@ -1505,6 +1421,7 @@
     align-items: flex-start !important;
     gap: 12px !important;
     width: 100% !important;
+    margin-bottom: 14px !important;
   }
   .card-ai-assistant .ai-title-info {
     flex: 1 1 100% !important;
@@ -1535,7 +1452,7 @@
     box-sizing: border-box !important;
   }
 
-  /* 2. CASE INSPECTOR MODAL STRUCTURE & AUTO TABS FIT */
+  /* 2. CASE INSPECTOR MODAL TABS 100% FIT */
   .case-inspector-modal-container {
     display: flex !important;
     flex-direction: column !important;
@@ -1555,7 +1472,7 @@
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
-    padding: 8px 8px !important;
+    padding: 8px 6px !important;
     background: #121217 !important;
     border-bottom: 1px solid #27272a !important;
     gap: 4px !important;
@@ -1567,7 +1484,7 @@
     min-width: 0 !important;
     white-space: nowrap !important;
     font-size: 0.7rem !important;
-    padding: 6px 8px !important;
+    padding: 6px 6px !important;
     justify-content: center !important;
     text-align: center !important;
   }
@@ -1578,15 +1495,16 @@
     padding: 14px 12px 48px 12px !important;
   }
 
-  /* 3. TG CONTENT CARD 01 - CLEAN MODE BUTTONS TOOLBAR */
-  .tg-post-footer-toolbar {
+  /* 3. TG CONTENT CARD - HIGHER POSITION TOP MODE SWITCHER BAR */
+  .tg-top-mode-switcher-bar {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     flex-wrap: wrap !important;
     gap: 8px !important;
     width: 100% !important;
-    margin-top: 10px !important;
+    margin: 10px 0 14px 0 !important;
+    box-sizing: border-box !important;
   }
   .view-mode-selector {
     display: flex !important;
@@ -1685,6 +1603,7 @@
   }
 }
 </style>
+
 
 
 
