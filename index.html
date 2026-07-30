@@ -53,6 +53,17 @@
     }
 
     @media (max-width: 768px) {
+
+    /* Sticky Navbar Touch Pass-Through: Prevents sticky header from swallowing Hero gestures */
+    .navbar, .navbar * {
+      pointer-events: none !important;
+    }
+    .nav-container a, .nav-container button, .nav-container .btn {
+      pointer-events: auto !important;
+      touch-action: manipulation !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
       /* Complete Touch Pass-Through: All card elements & children pass touch straight to body */
       .bento-card, article, .bento-card *, article * {
         pointer-events: none !important;

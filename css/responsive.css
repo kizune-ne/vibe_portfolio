@@ -77,6 +77,17 @@ button:active, .btn:active, .tov-tab:active,
    2. MOBILE PHONES (<= 768px)
    ------------------------------------------ */
 @media (max-width: 768px) {
+
+    /* Sticky Navbar Touch Pass-Through: Prevents sticky header from swallowing Hero gestures */
+    .navbar, .navbar * {
+      pointer-events: none !important;
+    }
+    .nav-container a, .nav-container button, .nav-container .btn {
+      pointer-events: auto !important;
+      touch-action: manipulation !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
   /* Base Container Mobile Padding (Exact 94% card width: 3vw left + 3vw right) */
   .container {
     padding-left: 3vw !important;
