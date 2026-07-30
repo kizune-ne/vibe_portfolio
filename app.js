@@ -1,3 +1,4 @@
+import { initMobileScrollFix } from './js/mobile-scroll-fix.js';
 /* ==========================================================================
    VIBECODER & AI ENGINEER PORTFOLIO - MAIN JS ENTRY (MODULAR STRUCTURE)
    ========================================================================== */
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Modules
   initSpotlight();
+  initMobileScrollFix();
   initAiAssistant();
   initFirmwareEditor();
   initCalculator();

@@ -172,7 +172,7 @@ body {
     box-sizing: border-box !important;
   }
 
-  .bento-card, article, section {
+  .bento-card, article {
     overflow: clip !important;
     cursor: default !important;
 
