@@ -172,3 +172,35 @@
 }
 
 .hero-cta-group { display: flex; gap: 12px; }
+
+.hero-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.tech-tag {
+  background: #333333;
+  color: #f1f1f1;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .hero-split-layout {
+    grid-template-columns: 1fr;
+  }
+}
