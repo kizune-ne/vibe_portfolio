@@ -496,17 +496,22 @@ button:active, .btn:active, .tov-tab:active,
   }
 
   .bento-row,
-  .row-hero,
   .row-two-cols,
   .row-three-cols,
   .row-tg-calc,
-  .row-tg-content,
   .row-ai-influencer,
   .row-rag-calc,
   .row-obsidian-rag,
   .row-calc-firmware,
   .row-docker-feedback {
     gap: 16px !important;
+    margin: 0 !important;
+  }
+
+  /* Compensate for large card padding (28px) by reducing the grid gap */
+  .row-hero,
+  .row-tg-content {
+    gap: 8px !important;
     margin: 0 !important;
   }
 
