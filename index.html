@@ -42,22 +42,16 @@
     /* HOTFIX: Cache-busting overrides for mobile navbar and badge spacing */
     @media (max-width: 1024px) {
       .nav-container {
-        height: auto !important;
-        min-height: 48px !important;
-        flex-wrap: wrap !important;
-        padding: 8px 12px !important;
+        flex-wrap: nowrap !important;
       }
       .nav-actions {
-        width: 100% !important;
-        justify-content: center !important;
-        margin-top: 6px !important;
+        width: auto !important;
+        justify-content: flex-end !important;
+        margin-top: 0 !important;
       }
-      .nav-actions .btn-sm span,
-      .nav-actions .btn-sm .btn-text {
-        display: inline !important;
-      }
-      .nav-actions .btn-sm i {
-        margin-right: 6px !important;
+      .nav-actions .btn-copy-email span,
+      .nav-actions .btn-copy-email .btn-text {
+        display: none !important;
       }
       .status-badge-wrapper {
         margin-top: -8px !important;
