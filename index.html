@@ -538,12 +538,77 @@
 
     <!-- 1. TG CONTENT MANAGEMENT & AUTOMATION STAND -->
     <section class="bento-row row-tg-content" id="tg-content">
+      <!-- Telegram Automation & Parsers Card (4 Columns Side by Side with Card 01) -->
+      <article class="bento-card card-tg-simulator card-tg-showcase" id="cardTgSimulator">
+        <div class="spotlight-border"></div>
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">01 // AUTOMATIONS &amp; BOTS</span>
+            <h2 class="card-title">Telegram-Автоматизации &amp; Боты</h2>
+            <p class="card-subtitle">Архитектура автономных парсеров каналов, диалоговых ИИ-ассистентов и скрапинга 24/7.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="tg-automation">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Clean 1-Column Compact Architecture Stack -->
+        <div class="tg-architecture-grid">
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="layers"></i></div>
+              <span class="arch-tag">STREAM PARSING</span>
+            </div>
+            <h4>Потоковый парсинг &amp; Топики</h4>
+            <p>Реалтайм скан каналов, фильтрация рекламы, дублей и маршрутизация по топикам.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Telethon / Pyrogram</span>
+              <span class="tech-pill">Topic Routing</span>
+            </div>
+          </div>
+
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="bot"></i></div>
+              <span class="arch-tag">NEURAL AGENTS</span>
+            </div>
+            <h4>Умные ИИ-Боты (LLM)</h4>
+            <p>Интеграция локальных (Ollama / Qwen) и облачных (Gemma) моделей в диалоги.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Ollama / Qwen</span>
+              <span class="tech-pill">Context RAG</span>
+            </div>
+          </div>
+
+          <div class="tg-arch-card">
+            <div class="arch-card-header">
+              <div class="tg-cap-icon"><i data-lucide="database"></i></div>
+              <span class="arch-tag">ASYNC SCRAPING</span>
+            </div>
+            <h4>Скрапинг Данных 24/7</h4>
+            <p>Асинхронный сбор данных с ротацией прокси, обходом антифрода и выгрузкой отчетов.</p>
+            <div class="arch-tech-tags">
+              <span class="tech-pill">Proxy Rotation</span>
+              <span class="tech-pill">APScheduler</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telegram Security & Architecture Footbar -->
+        <div class="tg-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="shield-check"></i> Docker-Изоляция</span>
+          <span class="arch-footer-chip"><i data-lucide="activity"></i> 99.9% Аптайм</span>
+        </div>
+      </article>
+    
       <article class="bento-card card-tg-content-main" id="cardTgContent">
         <div class="spotlight-border"></div>
         
         <div class="card-header-flex">
           <div>
-            <span class="section-tag">01 // TELEGRAM AUTOMATION &amp; AI PUBLISHING</span>
+            <span class="section-tag">02 // TELEGRAM CHANNELS &amp; AI PUBLISHING</span>
             <h2 class="card-title">Автоматизация Telegram-Каналов &amp; AI-Копирайтинг</h2>
             <p class="card-subtitle">Архитектура автономного ведения медиа-ресурсов: проектирование контент-матриц, парсинг и суммаризация инфоповодов, адаптация авторского стиля и публикация по расписанию через Telegram Bot API.</p>
           </div>
@@ -668,71 +733,7 @@
         </div>
       </article>
 
-      <!-- Telegram Automation & Parsers Card (4 Columns Side by Side with Card 01) -->
-      <article class="bento-card card-tg-simulator card-tg-showcase" id="cardTgSimulator">
-        <div class="spotlight-border"></div>
-        <div class="card-header-flex">
-          <div>
-            <span class="section-tag">02 // AUTOMATIONS &amp; BOTS</span>
-            <h2 class="card-title">Telegram-Автоматизации &amp; Боты</h2>
-            <p class="card-subtitle">Архитектура автономных парсеров каналов, диалоговых ИИ-ассистентов и скрапинга 24/7.</p>
-          </div>
-          <div class="card-header-actions">
-            <button class="btn-case-inspect" data-case-id="tg-automation">
-              <i data-lucide="layers"></i> Кейс ↗
-            </button>
-          </div>
-        </div>
-
-        <!-- Clean 1-Column Compact Architecture Stack -->
-        <div class="tg-architecture-grid">
-          <div class="tg-arch-card">
-            <div class="arch-card-header">
-              <div class="tg-cap-icon"><i data-lucide="layers"></i></div>
-              <span class="arch-tag">STREAM PARSING</span>
-            </div>
-            <h4>Потоковый парсинг &amp; Топики</h4>
-            <p>Реалтайм скан каналов, фильтрация рекламы, дублей и маршрутизация по топикам.</p>
-            <div class="arch-tech-tags">
-              <span class="tech-pill">Telethon / Pyrogram</span>
-              <span class="tech-pill">Topic Routing</span>
-            </div>
-          </div>
-
-          <div class="tg-arch-card">
-            <div class="arch-card-header">
-              <div class="tg-cap-icon"><i data-lucide="bot"></i></div>
-              <span class="arch-tag">NEURAL AGENTS</span>
-            </div>
-            <h4>Умные ИИ-Боты (LLM)</h4>
-            <p>Интеграция локальных (Ollama / Qwen) и облачных (Gemma) моделей в диалоги.</p>
-            <div class="arch-tech-tags">
-              <span class="tech-pill">Ollama / Qwen</span>
-              <span class="tech-pill">Context RAG</span>
-            </div>
-          </div>
-
-          <div class="tg-arch-card">
-            <div class="arch-card-header">
-              <div class="tg-cap-icon"><i data-lucide="database"></i></div>
-              <span class="arch-tag">ASYNC SCRAPING</span>
-            </div>
-            <h4>Скрапинг Данных 24/7</h4>
-            <p>Асинхронный сбор данных с ротацией прокси, обходом антифрода и выгрузкой отчетов.</p>
-            <div class="arch-tech-tags">
-              <span class="tech-pill">Proxy Rotation</span>
-              <span class="tech-pill">APScheduler</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Telegram Security & Architecture Footbar -->
-        <div class="tg-arch-footer-bar">
-          <span class="arch-footer-chip"><i data-lucide="shield-check"></i> Docker-Изоляция</span>
-          <span class="arch-footer-chip"><i data-lucide="activity"></i> 99.9% Аптайм</span>
-        </div>
-      </article>
-    </section>
+      </section>
 
     <!-- 3. AI INFLUENCERS & LORA FINE-TUNING PIPELINE -->
     <section class="bento-row row-ai-influencer" id="creative-lab">
