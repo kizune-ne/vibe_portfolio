@@ -3,52 +3,6 @@
    ========================================================================== */
 
 export const CASES_DATA = {
-  'tg-content': {
-    id: 'tg-content',
-    badge: '01 // TG CONTENT & AUTOMATED PUBLISHING',
-    title: 'Автоматизированный Telegram Контент-Менеджмент & AI Copywriting',
-    subtitle: 'Комплексная экосистема ведения профильных каналов: разработка рубрикаторов, AI-генерация постов с вариативным Tone-of-Voice, модерация 24/7 и автопостинг по расписанию.',
-    role: 'Lead Content Strategist & AI Automation Developer',
-    metrics: [
-      { value: '15+ каналов', label: 'Под управлением' },
-      { value: '3.2x ER', label: 'Рост вовлеченности' },
-      { value: '< 3 мин', label: 'От новости до поста' },
-      { value: '95%', label: 'Автоматизация рутины' }
-    ],
-    problem: `При профессиональном ведении сетки Telegram-каналов возникает ряд критических проблем:
-• Высокие трудозатраты: Написание качественного авторского контента, составление контент-планов и ручная верстка отнимают 4-6 часов ежедневно.
-• Монотонность и выгорание: Сложно выдерживать специфичный Tone-of-Voice (iGaming, Web3/Крипта, IT/Dev, FinTech) на постоянной основе без деградации стиля.
-• Риски ошибок разметки: Ручные ошибки в MarkdownV2, сбитые инлайн-ссылки и некорректные спецсимволы в Telegram Bot API.
-• Упущенные инфоповоды: Реакция на молниеносные новости рынка часто запаздывает из-за отсутствия автоматического тренд-сканера.`,
-    solution: `Разработан закрытый автоматизированный пайплайн AI-контент менеджмента:
-1. **Контент-Матрица & Dynamic Tone-of-Voice**: Создан движок адаптивного копирайтинга с настройкой пресетов стиля под целевые ниши (экспертный аналитик, дерзкий инсайдер, IT-архитектор).
-2. **Newsjacking Engine (Парсер → LLM Рерайтинг)**: Интеграция с асинхронным парсером трендов: свежий инфоповод из 50+ каналов автоматически суммируется через Qwen 3.5 / Gemini и превращается в уникальный пост за 120 секунд.
-3. **Human-in-the-Loop Модерация**: Бот модерации отправляет превью верстки и инлайн-кнопок в приватный канал редактора. Согласование или отправка на доработку происходит в 1 клик.
-4. **MarkdownV2 Encoder & Scheduler**: Модуль асинхронной публикации с валидацией разметки, настраиваемыми инлайн-кнопками (CTA) и расписанием через Telegram Bot API.`,
-    results: `• Скорость вывода новостей и экспертных постов сокращена с часов до 2-3 минут.
-• Вовлеченность аудитории (ER) вырастала в среднем в 3.2 раза благодаря правильной структуре и цепляющим заголовкам.
-• Полная защита от ошибок разметки и 95% экономия времени на рутинном копирайтинге.`,
-    architecture: {
-      title: 'Архитектура AI Content Pipeline',
-      desc: 'Полный цикл производства Telegram-контента от парсинга инфоповодов до автопостинга.',
-      highlights: [
-        { icon: 'sparkles', title: 'AI Copywriter Engine', desc: 'Генерация структуры постов, завлекающих крючков (hooks) и адаптация под промпт-матрицу Tone-of-Voice.' },
-        { icon: 'shield-check', title: 'Moderator Bot & Inline GUI', desc: 'Закрытый канал валидации с живым предпросмотром поста и кнопками мгновенного утверждения.' },
-        { icon: 'clock', title: 'Async Telegram Publisher', desc: 'Планировщик публикаций с автоматическим экранированием MarkdownV2 и прикреплением сочных CTA-кнопок.' }
-      ]
-    },
-    techStack: [
-      { name: 'Python 3.13 / Telethon', icon: 'code' },
-      { name: 'Google Gemini 3.5 & Qwen 3.5', icon: 'sparkles' },
-      { name: 'Telegram Bot API / MarkdownV2', icon: 'send' },
-      { name: 'Asyncio & JSON Content Matrices', icon: 'refresh-cw' },
-      { name: 'Lucide SVG & CSS Glassmorphism', icon: 'layout' }
-    ],
-    links: [
-      { label: 'Симулятор Контента на Сайте', targetId: 'cardTgContent', icon: 'file-edit' }
-    ]
-  },
-
   'docker-ai': {
     id: 'docker-ai',
     badge: '07 // INFRASTRUCTURE & CONTAINER ORCHESTRATION',
@@ -142,38 +96,38 @@ export const CASES_DATA = {
   'ai-assistant': {
     id: 'ai-assistant',
     badge: '00 // FULLSTACK & SERVERLESS AI',
-    title: 'Serverless ИИ-Ассистент на Gemma 4 + Cloudflare Worker Proxy',
-    subtitle: 'Безопасная интеграция нейросети Google AI Studio в портфолио с выносом секретов на Cloudflare Worker и фолбэком.',
+    title: 'Serverless ИИ-Ассистент (Cascade Routing: Gemini 3.5 & Gemma 4)',
+    subtitle: 'Безопасная интеграция Google AI Studio в портфолио: каскадный роутинг между 4 моделями (Gemini 3.5 Flash Lite / Gemma 4), защита секретов на Cloudflare Worker и обход лимитов.',
     role: 'Fullstack AI Web Developer',
     metrics: [
       { value: '100% Free', label: 'Serverless Хостинг' },
-      { value: '< 400ms', label: 'Отклик Gemini 3.5 API' },
+      { value: '< 400ms', label: 'Отклик Multi-Model API' },
       { value: '0 Keys', label: 'Утечек в клиентском коде' },
-      { value: 'Fallback', label: 'Умные офлайн-ответы' }
+      { value: '4 Models', label: 'Каскадное переключение' }
     ],
     problem: `При вызове LLM напрямую с фронтенда веб-сайта портфолио проявляются фундаментальные уязвимости:
 • Приватный API-ключ Gemini / Google AI Studio оказывается открыт в сетевых запросах браузера.
 • Превышение лимитов запросов (Rate Limit) посетителями может заблокировать работу ассистента.
 • При отсутствии сети или сбое API ассистент перестает отвечать.`,
     solution: `Разработана трехслойная защищенная архитектура ИИ-чата:
-1. **Cloudflare Worker Proxy (Serverless)**: Создан промежуточный микросервис на Cloudflare Workers, где сохранен секретный ключ \`GEMINI_API_KEY\`. Клиент обращается к прокси без ключей.
+1. **Cloudflare Worker Proxy (Serverless)**: Создан промежуточный микросервис на Cloudflare Workers, где сохранен секретный массив ключей \`GEMINI_API_KEYS\`.
 2. **CORS & Rate Limiting Guard**: Настройка заголовков безопасности, позволяющих вызывать API только с официального домена портфолио.
-3. **Local Knowledge Fallback**: При недоступности стороннего API чат автоматически переключается на встроенную базу локальных ответов без ошибок для пользователя.`,
+3. **Smart LLM Routing Engine**: Интеллектуальный каскадный перебор моделей (Gemini 3.5 Flash / Gemma 4) и ключей при достижении Rate Limit.`,
     results: `• Полностью безопасная интеграция ИИ-чата в портфолио без риска компрометации API-ключей.
-• Высокая скорость ответов и нулевые затраты на инфраструктуру за счет Serverless Cloudflare.`,
+• Высокая скорость ответов и 100% аптайм благодаря роутингу моделей и пулу ключей.`,
     architecture: {
       title: 'Схема Защищенного Вызова ИИ в Браузере',
       desc: 'Безопасный прокси-слой между клиентским JavaScript и Google AI Studio API.',
       highlights: [
         { icon: 'shield-check', title: 'Cloudflare Worker Security Proxy', desc: 'Шифрование API-ключей и проверка домена источника запроса (CORS Guard).' },
-        { icon: 'zap', title: 'Gemini 3.5 Flash Streaming', desc: 'Быстрая генерация лаконичных ответов на вопросы о стеке и проектах авторов.' },
-        { icon: 'cpu', title: 'Offline Fallback Engine', desc: 'Локальная база эвристических ответов на случай сбоя внешнего интернет-соединения.' }
+        { icon: 'zap', title: 'Smart LLM Cascade Routing', desc: 'Динамический перебор пула ключей и моделей (Gemini 3.5 / Gemma 4) для защиты от Rate Limit.' },
+        { icon: 'cpu', title: 'Response Sanitizer Engine', desc: 'Автоматическая очистка ответов от тегов <think> и мыслей (Thought Process) перед отдачей в чат.' }
       ]
     },
     techStack: [
       { name: 'JavaScript ES6 Modules', icon: 'code' },
       { name: 'Cloudflare Workers (Edge)', icon: 'cloud' },
-      { name: 'Google Gemini 3.5 API', icon: 'sparkles' },
+      { name: 'Gemini 3.5 / Gemma 4 API', icon: 'sparkles' },
       { name: 'Fetch API / Async JSON', icon: 'refresh-cw' },
       { name: 'Lucide SVG Icons', icon: 'layout' }
     ],
