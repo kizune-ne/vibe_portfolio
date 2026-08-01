@@ -183,19 +183,18 @@
 .hero-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   justify-content: center;
 }
 
 .tech-tag {
-  background: #333333;
+  background: #4a4a4a;
   color: #f1f1f1;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
   font-family: var(--font-code);
-  font-size: 0.85rem;
-  font-weight: 500;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  font-size: 0.8rem;
+  font-weight: 400;
   white-space: nowrap;
 }
 
