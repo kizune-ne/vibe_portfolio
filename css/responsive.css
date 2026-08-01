@@ -494,6 +494,18 @@ button:active, .btn:active, .tov-tab:active,
     padding-bottom: 32px !important;
   }
 
+  .bento-row,
+  .row-hero,
+  .row-two-cols,
+  .row-three-cols,
+  .row-tg-calc,
+  .row-obsidian-rag,
+  .row-calc-firmware,
+  .row-docker-feedback,
+  .row-tg-content {
+    gap: 16px !important;
+  }
+
   .bento-row > *,
   .row-hero > *,
   .row-two-cols > *,
