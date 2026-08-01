@@ -508,11 +508,22 @@ button:active, .btn:active, .tov-tab:active,
     margin: 0 !important;
   }
 
-  /* Compensate for large card padding (28px) by reducing the grid gap */
+  /* Compensate for large card padding by aggressively reducing the grid gap */
   .row-hero,
   .row-tg-content {
-    gap: 8px !important;
+    gap: 6px !important;
     margin: 0 !important;
+  }
+
+  /* Reduce inner paddings where the cards touch to group them visually */
+  .row-hero .card-hero,
+  .row-tg-content .card-tg-simulator {
+    padding-bottom: 12px !important;
+  }
+  
+  .row-hero .card-ai-assistant,
+  .row-tg-content .card-tg-content-main {
+    padding-top: 12px !important;
   }
 
   .bento-row > *,
