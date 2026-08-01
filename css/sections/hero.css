@@ -160,19 +160,22 @@
   margin-bottom: 10px;
 }
 
-.badges-wrapper { display: flex; flex-wrap: wrap; gap: 5px; }
+.badges-wrapper { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .skill-badge {
+  flex: 1 1 auto;
+  justify-content: center;
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
+  gap: 6px;
+  padding: 8px 12px;
   background: rgba(0, 0, 0, 0.03);
   border: 1px solid transparent;
   border-radius: 100px; /* Pill shape */
   color: var(--color-charcoal);
   font-family: var(--font-ui, sans-serif);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
