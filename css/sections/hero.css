@@ -39,7 +39,11 @@
 }
 
 /* HERO CARDS PC SIZES */
-.row-hero .card-hero { grid-column: span 8; padding-bottom: 12px; }
+.row-hero .card-hero { 
+  grid-column: span 8; 
+  padding-bottom: 8px !important; 
+  align-self: start; 
+}
 .row-hero .card-ai-assistant { grid-column: span 4; }
 
 .status-badge {
