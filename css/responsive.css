@@ -227,23 +227,22 @@ button:active, .btn:active, .tov-tab:active,
       line-height: 1.5 !important;
     }
 
-    /* 5. TABS OVERFLOW IN MODALS & CARDS (STAR METHODOLOGY & OBSIDIAN TABS) */
-    .star-tabs, .modal-tabs, .obsidian-mode-tabs, .calc-modal-header .modal-title-flex {
+    /* 5. TABS WRAP FIX IN MODALS & CARDS (STAR METHODOLOGY) */
+    .star-tabs, .modal-tabs, .calc-modal-header .modal-title-flex {
       display: flex !important;
-      max-width: 100% !important;
-      overflow-x: auto !important;
-      flex-wrap: nowrap !important;
-      scrollbar-width: none !important;
-      -webkit-overflow-scrolling: touch !important;
+      flex-wrap: wrap !important;
+      width: 100% !important;
+      gap: 6px !important;
       padding-bottom: 4px !important;
-      touch-action: pan-x manipulation !important;
-      pointer-events: auto !important;
     }
-    .star-tabs .tab-btn, .obsidian-mode-btn, .tov-tab {
-      flex-shrink: 0 !important;
-      white-space: nowrap !important;
+    .star-tabs .tab-btn, .tov-tab {
+      flex: 1 1 auto !important;
+      white-space: normal !important;
+      text-align: center !important;
+      justify-content: center !important;
       font-size: 0.73rem !important;
-      padding: 6px 12px !important;
+      padding: 8px 10px !important;
+      line-height: 1.3 !important;
     }
 
 /* 1. STICKY NAVBAR AT TOP */
@@ -367,22 +366,22 @@ button:active, .btn:active, .tov-tab:active,
       line-height: 1.5 !important;
     }
 
-    /* 5. TABS OVERFLOW IN MODALS & CARDS (STAR METHODOLOGY & OBSIDIAN TABS) */
-    .star-tabs, .modal-tabs, .obsidian-mode-tabs, .calc-modal-header .modal-title-flex {
-      max-width: 100% !important;
-      overflow-x: auto !important;
-      flex-wrap: nowrap !important;
-      scrollbar-width: none !important;
-      -webkit-overflow-scrolling: touch !important;
+    /* 5. TABS WRAP FIX IN MODALS & CARDS (STAR METHODOLOGY) */
+    .star-tabs, .modal-tabs, .calc-modal-header .modal-title-flex {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      width: 100% !important;
+      gap: 6px !important;
       padding-bottom: 4px !important;
-      touch-action: pan-x manipulation !important;
-      pointer-events: auto !important;
     }
-    .star-tabs .tab-btn, .obsidian-mode-btn, .tov-tab {
-      flex-shrink: 0 !important;
-      white-space: nowrap !important;
+    .star-tabs .tab-btn, .tov-tab {
+      flex: 1 1 auto !important;
+      white-space: normal !important;
+      text-align: center !important;
+      justify-content: center !important;
       font-size: 0.73rem !important;
-      padding: 6px 12px !important;
+      padding: 8px 10px !important;
+      line-height: 1.3 !important;
     }
 
 
