@@ -572,6 +572,12 @@ button:active, .btn:active, .tov-tab:active,
   .title-sub {
     font-size: 0.62em !important;
   }
+  .title-role {
+    font-size: clamp(0.95rem, 4.8vw, 1.3rem) !important;
+    display: inline-block;
+    white-space: nowrap !important;
+    letter-spacing: -0.02em;
+  }
 
   .hero-description {
     font-size: 0.875rem !important;
