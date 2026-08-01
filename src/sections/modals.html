@@ -225,25 +225,21 @@ section.bento-row,
   }
   .case-inspector-tabs {
     display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
+    flex-wrap: wrap !important;
     padding: 10px 14px !important;
     background: #161b22 !important;
     border-bottom: 1px solid #21262d !important;
     gap: 8px !important;
     width: 100% !important;
-    scrollbar-width: none !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  .case-inspector-tabs::-webkit-scrollbar {
-    display: none !important;
   }
   .case-inspector-tabs .tab-btn {
-    flex: 0 0 auto !important;
-    white-space: nowrap !important;
+    flex: 1 1 calc(50% - 6px) !important;
+    white-space: normal !important;
     font-size: 0.8rem !important;
-    padding: 10px 16px !important;
+    padding: 8px 10px !important;
     justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
   }
 
   /* TG CONTENT AVATAR */
