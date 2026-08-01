@@ -16,27 +16,35 @@
           </h1>
 
 <style>
-  .hero-desc-wrapper { position: relative; margin-bottom: 24px; }
+  .hero-desc-wrapper { position: relative; margin-bottom: 24px; transition: max-height 0.3s; }
+  .hero-desc-fade { display: none; }
   .btn-read-more-hero { display: none; }
   @media (max-width: 768px) {
+    .hero-desc-wrapper.is-collapsed { padding-bottom: 24px; }
     .hero-desc-wrapper.is-collapsed .hero-description {
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
+      max-height: 96px; /* Approx 4 lines */
       overflow: hidden;
       margin-bottom: 0;
+      position: relative;
+    }
+    .hero-desc-wrapper.is-collapsed .hero-desc-fade {
+      display: block;
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 60px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 85%);
+      pointer-events: none;
+      z-index: 1;
     }
     .hero-desc-wrapper.is-collapsed .btn-read-more-hero {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #9ca3af; padding: 6px 14px; border-radius: 8px;
-      font-size: 0.75rem; cursor: pointer; font-family: var(--font-ui, 'Inter', sans-serif);
-      transition: all 0.2s;
-      margin-top: 10px;
-    }
-    .hero-desc-wrapper.is-collapsed .btn-read-more-hero:active {
-      background: rgba(255, 255, 255, 0.1);
+      display: inline-block;
+      position: absolute;
+      bottom: -4px; left: 50%; transform: translateX(-50%);
+      background: transparent; border: none;
+      color: #171717; /* obsidian */
+      font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      font-family: var(--font-ui, 'Inter', sans-serif);
+      padding: 4px 12px;
+      z-index: 2;
     }
   }
 </style>
@@ -44,9 +52,9 @@
           <p class="hero-description" lang="ru">
             В моей практике – полный цикл внед&shy;ре&shy;ния ИИ в опе&shy;ра&shy;ци&shy;он&shy;ные про&shy;цес&shy;сы: раз&shy;ра&shy;бот&shy;ка AI‑агентов и ботов на Python в Docker, тонкая настройка ге&shy;не&shy;ра&shy;тив&shy;ных мо&shy;де&shy;лей (ComfyUI, LoRA) под пред&shy;мет&shy;ную об&shy;ласть, про&shy;ек&shy;ти&shy;ро&shy;ва&shy;ние AI‑кон&shy;тент‑ме&shy;недж&shy;мен&shy;та с ав&shy;то&shy;ма&shy;ти&shy;чес&shy;кой ге&shy;не&shy;ра&shy;ци&shy;ей, мо&shy;де&shy;ра&shy;ци&shy;ей и пуб&shy;ли&shy;ка&shy;ци&shy;ей. Каждое решение я строю как от&shy;ка&shy;зо&shy;ус&shy;той&shy;чи&shy;вую и мас&shy;шта&shy;би&shy;ру&shy;емую сис&shy;те&shy;му, ори&shy;ен&shy;ти&shy;ро&shy;ван&shy;ную под кон&shy;крет&shy;ный биз&shy;нес‑по&shy;ка&shy;за&shy;тель. Для меня ав&shy;то&shy;ма&shy;ти&shy;за&shy;ция – это пе&shy;ре&shy;ос&shy;мыс&shy;ле&shy;ние того, как бизнес может работать быстрее и чище.
           </p>
-  <button class="btn-read-more-hero" id="btnReadMoreDesc" onclick="document.getElementById('heroDescWrapper').classList.remove('is-collapsed'); if(window.lucide) lucide.createIcons(); this.style.display='none';">
-    <span>Читать далее</span>
-    <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+  <div class="hero-desc-fade"></div>
+  <button class="btn-read-more-hero" id="btnReadMoreDesc" onclick="document.getElementById('heroDescWrapper').classList.remove('is-collapsed'); this.style.display='none';">
+    Развернуть
   </button>
 </div>
 
