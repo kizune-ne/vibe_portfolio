@@ -490,7 +490,7 @@ button:active, .btn:active, .tov-tab:active,
 
   /* Grid Layout Single Column & Gap Overrides */
   .bento-main {
-    gap: 16px !important;
+    gap: 12px !important;
     padding-bottom: 32px !important;
     margin: 0 !important;
   }
@@ -499,40 +499,20 @@ button:active, .btn:active, .tov-tab:active,
   .row-two-cols,
   .row-three-cols,
   .row-tg-calc,
+  .row-tg-content,
+  .row-hero,
   .row-ai-influencer,
   .row-rag-calc,
   .row-obsidian-rag,
   .row-calc-firmware,
   .row-docker-feedback {
-    gap: 16px !important;
+    gap: 12px !important;
     margin: 0 !important;
   }
 
   /* Normalize massive desktop padding for mobile */
   .bento-card {
     padding: 16px !important;
-  }
-
-  /* Compensate for large card padding by aggressively reducing the grid gap */
-  .row-hero,
-  .row-tg-content {
-    gap: 4px !important;
-    margin: 0 !important;
-  }
-
-  /* Reduce inner paddings where the cards touch to group them visually */
-  .row-hero .card-hero,
-  .row-tg-content .card-tg-simulator {
-    padding-bottom: 8px !important;
-    border-bottom-left-radius: 8px !important;
-    border-bottom-right-radius: 8px !important;
-  }
-  
-  .row-hero .card-ai-assistant,
-  .row-tg-content .card-tg-content-main {
-    padding-top: 8px !important;
-    border-top-left-radius: 8px !important;
-    border-top-right-radius: 8px !important;
   }
 
   .bento-row > *,
