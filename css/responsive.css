@@ -565,12 +565,12 @@ button:active, .btn:active, .tov-tab:active,
   }
 
   .hero-title {
-    font-size: clamp(1.65rem, 7.5vw, 2.2rem) !important;
+    font-size: clamp(1.45rem, 6.5vw, 2rem) !important;
     line-height: 1.15 !important;
     margin-bottom: 12px;
   }
   .title-sub {
-    font-size: 0.85rem !important;
+    font-size: 0.62em !important;
   }
 
   .hero-description {
