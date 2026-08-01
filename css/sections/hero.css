@@ -220,7 +220,7 @@
 
 .hero-tags-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 14px;
 }
 
