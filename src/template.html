@@ -199,19 +199,22 @@
     /* 5. TABS WRAP FIX IN MODALS & CARDS (STAR METHODOLOGY) */
     .star-tabs, .modal-tabs, .calc-modal-header .modal-title-flex {
       display: flex !important;
-      flex-wrap: wrap !important;
+      flex-wrap: nowrap !important;
+      overflow-x: visible !important;
       width: 100% !important;
-      gap: 6px !important;
+      gap: 4px !important;
       padding-bottom: 4px !important;
     }
     .star-tabs .tab-btn, .tov-tab {
-      flex: 1 1 auto !important;
+      flex: 1 1 0 !important;
       white-space: normal !important;
       text-align: center !important;
       justify-content: center !important;
-      font-size: 0.73rem !important;
-      padding: 8px 10px !important;
-      line-height: 1.3 !important;
+      font-size: 0.65rem !important;
+      padding: 6px 4px !important;
+      line-height: 1.1 !important;
+      min-height: 40px !important;
+      word-break: break-word !important;
     }
     
     /* Obsidian Tabs Mobile Wrap Fix */
@@ -665,24 +668,27 @@ section.bento-row,
   }
   .case-inspector-tabs {
     display: flex !important;
-    flex-wrap: wrap !important;
-    padding: 10px 14px !important;
+    flex-wrap: nowrap !important;
+    overflow-x: visible !important;
+    padding: 8px 6px !important;
     background: #161b22 !important;
     border-bottom: 1px solid #21262d !important;
-    gap: 8px !important;
+    gap: 4px !important;
     width: 100% !important;
   }
   .case-inspector-tabs::-webkit-scrollbar {
     display: none !important;
   }
   .case-inspector-tabs .tab-btn {
-    flex: 1 1 calc(50% - 6px) !important;
+    flex: 1 1 0 !important;
     white-space: normal !important;
-    font-size: 0.8rem !important;
-    padding: 8px 10px !important;
+    font-size: 0.65rem !important;
+    padding: 6px 4px !important;
     justify-content: center !important;
     text-align: center !important;
-    line-height: 1.3 !important;
+    line-height: 1.1 !important;
+    min-height: 40px !important;
+    word-break: break-word !important;
   }
 
   /* TG CONTENT AVATAR */
