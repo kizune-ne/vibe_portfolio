@@ -2994,6 +2994,7 @@
             document.getElementById('bizQuantity')?.addEventListener('wheel', function (e) { e.preventDefault(); const step = (document.getElementById('bizSizeSelect').getAttribute('data-value') === '90x50') ? 24 : 21; let qty = parseInt(this.value) || 0; qty += (e.deltaY < 0 ? step : -step); if (qty < step) qty = step; this.value = Math.ceil(qty / step) * step; document.getElementById('bizSets').value = Math.round((this.value / getBizSetSize()) * 100) / 100; calculateBizPrice(); }, { passive: false });
             document.getElementById('stickQuantity')?.addEventListener('wheel', function (e) { e.preventDefault(); let qty = parseInt(this.value) || 0; qty += (e.deltaY < 0 ? 1 : -1); if (qty < 1) qty = 1; this.value = qty; calculateStickerPrice(); }, { passive: false });
             renderHistory();
+            setTimeout(recalculateActiveTab, 100);
         }
         if (document.readyState === 'complete' || document.readyState === 'interactive') { setTimeout(initApp, 1); } else { document.addEventListener('DOMContentLoaded', initApp); window.addEventListener('load', initApp); }
 
