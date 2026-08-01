@@ -554,7 +554,7 @@ button:active, .btn:active, .tov-tab:active,
   .hero-description, p, span, div {
     word-break: normal !important;
     overflow-wrap: break-word !important;
-    hyphens: manual !important;
+    hyphens: auto !important;
   }
 
   .hero-title {
