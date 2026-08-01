@@ -1028,11 +1028,13 @@
                                             <div class="nv-inputs-flex">
                                                 <input type="text" inputmode="numeric" id="denseWidth"
                                                     class="nv-card-input-inline dm-w-single"
+                                                    value="70"
                                                     oninput="this.value = this.value.replace(/\D/g, ''); calculateDensePrice()"
                                                     placeholder="Ш">
                                                 <span class="nv-card-x-mark">×</span>
                                                 <input type="text" inputmode="numeric" id="denseHeight"
                                                     class="nv-card-input-inline dm-h-single"
+                                                    value="70"
                                                     oninput="this.value = this.value.replace(/\D/g, ''); calculateDensePrice()"
                                                     placeholder="В">
                                             </div>
@@ -1045,6 +1047,7 @@
                                             <div style="display:flex; align-items:center;"><input type="text"
                                                     inputmode="numeric" id="denseQuantity"
                                                     class="nv-card-input-inline dm-q-single"
+                                                    value="100"
                                                     oninput="this.value = this.value.replace(/\D/g, ''); calculateDensePrice()"
                                                     onblur="snapDenseQuantity(this)" placeholder="Кол-во">
                                                 <div onclick="openLayoutDetailsModal('dense', 'item_0')"><svg
@@ -1286,11 +1289,11 @@
                                         </div>
                                         <div class="nv-inputs-flex">
                                             <input type="text" inputmode="numeric" id="stickWidth"
-                                                class="nv-card-input-inline" placeholder="Ш"
+                                                class="nv-card-input-inline" placeholder="Ш" value="70"
                                                 oninput="this.value = this.value.replace(/\D/g, ''); calculateStickerPrice()">
                                             <span class="nv-card-x-mark">×</span>
                                             <input type="text" inputmode="numeric" id="stickHeight"
-                                                class="nv-card-input-inline" placeholder="В"
+                                                class="nv-card-input-inline" placeholder="В" value="70"
                                                 oninput="this.value = this.value.replace(/\D/g, ''); calculateStickerPrice()">
                                         </div>
                                     </div>
@@ -1298,7 +1301,7 @@
                                         <label class="nv-card-label">Кол-во (шт):</label>
                                         <div style="display:flex; align-items:center;"><input type="text"
                                                 inputmode="numeric" id="stickQuantity" class="nv-card-input-inline"
-                                                placeholder="Кол-во"
+                                                placeholder="Кол-во" value="100"
                                                 oninput="this.value = this.value.replace(/\D/g, ''); calculateStickerPrice()">
                                             <div onclick="openLayoutDetailsModal('stickers', 'item_0')"><svg
                                                     width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888"
@@ -1445,6 +1448,7 @@
                                     <div class="nv-card-input-group mob-sets" style="width: 28%;">
                                         <label class="nv-card-label" style="color: #bbb;">Комплекты:</label>
                                         <input type="text" inputmode="decimal" id="bizSets" class="nv-card-input-inline"
+                                            value="1"
                                             oninput="this.value = this.value.replace(/[^\d.,]/g, ''); updateBizFromSets()"
                                             placeholder="К-ты">
                                     </div>
@@ -1452,9 +1456,10 @@
                                         <label class="nv-card-label" style="color: #bbb;">Кол-во (шт):</label>
                                         <div style="display:flex; align-items:center;"><input type="text"
                                                 inputmode="numeric" id="bizQuantity" class="nv-card-input-inline"
+                                                value="96"
                                                 oninput="this.value = this.value.replace(/\\D/g, ''); updateBizFromQty()"
                                                 onblur="snapBizQuantity()" placeholder="Шт">
-                                            <div onclick="openLayoutDetailsModal(\'bizcards\', \'item_0\')"><svg
+                                            <div onclick="openLayoutDetailsModal('bizcards', 'item_0')"><svg
                                                     width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                     style="cursor:pointer; margin-left:5px;">
