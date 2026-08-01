@@ -81,8 +81,8 @@
 
 .hero-description {
   color: var(--color-charcoal);
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: 0.875rem;
+  line-height: 1.45;
   max-width: 620px;
   margin-bottom: 24px;
 }
