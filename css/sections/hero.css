@@ -38,9 +38,9 @@
   }
 }
 
-/* HERO SECTION */
-.row-hero .card-hero { grid-column: span 7; }
-.row-hero .card-ai-assistant { grid-column: span 5; }
+/* HERO CARDS PC SIZES */
+.row-hero .card-hero { grid-column: span 8; }
+.row-hero .card-ai-assistant { grid-column: span 4; }
 
 .status-badge {
   display: inline-flex;
