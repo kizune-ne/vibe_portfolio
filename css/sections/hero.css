@@ -183,18 +183,19 @@
 .hero-tags {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 6px;
 }
 
 .hero-tags-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 6px;
 }
 
 .tech-tag {
+  flex: 1 1 auto;
+  text-align: center;
   background: #4a4a4a;
   color: #f1f1f1;
   padding: 4px 10px;
