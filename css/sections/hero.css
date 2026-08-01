@@ -186,6 +186,7 @@
   align-items: stretch;
   gap: 6px;
   max-width: 260px;
+  margin-left: auto;
 }
 
 .hero-tags-row {
