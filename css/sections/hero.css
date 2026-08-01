@@ -18,8 +18,24 @@
 }
 
 .bento-row > .bento-card,
-.bento-row > article {
+.bento-row > article,
+.row-hero > .card-hero {
   grid-column: span 12;
+}
+
+.status-badge-wrapper {
+  grid-column: span 12;
+  display: flex;
+  padding-left: 16px;
+  margin-top: -12px;
+}
+
+@media (max-width: 768px) {
+  .status-badge-wrapper {
+    margin-top: 12px;
+    padding-left: 0;
+    justify-content: center;
+  }
 }
 
 /* HERO SECTION */
