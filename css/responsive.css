@@ -552,11 +552,13 @@ button:active, .btn:active, .tov-tab:active,
   .bento-card .obsidian-mode-btn, .bento-card .prompt-chip, .bento-card .skill-badge,
   .bento-card .tab-btn, .bento-card .vault-cat-item, .bento-card .ai-selector-item,
   .bento-card .calc-tab-btn, .bento-card .mode-btn, .bento-card .star-btn,
+  .bento-card .file-tree-sidebar, .bento-card .file-tree-sidebar *, .bento-card .btn-editor-action,
   article a, article button, article input, article select, article textarea,
   article .btn, article .btn-sm, article .btn-case-inspect, article .tov-tab,
   article .obsidian-mode-btn, article .prompt-chip, article .skill-badge,
   article .tab-btn, article .vault-cat-item, article .ai-selector-item,
-  article .calc-tab-btn, article .mode-btn, article .star-btn {
+  article .calc-tab-btn, article .mode-btn, article .star-btn,
+  article .file-tree-sidebar, article .file-tree-sidebar *, article .btn-editor-action {
     pointer-events: auto !important;
     touch-action: pan-y manipulation !important;
     -webkit-tap-highlight-color: transparent !important;
