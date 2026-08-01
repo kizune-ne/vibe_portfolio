@@ -476,8 +476,8 @@ button:active, .btn:active, .tov-tab:active,
   }
 
   /* Hide email text on mobile screens to fit email icon + Telegram button on 1 row */
-  #btnCopyEmail span,
-  .nav-actions #btnCopyEmail .btn-text {
+  .btn-copy-email span,
+  .nav-actions .btn-copy-email .btn-text {
     display: none !important;
   }
 
