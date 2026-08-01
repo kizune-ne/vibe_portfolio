@@ -196,8 +196,8 @@
       line-height: 1.5 !important;
     }
 
-    /* 5. TABS OVERFLOW IN MODALS & CARDS (STAR METHODOLOGY & OBSIDIAN TABS) */
-    .star-tabs, .modal-tabs, .obsidian-mode-tabs, .calc-modal-header .modal-title-flex {
+    /* 5. TABS OVERFLOW IN MODALS & CARDS (STAR METHODOLOGY) */
+    .star-tabs, .modal-tabs, .calc-modal-header .modal-title-flex {
       display: flex !important;
       max-width: 100% !important;
       overflow-x: auto !important;
@@ -208,11 +208,27 @@
       touch-action: pan-x manipulation !important;
       pointer-events: auto !important;
     }
-    .star-tabs .tab-btn, .obsidian-mode-btn, .tov-tab {
+    .star-tabs .tab-btn, .tov-tab {
       flex-shrink: 0 !important;
       white-space: nowrap !important;
       font-size: 0.73rem !important;
       padding: 6px 12px !important;
+    }
+    
+    /* Obsidian Tabs Mobile Wrap Fix */
+    .obsidian-mode-tabs {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      width: 100% !important;
+      gap: 6px !important;
+    }
+    .obsidian-mode-btn {
+      flex: 1 1 auto !important;
+      white-space: normal !important;
+      text-align: center !important;
+      font-size: 0.75rem !important;
+      padding: 6px 10px !important;
+      justify-content: center !important;
     }
 
 

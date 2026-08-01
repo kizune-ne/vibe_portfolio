@@ -26,7 +26,7 @@ function build() {
   
   const versionBannerPath = path.join(sectionsDir, 'version-banner.html');
   const versionBannerHtml = `<div id="version-test-banner" style="background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899); color:#ffffff; text-align:center; padding:8px 12px; font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:600; position:relative; z-index:999999; letter-spacing:0.05em; box-shadow: 0 2px 10px rgba(99,102,241,0.3);">
-  ▲ VIBECODER PORTFOLIO v1.2.2 (MOBILE FIX v2) | СБОРКА: ${commitHash} (${buildDate}) | MODULAR BUILD
+  ▲ VIBECODER PORTFOLIO v1.2.3 (REAL MOBILE FIX) | СБОРКА: ${commitHash} (${buildDate}) | MODULAR BUILD
 </div>`;
 
   fs.writeFileSync(versionBannerPath, versionBannerHtml, 'utf8');
