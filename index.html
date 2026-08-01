@@ -385,7 +385,7 @@
         <span class="brand-glyph">▲</span>
         <span class="logo-text">kizun</span>
         <span class="logo-badge">// VibeCoder & AI-content manager</span>
-        <span class="commit-hash-badge" style="margin-left: 8px; font-family: var(--font-code); opacity: 0.8; color: var(--color-terminal-green); font-weight: bold; font-size: 0.75em;">[rev: v5-mobile-tags]</span>
+        <span class="commit-hash-badge" style="margin-left: 8px; font-family: var(--font-code); opacity: 0.8; color: var(--color-terminal-green); font-weight: bold; font-size: 0.75em;">[rev: v6-mobile-tags-inline]</span>
       </a>
       <div class="nav-actions">
         <a href="mailto:kizunezn@gmail.com" class="btn btn-secondary btn-sm btn-copy-email" data-email="kizunezn@gmail.com" title="Нажмите, чтобы скопировать Email">
@@ -477,7 +477,21 @@
                 <span style="text-align: left; line-height: 1.2; font-size: 0.95rem;">Скачать PDF</span>
               </a>
             </div>
-            
+            <style>
+              @media (max-width: 768px) {
+                .hero-tags-row {
+                  flex-wrap: nowrap !important;
+                  gap: 4px !important;
+                }
+                .hero-tags-row .tech-tag {
+                  font-size: 0.625rem !important;
+                  padding: 4px 6px !important;
+                  letter-spacing: -0.02em !important;
+                  white-space: nowrap !important;
+                  flex: 1 1 auto !important;
+                }
+              }
+            </style>
             <div class="hero-tags">
               <div class="hero-tags-row">
                 <span class="tech-tag">Antygravity</span>
