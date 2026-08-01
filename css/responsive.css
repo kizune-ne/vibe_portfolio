@@ -573,10 +573,10 @@ button:active, .btn:active, .tov-tab:active,
     font-size: 0.62em !important;
   }
   .title-role {
-    font-size: clamp(0.95rem, 4.8vw, 1.3rem) !important;
+    font-size: clamp(1rem, 5.8vw, 1.45rem) !important;
     display: inline-block;
     white-space: nowrap !important;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
   }
 
   .hero-description {
