@@ -475,13 +475,16 @@ button:active, .btn:active, .tov-tab:active,
     white-space: nowrap !important;
   }
 
-  /* Hide button text on mobile screens to fit icons on 1 row without overlapping logo */
-  .nav-actions .btn-sm span,
-  .nav-actions .btn-sm .btn-text {
+  /* Hide email text on mobile screens to fit email icon + Telegram button on 1 row */
+  .btn-copy-email span,
+  .nav-actions .btn-copy-email .btn-text {
     display: none !important;
   }
   
   .nav-actions .btn-sm i {
+    margin-right: 6px;
+  }
+  .nav-actions .btn-copy-email i {
     margin: 0 !important;
   }
 
