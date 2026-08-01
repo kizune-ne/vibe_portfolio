@@ -624,8 +624,9 @@ button:active, .btn:active, .tov-tab:active,
   }
 
   .card-ai-assistant .card-subtitle {
-    font-size: 0.775rem !important;
+    font-size: 0.7rem !important;
     line-height: 1.4 !important;
+    white-space: nowrap !important;
   }
 
   .chat-container,
