@@ -141,6 +141,7 @@ export async function initFirmwareEditor() {
 
       const titleDiv = document.createElement('div');
       titleDiv.className = 'folder-title';
+      titleDiv.setAttribute('onclick', ''); // iOS Safari fix
       titleDiv.innerHTML = `
         <i data-lucide="${isOpen ? 'chevron-down' : 'chevron-right'}" class="chevron-icon"></i>
         <i data-lucide="folder" class="folder-icon"></i>
@@ -179,6 +180,7 @@ export async function initFirmwareEditor() {
       const fileDiv = document.createElement('div');
       fileDiv.className = 'tree-file';
       fileDiv.setAttribute('data-path', node.path);
+      fileDiv.setAttribute('onclick', ''); // iOS Safari fix
       const iconName = getFileIcon(node.name);
       fileDiv.innerHTML = `
         <i data-lucide="${iconName}" class="file-icon"></i>
