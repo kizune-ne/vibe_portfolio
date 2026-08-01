@@ -1,0 +1,208 @@
+<section class="bento-row row-ai-influencer" id="creative-lab">
+
+      <article class="bento-card card-ai-influencer-main" id="cardAiGen">
+        <div class="spotlight-border"></div>
+        
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">03 // AI INFLUENCERS &amp; LORA PIPELINE</span>
+            <h2 class="card-title">Виртуальные AI-Инфлюенсеры &amp; Локальная Тренировка LoRA</h2>
+            <p class="card-subtitle">Полный цикл производства синтетического медиаконтента: от генерации референсов лица и капшенинга датасетов (Wan 2.2 / Flux) до локальной тренировки LoRA в AI-Toolkit и финального сэмплирования в ComfyUI.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="ai-influencer">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Pipeline Steps Interactive Flow Visualiser -->
+        <div class="pipeline-flow-container">
+          <div class="pipeline-flow-header">
+            <i data-lucide="git-branch"></i>
+            <span>PRODUCTION PIPELINE // CHARACTER CONSISTENCY ENGINE</span>
+          </div>
+
+          <div class="pipeline-steps-grid">
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">01</div>
+              <div class="pipe-step-icon"><i data-lucide="user-check"></i></div>
+              <h4>1. Концепт Лица &amp; Референс</h4>
+              <p>Генерация базовых кадров модели с высокой детализацией черт. Отбор лучшего каноничного референса.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">Nanobanano 2</span>
+                <span class="tech-pill">ComfyUI</span>
+                <span class="tech-pill">ИИ-Промптинг</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">02</div>
+              <div class="pipe-step-icon"><i data-lucide="file-text"></i></div>
+              <h4>2. Датасет &amp; Капшенинг</h4>
+              <p>Формирование сета кадров, кадрирование и составление точных текстовых описаний под целевую модель.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">Wan 2.2 / Wan 2.1</span>
+                <span class="tech-pill">Flux</span>
+                <span class="tech-pill">Auto-Tagging</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">03</div>
+              <div class="pipe-step-icon"><i data-lucide="cpu"></i></div>
+              <h4>3. Тренировка LoRA (AI-Toolkit)</h4>
+              <p>Локальное обучение весов LoRA на железе RTX 4070 Ti SUPER 16GB. Тестирование чекпоинтов.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">AI-Toolkit</span>
+                <span class="tech-pill">RTX 4070 Ti SUPER</span>
+                <span class="tech-pill">16GB VRAM</span>
+              </div>
+            </div>
+
+            <div class="pipe-step-arrow"><i data-lucide="chevron-right"></i></div>
+
+            <div class="pipe-step-card">
+              <div class="pipe-step-num">04</div>
+              <div class="pipe-step-icon"><i data-lucide="sparkles"></i></div>
+              <h4>4. Воркфлоу в ComfyUI</h4>
+              <p>Подключение обученной LoRA к ComfyUI. Генерация фотосессий со 100% консистентностью лица.</p>
+              <div class="pipe-tags">
+                <span class="tech-pill">ComfyUI Node Graph</span>
+                <span class="tech-pill">Character Consistency</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- AI Dataset Interactive Showcase Stand -->
+        <div class="ai-showcase-stand" id="aiInfluencerShowcase">
+          <div class="ai-showcase-header">
+            <div>
+              <h4 class="ai-showcase-title"><i data-lucide="scan"></i> Инспектор Датасета &amp; Сэмплов LoRA (Wan 2.2 / Flux)</h4>
+              <span class="ai-showcase-subtitle">Интерактивный просмотр сэмплов обработанного датасета с разметкой освещения и ракурсов</span>
+            </div>
+            <div class="ai-showcase-badge">
+              <span class="status-dot"></span> 5 Samples Dataset Ready
+            </div>
+          </div>
+
+          <div class="ai-inspector-grid">
+
+            <!-- LEFT: Featured Image Preview & Metadata (60% width) -->
+            <div class="ai-focal-viewport">
+              <div class="focal-img-wrap">
+                <img src="assets/ai_influencer/ref_base.jpg" id="aiFeaturedImage" alt="Активный кадр датасета">
+                <div class="focal-overlay-badge" id="aiFeaturedTag">
+                  <i data-lucide="file-text"></i> Dataset Sample #01
+                </div>
+                <div class="focal-glow"></div>
+              </div>
+
+              <div class="focal-meta-box">
+                <h4 id="aiFeaturedTitle">Sample #01: Закатное Освещение</h4>
+                <p id="aiFeaturedDesc">Теплый вечерний боковой свет, кружевная одежда, детализация волос и тона кожи в закатный час.</p>
+                <div class="focal-tags" id="aiFeaturedTags">
+                  <span class="chip-accent">Sunset Light</span>
+                  <span class="chip-accent">Wan 2.2 Tagged</span>
+                  <span class="chip-accent">Heterochromia Retained</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Interactive Filmstrip Selector (40% width) -->
+            <div class="ai-filmstrip-selector">
+              <div class="selector-head">
+                <i data-lucide="layers"></i>
+                <span>ВЫБОР СЭМПЛА ДАТАСЕТА (5)</span>
+              </div>
+
+              <div class="selector-items-list">
+
+                <!-- Sample 01 -->
+                <div class="ai-selector-item active" data-sample-id="01">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/ref_base.jpg" alt="Sample 01">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #01</span>
+                    <strong>Закатное Освещение</strong>
+                    <span class="item-sub">Теплый боковой свет, вечер</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 02 -->
+                <div class="ai-selector-item" data-sample-id="02">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/studio_shot.jpg" alt="Sample 02">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #02</span>
+                    <strong>Яркий Студийный Свет</strong>
+                    <span class="item-sub">Студийный вспышечный кадр</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 03 -->
+                <div class="ai-selector-item" data-sample-id="03">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/close_up.jpg" alt="Sample 03">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #03</span>
+                    <strong>Нижний Ракурс &amp; Макро</strong>
+                    <span class="item-sub">Перспектива снизу вверх</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 04 -->
+                <div class="ai-selector-item" data-sample-id="04">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/outdoor_beach.jpg" alt="Sample 04">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #04</span>
+                    <strong>Пляж &amp; Естественный Свет</strong>
+                    <span class="item-sub">Дневной свет на фоне моря</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+                <!-- Sample 05 -->
+                <div class="ai-selector-item" data-sample-id="05">
+                  <div class="item-thumb">
+                    <img src="assets/ai_influencer/golden_hour.jpg" alt="Sample 05">
+                  </div>
+                  <div class="item-info">
+                    <span class="item-num">Sample #05</span>
+                    <strong>Интерьер в Золотой Час</strong>
+                    <span class="item-sub">Шелковый халат, тень от окна</span>
+                  </div>
+                  <div class="item-indicator"><i data-lucide="chevron-right"></i></div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Specs Footer -->
+        <div class="ai-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="cpu"></i> NVIDIA RTX 4070 Ti SUPER (16GB)</span>
+          <span class="arch-footer-chip"><i data-lucide="layers"></i> AI-Toolkit Local Training</span>
+          <span class="arch-footer-chip"><i data-lucide="sliders"></i> ComfyUI Custom Graphs</span>
+          <span class="arch-footer-chip"><i data-lucide="check-circle-2"></i> 100% Character Consistency</span>
+        </div>
+
+      </article>
+    </section>

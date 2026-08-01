@@ -1,0 +1,127 @@
+<section class="bento-row row-hero" id="hero">
+
+      <article class="bento-card card-hero" id="cardHero">
+        <div class="spotlight-border"></div>
+        <div class="card-content">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>⚡ Создано с помощью Вайбкодинга + ИИ</span>
+          </div>
+
+          <h1 class="hero-title">
+            kizun <span class="title-sub">// VibeCoder</span><br>
+            <span>Инженер ИИ-Автоматизаций</span>
+          </h1>
+
+          <p class="hero-description">
+            Создаю автономных ИИ-агентов, приватные Telegram-парсеры топиков, микросервисы в Docker, кастомные
+            C-прошивки и специализированные калькуляторы. Превращаю сложные рутинные задачи в легкий и элегантный код.
+          </p>
+
+          <!-- Metrics Row -->
+          <div class="hero-metrics-row">
+            <div class="metric-item">
+              <span class="metric-val">10+</span>
+              <span class="metric-lbl">Автоматизаций</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">99.9%</span>
+              <span class="metric-lbl">Docker Uptime</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">100k+</span>
+              <span class="metric-lbl">TikTok Views</span>
+            </div>
+          </div>
+
+          <!-- Interactive Skill Spotlight Matrix -->
+          <div class="skills-spotlight-matrix" id="skills">
+            <div class="matrix-label">
+              <span>▲ Фильтр навыков (Нажмите для фокуса):</span>
+            </div>
+            <div class="badges-wrapper">
+              <button class="skill-badge active" data-skill="ai-agent">
+                <i data-lucide="bot"></i> Внедрение ИИ-Агента
+              </button>
+              <button class="skill-badge" data-skill="tg-bots">
+                <i data-lucide="message-square"></i> TG Боты & Парсеры
+              </button>
+              <button class="skill-badge" data-skill="docker">
+                <i data-lucide="container"></i> Docker Контейнеры
+              </button>
+              <button class="skill-badge" data-skill="firmware">
+                <i data-lucide="cpu"></i> C-Прошивка Клавиатуры
+              </button>
+              <button class="skill-badge" data-skill="calculator">
+                <i data-lucide="calculator"></i> Калькулятор Типографии
+              </button>
+              <button class="skill-badge" data-skill="ai-gen">
+                <i data-lucide="image"></i> AI Influencer & LoRA
+              </button>
+              <button class="skill-badge" data-skill="tg-content">
+                <i data-lucide="file-edit"></i> TG Контент & Автопостинг
+              </button>
+              <button class="skill-badge" data-skill="obsidian-rag">
+                <i data-lucide="book-open"></i> База Знаний Obsidian & RAG
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-cta-group" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px;">
+            <a href="https://t.me/kizune_ne" target="_blank" class="btn btn-primary" data-track="💬 Переход в Telegram (@kizune_ne)">
+              <i data-lucide="send"></i>
+              <span>Telegram: @kizune_ne</span>
+            </a>
+            <a href="mailto:kizunezn@gmail.com" class="btn btn-secondary btn-copy-email" data-email="kizunezn@gmail.com" title="Нажмите, чтобы скопировать Email">
+              <i data-lucide="mail"></i>
+              <span>Email: kizunezn@gmail.com</span>
+            </a>
+            <a href="assets/resume.pdf" target="_blank" class="btn btn-secondary" data-track="📄 Рекрутер открыл Резюме (PDF)" title="Открыть резюме в новой вкладке">
+              <i data-lucide="file-text"></i>
+              <span>Открыть Резюме ↗</span>
+            </a>
+            <a href="assets/resume.pdf" download="kizun_resume.pdf" class="btn btn-secondary" data-track="📥 Рекрутер скачал Резюме (PDF)" title="Скачать PDF файл резюме">
+              <i data-lucide="download"></i>
+              <span>Скачать CV (PDF)</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. NARROW-CONTEXT AI ASSISTANT -->
+      <article class="bento-card card-ai-assistant" id="cardAiAssistant">
+        <div class="spotlight-border"></div>
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">00 // AI ASSISTANT</span>
+            <h3 class="card-title">ИИ-Ассистент kizun</h3>
+            <p class="card-subtitle">Демо-бот для показа возможностей ИИ-интеграций</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="ai-assistant">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+            <span class="live-pill"><span class="status-dot"></span> Online</span>
+          </div>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+          <div class="chat-message msg-agent">
+            <div class="avatar"><i data-lucide="bot"></i></div>
+            <div class="bubble">
+              Привет! Я демо-бот для демонстрации возможностей работы ИИ в интерфейсах. Напишите мне любое сообщение, чтобы протестировать диалог в реальном времени.
+            </div>
+          </div>
+        </div>
+
+        
+
+        <form class="chat-input-wrap" id="chatForm">
+          <input type="text" id="chatInput" placeholder="Введите сообщение..." autocomplete="off">
+          <button type="submit" class="btn-send">
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </form>
+      </article>
+
+    </section>

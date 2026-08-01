@@ -1,0 +1,156 @@
+<section class="bento-row row-docker-feedback" id="infrastructure">
+      <article class="bento-card card-docker" id="cardDocker">
+        <div class="spotlight-border"></div>
+
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">07 // INFRASTRUCTURE &amp; CONTAINER ORCHESTRATION</span>
+            <h3 class="card-title">Docker Контейнеры &amp; Схема Микросервисов</h3>
+            <p class="card-subtitle">Архитектура изолированной Linux-среды, проброс GPU CUDA, безопасные Bind Mounts и
+              автоматизация Docker Compose.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="docker-ai">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. Visual Topology Graph Diagram (Full Width) -->
+        <div class="docker-topology-container">
+          <div class="topology-header">
+            <i data-lucide="network"></i>
+            <span>DOCKER COMPOSE INFRASTRUCTURE TOPOLOGY GRAPH</span>
+          </div>
+
+          <div class="topology-diagram">
+            <!-- Host Hardware Block -->
+            <div class="topo-node topo-host">
+              <div class="topo-node-icon"><i data-lucide="cpu"></i></div>
+              <div class="topo-node-info">
+                <strong>Host Machine (Windows 11 Pro)</strong>
+                <span>AMD Ryzen 7 9700X | NVIDIA GeForce RTX 4070 Ti SUPER (16GB VRAM)</span>
+              </div>
+            </div>
+
+            <div class="topo-arrow-down">
+              <span><i data-lucide="arrow-down"></i> NVIDIA Container Toolkit &amp; Bind Mounts (_keys/)</span>
+            </div>
+
+            <!-- Docker Compose Internal Network Grid -->
+            <div class="topo-network-grid">
+              <!-- Container 1: Ollama GPU -->
+              <div class="topo-card topo-container" data-container="ollama">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">ollama:latest</span>
+                  <span class="badge-port">11434:11434</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">GPU CUDA LLM Engine</span>
+                </div>
+              </div>
+
+              <!-- Container 2: AI Server DevContainer -->
+              <div class="topo-card topo-container active" data-container="devcontainer">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">ai_server (DevContainer)</span>
+                  <span class="badge-port">Port 22 / SSH</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">VS Code Remote Linux Workspace</span>
+                </div>
+              </div>
+
+              <!-- Container 3: Open-WebUI -->
+              <div class="topo-card topo-container" data-container="webui">
+                <div class="topo-card-head">
+                  <span class="status-dot"></span>
+                  <span class="topo-name">open-webui:main</span>
+                  <span class="badge-port">3000:8080</span>
+                </div>
+                <div class="topo-card-body">
+                  <span class="topo-role">Inter-Container Web UI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Engineering Proof & Skills Cards Grid (3 Columns Below) -->
+        <div class="devops-benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="shield-check"></i></div>
+            <div class="benefit-content">
+              <strong>100% Изоляция &amp; Zero Host Conflict</strong>
+              <p>Разделение зависимостей Python через том <code>ai-server-venv</code>. Хост-система остаётся чистой.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="cpu"></i></div>
+            <div class="benefit-content">
+              <strong>Прямой Проброс GPU (NVIDIA CUDA)</strong>
+              <p>Конфигурация <code>NVIDIA Container Toolkit</code> для нейросетей (Ollama, Qwen 2.5) с 16GB VRAM.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i data-lucide="key-round"></i></div>
+            <div class="benefit-content">
+              <strong>Безопасность Секретов (_keys/)</strong>
+              <p>Монтирование локальных API-ключей и SSH через <code>Bind Mounts</code> без риска утечки в Git.</p>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- 3-Column Premium Portfolio Feedback Card for HR / Leads -->
+      <article class="bento-card card-quick-feedback" id="cardQuickFeedback">
+        <div class="spotlight-border"></div>
+        
+        <div class="quick-feedback-head">
+          <div class="feedback-tag-row">
+            <span class="pulse-dot"></span>
+            <span class="section-tag">FEEDBACK // HR &amp; LEAD</span>
+          </div>
+          <h3 class="card-title-sm">Оценка Портфолио</h3>
+          <p class="card-subtitle-sm">Оцените впечатление от портфолио по 5-балльной шкале или оставьте сообщение для связи</p>
+        </div>
+
+        <form class="quick-feedback-form" id="quickFeedbackForm" autocomplete="off">
+          <div class="star-rating-box">
+            <div class="star-rating-row" id="starRatingRow">
+              <button type="button" class="star-btn active" data-value="1" title="1 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="2" title="2 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="3" title="3 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="4" title="4 из 5"><i data-lucide="star"></i></button>
+              <button type="button" class="star-btn active" data-value="5" title="5 из 5"><i data-lucide="star"></i></button>
+            </div>
+            <div class="star-rating-text" id="starRatingText">5 из 5 (Отлично!)</div>
+          </div>
+
+          <div class="quick-input-group">
+            <div class="input-with-icon">
+              <i data-lucide="message-square"></i>
+              <input type="text" class="quick-input-field" id="quickComment" placeholder="Что понравилось или улучшить?" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+
+          <div class="quick-input-group">
+            <div class="input-with-icon">
+              <i data-lucide="user"></i>
+              <input type="text" class="quick-input-field" id="quickContact" placeholder="Telegram / Email для связи" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+
+          <button type="submit" class="quick-submit-btn" id="quickSubmitBtn">
+            <i data-lucide="send"></i> <span>Отправить Отзыв</span>
+          </button>
+          
+          <div class="quick-feedback-status" id="quickFeedbackStatus"></div>
+        </form>
+      </article>
+    </section>

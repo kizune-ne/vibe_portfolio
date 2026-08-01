@@ -1,0 +1,193 @@
+<section class="bento-row row-rag-calc" id="knowledge-brain">
+      <!-- Left: Obsidian Knowledge Vault & AI Memory (9 Columns) -->
+      <article class="bento-card card-obsidian-rag-main" id="cardObsidianRag">
+        <div class="spotlight-border"></div>
+        
+        <div class="card-header-flex">
+          <div>
+            <span class="section-tag">04 // KNOWLEDGE &amp; AI MEMORY</span>
+            <h2 class="card-title">Построение Базы Знаний Obsidian &amp; ИИ-Памяти</h2>
+            <p class="card-subtitle">Централизованная организация инженерных знаний: сохранение проверенных команд, архитектурных рецептов, промптов и передача контекста в ИИ-ассистентов.</p>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-case-inspect" data-case-id="obsidian-rag">
+              <i data-lucide="layers"></i> Кейс ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Obsidian 3 Core Features Grid -->
+        <div class="content-features-grid">
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="book-open"></i></div>
+            <div class="feature-text">
+              <strong>Obsidian Vault &amp; Метод Zettelkasten</strong>
+              <p>Систематизация базы знаний в формате Markdown: двунаправленные гиперссылки (<code>[[note_name]]</code>), фронтматтер YAML метаданные и ведение отчетов аналитики.</p>
+            </div>
+          </div>
+
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="search"></i></div>
+            <div class="feature-text">
+              <strong>Vector Embeddings &amp; RAG Indexing</strong>
+              <p>Чанкование заметок, генерация векторных эмбеддингов и семантический поиск — мгновенный поиск ответов по смысловому контексту за <code>&lt; 10ms</code>.</p>
+            </div>
+          </div>
+
+          <div class="content-feature-item">
+            <div class="feature-icon"><i data-lucide="bot"></i></div>
+            <div class="feature-text">
+              <strong>Прямое Подключение ИИ-Агентов</strong>
+              <p>Локальные субагенты (Hermes Researcher, Qwen 3.5 Coder) читают базу знаний перед выполнением задач и сохраняют ТЗ прямо в Vault.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Second Brain Inspector Stand -->
+        <div class="obsidian-rag-stand" id="obsidianRAGStand">
+          <div class="obsidian-stand-header">
+            <div class="obsidian-mode-tabs">
+              <button class="obsidian-mode-btn active" data-mode="vault">
+                <i data-lucide="book-open"></i> 1. База Знаний (Obsidian Vault)
+              </button>
+              <button class="obsidian-mode-btn" data-mode="pipeline">
+                <i data-lucide="bot"></i> 2. Связка с ИИ-Агентом
+              </button>
+              <button class="obsidian-mode-btn" data-mode="manifest">
+                <i data-lucide="bar-chart-2"></i> 3. Сравнение Эффективности
+              </button>
+            </div>
+            <div class="obsidian-stand-badge">
+              <span class="status-dot"></span> 1,000+ заметок в базе
+            </div>
+          </div>
+
+          <!-- VIEWPORT 1: Vault Explorer -->
+          <div class="obsidian-viewport active" data-viewport="vault">
+            <div class="vault-explorer-layout">
+              <div class="vault-categories-sidebar">
+                <div class="sidebar-title">КАТЕГОРИИ ЗАМЕТОК</div>
+                <div class="vault-cat-item active" data-cat="cheatsheets">
+                  <i data-lucide="file-text"></i>
+                  <div>
+                    <strong>01_Шпаргалки</strong>
+                    <span>Команды деплоя, конфиги</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="architecture">
+                  <i data-lucide="layers"></i>
+                  <div>
+                    <strong>02_Архитектура</strong>
+                    <span>Правила чистой разработки</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="ai">
+                  <i data-lucide="bot"></i>
+                  <div>
+                    <strong>03_ИИ_Инструкции</strong>
+                    <span>Системные промпты</span>
+                  </div>
+                </div>
+                <div class="vault-cat-item" data-cat="research">
+                  <i data-lucide="book-open"></i>
+                  <div>
+                    <strong>04_База_Знаний</strong>
+                    <span>Второй мозг &amp; связи</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="vault-note-preview-box" id="vaultNotePreview">
+                <div class="preview-note-header">
+                  <span class="preview-note-title"><i data-lucide="file-text"></i> [[Команды_и_Шпаргалки.md]]</span>
+                  <span class="preview-note-tag">#cheatsheet</span>
+                </div>
+                <p class="preview-note-desc">Быстрые проверенные инструкции по настройке окружения, запуску серверов и деплою.</p>
+                <pre><code class="language-markdown"># Базовые инструкции по запуску
+1. Проверка переменных среды (.env)
+2. Локальный запуск dev-сервера
+3. Автоматический сбор логов в папку /logs/</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEWPORT 2: Context Pipeline -->
+          <div class="obsidian-viewport" data-viewport="pipeline">
+            <div class="pipeline-steps-grid">
+              <div class="pipeline-step-card">
+                <div class="step-num">01</div>
+                <div class="step-icon"><i data-lucide="message-square"></i></div>
+                <h4>1. Постановка Задачи</h4>
+                <p>Разработчик формулирует задачу ИИ-ассистенту (например: <em>«Создай асинхронный модуль публикации постов»</em>).</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.1); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+                  <i data-lucide="terminal"></i> Input: "Создай модуль TG-публикаций"
+                </div>
+              </div>
+
+              <div class="pipeline-arrow"><i data-lucide="chevron-right"></i></div>
+
+              <div class="pipeline-step-card active">
+                <div class="step-num">02</div>
+                <div class="step-icon"><i data-lucide="book-open"></i></div>
+                <h4>2. Извлечение Правил (RAG)</h4>
+                <p>ИИ-ассистент моментально подтягивает из базы заметок Obsidian проверенный шаблон с правилами <code>MarkdownV2</code> и защиты от дублей.</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #34d399; background: rgba(16, 185, 129, 0.15); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">
+                  <i data-lucide="file-text"></i> Match: [[Rules_MarkdownV2.md]]
+                </div>
+              </div>
+
+              <div class="pipeline-arrow"><i data-lucide="chevron-right"></i></div>
+
+              <div class="pipeline-step-card">
+                <div class="step-num">03</div>
+                <div class="step-icon"><i data-lucide="check-circle-2"></i></div>
+                <h4>3. Чистый Код С 1-й Попытки</h4>
+                <p>ИИ генерирует 100% рабочий код строго по стандартам проекта без галюцинаций, ошибок синтаксиса и повторных вопросов.</p>
+                <div style="margin-top: 12px; font-family: var(--font-code); font-size: 0.75rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.1); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+                  <i data-lucide="check"></i> Result: 0 Errors / Ready Code
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEWPORT 3: Efficiency Manifesto -->
+          <div class="obsidian-viewport" data-viewport="manifest">
+            <div class="manifesto-comparison-grid">
+              <div class="comparison-col bad">
+                <div class="col-head">
+                  <i data-lucide="x-circle"></i>
+                  <span>Без Второго Мозга</span>
+                </div>
+                <ul>
+                  <li><i data-lucide="x"></i> Фрагменты кода и команды теряются в истории терминала и чатах</li>
+                  <li><i data-lucide="x"></i> Разработчик тратит 2-3 часа на повторный поиск старых скриптов</li>
+                  <li><i data-lucide="x"></i> ИИ путает контекст, предлагает костыли и требует 10 уточнений</li>
+                  <li><i data-lucide="x"></i> Высокий риск сломать архитектуру при передаче задач другим людям</li>
+                </ul>
+              </div>
+
+              <div class="comparison-col good">
+                <div class="col-head">
+                  <i data-lucide="check-circle-2"></i>
+                  <span>С Цифровым Мозгом в Obsidian</span>
+                </div>
+                <ul>
+                  <li><i data-lucide="check"></i> Единый структурированный хаб инженерных знаний за 2 секунды</li>
+                  <li><i data-lucide="check"></i> ИИ-ассистенты моментально считывают корпоративные стандарты</li>
+                  <li><i data-lucide="check"></i> Скорость написания новых модулей и скриптов выше в 5 раз</li>
+                  <li><i data-lucide="check"></i> 100% сохранение уникальных архитектурных решений проекта</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tg-arch-footer-bar">
+          <span class="arch-footer-chip"><i data-lucide="book-open"></i> Obsidian Vault</span>
+          <span class="arch-footer-chip"><i data-lucide="file-text"></i> Markdown Docs</span>
+          <span class="arch-footer-chip"><i data-lucide="bot"></i> Context Pipeline</span>
+          <span class="arch-footer-chip"><i data-lucide="cpu"></i> AI Memory Bus</span>
+          <span class="arch-footer-chip"><i data-lucide="shield-check"></i> Zero Context Waste</span>
+        </div>
+      </article>
+    </section>

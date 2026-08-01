@@ -1,0 +1,281 @@
+
+  <script type="module" src="app.js?v=1785428811"></script>
+
+
+
+
+
+
+<!-- 100% PERFECT QUICK FEEDBACK PLACEHOLDER FIT (VER 1785428811) -->
+<style id="mobile-bottom-inline-override">
+/* QUICK FEEDBACK INPUT PLACEHOLDER FIT */
+.quick-input-field::placeholder,
+#quickComment::placeholder,
+#quickContact::placeholder {
+  font-size: 0.76rem !important;
+  color: #71717a !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.quick-input-field {
+  font-size: 0.8rem !important;
+  padding: 8px 10px 8px 34px !important;
+}
+
+/* 1. PC DESKTOP (DEFAULT > 1024px): BENTO MAIN GAP 16px & ZERO SECTION MARGIN BOTTOM */
+main.bento-main, .bento-main, main.bento-grid, .bento-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  padding-bottom: 40px !important;
+}
+
+.hero-section,
+section.bento-row,
+.bento-row,
+.row-hero,
+.row-tg-hero,
+.row-duo,
+.row-devops-RAG,
+.row-rag-calc,
+.row-ai-influencer,
+.row-firmware,
+.row-feedback {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  gap: 16px !important;
+}
+
+.card-ai-assistant .card-header-flex {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  gap: 10px !important;
+  margin-bottom: 14px !important;
+}
+
+.card-ai-assistant .card-header-flex > div:first-child {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: auto !important;
+}
+
+.card-ai-assistant .section-tag {
+  white-space: nowrap !important;
+  display: inline-block !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.05em !important;
+  color: #10b981 !important;
+  margin-bottom: 4px !important;
+}
+
+.card-ai-assistant .card-header-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-shrink: 0 !important;
+  width: auto !important;
+  order: 0 !important;
+  margin-top: -2px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.card-ai-assistant .btn-case-inspect {
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  font-size: 0.72rem !important;
+  padding: 4px 8px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.card-ai-assistant .live-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  font-size: 0.72rem !important;
+  padding: 4px 8px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.card-ai-assistant .card-title {
+  color: #ffffff !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  margin-top: 2px !important;
+  margin-bottom: 4px !important;
+  white-space: nowrap !important;
+}
+
+.card-ai-assistant .card-subtitle {
+  color: #a1a1aa !important;
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+}
+
+/* PC DESKTOP: EXPANDED CHAT CONTAINER HEIGHT */
+.chat-container {
+  height: 380px !important;
+  min-height: 380px !important;
+  max-height: 480px !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* FIXED FLOATING NAVBAR ON MOBILE (< 1024px) */
+@media screen and (max-width: 1024px) {
+  header.navbar, .navbar {
+    position: fixed !important;
+    top: 6px !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: calc(100% - 16px) !important;
+    z-index: 9999 !important;
+    margin: 0 auto !important;
+    pointer-events: none !important;
+  }
+  .nav-container {
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
+    pointer-events: none !important;
+  }
+  .nav-container a, .nav-container button, .nav-container .btn {
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+  body {
+    padding-top: 52px !important;
+    padding-bottom: 24px !important;
+  }
+}
+
+/* 2. MOBILE ADAPTATION (< 1200px / MOBILE): ALL CARD & SECTION GAPS EXACTLY 14px */
+@media screen and (max-width: 1200px), (pointer: coarse) {
+  main.bento-main, .bento-main, main.bento-grid, .bento-grid {
+    padding: 0 8px !important;
+    gap: 14px !important;
+  }
+
+  .hero-section,
+  section.bento-row,
+  .bento-row,
+  .row-hero,
+  .row-tg-hero,
+  .row-duo,
+  .row-devops-RAG,
+  .row-rag-calc,
+  .row-ai-influencer,
+  .row-firmware,
+  .row-feedback {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    gap: 14px !important;
+  }
+
+  .bento-card {
+    padding: 16px 14px !important;
+    margin-bottom: 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .bento-row > .bento-card:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* MOBILE CHAT CONTAINER (EXPLICIT FLEXIBLE SCROLL AT 280px WITH NATIVE TOUCH PAN) */
+  .chat-container {
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
+    overflow-y: auto !important;
+    overscroll-behavior-y: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    pointer-events: auto !important;
+  }
+  .chat-container * {
+    pointer-events: auto !important;
+  }
+
+  /* CASE INSPECTOR MODAL TABS 100% FIT */
+  .case-inspector-modal-container {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 90vh !important;
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+  .case-inspector-tabs {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding: 6px 4px !important;
+    background: #121217 !important;
+    border-bottom: 1px solid #27272a !important;
+    gap: 4px !important;
+    width: 100% !important;
+  }
+  .case-inspector-tabs .tab-btn {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    font-size: 0.7rem !important;
+    padding: 6px 4px !important;
+    justify-content: center !important;
+  }
+
+  /* TG CONTENT AVATAR */
+  .tg-author-avatar, .post-header-author .author-avatar, .channel-avatar {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+  }
+
+  /* CODE EDITOR SMALL FONT */
+  .editor-window pre, .editor-window code {
+    white-space: pre !important;
+    word-break: normal !important;
+    font-size: 0.63rem !important;
+    line-height: 1.35 !important;
+  }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
