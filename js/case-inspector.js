@@ -74,6 +74,8 @@ export function initCaseInspector() {
   function renderTabContent() {
     const bodyContainer = document.getElementById('caseModalBodyContent');
     if (!bodyContainer || !activeCase) return;
+    bodyContainer.scrollTop = 0;
+
 
     if (activeTab === 'overview') {
       bodyContainer.innerHTML = `

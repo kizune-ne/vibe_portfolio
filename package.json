@@ -1,6 +1,6 @@
 {
   "name": "vibe_portfolio",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "VibeCoder & AI Engineer Portfolio",
   "main": "build.js",
   "scripts": {
