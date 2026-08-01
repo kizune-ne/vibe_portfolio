@@ -182,8 +182,15 @@
 .obsidian-mode-tabs {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.obsidian-mode-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .obsidian-mode-btn {
@@ -200,6 +207,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .obsidian-mode-btn:hover {
