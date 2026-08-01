@@ -1,3 +1,18 @@
+<style>
+@media (max-width: 768px) {
+  .bento-card .file-tree-sidebar, 
+  .bento-card .file-tree-sidebar *, 
+  .bento-card .btn-editor-action,
+  .file-tree-sidebar, 
+  .file-tree-sidebar *, 
+  .tree-file, 
+  .folder-title {
+    pointer-events: auto !important;
+    touch-action: pan-y manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+}
+</style>
 <section class="bento-row row-calc-firmware" id="firmware">
       <!-- Left: Print Calculator Card (3 Columns) -->
       <article class="bento-card card-calc-preview" id="cardCalculator" style="display: flex; flex-direction: column; justify-content: space-between;">

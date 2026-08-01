@@ -385,7 +385,7 @@
         <span class="brand-glyph">▲</span>
         <span class="logo-text">kizun</span>
         <span class="logo-badge">// VibeCoder & AI-content manager</span>
-        <span class="commit-hash-badge" style="margin-left: 8px; font-family: var(--font-code); opacity: 0.8; color: var(--color-terminal-green); font-weight: bold; font-size: 0.75em;">[rev: v10-firmware-mobile-fixes]</span>
+        <span class="commit-hash-badge" style="margin-left: 8px; font-family: var(--font-code); opacity: 0.8; color: var(--color-terminal-green); font-weight: bold; font-size: 0.75em;">[rev: v11-firmware-mobile-fixes]</span>
       </a>
       <div class="nav-actions">
         <a href="mailto:kizunezn@gmail.com" class="btn btn-secondary btn-sm btn-copy-email" data-email="kizunezn@gmail.com" title="Нажмите, чтобы скопировать Email">
@@ -1204,7 +1204,22 @@
     </section>
 
     <!-- 5. PRINT CALCULATOR (3 cols) & 6. FIRMWARE PORTING (9 cols) -->
-    <section class="bento-row row-calc-firmware" id="firmware">
+    <style>
+@media (max-width: 768px) {
+  .bento-card .file-tree-sidebar, 
+  .bento-card .file-tree-sidebar *, 
+  .bento-card .btn-editor-action,
+  .file-tree-sidebar, 
+  .file-tree-sidebar *, 
+  .tree-file, 
+  .folder-title {
+    pointer-events: auto !important;
+    touch-action: pan-y manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+}
+</style>
+<section class="bento-row row-calc-firmware" id="firmware">
       <!-- Left: Print Calculator Card (3 Columns) -->
       <article class="bento-card card-calc-preview" id="cardCalculator" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div class="spotlight-border"></div>
