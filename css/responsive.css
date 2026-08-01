@@ -567,6 +567,12 @@ button:active, .btn:active, .tov-tab:active,
     font-size: 0.875rem !important;
     line-height: 1.5;
     margin-bottom: 16px;
+    text-align: justify !important;
+    -webkit-hyphens: auto !important;
+    -moz-hyphens: auto !important;
+    hyphens: auto !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
   }
 
   .hero-metrics-row {
