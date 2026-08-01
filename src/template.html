@@ -652,18 +652,22 @@ section.bento-row,
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
-    padding: 6px 4px !important;
-    background: #121217 !important;
-    border-bottom: 1px solid #27272a !important;
-    gap: 4px !important;
+    padding: 10px 14px !important;
+    background: #161b22 !important;
+    border-bottom: 1px solid #21262d !important;
+    gap: 8px !important;
     width: 100% !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .case-inspector-tabs::-webkit-scrollbar {
+    display: none !important;
   }
   .case-inspector-tabs .tab-btn {
-    flex: 1 1 0% !important;
-    min-width: 0 !important;
+    flex: 0 0 auto !important;
     white-space: nowrap !important;
-    font-size: 0.7rem !important;
-    padding: 6px 4px !important;
+    font-size: 0.8rem !important;
+    padding: 10px 16px !important;
     justify-content: center !important;
   }
 

@@ -3,6 +3,9 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 function getGitCommitHash() {
+  if (process.env.GITHUB_SHA) {
+    return process.env.GITHUB_SHA.substring(0, 7);
+  }
   try {
     return execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
   } catch (e) {
