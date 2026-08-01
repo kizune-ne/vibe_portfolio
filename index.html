@@ -54,7 +54,7 @@
         display: none !important;
       }
       .status-badge-wrapper {
-        margin-top: 16px !important;
+        margin-top: -8px !important;
       }
     }
   </style>
@@ -1604,17 +1604,13 @@ section.bento-row,
   -webkit-overflow-scrolling: touch !important;
 }
 
-/* FIXED FLOATING NAVBAR ON MOBILE (< 1024px) */
+/* STICKY FLOATING NAVBAR ON MOBILE (< 1024px) */
 @media screen and (max-width: 1024px) {
   header.navbar, .navbar {
-    position: fixed !important;
+    position: sticky !important;
     top: 6px !important;
-    left: 8px !important;
-    right: 8px !important;
-    width: calc(100% - 16px) !important;
     z-index: 9999 !important;
-    margin: 0 auto !important;
-    pointer-events: none !important;
+    margin: 6px auto 16px auto !important;
   }
   .nav-container {
     background: rgba(255, 255, 255, 0.96) !important;
@@ -1623,14 +1619,12 @@ section.bento-row,
     border: 1px solid rgba(0, 0, 0, 0.12) !important;
     border-radius: 12px !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
-    pointer-events: none !important;
   }
   .nav-container a, .nav-container button, .nav-container .btn {
     pointer-events: auto !important;
     touch-action: manipulation !important;
   }
   body {
-    padding-top: 52px !important;
     padding-bottom: 24px !important;
   }
 }
