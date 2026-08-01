@@ -177,7 +177,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .hero-tags {
