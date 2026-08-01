@@ -210,7 +210,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 10px;
+  gap: 6px;
   max-width: 260px;
   margin-left: auto;
 }
@@ -218,7 +218,7 @@
 .hero-tags-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 14px;
 }
 
 .tech-tag {
