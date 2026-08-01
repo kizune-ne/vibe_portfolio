@@ -568,6 +568,7 @@ button:active, .btn:active, .tov-tab:active,
     line-height: 1.5;
     margin-bottom: 16px;
     text-align: justify !important;
+    text-indent: 1.5em !important;
     -webkit-hyphens: auto !important;
     -moz-hyphens: auto !important;
     hyphens: auto !important;
