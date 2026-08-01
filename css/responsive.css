@@ -638,6 +638,17 @@ button:active, .btn:active, .tov-tab:active,
     gap: 10px !important;
   }
 
+  .hero-tags-row {
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+  }
+
+  .tech-tag {
+    font-size: 0.625rem !important;
+    padding: 4px 6px !important;
+    letter-spacing: -0.02em !important;
+  }
+
   .hero-cta-group .btn {
     width: 100% !important;
     justify-content: center !important;
