@@ -1,0 +1,6 @@
+name = "vibe-ai-proxy"
+main = "api/worker.js"
+compatibility_date = "2024-03-20"
+
+# Note: Secrets like GEMINI_API_KEYS should be set securely via Cloudflare Dashboard
+# Settings -> Variables -> Secret Variables.
