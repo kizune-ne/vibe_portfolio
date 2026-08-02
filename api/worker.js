@@ -174,6 +174,26 @@ async function handleFeedback(request, env, corsHeaders) {
   }
 }
 
+function formatTime(ms) {
+  if (!ms || ms < 1000) return 'Менее секунды';
+  let seconds = Math.floor(ms / 1000);
+  let minutes = Math.floor(seconds / 60);
+  let hours = Math.floor(minutes / 60);
+  let days = Math.floor(hours / 24);
+  
+  seconds %= 60;
+  minutes %= 60;
+  hours %= 24;
+
+  let parts = [];
+  if (days > 0) parts.push(`${days} дн.`);
+  if (hours > 0) parts.push(`${hours} ч.`);
+  if (minutes > 0) parts.push(`${minutes} мин.`);
+  if (seconds > 0 && days === 0 && hours === 0) parts.push(`${seconds} сек.`);
+  
+  return parts.join(' ');
+}
+
 async function handleAnalytics(request, env, corsHeaders) {
   try {
     const payload = await request.json();
@@ -201,15 +221,20 @@ async function handleAnalytics(request, env, corsHeaders) {
     let message = '';
 
     if (payload.type === 'visit') {
-      message = `🚀 <b>Новый визит на сайт</b>\n\n` +
-                `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
-                `🔄 <b>Тип:</b> ${payload.isReturning ? 'Вернулся на сайт' : 'Новый пользователь'}\n` +
-                `🌍 <b>Локация:</b> 🏴‍☠️ ${country} (${city})\n` +
-                `🌐 <b>Устройство:</b> ${os}, ${browser}\n` +
-                `🔗 <b>Откуда:</b> ${payload.referrer || 'Прямой заход'}\n` +
-                `💻 <b>Экран:</b> ${payload.screen || 'Н/Д'}`;
+      message = `🚀 <b>${payload.isReturning ? 'Пользователь вернулся' : 'Новый визит на сайт'}</b>\n━━━━━━━━━━━━━━━━━━\n` +
+                `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n`;
+      
+      if (payload.isReturning) {
+        message += `⏱ <b>Отсутствовал:</b> ${formatTime(payload.timeAway)}\n` +
+                   `⏳ <b>Прошлый визит длился:</b> ${formatTime(payload.lastDuration)}\n`;
+      }
+      
+      message += `🌍 <b>Локация:</b> 🏴‍☠️ ${country} (${city})\n` +
+                 `🌐 <b>Устройство:</b> ${os}, ${browser}\n` +
+                 `🔗 <b>Откуда:</b> ${payload.referrer || 'Прямой заход'}\n` +
+                 `💻 <b>Экран:</b> ${payload.screen || 'Н/Д'}`;
     } else if (payload.type === 'event') {
-      message = `🎯 <b>Событие на сайте</b>\n\n` +
+      message = `🎯 <b>Событие на сайте</b>\n━━━━━━━━━━━━━━━━━━\n` +
                 `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
                 `👆 <b>Действие:</b> ${payload.eventName || 'Неизвестно'}`;
       
