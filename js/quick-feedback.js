@@ -58,7 +58,10 @@ export function initQuickFeedback() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const visitorId = localStorage.getItem('vibe_visitor_id') || 'unknown';
+
     const payload = {
+      visitorId: visitorId,
       rating: selectedRating,
       ratingText: RATING_LABELS[selectedRating],
       comment: commentInput ? commentInput.value.trim() : '',

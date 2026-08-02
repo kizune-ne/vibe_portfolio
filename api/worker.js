@@ -88,10 +88,13 @@ export default {
     const url = new URL(request.url);
 
     // ========================================================================
-    // ROUTE 1: TELEGRAM ANALYTICS
+    // ROUTE 1: TELEGRAM ANALYTICS & FEEDBACK
     // ========================================================================
     if (url.pathname.endsWith('/analytics')) {
       return await handleAnalytics(request, env, corsHeaders);
+    }
+    if (url.pathname.endsWith('/feedback')) {
+      return await handleFeedback(request, env, corsHeaders);
     }
 
     // ========================================================================
@@ -101,52 +104,30 @@ export default {
   }
 };
 
-async function handleAnalytics(request, env, corsHeaders) {
+async function sendToTelegram(message, env, corsHeaders) {
   const token = env.TELEGRAM_BOT_TOKEN;
   const chatId = env.TELEGRAM_CHAT_ID;
   const threadId = env.TELEGRAM_THREAD_ID;
 
   if (!token || !chatId) {
-    return new Response(JSON.stringify({ error: 'Telegram secrets missing on Cloudflare' }), {
+    return new Response(JSON.stringify({ error: 'Telegram secrets missing' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
 
+  const tgUrl = `https://api.telegram.org/bot${token}/sendMessage`;
+  const tgBody = {
+    chat_id: chatId,
+    text: message,
+    parse_mode: 'HTML'
+  };
+  
+  if (threadId) {
+    tgBody.message_thread_id = threadId;
+  }
+
   try {
-    const payload = await request.json();
-    let message = '';
-
-    if (payload.type === 'visit') {
-      message = `🚀 <b>Новый визит на сайт!</b>\n\n` +
-                `👤 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
-                `🔄 <b>Вернулся:</b> ${payload.isReturning ? 'Да' : 'Нет'}\n` +
-                `🔗 <b>Откуда:</b> ${payload.referrer || 'Прямой заход'}\n` +
-                `💻 <b>Экран:</b> ${payload.screen || 'Н/Д'}`;
-    } else if (payload.type === 'event') {
-      message = `🎯 <b>Событие на сайте!</b>\n\n` +
-                `👤 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
-                `🔘 <b>Действие:</b> <u>${payload.eventName || 'Неизвестно'}</u>`;
-      
-      if (payload.details && Object.keys(payload.details).length > 0) {
-        message += `\n📝 <b>Детали:</b> <code>${JSON.stringify(payload.details)}</code>`;
-      }
-    } else {
-      message = `📦 <b>Неизвестный Payload</b>\n\n<pre>${JSON.stringify(payload, null, 2)}</pre>`;
-    }
-
-    const tgUrl = `https://api.telegram.org/bot${token}/sendMessage`;
-    const tgBody = {
-      chat_id: chatId,
-      text: message,
-      parse_mode: 'HTML'
-    };
-    
-    // Добавляем топик, если он указан
-    if (threadId) {
-      tgBody.message_thread_id = threadId;
-    }
-
     const tgResponse = await fetch(tgUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -171,6 +152,77 @@ async function handleAnalytics(request, env, corsHeaders) {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
+  }
+}
+
+async function handleFeedback(request, env, corsHeaders) {
+  try {
+    const payload = await request.json();
+    
+    // Генерируем звездочки
+    const ratingNum = payload.rating || 5;
+    const stars = '⭐️'.repeat(ratingNum);
+    
+    let message = `${stars}\n\n` +
+                  `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
+                  `💬 <b>Комментарий:</b> "${payload.comment || 'Без комментария'}"\n` +
+                  `📫 <b>Связь:</b> ${payload.contact || 'Не указана'}`;
+
+    return await sendToTelegram(message, env, corsHeaders);
+  } catch (e) {
+    return new Response(JSON.stringify({ error: 'Invalid payload' }), { status: 400, headers: corsHeaders });
+  }
+}
+
+async function handleAnalytics(request, env, corsHeaders) {
+  try {
+    const payload = await request.json();
+    
+    // Получаем крутые данные из Cloudflare
+    const country = request.cf?.country || 'N/A';
+    const city = request.cf?.city || 'N/A';
+    const userAgent = request.headers.get('user-agent') || 'N/A';
+    
+    // Простейший парсинг User-Agent для красивого вывода
+    let os = 'Unknown OS';
+    let browser = 'Unknown Browser';
+    
+    if (userAgent.includes('Windows')) os = 'Windows';
+    else if (userAgent.includes('Mac OS')) os = 'Mac OS';
+    else if (userAgent.includes('Android')) os = 'Android';
+    else if (userAgent.includes('iPhone') || userAgent.includes('iPad')) os = 'iOS';
+    else if (userAgent.includes('Linux')) os = 'Linux';
+    
+    if (userAgent.includes('Chrome')) browser = 'Chrome';
+    else if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) browser = 'Safari';
+    else if (userAgent.includes('Firefox')) browser = 'Firefox';
+    else if (userAgent.includes('Edge')) browser = 'Edge';
+
+    let message = '';
+
+    if (payload.type === 'visit') {
+      message = `🚀 <b>Новый визит на сайт</b>\n\n` +
+                `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
+                `🔄 <b>Тип:</b> ${payload.isReturning ? 'Вернулся на сайт' : 'Новый пользователь'}\n` +
+                `🌍 <b>Локация:</b> 🏴‍☠️ ${country} (${city})\n` +
+                `🌐 <b>Устройство:</b> ${os}, ${browser}\n` +
+                `🔗 <b>Откуда:</b> ${payload.referrer || 'Прямой заход'}\n` +
+                `💻 <b>Экран:</b> ${payload.screen || 'Н/Д'}`;
+    } else if (payload.type === 'event') {
+      message = `🎯 <b>Событие на сайте</b>\n\n` +
+                `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
+                `👆 <b>Действие:</b> ${payload.eventName || 'Неизвестно'}`;
+      
+      if (payload.details && Object.keys(payload.details).length > 0) {
+        message += `\n⚙️ <b>Детали:</b> <code>${JSON.stringify(payload.details)}</code>`;
+      }
+    } else {
+      message = `📦 <b>Неизвестная аналитика</b>\n\n<pre>${JSON.stringify(payload, null, 2)}</pre>`;
+    }
+
+    return await sendToTelegram(message, env, corsHeaders);
+  } catch (e) {
+    return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: corsHeaders });
   }
 }
 
