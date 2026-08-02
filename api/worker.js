@@ -206,11 +206,13 @@ async function handleAnalytics(request, env, corsHeaders) {
     // Простейший парсинг User-Agent для красивого вывода
     let os = 'Unknown OS';
     let browser = 'Unknown Browser';
+    let deviceType = 'ПК 💻';
     
     if (userAgent.includes('Windows')) os = 'Windows';
     else if (userAgent.includes('Mac OS')) os = 'Mac OS';
-    else if (userAgent.includes('Android')) os = 'Android';
-    else if (userAgent.includes('iPhone') || userAgent.includes('iPad')) os = 'iOS';
+    else if (userAgent.includes('Android')) { os = 'Android'; deviceType = 'Смартфон 📱'; }
+    else if (userAgent.includes('iPhone')) { os = 'iOS'; deviceType = 'Смартфон 📱'; }
+    else if (userAgent.includes('iPad')) { os = 'iOS'; deviceType = 'Планшет 💊'; }
     else if (userAgent.includes('Linux')) os = 'Linux';
     
     if (userAgent.includes('Chrome')) browser = 'Chrome';
@@ -230,9 +232,9 @@ async function handleAnalytics(request, env, corsHeaders) {
       }
       
       message += `🌍 <b>Локация:</b> 🏴‍☠️ ${country} (${city})\n` +
-                 `🌐 <b>Устройство:</b> ${os}, ${browser}\n` +
-                 `🔗 <b>Откуда:</b> ${payload.referrer || 'Прямой заход'}\n` +
-                 `💻 <b>Экран:</b> ${payload.screen || 'Н/Д'}`;
+                 `📱 <b>Устройство:</b> ${deviceType} (Экран: ${payload.screen || 'Н/Д'})\n` +
+                 `🌐 <b>Браузер:</b> ${browser} (${os})\n` +
+                 `🔗 <b>Откуда:</b> ${payload.referrer || 'Прямой заход'}`;
     } else if (payload.type === 'event') {
       message = `🎯 <b>Событие на сайте</b>\n━━━━━━━━━━━━━━━━━━\n` +
                 `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
