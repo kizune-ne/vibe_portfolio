@@ -174,7 +174,6 @@ async function handleFeedback(request, env, corsHeaders) {
     }
     
     let message = `📝 <b>Новый отзыв</b>\n━━━━━━━━━━━━━━━━━━\n${stars}\n\n` +
-                  `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
                   `💬 <b>Комментарий:</b> "${payload.comment || 'Без комментария'}"\n` +
                   `📫 <b>Связь:</b> ${contact}`;
 
@@ -233,8 +232,7 @@ async function handleAnalytics(request, env, corsHeaders) {
     let message = '';
 
     if (payload.type === 'visit') {
-      message = `🚀 <b>${payload.isReturning ? 'Пользователь вернулся' : 'Новый визит на сайт'}</b>\n━━━━━━━━━━━━━━━━━━\n` +
-                `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n`;
+      message = `🚀 <b>${payload.isReturning ? 'Пользователь вернулся' : 'Новый визит на сайт'}</b>\n━━━━━━━━━━━━━━━━━━\n`;
       
       if (payload.isReturning) {
         message += `⏱ <b>Отсутствовал:</b> ${formatTime(payload.timeAway)}\n` +
@@ -247,7 +245,6 @@ async function handleAnalytics(request, env, corsHeaders) {
                  `🔗 <b>Откуда:</b> ${payload.referrer || 'Прямой заход'}`;
     } else if (payload.type === 'event') {
       message = `🎯 <b>Событие на сайте</b>\n━━━━━━━━━━━━━━━━━━\n` +
-                `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
                 `👆 <b>Действие:</b> ${payload.eventName || 'Неизвестно'}`;
       
       if (payload.details && Object.keys(payload.details).length > 0) {
