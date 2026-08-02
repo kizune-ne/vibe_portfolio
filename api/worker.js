@@ -232,7 +232,8 @@ async function handleAnalytics(request, env, corsHeaders) {
     let message = '';
 
     if (payload.type === 'visit') {
-      message = `🚀 <b>${payload.isReturning ? 'Пользователь вернулся' : 'Новый визит на сайт'}</b>\n━━━━━━━━━━━━━━━━━━\n`;
+      const titleEmoji = payload.isReturning ? '👋' : '🚀';
+      message = `${titleEmoji} <b>${payload.isReturning ? 'Пользователь вернулся' : 'Новый визит на сайт'}</b>\n━━━━━━━━━━━━━━━━━━\n`;
       
       if (payload.isReturning) {
         message += `⏱ <b>Отсутствовал:</b> ${formatTime(payload.timeAway)}\n` +

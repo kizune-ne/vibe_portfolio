@@ -90,9 +90,9 @@ function setupAutoTracker(visitorId) {
     // Оставляем ТОЛЬКО резюме
     if (clickable.href && clickable.href.includes('resume.pdf')) {
       if (clickable.hasAttribute('download')) {
-        trackEvent('📥 Рекрутер скачал Резюме (CV)' + modifierTag);
+        trackEvent('📥 Скачал резюме' + modifierTag);
       } else {
-        trackEvent('📄 Рекрутер открыл Резюме (PDF)' + modifierTag);
+        trackEvent('📄 Открыл резюме' + modifierTag);
       }
     }
   };
