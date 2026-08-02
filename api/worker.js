@@ -163,10 +163,20 @@ async function handleFeedback(request, env, corsHeaders) {
     const ratingNum = payload.rating || 5;
     const stars = '⭐️'.repeat(ratingNum);
     
-    let message = `${stars}\n\n` +
+    // Умная обработка контактов
+    let contact = payload.contact ? payload.contact.trim() : 'Не указана';
+    if (contact !== 'Не указана') {
+      const isPhone = /^[\d\+\-\(\)\s]+$/.test(contact);
+      // Если нет @ (не email и не уже введенный ник), нет ссылок, нет пробелов и это не телефон -> добавляем @
+      if (!contact.includes('@') && !contact.includes('http') && !contact.includes(' ') && !isPhone) {
+        contact = '@' + contact;
+      }
+    }
+    
+    let message = `📝 <b>Новый отзыв</b>\n━━━━━━━━━━━━━━━━━━\n${stars}\n\n` +
                   `🆔 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
                   `💬 <b>Комментарий:</b> "${payload.comment || 'Без комментария'}"\n` +
-                  `📫 <b>Связь:</b> ${payload.contact || 'Не указана'}`;
+                  `📫 <b>Связь:</b> ${contact}`;
 
     return await sendToTelegram(message, env, corsHeaders);
   } catch (e) {
