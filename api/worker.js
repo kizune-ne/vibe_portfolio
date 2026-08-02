@@ -85,103 +85,192 @@ export default {
       });
     }
 
-    try {
-      const body = await request.json();
-      const userMessage = body.message || '';
-      const history = body.history || [];
-      const activeSystemPrompt = body.systemPrompt || SYSTEM_PROMPT;
+    const url = new URL(request.url);
 
-      const keysString = env.GEMINI_API_KEYS || env.GEMINI_API_KEY || '';
-      const apiKeys = keysString.split(',').map(k => k.trim()).filter(Boolean);
+    // ========================================================================
+    // ROUTE 1: TELEGRAM ANALYTICS
+    // ========================================================================
+    if (url.pathname.endsWith('/analytics')) {
+      return await handleAnalytics(request, env, corsHeaders);
+    }
 
-      if (apiKeys.length === 0) {
-        return new Response(JSON.stringify({ error: 'No API keys configured on worker' }), {
-          status: 500,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-        });
+    // ========================================================================
+    // ROUTE 2: AI CHAT (GEMINI)
+    // ========================================================================
+    return await handleChat(request, env, corsHeaders);
+  }
+};
+
+async function handleAnalytics(request, env, corsHeaders) {
+  const token = env.TELEGRAM_BOT_TOKEN;
+  const chatId = env.TELEGRAM_CHAT_ID;
+  const threadId = env.TELEGRAM_THREAD_ID;
+
+  if (!token || !chatId) {
+    return new Response(JSON.stringify({ error: 'Telegram secrets missing on Cloudflare' }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+
+  try {
+    const payload = await request.json();
+    let message = '';
+
+    if (payload.type === 'visit') {
+      message = `🚀 <b>Новый визит на сайт!</b>\n\n` +
+                `👤 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
+                `🔄 <b>Вернулся:</b> ${payload.isReturning ? 'Да' : 'Нет'}\n` +
+                `🔗 <b>Откуда:</b> ${payload.referrer || 'Прямой заход'}\n` +
+                `💻 <b>Экран:</b> ${payload.screen || 'Н/Д'}`;
+    } else if (payload.type === 'event') {
+      message = `🎯 <b>Событие на сайте!</b>\n\n` +
+                `👤 <b>Visitor ID:</b> <code>${payload.visitorId || 'unknown'}</code>\n` +
+                `🔘 <b>Действие:</b> <u>${payload.eventName || 'Неизвестно'}</u>`;
+      
+      if (payload.details && Object.keys(payload.details).length > 0) {
+        message += `\n📝 <b>Детали:</b> <code>${JSON.stringify(payload.details)}</code>`;
       }
+    } else {
+      message = `📦 <b>Неизвестный Payload</b>\n\n<pre>${JSON.stringify(payload, null, 2)}</pre>`;
+    }
 
-      // ТВОИ 4 МОДЕЛИ В ПРИОРИТЕТЕ:
-      const MODEL_CASCADE = [
-        { id: 'gemini-3.5-flash-lite', name: 'Gemini 3.5 Flash Lite' },
-        { id: 'gemini-3.1-flash-lite', name: 'Gemini 3.1 Flash Lite' },
-        { id: 'gemma-4-31b-it', name: 'Gemma 4 31B' },
-        { id: 'gemma-4-26b-a4b-it', name: 'Gemma 4 26B' }
-      ];
+    const tgUrl = `https://api.telegram.org/bot${token}/sendMessage`;
+    const tgBody = {
+      chat_id: chatId,
+      text: message,
+      parse_mode: 'HTML'
+    };
+    
+    // Добавляем топик, если он указан
+    if (threadId) {
+      tgBody.message_thread_id = threadId;
+    }
 
-      // Нативный чистый payload
-      const requestPayload = {
-        system_instruction: {
-          parts: [{ text: activeSystemPrompt }]
-        },
-        contents: [
-          ...history.map(h => ({
-            role: h.role === 'user' ? 'user' : 'model',
-            parts: [{ text: h.text }]
-          })),
-          { role: 'user', parts: [{ text: userMessage }] }
-        ],
-        generationConfig: {
-          temperature: 0.5,
-          topP: 0.9,
-          maxOutputTokens: 400
-        }
-      };
+    const tgResponse = await fetch(tgUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(tgBody)
+    });
 
-      for (const apiKey of apiKeys) {
-        for (const model of MODEL_CASCADE) {
-          try {
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model.id}:generateContent?key=${apiKey}`;
-
-            const response = await fetch(apiUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(requestPayload)
-            });
-
-            if (response.ok) {
-              const data = await response.json();
-              const parts = data.candidates?.[0]?.content?.parts || [];
-
-              // Находим не-thought парты
-              const cleanParts = parts.filter(p => !p.thought);
-              const replyPart = cleanParts.length > 0 ? cleanParts[cleanParts.length - 1] : parts[parts.length - 1];
-              const rawText = replyPart?.text || '';
-
-              const cleanReply = extractCleanReply(rawText);
-
-              if (cleanReply) {
-                return new Response(JSON.stringify({
-                  reply: cleanReply,
-                  model: model.name,
-                  provider: 'Google AI Studio'
-                }), {
-                  status: 200,
-                  headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-                });
-              }
-            } else {
-              console.warn(`[ROUTER] Model ${model.id} with key ...${apiKey.slice(-4)} failed (Status ${response.status}). Trying next...`);
-            }
-          } catch (err) {
-            console.warn(`[ROUTER] Error fetching ${model.id}:`, err);
-          }
-        }
-      }
-
-      return new Response(JSON.stringify({
-        error: 'Rate limit hit on all keys and models',
-        reply: 'Все бесплатные лимиты моделей сейчас исчерпаны. Попробуйте еще раз через минуту!'
-      }), {
-        status: 429,
+    if (!tgResponse.ok) {
+      const errTxt = await tgResponse.text();
+      console.warn('[TELEGRAM ERROR]', errTxt);
+      return new Response(JSON.stringify({ error: 'Failed to send to Telegram', details: errTxt }), {
+        status: 502,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
+    }
 
-    } catch (e) {
-      return new Response(JSON.stringify({ error: e.message }), {
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  } catch (e) {
+    return new Response(JSON.stringify({ error: e.message }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+}
+
+async function handleChat(request, env, corsHeaders) {
+  try {
+    const body = await request.json();
+    const userMessage = body.message || '';
+    const history = body.history || [];
+    const activeSystemPrompt = body.systemPrompt || SYSTEM_PROMPT;
+
+    const keysString = env.GEMINI_API_KEYS || env.GEMINI_API_KEY || '';
+    const apiKeys = keysString.split(',').map(k => k.trim()).filter(Boolean);
+
+    if (apiKeys.length === 0) {
+      return new Response(JSON.stringify({ error: 'No API keys configured on worker' }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
+
+    // ТВОИ 4 МОДЕЛИ В ПРИОРИТЕТЕ:
+    const MODEL_CASCADE = [
+      { id: 'gemini-3.5-flash-lite', name: 'Gemini 3.5 Flash Lite' },
+      { id: 'gemini-3.1-flash-lite', name: 'Gemini 3.1 Flash Lite' },
+      { id: 'gemma-4-31b-it', name: 'Gemma 4 31B' },
+      { id: 'gemma-4-26b-a4b-it', name: 'Gemma 4 26B' }
+    ];
+
+    // Нативный чистый payload
+    const requestPayload = {
+      system_instruction: {
+        parts: [{ text: activeSystemPrompt }]
+      },
+      contents: [
+        ...history.map(h => ({
+          role: h.role === 'user' ? 'user' : 'model',
+          parts: [{ text: h.text }]
+        })),
+        { role: 'user', parts: [{ text: userMessage }] }
+      ],
+      generationConfig: {
+        temperature: 0.5,
+        topP: 0.9,
+        maxOutputTokens: 400
+      }
+    };
+
+    for (const apiKey of apiKeys) {
+      for (const model of MODEL_CASCADE) {
+        try {
+          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model.id}:generateContent?key=${apiKey}`;
+
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestPayload)
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            const parts = data.candidates?.[0]?.content?.parts || [];
+
+            // Находим не-thought парты
+            const cleanParts = parts.filter(p => !p.thought);
+            const replyPart = cleanParts.length > 0 ? cleanParts[cleanParts.length - 1] : parts[parts.length - 1];
+            const rawText = replyPart?.text || '';
+
+            const cleanReply = extractCleanReply(rawText);
+
+            if (cleanReply) {
+              return new Response(JSON.stringify({
+                reply: cleanReply,
+                model: model.name,
+                provider: 'Google AI Studio'
+              }), {
+                status: 200,
+                headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+              });
+            }
+          } else {
+            console.warn(`[ROUTER] Model ${model.id} with key ...${apiKey.slice(-4)} failed (Status ${response.status}). Trying next...`);
+          }
+        } catch (err) {
+          console.warn(`[ROUTER] Error fetching ${model.id}:`, err);
+        }
+      }
+    }
+
+    return new Response(JSON.stringify({
+      error: 'Rate limit hit on all keys and models',
+      reply: 'Все бесплатные лимиты моделей сейчас исчерпаны. Попробуйте еще раз через минуту!'
+    }), {
+      status: 429,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+
+  } catch (e) {
+    return new Response(JSON.stringify({ error: e.message }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
   }
-};
+}
